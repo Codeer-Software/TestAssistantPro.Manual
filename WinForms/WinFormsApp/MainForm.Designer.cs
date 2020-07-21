@@ -127,14 +127,14 @@
             this.dockPanel.Location = new System.Drawing.Point(0, 24);
             this.dockPanel.Margin = new System.Windows.Forms.Padding(2);
             this.dockPanel.Name = "dockPanel";
-            this.dockPanel.Size = new System.Drawing.Size(807, 491);
+            this.dockPanel.Size = new System.Drawing.Size(807, 577);
             this.dockPanel.TabIndex = 1;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(807, 515);
+            this.ClientSize = new System.Drawing.Size(807, 601);
             this.Controls.Add(this.dockPanel);
             this.Controls.Add(this._menuStrip);
             this.MainMenuStrip = this._menuStrip;

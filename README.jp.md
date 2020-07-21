@@ -2,9 +2,9 @@ TestAssistantPro.Manual
 ========
 
 ## 具体的な使い方はこちら
-+ [WPF](WPF.jp.md)
-+ [WinForms](WinForms.jp.md)
-+ [Web](Web.jp.md)
++ [WPF](WPF/README.jp.md)
++ [WinForms](WinForms/README.jp.md)
++ [Web](Web/README.jp.md)
 
 # 概略
 TestAssistantProはC#で自動テストの実装を補助するためのツールです。<br>
