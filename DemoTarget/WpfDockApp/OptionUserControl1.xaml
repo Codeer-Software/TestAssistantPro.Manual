@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="WpfDockApp.OptionUserControl1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfDockApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <RichTextBox FontSize="24">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="In a certification method for the start of a car and the driver's riding there, using a mobile discrimination and transmission system with a built-in evaluation unit, electromagnetic signals measured by a measuring device within the discrimination and transmission system are transmitted in arbitrary sequence at different times, as well as transmitted at the same time, through car antennas installed in at least two different spaces."/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="To provide a navigation computer capable of fitting in an assembling spaces with different inclination using as small man power as possible by improving a navigation computer prescribed for a car of a type that a gyro arranged in another casing is attached on a casing wall 1 and the gyro is controlled in a horizontal assembling position for detecting the vehicle rotation degree around a vertical axis."/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+    </Grid>
+</UserControl>

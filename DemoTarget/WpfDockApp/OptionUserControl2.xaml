@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="WpfDockApp.OptionUserControl2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfDockApp"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <RichTextBox FontSize="24">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="The molded article comprises a conductive resin composition that contains 100 parts by weight of a resin component containing 55 to 75 wt.% of an aromatic polycarbonate resin (A component) and 25 to 45 wt.% of a polyethylene terephthalate resin (B component), and 1 to 20 parts by weight of a conductive carbon material (C component)."/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="To provide a hydrogen producing plant capable of easily following to a fluctuation of demand in directly distributing hydrogen produced in the on-site type hydrogen producing plant to be set up in a supplying place to a plant using hydrogen and/or a car using hydrogen etc., and free from discontinuation of production and supply of hydrogen when external power is not supplied because of power failure due to disasters or the like."/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+    </Grid>
+</UserControl>

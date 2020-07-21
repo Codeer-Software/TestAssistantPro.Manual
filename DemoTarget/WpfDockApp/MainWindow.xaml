@@ -1,0 +1,71 @@
+﻿<Controls:MetroWindow x:Class="WpfDockApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:local="clr-namespace:WpfDockApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open"/>
+                <MenuItem Header="New"/>
+                <MenuItem Header="Option" Click="MenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+        <avalonDock:DockingManager Grid.Row="1" x:Name="_dockingManager">
+            <avalonDock:DockingManager.Theme>
+                <avalonDock:Vs2013LightTheme/>
+            </avalonDock:DockingManager.Theme>
+            <avalonDock:LayoutRoot>
+                <avalonDock:LayoutPanel Orientation="Horizontal">
+                    <avalonDock:LayoutAnchorablePane DockWidth="150">
+                        <!-- ツールウィンドウ1 -->
+                        <avalonDock:LayoutAnchorable Title="">
+                            <TreeView x:Name="TreeView">
+                                
+                            </TreeView>
+                        </avalonDock:LayoutAnchorable>
+                    </avalonDock:LayoutAnchorablePane>
+                    <avalonDock:LayoutPanel Orientation="Vertical">
+                        <avalonDock:LayoutPanel Orientation="Horizontal">
+                            <avalonDock:LayoutDocumentPane>
+                                <!-- ドキュメント1 -->
+                                <avalonDock:LayoutDocument Title="Document1">
+                                    <ListView x:Name="ListView1" SelectionMode="Single">
+                                        
+                                    </ListView>
+                                </avalonDock:LayoutDocument>
+                                <!-- ドキュメント2 -->
+                                <avalonDock:LayoutDocument Title="Document2">
+                                    <ListView x:Name="ListView2" SelectionMode="Single">
+
+                                    </ListView>
+                                </avalonDock:LayoutDocument>
+                            </avalonDock:LayoutDocumentPane>
+                        </avalonDock:LayoutPanel>
+                        <avalonDock:LayoutAnchorablePane DockHeight="100">
+                            <avalonDock:LayoutAnchorable Title="">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Button1" />
+                                        <Button Content="Button2" />
+                                    </StackPanel>
+                                    <TextBlock x:Name="TextBlock1"/>
+                                    <TextBlock x:Name="TextBlock2"/>
+                                </StackPanel>
+                            </avalonDock:LayoutAnchorable>
+                        </avalonDock:LayoutAnchorablePane>
+                    </avalonDock:LayoutPanel>
+                </avalonDock:LayoutPanel>
+            </avalonDock:LayoutRoot>
+        </avalonDock:DockingManager>
+    </Grid>
+</Controls:MetroWindow>
