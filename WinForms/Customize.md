@@ -167,23 +167,30 @@ namespace Driver.InTarget
 ### DriverCreatorAdapter
 DriverCreatorAdapterはIWindowAnalysisMenuAction, IDriverElementNameGeneratorの実装中に使うことができます。<br>
 前述の例にあるようにコードの追加、デザイナへのコントロールの登録に使る他、現在ソリューションに保持してるドライバの情報を使うことができます。<br>
+<br>
 
-プロパティとメソッドは表を分けた方が良くて型は別の列にした方がよいよ
+プロパティ<br>
 
-| Property/Method | 説明 |
+| 型 | 名前 | 説明 |
+| ---- | ---- | ---- |
+| Dictionary<string, ControlDriverInfo> | TypeFullNameAndControlDriver | コントロールドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |
+| Dictionary<string, ControlDriverInfo> | WindowClassNameAndControlDriver | コントロールドライバ情報です。Win32のWindowクラス名がキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |
+| Dictionary<string, WindowDriverInfo> | TypeFullNameAndWindowDriver | ウィンドウドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |
+| Dictionary<string, WindowDriverInfo> | WindowClassNameAndWindowDriver | ウィンドウドライバ情報です。Win32のWindowクラス名がキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |
+| Dictionary<string, WindowDriverInfo> | WindowTextAndWindowDriver | ウィンドウドライバ情報です。Win32のWindowTextがキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |
+| Dictionary<string, UserControlDriverInfo> | TypeFullNameAndUserControlDriver | UserControlに割り当たっているウィンドウドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |
+| Dictionary<string, List&lt;ControlDriverInfo>> | MultiWindowClassNameAndControlDriver | コントロールドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。リストはPriorityの高い順に並んでいます。 |
+| Dictionary<string, List&lt;ControlDriverInfo>> | MultiTypeFullNameAndControlDriver | コントロールドライバ情報です。Win32のWindowクラス名がキーになります。リストはPriorityの高い順に並んでいます。  |
+| Dictionary<string, List&lt;WindowDriverInfo>> | MultiTypeFullNameAndWindowDriver | ウィンドウドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。リストはPriorityの高い順に並んでいます。  |
+| Dictionary<string, List&lt;WindowDriverInfo>> | MultiWindowClassNameAndWindowDriver | ウィンドウドライバ情報です。Win32のWindowクラス名がキーになります。リストはPriorityの高い順に並んでいます。  |
+| Dictionary<string, List&lt;WindowDriverInfo>> | MultiWindowTextAndWindowDriver | ウィンドウドライバ情報です。Win32のWindowTextがキーになります。リストはPriorityの高い順に並んでいます。  |
+| Dictionary<string, List&lt;UserControlDriverInfo>> | MultiTypeFullNameAndUserControlDriver | UserControlに割り当たっているウィンドウドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。リストはPriorityの高い順に並んでいます。  |
+<br>
+
+関数<br>
+
+| 定義 | 説明 |
 | ---- | ---- |
-| Dictionary<string, ControlDriverInfo> TypeFullNameAndControlDriver | コントロールドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |
-| Dictionary<string, ControlDriverInfo> WindowClassNameAndControlDriver | コントロールドライバ情報です。Win32のWindowクラス名がキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |
-| Dictionary<string, WindowDriverInfo> TypeFullNameAndWindowDriver | ウィンドウドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |
-| Dictionary<string, WindowDriverInfo> WindowClassNameAndWindowDriver | ウィンドウドライバ情報です。Win32のWindowクラス名がキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |
-| Dictionary<string, WindowDriverInfo> WindowTextAndWindowDriver | ウィンドウドライバ情報です。Win32のWindowTextがキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |
-| Dictionary<string, UserControlDriverInfo> TypeFullNameAndUserControlDriver | UserControlに割り当たっているウィンドウドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |
-| Dictionary<string, List&lt;ControlDriverInfo>> MultiWindowClassNameAndControlDriver | コントロールドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。リストはPriorityの高い順に並んでいます。 |
-| Dictionary<string, List&lt;ControlDriverInfo>> MultiTypeFullNameAndControlDriver | コントロールドライバ情報です。Win32のWindowクラス名がキーになります。リストはPriorityの高い順に並んでいます。  |
-| Dictionary<string, List&lt;WindowDriverInfo>> MultiTypeFullNameAndWindowDriver | ウィンドウドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。リストはPriorityの高い順に並んでいます。  |
-| Dictionary<string, List&lt;WindowDriverInfo>> MultiWindowClassNameAndWindowDriver | ウィンドウドライバ情報です。Win32のWindowクラス名がキーになります。リストはPriorityの高い順に並んでいます。  |
-| Dictionary<string, List&lt;WindowDriverInfo>> MultiWindowTextAndWindowDriver | ウィンドウドライバ情報です。Win32のWindowTextがキーになります。リストはPriorityの高い順に並んでいます。  |
-| Dictionary<string, List&lt;UserControlDriverInfo>> MultiTypeFullNameAndUserControlDriver | UserControlに割り当たっているウィンドウドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。リストはPriorityの高い順に並んでいます。  |
 | void AddDriverElements(object driverElement) | デザイナにコントロールを追加します。 |
 | void AddCode(string fileName, string code, object target)  | コードを追加します。 |
 | void AddCodeLineSelectInfo(string fileName, string key, object target)  | コードに含まれるキーワードに対応するオブジェクトを設定します。例えばプロパティ名に対応するコントロールを設定しておけば、コードビューワー上で行が選択されたときに対象アプリ上でそのコントロールが強調表示されます。 |
