@@ -1,9 +1,11 @@
 TestAssistantPro.Manual
 ========
 
+[Englihs](README.en.md)
+
 ## 具体的な使い方はこちら
-+ [WPF](WPF/README.md)
 + [WinForms](WinForms/README.md)
++ [WPF](WPF/README.md)
 + [Web](Web/README.md)
 
 # 概略
@@ -23,7 +25,7 @@ Seleniumは公式ドキュメントやその他の情報を参照してくださ
 TestAssistantProはソリューション内のクラスを使って順次コードを生成していきます。<br>
 ![Architecture.jpg](Img/Architecture.jpg)
 
-# TestAssistantProの目的は自動テスト作成/運用工数を圧倒的に削減することです
+# 高品質なコード生成をサポートします
 SeleniumとFriendlyはともにOSSのライブラリなのでTestAssistantProを使わなくても作成/メンテすることは可能です。<br>
 またどちらのライブラリも強力なので工数を投入すればほとんどのテストを実装することが可能でしょう。<br>
 TestAssistantProの目的はその作業工数を圧倒的に減らすことです。<br>
