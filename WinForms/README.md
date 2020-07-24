@@ -6,11 +6,11 @@ FriendlyとDriver/Scenarioパターンはこちらを参照お願いします。
 + [Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)
 
 # 目次
-+ [テストソリューションの新規作成](Sln.jp.md)
-+ [WindwoDriver](WindowDriver.jp.md)
-+ [ControlDriver](ControlDriver.jp.md)
-+ [シナリオ](Scenario.jp.md)
-+ [カスタマイズ](Customize.jp.md)
++ [テストソリューションの新規作成](Sln.md)
++ [WindwoDriver](WindowDriver.md)
++ [ControlDriver](ControlDriver.md)
++ [シナリオ](Scenario.md)
++ [カスタマイズ](Customize.md)
 
 # サンプルの説明
 WinFormsAppフォルダ以下にソースコードがあるので最初にダウンロード/ビルドをお願いします。<br>
