@@ -74,7 +74,13 @@
             // 
             // _comboBoxLanguage
             // 
+            this._comboBoxLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._comboBoxLanguage.FormattingEnabled = true;
+            this._comboBoxLanguage.Items.AddRange(new object[] {
+            "C#",
+            "C++",
+            "Java",
+            "JavaScript"});
             this._comboBoxLanguage.Location = new System.Drawing.Point(74, 96);
             this._comboBoxLanguage.Name = "_comboBoxLanguage";
             this._comboBoxLanguage.Size = new System.Drawing.Size(121, 20);

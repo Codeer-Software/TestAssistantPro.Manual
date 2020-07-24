@@ -140,7 +140,7 @@
             this.MainMenuStrip = this._menuStrip;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
-            this.Text = "WinFormsApp";
+            this.Text = "MainForm";
             this._menuStrip.ResumeLayout(false);
             this._menuStrip.PerformLayout();
             this.ResumeLayout(false);
