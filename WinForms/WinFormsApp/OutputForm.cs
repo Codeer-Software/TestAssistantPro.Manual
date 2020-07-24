@@ -10,6 +10,9 @@ namespace WinFormsApp
         public OutputForm()
             => InitializeComponent();
 
+        internal void SetOutputTexts(string[] searchResult)
+            => _textBoxResult.Text = string.Join(Environment.NewLine, searchResult);
+
         void _toolStripButtonCopy_Click(object sender, System.EventArgs e)
             => Clipboard.SetText(_textBoxResult.Text);
 
@@ -22,7 +25,7 @@ namespace WinFormsApp
             }
         }
 
-        internal void SetOutputTexts(string[] searchResult)
-            => _textBoxResult.Text = string.Join(Environment.NewLine, searchResult);
+        void _toolStripButtonClear_Click(object sender, EventArgs e)
+            => _textBoxResult.Text = string.Empty;
     }
 }

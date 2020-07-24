@@ -65,8 +65,8 @@ PageObject/WindowDriver/シナリオのコードの大部分をツールで作�
 + メンバーのアサイン最適化
 
 # 詳細な使い方はこちらを参照お願いします。
-+ [WPF](WPF.md)
 + [WinForms](WinForms.md)
++ [WPF](WPF.md)
 + [Web](Web.md)
 
 

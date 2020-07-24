@@ -28,6 +28,7 @@ TestAssistantProを使うことでWinFormsのアプリの自動テストに最�
 作業が進みボリュームが大きくなってきた場合、必要に応じてそれぞれの役割を持つdllを複数個に分割していくことも可能です。<br>
 TestAssistantProはこの構成以外でもDriverの作成やシナリオの作成を行うことができます。<br>
 それらはOng.Friendly.FormsStandardControlsがインストールされているプロジェクトで使うことが可能です。<br>
+テストフレームワークもNUnitが入りますが、これもNUnitである必要はありません。プロジェクトに適したものを採用してください。<br>
 
 # 手順
 ## テンプレート選択
@@ -47,3 +48,7 @@ Testの方はApplicationのバージョン以上を指定してください。<b
 
 ## 作成されたソリューション
 ![Sln4.png](Img/Sln4.png)
+
+## ProcessControllerの調整
+コードを作成する前に生成されているProcessControllerを調整しましょう。
+TODO

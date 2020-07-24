@@ -29,23 +29,25 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OutputForm));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this._toolStrip = new System.Windows.Forms.ToolStrip();
             this._toolStripButtonCopy = new System.Windows.Forms.ToolStripButton();
             this._toolStripButtonSaveFile = new System.Windows.Forms.ToolStripButton();
             this._textBoxResult = new System.Windows.Forms.TextBox();
-            this.toolStrip1.SuspendLayout();
+            this._toolStripButtonClear = new System.Windows.Forms.ToolStripButton();
+            this._toolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // _toolStrip
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._toolStripButtonCopy,
-            this._toolStripButtonSaveFile});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this._toolStripButtonSaveFile,
+            this._toolStripButtonClear});
+            this._toolStrip.Location = new System.Drawing.Point(0, 0);
+            this._toolStrip.Name = "_toolStrip";
+            this._toolStrip.Size = new System.Drawing.Size(800, 25);
+            this._toolStrip.TabIndex = 0;
+            this._toolStrip.Text = "toolStrip1";
             // 
             // _toolStripButtonCopy
             // 
@@ -78,17 +80,27 @@
             this._textBoxResult.TabIndex = 1;
             this._textBoxResult.WordWrap = false;
             // 
+            // _toolStripButtonClear
+            // 
+            this._toolStripButtonClear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._toolStripButtonClear.Image = ((System.Drawing.Image)(resources.GetObject("_toolStripButtonClear.Image")));
+            this._toolStripButtonClear.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolStripButtonClear.Name = "_toolStripButtonClear";
+            this._toolStripButtonClear.Size = new System.Drawing.Size(37, 22);
+            this._toolStripButtonClear.Text = "Clear";
+            this._toolStripButtonClear.Click += new System.EventHandler(this._toolStripButtonClear_Click);
+            // 
             // OutputForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this._textBoxResult);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this._toolStrip);
             this.Name = "OutputForm";
             this.Text = "OutputForm";
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this._toolStrip.ResumeLayout(false);
+            this._toolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,9 +108,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip _toolStrip;
         private System.Windows.Forms.ToolStripButton _toolStripButtonCopy;
         private System.Windows.Forms.ToolStripButton _toolStripButtonSaveFile;
         private System.Windows.Forms.TextBox _textBoxResult;
+        private System.Windows.Forms.ToolStripButton _toolStripButtonClear;
     }
 }
