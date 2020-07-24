@@ -167,6 +167,9 @@ namespace Driver.InTarget
 ### DriverCreatorAdapter
 DriverCreatorAdapterはIWindowAnalysisMenuAction, IDriverElementNameGeneratorの実装中に使うことができます。<br>
 前述の例にあるようにコードの追加、デザイナへのコントロールの登録に使る他、現在ソリューションに保持してるドライバの情報を使うことができます。<br>
+
+プロパティとメソッドは表を分けた方が良くて型は別の列にした方がよいよ
+
 | Property/Method | 説明 |
 | ---- | ---- |
 | Dictionary<string, ControlDriverInfo> TypeFullNameAndControlDriver | コントロールドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。複数存在する場合はPriorityが一番高いものが取得されます。 |

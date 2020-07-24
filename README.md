@@ -1,7 +1,7 @@
 TestAssistantPro.Manual
 ========
 
-[Englihs](README.en.md)
+[English](README.en.md)
 
 ## 具体的な使い方はこちら
 + [WinForms](WinForms/README.md)
