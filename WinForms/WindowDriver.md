@@ -122,6 +122,7 @@ DriverCoreIdentifyAttribute
 UserControlDriverAttribute
 UserControlDriverIdentifyAttribute
 WindowDriverAttribute
+UserControlDriverGetterAttribute
 WindowDriverIdentifyAttribute
 
 Logger
