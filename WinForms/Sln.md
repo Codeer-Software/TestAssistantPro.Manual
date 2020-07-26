@@ -2,7 +2,7 @@
 
 テストソリューションの新規作成について説明します。<br>
 TestAssistantPro を使うことで WinForms のアプリの自動テストに最適なソリューションを作成することができます。
-ウィザードに従うと以下のプロジェクトを作成し、それぞれに必要な最新の Nuget パッケージをインストールします。
+ウィザードに従うと以下のプロジェクトが作成され、それぞれに必要な最新の Nuget パッケージがインストールされます。
 
 * Driver
     * Codeer.Friendly
@@ -27,7 +27,7 @@ TestAssistantPro を使うことで WinForms のアプリの自動テストに�
 ここで作るのは基本構成です。
 作業が進みボリュームが大きくなってきた場合、必要に応じてそれぞれの役割を持つ dll を複数個に分割していくことも可能です。
 TestAssistantPro はこの構成以外でも Driver の作成やシナリオの作成を行うことができます。
-それらは Ong.Friendly.FormsStandardControls がインストールされているプロジェクトで使うことが可能です。
+それらは WinForms用のものであれば Ong.Friendly.FormsStandardControls がインストールされているプロジェクトで使うことが可能です。
 テストフレームワークも NUnit が入りますが、これも NUnit である必要はありません。プロジェクトに適したものを採用してください。
 
 # 手順
@@ -54,5 +54,40 @@ Testの方はApplicationのバージョン以上を指定してください。
 ![Sln4.png](Img/Sln4.png)
 
 ## ProcessControllerの調整
-コードを作成する前に生成されている ProcessController を調整しましょう。
-TODO
+Driver/TestController.cs の targetPath を書き換えます。
+これでNunitでテスト実行した場合に対象プロセスが起動するようになります。
+TestControllerフォルダ以下には対象アプリケーションを管理するコードが入っています。
+あくまでテンプレートですので、プロジェクトにあわせて書き換えてください。
+```cs
+using Codeer.Friendly.Windows;
+using System.Diagnostics;
+using System.IO;
+
+namespace Driver.TestController
+{
+    public static class ProcessController
+    {
+        public static WindowsAppFriend Start()
+        {
+            //target path
+            var targetPath = @"C:\GitHub\TestAssistantPro.Manual\WinForms\WinFormsApp\bin\Debug\WinFormsApp.exe";
+            var info = new ProcessStartInfo(targetPath) { WorkingDirectory = Path.GetDirectoryName(targetPath) };
+            var app = new WindowsAppFriend(Process.Start(info));
+			app.ResetTimeout();
+			return app;
+		}
+
+		public static void Kill(this WindowsAppFriend app)
+		{
+			if (app == null) return;
+
+			app.ClearTimeout();
+			try
+			{
+				Process.GetProcessById(app.ProcessId).Kill();
+			}
+			catch { }
+		}
+	}
+}
+```

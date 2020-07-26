@@ -6,7 +6,7 @@ Friendly と Driver/Scenario パターンはこちらを参照お願いします
 + [Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)
 
 解説は[こちらのサンプル](WinFormsApp)を操作する例を使いながらおこないます。
-[WinFormsAppフォルダ](WinFormsApp)以下にソースコードがあるので最初にダウンロード/ビルドをお願いします。
+WinFormsAppフォルダ以下にソースコードがあるので最初にダウンロード/ビルドをお願いします。
 ダウンロード後には「ブロックの解除」をお願いします。
 
 # 目次
