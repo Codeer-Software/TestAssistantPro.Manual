@@ -21,9 +21,9 @@ Driver/Windowsフォルダで右クリックから Analyze Window を選択し�
 間違ったアプリを選択するとOSの再起動が必要になる場合がありますので間違えないように選択してください。<br>
 二回目以降はこれが表示されずに同一のアプリに対して Analyze Window が実行されます。<br>
 途中で対象アプリを変えたい場合は Select Target を実行すると対象を変更することができます。<br>
+![WindowDriver.TreeSelect.png](Img/WindowDriver.TreeSelect.png)
 
 ### Tree
-![WindowDriver.TreeSelect.png](Img/WindowDriver.TreeSelect.png)
 コントロールを選択します。<br>
 ツリーで選択すると対象アプリの対応するコントロールが赤枠で囲まれます。<br>
 Ctrlキーを押しながら対象のアプリのコントロールにマウスを持っていくとツリーの対応するノードが選択されます。<br>
@@ -265,23 +265,192 @@ namespace Driver.Windows
     }
 }
 ```
-## MainWindow
+## MainForm
+MainFormは複数のドッキングウィンドウが乗っています。<br>
+ここではMainFormはメニューだけを持つウィンドウと考えます。<br>
+![WindowDriver.MainFrame.png](Img/WindowDriver.MainFrame.png)
+```cs
+using Codeer.Friendly;
+using Codeer.Friendly.Dynamic;
+using Codeer.Friendly.Windows;
+using Codeer.Friendly.Windows.Grasp;
+using Codeer.TestAssistant.GeneratorToolKit;
+using Ong.Friendly.FormsStandardControls;
 
-## TreeとOUtput
+namespace Driver.Windows
+{
+    [WindowDriver(TypeFullName = "WinFormsApp.MainForm")]
+    public class MainFormDriver
+    {
+        public WindowControl Core { get; }
+        public FormsToolStrip _menuStrip => Core.Dynamic()._menuStrip; 
+
+        public MainFormDriver(WindowControl core)
+        {
+            Core = core;
+        }
+
+        public MainFormDriver(AppVar core)
+        {
+            Core = new WindowControl(core);
+        }
+    }
+
+    public static class MainFormDriverExtensions
+    {
+        [WindowDriverIdentify(TypeFullName = "WinFormsApp.MainForm")]
+        public static MainFormDriver AttachMainForm(this WindowsAppFriend app)
+            => app.WaitForIdentifyFromTypeFullName("WinFormsApp.MainForm").Dynamic();
+    }
+}
+```
+
+## TreeFormとOutputForm
+TreeFormとOutputFormはUserControlDriverとして作成します。<br>
+これはAttach方式にします。<br>
+Attach対象はMainFromDriverではなくWindowsAppFrined(アプリケーション全体)にします。<br>
+これはフローティング状態にするなど様々な状態を作ることができるからです。<br>
+まずはTreeFormのUserControlDriverを作ります。<br>
+Formの見つけ方ですがCtrlキーを押しながらTreeの上にマウスを持っていきます。<br>
+そうするとTreeViewがAnalyzeWindowの上で選択状態になります。<br>
+Treeの一つ親を見るとTreeFormになっているのでそのノードの上で Change The Analysis Target を実行します。<br>
+TreeViewを子要素に登録します。<br>
+そして Create Attach Code にチェックを付けて Extension を WindowsAppFriendにします。<br>
+![WindowDriver.TreeForm.png](Img/WindowDriver.TreeForm.png)
+```cs
+using Codeer.Friendly;
+using Codeer.Friendly.Dynamic;
+using Codeer.Friendly.Windows;
+using Codeer.Friendly.Windows.Grasp;
+using Codeer.TestAssistant.GeneratorToolKit;
+using Ong.Friendly.FormsStandardControls;
+using System.Linq;
+
+namespace Driver.Windows
+{
+    [UserControlDriver(TypeFullName = "WinFormsApp.TreeForm")]
+    public class TreeFormDriver
+    {
+        public WindowControl Core { get; }
+        public FormsTreeView _treeView => Core.Dynamic()._treeView; 
+
+        public TreeFormDriver(WindowControl core)
+        {
+            Core = core;
+        }
+
+        public TreeFormDriver(AppVar core)
+        {
+            Core = new WindowControl(core);
+        }
+    }
+
+    public static class TreeFormDriverExtensions
+    {
+        [UserControlDriverIdentify()]
+        public static TreeFormDriver AttachTreeForm(this WindowsAppFriend app)
+            => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.TreeForm")).SingleOrDefault()?.Dynamic();
+    }
+}
+```
+Outputも同様に作成します。<br>
+```cs
+using Codeer.Friendly;
+using Codeer.Friendly.Dynamic;
+using Codeer.Friendly.Windows;
+using Codeer.Friendly.Windows.Grasp;
+using Codeer.TestAssistant.GeneratorToolKit;
+using Ong.Friendly.FormsStandardControls;
+using System.Linq;
+
+namespace Driver.Windows
+{
+    [UserControlDriver(TypeFullName = "WinFormsApp.OutputForm")]
+    public class OutputFormDriver
+    {
+        public WindowControl Core { get; }
+        public FormsTextBox _textBoxResult => Core.Dynamic()._textBoxResult; 
+        public FormsToolStrip _toolStrip => Core.Dynamic()._toolStrip; 
+
+        public OutputFormDriver(WindowControl core)
+        {
+            Core = core;
+        }
+
+        public OutputFormDriver(AppVar core)
+        {
+            Core = new WindowControl(core);
+        }
+    }
+
+    public static class OutputFormDriverExtensions
+    {
+        [UserControlDriverIdentify()]
+        public static OutputFormDriver AttachOutputForm(this WindowsAppFriend app)
+            => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.OutputForm")).SingleOrDefault()?.Dynamic();
+    }
+}
+```
 
 ## Document
-同じタイプのが
+Documentは同じタイプのものが複数存在します。<br>
+Many Exists を使うこともできますが、今回は取得方法をVariableWindowTextにします。<br>
+これもWindowsAppFriendの拡張メソッドにします。<br>
+![WindowDriver.Document.png](Img/WindowDriver.Document.png)
+
+```cs
+using Codeer.Friendly;
+using Codeer.Friendly.Dynamic;
+using Codeer.Friendly.Windows;
+using Codeer.Friendly.Windows.Grasp;
+using Codeer.TestAssistant.GeneratorToolKit;
+using Ong.Friendly.FormsStandardControls;
+using System.Linq;
+
+namespace Driver.Windows
+{
+    [UserControlDriver(TypeFullName = "WinFormsApp.OrderDocumentForm")]
+    public class OrderDocumentFormDriver
+    {
+        public WindowControl Core { get; }
+        public FormsButton _searchButton => Core.Dynamic()._searchButton;
+        public FormsTextBox _searchTextBox => Core.Dynamic()._searchTextBox;
+        public FormsDataGridView _grid => Core.Dynamic()._grid;
+
+        public OrderDocumentFormDriver(WindowControl core)
+        {
+            Core = core;
+        }
+
+        public OrderDocumentFormDriver(AppVar core)
+        {
+            Core = new WindowControl(core);
+        }
+    }
+
+    public static class OrderDocumentFormDriverExtensions
+    {
+        [UserControlDriverIdentify(CustomMethod = "TryGet")]
+        public static OrderDocumentFormDriver AttachOrderDocumentForm(this WindowsAppFriend app, string text)
+            => app.GetTopLevelWindows().SelectMany(e=>e.GetFromTypeFullName("WinFormsApp.OrderDocumentForm")).Where(e=>(string)e.Dynamic().Text == text).SingleOrDefault()?.Dynamic();
+
+        public static void TryGet(this WindowsAppFriend parent, out string[] texts)
+            => texts = parent.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.OrderDocumentForm")).Select(e => (string)e.Dynamic().Text).ToArray();
+
+    }
+}
+```
 
 ## ネイティブのウィンドウに関して
-FolderDialogDriver
-MessageBoxDriver
-OpenFileDialogDriver
-SaveFileDialogDriver
+.Netで実装していても以下のウィンドウはネイティブのものが使われます。<br>
+これらのドライバは新規作成時にDriver/Windows/Native以下に作成されています。<br>
+
+|  Window  |  Driver  |
+| ---- | ---- |
+| MessageBox | MessageBoxDriver |
+| OpenFileDialog | OpenFileDialogDriver |
+| SaveFileDialog | SaveFileDialogDriver |
+| FolderBrowserDialog | FolderDialogDriver |
 
 
-
-メッセージボックス
-ファイル保存/開くダイアログ
-新規作成時にコードに入ってきます。
-もしそれ以外のがあった場合はこちらを参考に作成お願いします。
 

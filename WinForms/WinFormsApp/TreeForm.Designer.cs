@@ -68,7 +68,7 @@
             this.ClientSize = new System.Drawing.Size(467, 339);
             this.Controls.Add(this._treeView);
             this.Name = "TreeForm";
-            this.Text = "TreeWindow";
+            this.Text = "TreeForm";
             this._contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
