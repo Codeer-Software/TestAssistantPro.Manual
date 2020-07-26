@@ -73,21 +73,21 @@ namespace Driver.TestController
             var targetPath = @"C:\GitHub\TestAssistantPro.Manual\WinForms\WinFormsApp\bin\Debug\WinFormsApp.exe";
             var info = new ProcessStartInfo(targetPath) { WorkingDirectory = Path.GetDirectoryName(targetPath) };
             var app = new WindowsAppFriend(Process.Start(info));
-			app.ResetTimeout();
-			return app;
-		}
+            app.ResetTimeout();
+            return app;
+        }
 
-		public static void Kill(this WindowsAppFriend app)
-		{
-			if (app == null) return;
+        public static void Kill(this WindowsAppFriend app)
+        {
+            if (app == null) return;
 
-			app.ClearTimeout();
-			try
-			{
-				Process.GetProcessById(app.ProcessId).Kill();
-			}
-			catch { }
-		}
-	}
+            app.ClearTimeout();
+            try
+            {
+                Process.GetProcessById(app.ProcessId).Kill();
+            }
+            catch { }
+        }
+    }
 }
 ```
