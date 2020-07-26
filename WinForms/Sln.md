@@ -69,7 +69,7 @@ namespace Driver.TestController
     {
         public static WindowsAppFriend Start()
         {
-            //target path
+            //※ここを書き換えます。
             var targetPath = @"C:\GitHub\TestAssistantPro.Manual\WinForms\WinFormsApp\bin\Debug\WinFormsApp.exe";
             var info = new ProcessStartInfo(targetPath) { WorkingDirectory = Path.GetDirectoryName(targetPath) };
             var app = new WindowsAppFriend(Process.Start(info));

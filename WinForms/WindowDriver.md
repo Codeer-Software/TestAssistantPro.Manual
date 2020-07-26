@@ -50,8 +50,7 @@ Ctrlキーを押しながら対象のアプリのコントロールにマウス�
         ツリーを全て開きます。<br>
     * Close All<br>
         ツリーをすべて閉じます。<br>
-
-    ※右クリックメニューはカスタマイズできます。詳しくは[こちら]()
+    ※右クリックメニューはカスタマイズできます。詳しくは[こちら](Customize.md#Treeのコンテキストメニューの拡張)
 
 ### メニュー
 * Display Mode <br>
@@ -189,12 +188,12 @@ Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックし�
 
 ## Multi UserControl Dialog
 今度は UserContorl の入っている Form のドライバを作成します。
-このFormには二つの UserContorl は入っています。
+このFormには二つの UserContorl が入っています。
 
 ![UserControlDriver.Analyze.png](Img/UserControlDriver.Analyze.png)
 
 UserControl はそれに対して UserControlDriver を作ることができます。
-右側の ReservationInformationUserControl のドライバを作ります。
+右側の ReservationInformationUserControl のドライバを作ってみます。
 ツリー上で ReservationInformationUserControl を選択し右クリックから Change The Analysis Target を選択します。
 それによって解析対象が切り替わります。
 必要なコントロールを Designer に登録して Generate ボタンでコードを生成します。
@@ -468,5 +467,7 @@ namespace Driver.Windows
 | SaveFileDialog | SaveFileDialogDriver |
 | FolderBrowserDialog | FolderDialogDriver |
 
-
+## 生成済みのドライバのメンテ
+生成済みのドライバに関しては基本は手でメンテになります。プロパティの名前変更などもVisualStudioのリファクタリング機能を使って自由にできます。
+ただ AnalyzeWindow を使った方が楽な場合もあります。コントロールドライバを付け足したい場合やAttach方法を変更したい場合はAnalyzeWindowで目的の状態にして Current Code から必要なコードをコピーして元のコードに貼り付けてください。
 
