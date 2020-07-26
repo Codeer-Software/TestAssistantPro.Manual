@@ -1,35 +1,38 @@
 # WindowDriver/UserControlDriverの作成
 
-ここではWindowDriver/UserControlDriverの作成方法に関して説明します。<br>
-WindowDriver/UserControlDriverに関しては[こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)を参照お願いします。<br>
+ここでは WindowDriver/UserControlDriver の作成方法に関して説明します。
+WindowDriver/UserControlDriver に関しては[こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)を参照お願いします。
 
 # AnalyzeWindow
-AnalyzeWindowは対象のアプリを解析してWindowDriverを作成するものです。<br>
-ツリーのルートのコントロールに対してWindowDriverを作成します。<br>
-Designerタブの設定でコードを作ります。<br>
-現在の設定で生成されるコードは Current Code タブでプレビューを見ることができます。<br>
+AnalyzeWindow は対象のアプリを解析して WindowDriver を作成するものです。
+ツリーのルートのコントロールに対して WindowDriver を作成します。
+Designer タブの設定でコードを作ります。
+現在の設定で生成されるコードは Current Code タブでプレビューを見ることができます。
 
 ### 起動
-Driver/Windowsフォルダで右クリックから Analyze Window を選択してください。<br>
+Driver/Windowsフォルダで右クリックから Analyze Window を選択してください。
+
 ![WindowDriver.Start.png](Img/WindowDriver.Start.png)
 
-これはどこのフォルダでも可能です。ドライバを生成したときに指定のフォルダに生成されます。<br>
-対象アプリを選択する画面が出ますので、対象を選択してください。<br>
+これはどこのフォルダでも可能です。ドライバを生成したときに指定のフォルダに生成されます。
+対象アプリを選択する画面が出ますので、対象を選択してください。
+
 ![WindowDriver.SelectTarget.png](Img/WindowDriver.SelectTarget.png)
 
-ここで選択するとFriendlyの機能によって対象アプリにFriendly系のdllとDriver.InTarget.dllがインジェクションされます。<br>
-間違ったアプリを選択するとOSの再起動が必要になる場合がありますので間違えないように選択してください。<br>
-二回目以降はこれが表示されずに同一のアプリに対して Analyze Window が実行されます。<br>
-途中で対象アプリを変えたい場合は Select Target を実行すると対象を変更することができます。<br>
+ここで選択するとFriendlyの機能によって対象アプリにFriendly系のdllとDriver.InTarget.dllがインジェクションされます。
+間違ったアプリを選択するとOSの再起動が必要になる場合がありますので間違えないように選択してください。
+二回目以降はこれが表示されずに同一のアプリに対して Analyze Window が実行されます。
+途中で対象アプリを変えたい場合は Select Target を実行すると対象を変更することができます。
+
 ![WindowDriver.TreeSelect.png](Img/WindowDriver.TreeSelect.png)
 
 ### Tree
-コントロールを選択します。<br>
-ツリーで選択すると対象アプリの対応するコントロールが赤枠で囲まれます。<br>
-Ctrlキーを押しながら対象のアプリのコントロールにマウスを持っていくとツリーの対応するノードが選択されます。<br>
+コントロールを選択します。
+ツリーで選択すると対象アプリの対応するコントロールが赤枠で囲まれます。
+Ctrlキーを押しながら対象のアプリのコントロールにマウスを持っていくとツリーの対応するノードが選択されます。
 
 * ダブりクリック
-    * WindowDriverのプロパティとして登録したいコントロールをダブルクリックすると右側のグリッドに登録されます。
+    * WindowDriver のプロパティとして登録したいコントロールをダブルクリックすると右側のグリッドに登録されます。
 
 * 右クリックメニュー
     * Pickup<br>
@@ -99,7 +102,7 @@ Ctrlキーを押しながら対象のアプリのコントロールにマウス�
     Treeから選択します。<br>
 
 ### Current Code タブ
-Designerタブでの設定によって出力されるコードが表示されます。
+Designer タブでの設定によって出力されるコードが表示されます。
 
 ### Propertyタブ
 選択しているコントロールのプロパティが表示されます。
@@ -121,19 +124,20 @@ Logger
 TestAssistantMode
 
 # 演習
-先ほどのサンプルアプリのドライバを作ります。<br>
-MainFormは少し複雑なので後に回します。<br>
-まずはシンプルなダイアログで操作に慣れていきます。<br>
+先ほどのサンプルアプリのドライバを作ります。
+MainFormは少し複雑なので後に回します。
+まずはシンプルなダイアログで操作に慣れていきます。
 
 ## Simple Dialog
-MainFrameのメニュー -> etc -> Simple Dialog を実行してください。<br>
-表示されたダイアログを解析します。<br>
-これはシンプルな作りのダイアログなのでツリーのルートで右クリックメニューを表示して Pickup Children を実行します。<br>
-そうするとグリッドにControlDriverの割り当たった要素がピックアップされます。<br>
-名前はデフォルトでは変数名になっていますが、変更することができます。<br>
-ラベルは Pickup Chidlren では無視されますが、必要ならツリーの要素をダブルクリックすることにより追加で登録できます。<br>
+MainFrameのメニュー -> etc -> Simple Dialog を実行してください。
+表示されたダイアログを解析します。
+これはシンプルな作りのダイアログなのでツリーのルートで右クリックメニューを表示して Pickup Children を実行します。
+そうするとグリッドに ControlDriver の割り当たった要素がピックアップされます。
+名前はデフォルトでは変数名になっていますが、変更することができます。
+ラベルは Pickup Chidlren では無視されますが、必要ならツリーの要素をダブルクリックすることにより追加で登録できます。
 必要な要素を登録したら Generate ボタンを押してコードを生成します。
 Create Attach Code は下図のようにデフォルトの状態で生成してください。
+
 ![WindowDriver.SimpleDialog.png](Img/WindowDriver.SimpleDialog.png)
 ```cs
 using Codeer.Friendly;
@@ -176,22 +180,27 @@ namespace Driver.Windows
 }
 ```
 
-生成できたらキャプチャを試してみます。<br>
-Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックして Capture を実行してください。<br>
+生成できたらキャプチャを試してみます。
+Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックして Capture を実行してください。
+
 ![WindowDriver.CaptureStart.png](Img/WindowDriver.CaptureStart.png)
+
 ![WindowDriver.Capture.SimpleDialog.png](Img/WindowDriver.Capture.SimpleDialog.png)
 
 ## Multi UserControl Dialog
-今度はUserContorlの入っているFormのドライバを作成します。<br>
-このFormには二つのUserContorlは入っています。<br>
+今度は UserContorl の入っている Form のドライバを作成します。
+このFormには二つの UserContorl は入っています。
+
 ![UserControlDriver.Analyze.png](Img/UserControlDriver.Analyze.png)
 
-UserControlはそれに対してUserControlDriverを作ることができます。<br>
-右側のReservationInformationUserControlのドライバを作ります。<br>
-ツリー上でReservationInformationUserControlを選択し右クリックから Change The Analysis Target を選択します。<br>
-それによって解析対象が切り替わります。<br>
-必要なコントロールをDesignerに登録して Generate ボタンでコードを生成します。<br>
+UserControl はそれに対して UserControlDriver を作ることができます。
+右側の ReservationInformationUserControl のドライバを作ります。
+ツリー上で ReservationInformationUserControl を選択し右クリックから Change The Analysis Target を選択します。
+それによって解析対象が切り替わります。
+必要なコントロールを Designer に登録して Generate ボタンでコードを生成します。
+
 ![UserControlDriver.ChangeTheAnalysisTarget.png](Img/UserControlDriver.ChangeTheAnalysisTarget.png)
+
 ```cs
 using Codeer.Friendly;
 using Codeer.Friendly.Dynamic;
@@ -222,11 +231,13 @@ namespace Driver.Windows
     }
 }
 ```
-ReservationInformationUserControl のコードを生成したら今度は Form の方に戻ります。<br>
-ChargeOfPartyUserControl の方もドライバを作成しても良いのですが、<br>
-今回はこちらはドライバは作らずにFormに直接UserControlの要素を配置するようにします。<br>
-（あくまで演習のためで、本来は場合によって使い分けてください）<br>
+ReservationInformationUserControl のコードを生成したら今度は Form の方に戻ります。
+ChargeOfPartyUserControl の方もドライバを作成しても良いのですが、
+今回はこちらはドライバは作らずに Form に直接 UserControl の要素を配置するようにします。
+（あくまで演習のためで、本来は場合によって使い分けてください）
+
 ![UserControlDriver.Form.png](Img/UserControlDriver.Form.png)
+
 ```cs
 using Codeer.Friendly;
 using Codeer.Friendly.Dynamic;
@@ -266,9 +277,11 @@ namespace Driver.Windows
 }
 ```
 ## MainForm
-MainFormは複数のドッキングウィンドウが乗っています。<br>
-ここではMainFormはメニューだけを持つウィンドウと考えます。<br>
+MainForm は複数のドッキングウィンドウが乗っています。
+ここでは MainForm はメニューだけを持つウィンドウと考えます。
+
 ![WindowDriver.MainFrame.png](Img/WindowDriver.MainFrame.png)
+
 ```cs
 using Codeer.Friendly;
 using Codeer.Friendly.Dynamic;
@@ -306,17 +319,19 @@ namespace Driver.Windows
 ```
 
 ## TreeFormとOutputForm
-TreeFormとOutputFormはUserControlDriverとして作成します。<br>
-これはAttach方式にします。<br>
-Attach対象はMainFromDriverではなくWindowsAppFrined(アプリケーション全体)にします。<br>
-これはフローティング状態にするなど様々な状態を作ることができるからです。<br>
-まずはTreeFormのUserControlDriverを作ります。<br>
-Formの見つけ方ですがCtrlキーを押しながらTreeの上にマウスを持っていきます。<br>
-そうするとTreeViewがAnalyzeWindowの上で選択状態になります。<br>
-Treeの一つ親を見るとTreeFormになっているのでそのノードの上で Change The Analysis Target を実行します。<br>
-TreeViewを子要素に登録します。<br>
-そして Create Attach Code にチェックを付けて Extension を WindowsAppFriendにします。<br>
+TreeForm と OutputForm は UserControlDriver として作成します。
+これはAttach方式にします。
+Attach対象は MainFromDriver ではなく WindowsAppFrined (アプリケーション全体)にします。
+これはフローティング状態にするなど様々な状態を作ることができるからです。
+まずは TreeForm の UserControlDriver を作ります。
+Formの見つけ方ですがCtrlキーを押しながら Tree の上にマウスを持っていきます。
+そうすると TreeView が AnalyzeWindow の上で選択状態になります。
+Tree の一つ親を見ると TreeForm になっているのでそのノードの上で Change The Analysis Target を実行します。
+TreeView を子要素に登録します。
+そして Create Attach Code にチェックを付けて Extension を WindowsAppFriend にします。
+
 ![WindowDriver.TreeForm.png](Img/WindowDriver.TreeForm.png)
+
 ```cs
 using Codeer.Friendly;
 using Codeer.Friendly.Dynamic;
@@ -353,7 +368,7 @@ namespace Driver.Windows
     }
 }
 ```
-Outputも同様に作成します。<br>
+Output も同様に作成します。
 ```cs
 using Codeer.Friendly;
 using Codeer.Friendly.Dynamic;
@@ -393,9 +408,10 @@ namespace Driver.Windows
 ```
 
 ## Document
-Documentは同じタイプのものが複数存在します。<br>
-Many Exists を使うこともできますが、今回は取得方法をVariableWindowTextにします。<br>
-これもWindowsAppFriendの拡張メソッドにします。<br>
+Document は同じタイプのものが複数存在します。
+Many Exists を使うこともできますが、今回は取得方法を VariableWindowText にします。
+これも WindowsAppFriend の拡張メソッドにします。
+
 ![WindowDriver.Document.png](Img/WindowDriver.Document.png)
 
 ```cs
@@ -442,8 +458,8 @@ namespace Driver.Windows
 ```
 
 ## ネイティブのウィンドウに関して
-.Netで実装していても以下のウィンドウはネイティブのものが使われます。<br>
-これらのドライバは新規作成時にDriver/Windows/Native以下に作成されています。<br>
+.Netで実装していても以下のウィンドウはネイティブのものが使われます。
+これらのドライバは新規作成時に Driver/Windows/Native 以下に作成されています。
 
 |  Window  |  Driver  |
 | ---- | ---- |

@@ -1,17 +1,17 @@
 # カスタマイズ
 
-TestAssitantProはCodeer.TestAssistant.GeneratorToolkitに定義されているインターフェイスを実装することでその挙動をカスタマイズすることができます。<br>
-ソリューション内で実装してもよいですし、実装されているdllを参照するでも構いません。<br>
-Analyze,Capture,Execute時に使われる機能です。これらは実装中にデバッグすることも可能です。<br>
+TestAssitantProはCodeer.TestAssistant.GeneratorToolkit に定義されているインターフェイスを実装することでその挙動をカスタマイズすることができます。
+ソリューション内で実装してもよいですし、実装されているdllを参照するでも構いません。
+Analyze, Capture, Execute 時に使われる機能です。これらは実装中にデバッグすることも可能です。
 
 # AnalyzeWindow
 ## Treeのコンテキストメニューの拡張
-IWindowAnalysisMenuActionを実装することで AnalyzeWindow のツリーに表示されるメニューを拡張できます。<br>
-新規作成時にテンプレートがDriver.InTargetに作成されています。<br>
-これは対象プロセス内部で実行されます。<br>
-デバッグする場合はShiftキーを押しながらAnalyzeを実行してください<br>
-ツリーで選択されているコントロールのオブジェクトを元にコードを生成したりデザイナへのコントロールの登録を実行したりできます。<br>
-プロジェクトでドライバを使っていて定型作業のようなものが見つかればメニューとして追加することで作業の効率を上げることができます。<br>
+IWindowAnalysisMenuAction を実装することで AnalyzeWindow のツリーに表示されるメニューを拡張できます。
+新規作成時にテンプレートが Driver.InTarget に作成されています。
+これは対象プロセス内部で実行されます。
+デバッグする場合は Shift キーを押しながらAnalyzeを実行してください
+ツリーで選択されているコントロールのオブジェクトを元にコードを生成したりデザイナへのコントロールの登録を実行したりできます。
+プロジェクトでドライバを使っていて定型作業のようなものが見つかればメニューとして追加することで作業の効率を上げることができます。
 
 ```cs
 using Codeer.TestAssistant.GeneratorToolKit;
@@ -51,11 +51,13 @@ namespace Driver.InTarget
     }
 }
 ```
+//TODO 画像ずれている
+
 ![IWindowAnalysisMenuAction.png](Img/IWindowAnalysisMenuAction.png)
 
 ### Outputへの出力
-任意のテキストをOutputに出力することができます。
-GridColumnDefineToOutputではグリッドのカラム定義をアウトプットに出力しています。
+任意のテキストを Output に出力することができます。
+GridColumnDefineToOutput ではグリッドのカラム定義をアウトプットに出力しています。
 ```cs
 static void GridColumnDefineToOutput(DataGridView grid)
 {
@@ -73,6 +75,7 @@ static void GridColumnDefineToOutput(DataGridView grid)
     AnalyzeWindow.Output.WriteLine("}");
 }
 ```
+
 ![AnalyzeWindow.Output.png](Img/AnalyzeWindow.Output.png)
 
 ### コードビューワーへの出力
@@ -97,11 +100,12 @@ static void GridColumnDefineToCodeViewer(object target, DataGridView grid)
     DriverCreatorAdapter.AddCode("GridColumns.cs", code.ToString(), target);
 }
 ```
+
 ![DriverCreatorAdapter.AddCode.png](Img/DriverCreatorAdapter.AddCode.png)
 
 ### デザイナへコントロールの登録
-任意のコントロールをデザイナへ登録することができます。<br>
-通常のPickupChildrenはUserControl以下は登録しないのでUserControlも関係なく最後まで検索して登録するメソッドなども作れます。<br>
+任意のコントロールをデザイナへ登録することができます。
+通常の PickupChildren は UserControl 以下は登録しないので UserControl も関係なく最後まで検索して登録するメソッドなども作れます。
 ```cs
 void PickupChildrenFlat(Control control)
 {
@@ -129,11 +133,12 @@ void PickupChildrenFlat(Control control)
     }
 }
 ```
+
 ![DriverCreatorAdapter.AddDriverElements.png](Img/DriverCreatorAdapter.AddDriverElements.png)
 
 ### デザイナへの登録時のデフォルトの名前のカスタマイズ
-IDriverElementNameGeneratorを実装すると名前をカスタマイズすることができます。<br>
-実装次第では近くのラベルのテキストを利用するなどもできます。<br>
+IDriverElementNameGenerator を実装すると名前をカスタマイズすることができます。
+実装次第では近くのラベルのテキストを利用するなどもできます。
 
 ```cs
 using Codeer.TestAssistant.GeneratorToolKit;
@@ -162,14 +167,15 @@ namespace Driver.InTarget
     }
 }
 ```
+
 ![IDriverElementNameGenerator.png](Img/IDriverElementNameGenerator.png)
 
 ### DriverCreatorAdapter
-DriverCreatorAdapterはIWindowAnalysisMenuAction, IDriverElementNameGeneratorの実装中に使うことができます。<br>
-前述の例にあるようにコードの追加、デザイナへのコントロールの登録に使る他、現在ソリューションに保持してるドライバの情報を使うことができます。<br>
+DriverCreatorAdapter は IWindowAnalysisMenuAction, IDriverElementNameGenerator の実装中に使うことができます。
+前述の例にあるようにコードの追加、デザイナへのコントロールの登録に使る他、現在ソリューションに保持してるドライバの情報を使うことができます。
 <br>
 
-プロパティ<br>
+プロパティ
 
 | 型 | 名前 | 説明 |
 | ---- | ---- | ---- |
@@ -187,7 +193,7 @@ DriverCreatorAdapterはIWindowAnalysisMenuAction, IDriverElementNameGeneratorの
 | Dictionary<string, List&lt;UserControlDriverInfo>> | MultiTypeFullNameAndUserControlDriver | UserControlに割り当たっているウィンドウドライバ情報です。.Netのオブジェクトのタイプフルネームがキーになります。リストはPriorityの高い順に並んでいます。  |
 <br>
 
-関数<br>
+関数
 
 | 定義 | 説明 |
 | ---- | ---- |
@@ -196,11 +202,11 @@ DriverCreatorAdapterはIWindowAnalysisMenuAction, IDriverElementNameGeneratorの
 | void AddCodeLineSelectInfo(string fileName, string key, object target)  | コードに含まれるキーワードに対応するオブジェクトを設定します。例えばプロパティ名に対応するコントロールを設定しておけば、コードビューワー上で行が選択されたときに対象アプリ上でそのコントロールが強調表示されます。 |
 
 # Capture
-キャプチャ時のドライバツリーでも同様にコンテキストメニューをカスタマイズできます。<br>
-新規したときにAssertが仕込まれています。<br>
-このコードを元に解説します。<br>
-CapterAttachTreeMenuActionを実装中はCtrlキーを押しながらCapture実行でデバッグできます。<br>
-またここでも[Logger]()を使うことができます。<br>
+キャプチャ時のドライバツリーでも同様にコンテキストメニューをカスタマイズできます。
+新規したときにAssertが仕込まれています。
+このコードを元に解説します。
+CapterAttachTreeMenuAction を実装中は Ctrl キー を押しながら Capture 実行でデバッグできます。
+またここでも[Logger]()を使うことができます。
 
 ```cs
 using System;
@@ -252,5 +258,6 @@ namespace Driver.Tools
             CaptureAdaptor.AddUsing(typeof(CheckState).Namespace);
         }
 ```
+
 ![ICaptureAttachTreeMenuAction.png](Img/ICaptureAttachTreeMenuAction.png)
 
