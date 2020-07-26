@@ -39,8 +39,8 @@ Ctrlキーを押しながら対象のアプリのコントロールにマウス�
         選択している要素が右側のグリッドに登録されます。<br>
     * Pickup Children <br>
         指定したコントロールの子孫のコントロールでドライバが割り当たっているものを一括でピックアップしてグリッドに登録します。<br>
-        子孫をたどるときにUserControlを発見した場合はそれ以下は検索しません。<br>
-        それ以下のコントロールもグリッドに登録したい場合はそのUserControlを選択し再度Pickup Childrenを実行してください。<br>
+        子孫をたどるときに UserControl を発見した場合はそれ以下は検索しません。<br>
+        それ以下のコントロールもグリッドに登録したい場合はそのUserControlを選択し再度 Pickup Children を実行してください。<br>
     * Create Control Driver<br>
         コントロールドライバを作成します。<br>
         詳細はこちらで説明します。<br>
@@ -54,42 +54,46 @@ Ctrlキーを押しながら対象のアプリのコントロールにマウス�
 
 ### メニュー
 * Display Mode <br>
+    表示モードです
     * Control<br>
-        表示モードです。Control.Controlsを元にしたツリーを表示します。デフォルトはこちらです。<br>
+        Control.Controls を元にしたツリーを表示します。<br>
     * Field<br>
+        Field を元にしたツリーを表示します。<br>
     * Filter Window And UserControl<br>
+        Form と UserControl のみをツリー上に表示します。<br>
 
 * Tree Update<br>
     * Auto Update<br>
-        Treeを更新するタイミングを設定します。通常はONで使ってください。あまりにも画面の要素が頻繁に更新される場合は動作が重くなるのでチェックをOFFにしてください。<br>
+        Tree を更新するタイミングを設定します。通常はONで使ってください。あまりにも画面の要素が頻繁に更新される場合は動作が重くなるのでチェックをOFFにしてください。<br>
     * Update Now<br>
-        Treeを更新します。<br>
+        Tree を更新します。<br>
     * Sync with Visual Studio<br>
-
+        Visual Studio 同期します。AnalyzeWindow 上で選択した要素に対応するドライバ上での行が VisualStudio 上で選択されます。またその逆に VisualStudio 上で行を選択するとAnalyzeWindow 上で対応するコントロールが選択されます。
 * Tool<br>
     * Compile & update<br>
+        AnalyzeWindow の情報が現在の Visual Stuido のドライバコードをコンパイルしたものに更新されます。
     * Option<br>
-
+        PickupChildren で拾ってくるコントロールの種類を選択します。
 ### Designerタブ
 * Type<br>
     コントロールのタイプフルネームが表示されます。<br>
 * Assigned Driver<br>
-    割り当たってるDriverのタイプフルネームが表示されます。<br>
+    割り当たってる Driver のタイプフルネームが表示されます。<br>
 * Class Name<br>
-    作成するWindowDriver/UserControlDriverの名前です。<br>
-    ネームスペースはAnalyzeWindowを始めたフォルダになります。<br>
+    作成する WindowDriver/UserControlDriver の名前です。<br>
+    ネームスペースは AnalyzeWindow を始めたフォルダになります。<br>
 * Create Attach Code<br>
-    AttachMethodを作るか否かです。<br>
+    AttachMethod を作るか否かです。<br>
 * Extension<br>
-    Attachする対象クラスです。<br>
+    Attach する対象クラスです。<br>
 * Method<br>
     特定方法です。<br>
     * Type Full Name
-        .NetのTypeFullNameで特定します。<br>
+        .Net の TypeFullName で特定します。<br>
     * Window Text<br>
-        Win32のWindowTextで特定します。<br>
+        Win32 の WindowText で特定します。<br>
     * Variable Window Text<br>
-        WindowTextから特定しますが常に同じWindowTextでない場合に使います。<br>
+        WindowText から特定しますが常に同じ WindowText でない場合に使います。<br>
     * Custom<br>
         カスタムの特定手法です。<br>
 
@@ -97,8 +101,10 @@ Ctrlキーを押しながら対象のアプリのコントロールにマウス�
     複数存在する場合があるかです。<br>
 
 * Grid<br>
-    WindowDriver/UserControlDriverの子要素です。<br>
-    Treeから選択します。<br>
+    WindowDriver/UserControlDriver の子要素です。<br>
+    Tree から選択します。<br>
+
+※Attachに関しては[Attachに関して](#Attachに関して)を参照してください。
 
 ### Current Code タブ
 Designer タブでの設定によって出力されるコードが表示されます。
@@ -117,10 +123,26 @@ UserControlDriverIdentifyAttribute
 WindowDriverAttribute
 WindowDriverIdentifyAttribute
 
+# Attachに関して
 
 # デバッグ
 Logger
 TestAssistantMode
+
+# ネイティブのウィンドウに関して
+.Netで実装していても以下のウィンドウはネイティブのものが使われます。
+これらのドライバは新規作成時に Driver/Windows/Native 以下に作成されています。
+
+|  Window  |  Driver  |
+| ---- | ---- |
+| MessageBox | MessageBoxDriver |
+| OpenFileDialog | OpenFileDialogDriver |
+| SaveFileDialog | SaveFileDialogDriver |
+| FolderBrowserDialog | FolderDialogDriver |
+
+# 生成済みのドライバのメンテ
+生成済みのドライバに関しては基本は手でメンテになります。プロパティの名前変更などもVisualStudioのリファクタリング機能を使って自由にできます。
+ただ AnalyzeWindow を使った方が楽な場合もあります。コントロールドライバを付け足したい場合やAttach方法を変更したい場合はAnalyzeWindowで目的の状態にして Current Code から必要なコードをコピーして元のコードに貼り付けてください。
 
 # 演習
 先ほどのサンプルアプリのドライバを作ります。
@@ -455,19 +477,3 @@ namespace Driver.Windows
     }
 }
 ```
-
-## ネイティブのウィンドウに関して
-.Netで実装していても以下のウィンドウはネイティブのものが使われます。
-これらのドライバは新規作成時に Driver/Windows/Native 以下に作成されています。
-
-|  Window  |  Driver  |
-| ---- | ---- |
-| MessageBox | MessageBoxDriver |
-| OpenFileDialog | OpenFileDialogDriver |
-| SaveFileDialog | SaveFileDialogDriver |
-| FolderBrowserDialog | FolderDialogDriver |
-
-## 生成済みのドライバのメンテ
-生成済みのドライバに関しては基本は手でメンテになります。プロパティの名前変更などもVisualStudioのリファクタリング機能を使って自由にできます。
-ただ AnalyzeWindow を使った方が楽な場合もあります。コントロールドライバを付け足したい場合やAttach方法を変更したい場合はAnalyzeWindowで目的の状態にして Current Code から必要なコードをコピーして元のコードに貼り付けてください。
-

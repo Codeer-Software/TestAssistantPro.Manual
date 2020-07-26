@@ -51,8 +51,6 @@ namespace Driver.InTarget
     }
 }
 ```
-//TODO 画像ずれている
-
 ![IWindowAnalysisMenuAction.png](Img/IWindowAnalysisMenuAction.png)
 
 ### Outputへの出力
@@ -206,7 +204,7 @@ DriverCreatorAdapter は IWindowAnalysisMenuAction, IDriverElementNameGenerator 
 新規したときにAssertが仕込まれています。
 このコードを元に解説します。
 CapterAttachTreeMenuAction を実装中は Ctrl キー を押しながら Capture 実行でデバッグできます。
-またここでも[Logger]()を使うことができます。
+またここでも[Logger](WIndowDriver.md#デバッグ)を使うことができます。
 
 ```cs
 using System;

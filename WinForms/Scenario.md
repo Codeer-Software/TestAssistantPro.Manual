@@ -24,6 +24,8 @@ TestAssisntaPro のシナリオ作成の特徴は少しづつ進めて行くこ�
 これにより作成効率を高めることに成功して言います。
 
 # 演習
+この演習はWindowDriverが出来ていることが前提です。
+WindowDriverは[こちらの演習](WindowDriver.md#演習)で作成しています。
 まずはドキュメントを開くシナリオを作ってみます。
 OpenDocument という関数を作り、そこで右クリックから Capture を実行します。
 
@@ -44,20 +46,27 @@ OpenDocument 上で右クリックから Execute を実行します。
 今度はドキュメント上で検索をしてみます。
 同様に Search 関数を作り Capture を実行します。
 今度は最後に Assert も書いてみます。
-(Assert の処理は[こちら]()を参照お願いします。)
+(Assert の処理は[こちら](Customize.md#Capture)を参照お願いします。)
 
 ![!Capture.Assert.png](Img/Capture.Assert.png)
 
 これもまた同様に Search 関数のみ実行してみます。
 実行前に OutputForm の Clear ボタンを押して OutputForm をクリアしておきます。
 
-![!Capture.Search.png](Img/Capture.Search.png)
+![!Capture.Search.Execute.png](Img/Capture.Search.Execute.png)
 
 期待通りの動作をすると今度は一つのテスト関数から呼び出だすようにして纏めて実行してみます。
 折角なので NUnit から実行します。
 Nunit では新しいアプリが起動して処理を実行してみてください。
 新しいプロセスが起動しテストが実行され成功します。
-
+```cs
+[TestCase, Apartment(ApartmentState.STA), TimeoutEx(10000)]
+public void TestMethod1()
+{
+    OpenDcument();
+    Search();
+}
+```
 長いシナリオを一度にキャプチャするのは大変です。
 このように短い操作コードを作って確認しながら少しづつ進めることで結果的には高い効率で作業を進めることができます。
 また短いコードであれば再利用可能となることが多いです。
@@ -70,10 +79,10 @@ Ctrl キーを押しながらExecuteを実行するとテストプロセスを�
 Shift キーを押しながら Excecute を実行すると対象プロセスをデバッグできます。Dll インジェクションで対象プロセスにロードさせる処理を作っている時に便利です。
 Ctrl + Shift を押しながら Execute を実行すると両方を同時にデバッグできます。
 
-### Asyncに関して
+### Async に関して
 モーダルダイアログが出る関数に関しては非同期処理が出力されます。
 例えば メニューの Simple Dialog を実行してダイアログを閉じる処理をキャプチャすると以下のようになります。
-Async の詳細は[こちら]()を参照お願いします。
+Async の詳細は[こちら](https://github.com/Codeer-Software/Friendly/blob/master/README.jp.md#async)を参照お願いします。
 ```cs
 void AsyncTest()
 {
