@@ -296,9 +296,9 @@ public static class XUserControlDriverExtensions
 ```
 
 ### Custom
-```cs
 キャプチャ時にTryが先に呼び出されます。
 見つかった分だけ識別子を返します。
+```cs
 public static class XUserControlDriverExtensions
 {
     [UserControlDriverIdentify(CustomMethod = "TryGet")]
