@@ -215,7 +215,80 @@ namespace Driver.Windows
 }
 ```
 # Attachに関して
-TODO
+Attachは拡張対象のWindowAppFriend/Driverから求めるWindowDriver/UserControlDriverを取得します。
+出力されるコードとしてはWindowDriverを取得する拡張メソッドは無限待ちで実装されます。
+これはテスト実行時のトップレベルウィドウの待ち合わせを考えてのものです。
+UserControlDriverを取得する方はなければnullを返すというコードが生成されます。
+以下のパターンがそれぞれあります。
+
+## WindowDriverIdentifyAttribute
+### TypeFullName
+```cs
+public static class MainFormDriverExtensions
+{
+    [WindowDriverIdentify(TypeFullName = "WinFormsApp.MainForm")]
+    public static MainFormDriver AttachMainForm(this WindowsAppFriend app)
+        => app.WaitForIdentifyFromTypeFullName("WinFormsApp.MainForm").Dynamic();
+}
+```
+### WinodwText
+```cs
+    
+public static class MainFormDriverExtensions
+{
+    [WindowDriverIdentify(WindowText = "Text ...")]
+    public static MainFormDriver AttachMainForm(this WindowsAppFriend app)
+        => app.WaitForIdentifyFromWindowText("Text ...").Dynamic();
+}
+```
+### Custom
+キャプチャ時にTryが先に呼び出されます。
+そこで対象が見つかって検索に必要な識別子を作成できたら true を返すように実装します。
+```cs
+public static class MainFormDriverExtensions
+{
+    [WindowDriverIdentify(CustomMethod = "Try")]
+    public static MainFormDriver AttachMainForm(this WindowsAppFriend app, T identifier)
+    {
+    }
+
+    public static bool Try(WindowControl window, out T identifier)
+    {
+    }
+}
+```
+### Variable Window Text
+これは Custom の実装の一つです。WindowTextを元に識別しています。
+```cs
+public static class MainFormDriverExtensions
+{
+    [WindowDriverIdentify(CustomMethod = "Try")]
+    public static MainFormDriver AttachMainForm(this WindowsAppFriend app, string identifier)
+        => app.WaitForIdentifyFromWindowText(identifier).Dynamic();
+
+    public static bool Try(WindowControl window, out string identifier)
+    {
+        identifier = window.GetWindowText();
+        return window.TypeFullName == "WinFormsApp.MainForm";
+    }
+}
+```
+## UserControlDriverIdentifyAttribute
+
+//TODO
+
+### TypeFullName
+```cs
+```
+### WinodwText
+```cs
+```
+### Custom
+```cs
+```
+### Variable Window Text
+```cs
+```
 
 # デバッグ
 これらの WindowDriver/USerControlDriver はテスト中はもちろん Capture 中にも使われます。
@@ -227,10 +300,66 @@ Attach メソッドをカスタマイズした場合などデバッグの必要�
 Capture 中だけの処理を書きたい場合に便利です。
 WinFormsのDesignModeのイメージで使ってください。
 ```cs
-//TODO
-Logger
-TestAssistantMode
+using Codeer.Friendly;
+using Codeer.Friendly.Dynamic;
+using Codeer.Friendly.Windows;
+using Codeer.Friendly.Windows.Grasp;
+using Codeer.TestAssistant.GeneratorToolKit;
+using Ong.Friendly.FormsStandardControls;
+
+namespace Driver.Windows
+{
+    [WindowDriver(TypeFullName = "WinFormsApp.MainForm")]
+    public class MainFormDriver
+    {
+        public WindowControl Core { get; }
+        public FormsToolStrip _menuStrip => Core.Dynamic()._menuStrip; 
+
+        public MainFormDriver(WindowControl core)
+        {
+            Core = core;
+        }
+
+        public MainFormDriver(AppVar core)
+        {
+            Core = new WindowControl(core);
+        }
+    }
+
+    public static class MainFormDriverExtensions
+    {
+        [WindowDriverIdentify(TypeFullName = "WinFormsApp.MainForm")]
+        public static MainFormDriver AttachMainForm(this WindowsAppFriend app)
+        {
+            switch (TestAssistantMode.CurrentMode)
+            {
+                //TestAssistantPro以外で実行
+                case TestAssistantMode.Mode.Non:
+                    break;
+                //AnalyzeWindowから呼ばれた場合
+                case TestAssistantMode.Mode.Analyze:
+                    break;
+                //Captureから呼ばれた場合
+                case TestAssistantMode.Mode.Capture:
+                    break;
+                //Executeから呼ばれた場合
+                case TestAssistantMode.Mode.Execute:
+                    break;
+            }
+
+            //Analyze or Capture から呼ばれた場合に true
+            if (TestAssistantMode.IsCreatingMode)
+            {
+                //ログを出力できる
+                Logger.WriteLine("log ....");
+            }
+
+            return app.WaitForIdentifyFromTypeFullName("WinFormsApp.MainForm").Dynamic();
+        }
+    }
+}
 ```
+![WindowDriver.Log.png](Img/WindowDriver.Log.png)
 
 # ネイティブのウィンドウに関して
 .Netで実装していても以下のウィンドウはネイティブのものが使われます。
