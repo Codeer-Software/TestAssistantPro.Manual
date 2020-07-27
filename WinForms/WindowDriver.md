@@ -275,19 +275,67 @@ public static class MainFormDriverExtensions
 ```
 ## UserControlDriverIdentifyAttribute
 
-//TODO
-
 ### TypeFullName
 ```cs
+public static class XUserControlDriverExtensions
+{
+    [UserControlDriverIdentify]
+    public static XUserControlDriver AttachXUserControl(this ParentDriver parent)
+        => parent.Core.GetFromTypeFullName("WinFormsApp.XUserControlDriver").SingleOrDefault()?.Dynamic();
+}
 ```
+
 ### WinodwText
 ```cs
+public static class XUserControlDriverExtensions
+{
+    [UserControlDriverIdentify]
+    public static XUserControlDriver AttachXUserControl(this ParentDriver parent)
+        => parent.Core.GetFromWindowText("Text...").SingleOrDefault()?.Dynamic();
+}
 ```
+
 ### Custom
 ```cs
+キャプチャ時にTryが先に呼び出されます。
+見つかった分だけ識別子を返します。
+public static class XUserControlDriverExtensions
+{
+    [UserControlDriverIdentify(CustomMethod = "TryGet")]
+    public static XUserControlDriver AttachXUserControl(this ParentDriver parent, T identifier)
+    {
+    }
+
+    public static void TryGet(this ParentDriver parent, out T[] identifier)
+    {
+    }
+}
 ```
+
 ### Variable Window Text
+これは Custom の実装の一つです。WindowTextを元に識別しています。
 ```cs
+public static class XUserControlDriverExtensions
+{
+    [UserControlDriverIdentify(CustomMethod = "TryGet")]
+    public static XUserControlDriver AttachXUserControl(this ParentDriver parent, string text)
+        => parent.Core.IdentifyFromWindowText("").Dynamic();
+
+    public static void TryGet(this ParentDriver parent, out string[] texts)
+        => texts = parent.Core.GetFromTypeFullName("WinFormsApp.XUserControlDriver").Select(e => (string)e.Dynamic().Text).ToArray();
+}
+```
+
+### アプリケーション全体からの検索
+特定の WindowDriver/UserControlDriver から検索する以外にアプリケーション全体から探す方法もあります。
+WindowsAppFriendの拡張にすると以下のようにアプリケーション全体から検索できます。
+```cs
+public static class XUserControlDriverExtensions
+{
+    [UserControlDriverIdentify()]
+    public static XUserControlDriver AttachOutputForm(this WindowsAppFriend app)
+        => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.XUserControlDriver")).SingleOrDefault()?.Dynamic();
+}
 ```
 
 # デバッグ
