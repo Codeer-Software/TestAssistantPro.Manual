@@ -204,7 +204,7 @@ DriverCreatorAdapter は IWindowAnalysisMenuAction, IDriverElementNameGenerator 
 新規したときにAssertが仕込まれています。
 このコードを元に解説します。
 CapterAttachTreeMenuAction を実装中は Ctrl キー を押しながら Capture 実行でデバッグできます。
-またここでも[Logger](WIndowDriver.md#デバッグ)を使うことができます。
+またここでも[Logger](WindowDriver.md#デバッグ)を使うこともできます。
 
 ```cs
 using System;
