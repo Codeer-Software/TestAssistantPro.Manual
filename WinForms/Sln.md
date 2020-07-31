@@ -44,8 +44,8 @@ TestAssistantPro WinForms Test Project を選択して Next ボタンを押し�
 ![Sln2.png](Img/Sln2.png)
 
 ## .netのバージョン入力
-.Netのバージョンを入力します。Applicationはテスト対象のプロジェクト以下のバージョンにしてください。
-Testの方はApplicationのバージョン以上を指定してください。
+.Netのバージョンを入力します。Application(Driver.InTarget)はテスト対象のプロジェクト以下のバージョンにしてください。
+Testの方はApplication(Driver.InTarget)のバージョン以上を指定してください。
 
 ![Sln3.png](Img/Sln3.png)
 
@@ -57,7 +57,7 @@ Testの方はApplicationのバージョン以上を指定してください。
 Driver/TestController.cs の targetPath を書き換えます。
 これでNunitでテスト実行した場合に対象プロセスが起動するようになります。
 TestControllerフォルダ以下には対象アプリケーションを管理するコードが入っています。
-あくまでテンプレートですので、プロジェクトにあわせて書き換えてください。
+このコード自体はあくまでテンプレートですので、プロジェクトにあわせて書き換えてください。
 ```cs
 using Codeer.Friendly.Windows;
 using System.Diagnostics;

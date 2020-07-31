@@ -5,7 +5,7 @@ TestAssitantProはCodeer.TestAssistant.GeneratorToolkit に定義されている
 Analyze, Capture, Execute 時に使われる機能です。これらは実装中にデバッグすることも可能です。
 
 # AnalyzeWindow
-## Treeのコンテキストメニューの拡張
+## UI解析ツリーのコンテキストメニューの拡張
 IWindowAnalysisMenuAction を実装することで AnalyzeWindow のツリーに表示されるメニューを拡張できます。
 新規作成時にテンプレートが Driver.InTarget に作成されています。
 これは対象プロセス内部で実行されます。

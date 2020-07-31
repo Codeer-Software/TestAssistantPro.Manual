@@ -26,20 +26,22 @@ Driver/Windowsフォルダで右クリックから Analyze Window を選択し�
 
 ![WindowDriver.TreeSelect.png](Img/WindowDriver.TreeSelect.png)
 
-### Tree
+### UI解析ツリー
 コントロールを選択します。
 ツリーで選択すると対象アプリの対応するコントロールが赤枠で囲まれます。
 Ctrlキーを押しながら対象のアプリのコントロールにマウスを持っていくとツリーの対応するノードが選択されます。
 
-* ダブりクリック
+* ノードダブルクリック
     * WindowDriver のプロパティとして登録したいコントロールをダブルクリックすると右側のグリッドに登録されます。
 
 * 右クリックメニュー
+    * Change The Analysis Target<br>
+        解析対象を現在選択中のノードのUIオブジェクトに変更します。
     * Pickup<br>
         選択している要素が右側のグリッドに登録されます。<br>
     * Pickup Children <br>
-        指定したコントロールの子孫のコントロールでドライバが割り当たっているものを一括でピックアップしてグリッドに登録します。<br>
-        子孫をたどるときに UserControl を発見した場合はそれ以下は検索しません。<br>
+        指定したコントロールの子孫のコントロールでドライバが割り当たっているものを一括でピックアップしてグリッドに登録します。
+        子孫をたどるときに UserControl を発見した場合はそれ以下は検索しません。
         それ以下のコントロールもグリッドに登録したい場合はそのUserControlを選択し再度 Pickup Children を実行してください。<br>
     * Create Control Driver<br>
         コントロールドライバを作成します。<br>
@@ -51,7 +53,7 @@ Ctrlキーを押しながら対象のアプリのコントロールにマウス�
     * Close All<br>
         ツリーをすべて閉じます。<br>
 
-    ※右クリックメニューはカスタマイズできます。詳しくは[こちら](Customize.md#Treeのコンテキストメニューの拡張)
+    ※右クリックメニューはカスタマイズできます。詳しくは[こちら](Customize.md#UI解析ツリーのコンテキストメニューの拡張)
 
 ### メニュー
 * Display Mode <br>
@@ -115,6 +117,11 @@ Designer タブでの設定によって出力されるコードが表示され�
 
 ### Outputタブ
 メニューによって実行した結果が表示されます。
+
+# メインの目的はWindowDriver/ControlDriverの作成
+メインの目的はWindowDriver/ControlDriverを作成することです。Pickupで要素にしたいコントロールを選択したり、Attachの形式をDesignerタブで設定したりします。
+
+![Sln.BaseFunction.png](Img/Sln.BaseFunction.png)
 
 # コード
 WindowDriverとUserControlDriverの役割はほとんど同じでコントロールドライバを特定して取得することです。
@@ -210,7 +217,7 @@ namespace Driver.Windows
         //Attachについては後述します。
         [UserControlDriverIdentify()]
         public static ZUserControlDriver AttachZUserControl(this YFormDriver parent)
-            => parent.GetFromTypeFullName("XXX.ZUserControl").SingleOrDefault()?.Dynamic();
+            => parent.GetFromTypeFullName("XXX.ZUserControl").FirstOrDefault()?.Dynamic();
     }
 }
 ```
@@ -281,7 +288,7 @@ public static class XUserControlDriverExtensions
 {
     [UserControlDriverIdentify]
     public static XUserControlDriver AttachXUserControl(this ParentDriver parent)
-        => parent.Core.GetFromTypeFullName("WinFormsApp.XUserControlDriver").SingleOrDefault()?.Dynamic();
+        => parent.Core.GetFromTypeFullName("WinFormsApp.XUserControlDriver").FirstOrDefault()?.Dynamic();
 }
 ```
 
@@ -291,7 +298,7 @@ public static class XUserControlDriverExtensions
 {
     [UserControlDriverIdentify]
     public static XUserControlDriver AttachXUserControl(this ParentDriver parent)
-        => parent.Core.GetFromWindowText("Text...").SingleOrDefault()?.Dynamic();
+        => parent.Core.GetFromWindowText("Text...").FirstOrDefault()?.Dynamic();
 }
 ```
 
@@ -334,7 +341,7 @@ public static class XUserControlDriverExtensions
 {
     [UserControlDriverIdentify()]
     public static XUserControlDriver AttachOutputForm(this WindowsAppFriend app)
-        => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.XUserControlDriver")).SingleOrDefault()?.Dynamic();
+        => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.XUserControlDriver")).FirstOrDefault()?.Dynamic();
 }
 ```
 
@@ -665,7 +672,7 @@ namespace Driver.Windows
     {
         [UserControlDriverIdentify()]
         public static TreeFormDriver AttachTreeForm(this WindowsAppFriend app)
-            => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.TreeForm")).SingleOrDefault()?.Dynamic();
+            => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.TreeForm")).FirstOrDefault()?.Dynamic();
     }
 }
 ```
@@ -703,7 +710,7 @@ namespace Driver.Windows
     {
         [UserControlDriverIdentify()]
         public static OutputFormDriver AttachOutputForm(this WindowsAppFriend app)
-            => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.OutputForm")).SingleOrDefault()?.Dynamic();
+            => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.OutputForm")).FirstOrDefault()?.Dynamic();
     }
 }
 ```
@@ -749,7 +756,7 @@ namespace Driver.Windows
     {
         [UserControlDriverIdentify(CustomMethod = "TryGet")]
         public static OrderDocumentFormDriver AttachOrderDocumentForm(this WindowsAppFriend app, string text)
-            => app.GetTopLevelWindows().SelectMany(e=>e.GetFromTypeFullName("WinFormsApp.OrderDocumentForm")).Where(e=>(string)e.Dynamic().Text == text).SingleOrDefault()?.Dynamic();
+            => app.GetTopLevelWindows().SelectMany(e=>e.GetFromTypeFullName("WinFormsApp.OrderDocumentForm")).Where(e=>(string)e.Dynamic().Text == text).FirstOrDefault()?.Dynamic();
 
         public static void TryGet(this WindowsAppFriend parent, out string[] texts)
             => texts = parent.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.OrderDocumentForm")).Select(e => (string)e.Dynamic().Text).ToArray();
