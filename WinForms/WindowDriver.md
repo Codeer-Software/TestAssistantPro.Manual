@@ -26,6 +26,11 @@ Driver/Windowsフォルダで右クリックから Analyze Window を選択し�
 
 ![WindowDriver.TreeSelect.png](Img/WindowDriver.TreeSelect.png)
 
+### メインの目的はWindowDriver/ControlDriverの作成
+メインの目的はWindowDriver/ControlDriverを作成することです。Pickupで要素にしたいコントロールを選択したり、Attachの形式をDesignerタブで設定したりします。
+
+![Sln.BaseFunction.png](Img/Sln.BaseFunction.png)
+
 ### UI解析ツリー
 コントロールを選択します。
 ツリーで選択すると対象アプリの対応するコントロールが赤枠で囲まれます。
@@ -117,11 +122,6 @@ Designer タブでの設定によって出力されるコードが表示され�
 
 ### Outputタブ
 メニューによって実行した結果が表示されます。
-
-# メインの目的はWindowDriver/ControlDriverの作成
-メインの目的はWindowDriver/ControlDriverを作成することです。Pickupで要素にしたいコントロールを選択したり、Attachの形式をDesignerタブで設定したりします。
-
-![Sln.BaseFunction.png](Img/Sln.BaseFunction.png)
 
 # コード
 WindowDriverとUserControlDriverの役割はほとんど同じでコントロールドライバを特定して取得することです。
