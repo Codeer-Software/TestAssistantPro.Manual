@@ -1,0 +1,23 @@
+{
+  "name": "testassistantpro.manual",
+  "version": "1.0.0",
+  "description": "Under construction. so please refer here.<br> https://github.com/Codeer-Software/TestAssistantPro.Samples",
+  "main": "index.js",
+  "scripts": {
+    "lint": "textlint \"W**/**/*.md\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Codeer-Software/TestAssistantPro.Manual"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/Codeer-Software/TestAssistantPro.Manual/issues"
+  },
+  "homepage": "https://github.com/Codeer-Software/TestAssistantPro.Manual#readme",
+  "devDependencies": {
+    "textlint": "^11.7.6",
+    "textlint-rule-preset-japanese": "^5.0.0",
+    "textlint-rule-prh": "^5.3.0"
+  }
+}
