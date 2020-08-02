@@ -1,40 +1,43 @@
-# WindowDriver/UserControlDriverの作成
+# アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する
 
 ここでは WindowDriver/UserControlDriver の作成方法に関して説明します。
 WindowDriver/UserControlDriver に関しては[こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)を参照お願いします。
 
-# AnalyzeWindow
-AnalyzeWindow は対象のアプリを解析して WindowDriver を作成するものです。
+## AnalyzeWindow
+
+AnalyzeWindow は対象のアプリケーションを解析して WindowDriver を作成するものです。
 ツリーのルートのコントロールに対して WindowDriver を作成します。
 Designer タブの設定でコードを作ります。
 現在の設定で生成されるコードは Current Code タブでプレビューを見ることができます。
 
 ### 起動
+
 Driver/Windowsフォルダで右クリックから Analyze Window を選択してください。
 
 ![WindowDriver.Start.png](Img/WindowDriver.Start.png)
 
 これはどこのフォルダでも可能です。ドライバを生成したときに指定のフォルダに生成されます。
-対象アプリを選択する画面が出ますので、対象を選択してください。
+対象アプリケーションを選択する画面が出ますので、対象を選択してください。
 
 ![WindowDriver.SelectTarget.png](Img/WindowDriver.SelectTarget.png)
 
-ここで選択するとFriendlyの機能によって対象アプリにFriendly系のdllとDriver.InTarget.dllがインジェクションされます。
-間違ったアプリを選択するとOSの再起動が必要になる場合がありますので間違えないように選択してください。
-二回目以降はこれが表示されずに同一のアプリに対して Analyze Window が実行されます。
-途中で対象アプリを変えたい場合は Select Target を実行すると対象を変更することができます。
+ここで選択するとFriendlyの機能によって対象アプリケーションにFriendly系のdllとDriver.InTarget.dllがインジェクションされます。
+間違ったアプリケーションを選択するとOSの再起動が必要になる場合がありますので間違えないように選択してください。
+二回目以降はこれが表示されずに同一のアプリケーションに対して Analyze Window が実行されます。
+途中で対象アプリケーションを変えたい場合は Select Target を実行すると対象を変更できます。
 
 ![WindowDriver.TreeSelect.png](Img/WindowDriver.TreeSelect.png)
 
 ### メインの目的はWindowDriver/ControlDriverの作成
+
 メインの目的はWindowDriver/ControlDriverを作成することです。Pickupで要素にしたいコントロールを選択したり、Attachの形式をDesignerタブで設定したりします。
 
 ![Sln.BaseFunction.png](Img/Sln.BaseFunction.png)
 
 ### UI解析ツリー
 コントロールを選択します。
-ツリーで選択すると対象アプリの対応するコントロールが赤枠で囲まれます。
-Ctrlキーを押しながら対象のアプリのコントロールにマウスを持っていくとツリーの対応するノードが選択されます。
+ツリーで選択すると対象アプリケーションの対応するコントロールが赤枠で囲まれます。
+Ctrlキーを押しながら対象のアプリケーションのコントロールにマウスを持っていくとツリーの対応するノードが選択されます。
 
 * ノードダブルクリック
     * WindowDriver のプロパティとして登録したいコントロールをダブルクリックすると右側のグリッドに登録されます。
@@ -46,7 +49,7 @@ Ctrlキーを押しながら対象のアプリのコントロールにマウス�
         選択している要素が右側のグリッドに登録されます。<br>
     * Pickup Children <br>
         指定したコントロールの子孫のコントロールでドライバが割り当たっているものを一括でピックアップしてグリッドに登録します。
-        子孫をたどるときに UserControl を発見した場合はそれ以下は検索しません。
+        子孫をたどるときに UserControl を発見した場合、それ以下は検索しません。
         それ以下のコントロールもグリッドに登録したい場合はそのUserControlを選択し再度 Pickup Children を実行してください。<br>
     * Create Control Driver<br>
         コントロールドライバを作成します。<br>
@@ -54,7 +57,7 @@ Ctrlキーを押しながら対象のアプリのコントロールにマウス�
     * Show Base Class<br>
         選択したコントロールの親クラスをアウトプットウィンドウに表示します。<br>
     * Expand All<br>
-        ツリーを全て開きます。<br>
+        ツリーをすべて開きます。<br>
     * Close All<br>
         ツリーをすべて閉じます。<br>
 
@@ -86,12 +89,12 @@ Ctrlキーを押しながら対象のアプリのコントロールにマウス�
 * Type<br>
     コントロールのタイプフルネームが表示されます。<br>
 * Assigned Driver<br>
-    割り当たってる Driver のタイプフルネームが表示されます。<br>
+    割り当たっている Driver のタイプフルネームが表示されます。<br>
 * Class Name<br>
     作成する WindowDriver/UserControlDriver の名前です。<br>
     ネームスペースは AnalyzeWindow を始めたフォルダになります。<br>
 * Create Attach Code<br>
-    AttachMethod を作るか否かです。<br>
+    AttachMethod を作るか、作らないかです。<br>
 * Extension<br>
     Attach する対象クラスです。<br>
 * Method<br>
@@ -108,7 +111,7 @@ Ctrlキーを押しながら対象のアプリのコントロールにマウス�
 * Many Exists<br>
     複数存在する場合があるかです。<br>
 
-* Grid<br>
+* グリッド<br>
     WindowDriver/UserControlDriver の子要素です。<br>
     Tree から選択します。<br>
 
@@ -346,8 +349,8 @@ public static class XUserControlDriverExtensions
 ```
 
 # デバッグ
-これらの WindowDriver/USerControlDriver はテスト中はもちろん Capture 中にも使われます。
-上手くキャプチャ出来ない場合はデバッグして原因を突き止めてください。
+これらの WindowDriver/USerControlDriver は、テスト中はもちろん Capture 中にも使われます。
+うまくキャプチャできない場合はデバッグして原因を突きやめてください。
 Ctrl キーを押しながら Capture するとデバッグできます。
 Attach メソッドをカスタマイズした場合などデバッグの必要性が出てくると思います。
 ログを出したい場合は Logger を 使えば Capture ウィンドウにログを出力できます。
@@ -418,7 +421,6 @@ namespace Driver.Windows
 
 # ネイティブのウィンドウに関して
 .Netで実装していても以下のウィンドウはネイティブのものが使われます。
-これらのドライバは新規作成時に Driver/Windows/Native 以下に作成されています。
 
 |  Window  |  Driver  |
 | ---- | ---- |
@@ -427,12 +429,16 @@ namespace Driver.Windows
 | SaveFileDialog | SaveFileDialogDriver |
 | FolderBrowserDialog | FolderDialogDriver |
 
+これらのドライバは新規作成時、 Driver/Windows/Native 以下に作成されています。
+
 # 生成済みのドライバのメンテ
-生成済みのドライバに関しては基本は手でメンテになります。プロパティの名前変更などもVisualStudioのリファクタリング機能を使って自由にできます。
-ただ AnalyzeWindow を使った方が楽な場合もあります。コントロールドライバを付け足したい場合やAttach方法を変更したい場合はAnalyzeWindowで目的の状態にして Current Code から必要なコードをコピーして元のコードに貼り付けてください。
+
+生成済みのドライバに関しては基本は手でメンテナンスになります。プロパティの名前変更などもVisualStudioのリファクタリング機能を使って自由にできます。
+ただ コントロールドライバを付け足したい場合やAttach方法を変更したい場合など、AnalyzeWindow を使った方が楽な場合もあります。
+そのようなときは、AnalyzeWindowで目的の状態にして Current Code から必要なコードをコピーして元のコードに貼り付けてください。
 
 # 演習
-先ほどのサンプルアプリのドライバを作ります。
+先ほどのサンプルアプリケーションのドライバを作ります。
 MainFormは少し複雑なので後に回します。
 まずはシンプルなダイアログで操作に慣れていきます。
 
@@ -441,7 +447,7 @@ MainFrameのメニュー -> etc -> Simple Dialog を実行してください。
 表示されたダイアログを解析します。
 これはシンプルな作りのダイアログなのでツリーのルートで右クリックメニューを表示して Pickup Children を実行します。
 そうするとグリッドに ControlDriver の割り当たった要素がピックアップされます。
-名前はデフォルトでは変数名になっていますが、変更することができます。
+名前はデフォルトでは変数名になっていますが、変更できます。
 ラベルは Pickup Chidlren では無視されますが、必要ならツリーの要素をダブルクリックすることにより追加で登録できます。
 必要な要素を登録したら Generate ボタンを押してコードを生成します。
 Create Attach Code は下図のようにデフォルトの状態で生成してください。
@@ -497,7 +503,7 @@ Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックし�
 
 ## Multi UserControl Dialog
 今度は UserContorl の入っている Form のドライバを作成します。
-このFormには二つの UserContorl が入っています。
+このFormには2つの UserContorl が入っています。
 
 ![UserControlDriver.Analyze.png](Img/UserControlDriver.Analyze.png)
 
@@ -541,7 +547,7 @@ namespace Driver.Windows
 ```
 ReservationInformationUserControl のコードを生成したら今度は Form の方に戻ります。
 ChargeOfPartyUserControl の方もドライバを作成しても良いのですが、
-今回はこちらはドライバは作らずに Form に直接 UserControl の要素を配置するようにします。
+今回は作らず、 Form に直接 UserControl の要素を配置するようにします。
 （あくまで演習のためで、本来は場合によって使い分けてください）
 
 ![UserControlDriver.Form.png](Img/UserControlDriver.Form.png)
@@ -630,7 +636,7 @@ namespace Driver.Windows
 TreeForm と OutputForm は UserControlDriver として作成します。
 これはAttach方式にします。
 Attach対象は MainFromDriver ではなく WindowsAppFrined (アプリケーション全体)にします。
-これはフローティング状態にするなど様々な状態を作ることができるからです。
+これはフローティング状態にするなどさまざまな状態を作ることができるからです。
 まずは TreeForm の UserControlDriver を作ります。
 Formの見つけ方ですがCtrlキーを押しながら Tree の上にマウスを持っていきます。
 そうすると TreeView が AnalyzeWindow の上で選択状態になります。
