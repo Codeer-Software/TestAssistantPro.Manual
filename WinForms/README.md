@@ -1,22 +1,21 @@
-# WinForms
+# TestAssistantProを利用してWinFormsアプリケーションのテストを構築する
 
-Friendly を使って Driver/Scenario パターンに沿ってテストを実装します。<br>
-Friendly と Driver/Scenario パターンはこちらを参照お願いします。<br>
+TestAssistantProを使ってFriendlyでの`Driver/Scenarioパターン`に沿ったテストを実装します。
+Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してください。
+
 + [Friendly](https://github.com/Codeer-Software/Friendly/blob/master/README.jp.md)
 + [Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)
 
-解説は[こちらのサンプル](WinFormsApp)を操作する例を使いながら行います。
-WinFormsAppフォルダ以下にソースコードがあるので最初にダウンロード/ビルドをお願いします。
-ダウンロード後には「ブロックの解除」をお願いします。
+## 目次
 
-# 目次
-+ [テストソリューションの新規作成](Sln.md)
-+ [WindwoDriver](WindowDriver.md)
-+ [ControlDriver](ControlDriver.md)
-+ [シナリオ](Scenario.md)
-+ [カスタマイズ](Customize.md)
+1. [テストソリューションを新規作成する](Sln.md)
+2. [アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](WindowDriver.md)
+3. [ControlDriverを実装する](ControlDriver.md)
+4. [アプリケーションの操作を記録してシナリオを作成する](Scenario.md)
+5. [AnalyzeWindowをカスタマイズする](Customize.md)
 
-# サンプルの説明
+## 利用するサンプルアプリケーション
+
 サンプルには WinForms でよくあるドッキングウィンドウタイプのアプリケーションを用意しました。
 Friendly を使って自動テストを作成しようとするときに多くの場合最初に表示されるメインウィンドウでつまずきます。
 ドッキングウィンドウはドライバ作成にコツが必要で前提知識なしに作成するのは困難です。
@@ -28,3 +27,13 @@ Friendly を使って自動テストを作成しようとするときに多く�
 ![SampleDialogs.png](Img/SampleDialogs.png)
 
 ![NativeWindows.png](Img/NativeWindows.png)
+
+## サンプルアプリケーションの準備
+
+> **コメント**
+> 
+> サンプルアプリケーション用のリポジトリを作ってクローンさせたほうが良い。
+> もしくはリリースに exe をおいておくか。
+
+サンプルアプリケーションのソースコードを[こちら](WinFormsApp)から取得してビルドしてください。
+ダウンロード後には「ブロックの解除」を行ってください。

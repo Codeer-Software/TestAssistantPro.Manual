@@ -1,4 +1,4 @@
-# カスタマイズ
+# AnalyzeWindowをカスタマイズする
 
 TestAssitantProはCodeer.TestAssistant.GeneratorToolkit に定義されているインタフェースを実装することでその挙動をカスタマイズできます。
 ソリューション内で実装してもよいですし、実装されているdllを参照するでもかまいません。

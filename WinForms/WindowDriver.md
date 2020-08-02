@@ -1,15 +1,17 @@
-# WindowDriver/UserControlDriverの作成
+# アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する
 
 ここでは WindowDriver/UserControlDriver の作成方法に関して説明します。
 WindowDriver/UserControlDriver に関しては[こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)を参照お願いします。
 
-# AnalyzeWindow
+## AnalyzeWindow
+
 AnalyzeWindow は対象のアプリケーションを解析して WindowDriver を作成するものです。
 ツリーのルートのコントロールに対して WindowDriver を作成します。
 Designer タブの設定でコードを作ります。
 現在の設定で生成されるコードは Current Code タブでプレビューを見ることができます。
 
 ### 起動
+
 Driver/Windowsフォルダで右クリックから Analyze Window を選択してください。
 
 ![WindowDriver.Start.png](Img/WindowDriver.Start.png)
@@ -27,6 +29,7 @@ Driver/Windowsフォルダで右クリックから Analyze Window を選択し�
 ![WindowDriver.TreeSelect.png](Img/WindowDriver.TreeSelect.png)
 
 ### メインの目的はWindowDriver/ControlDriverの作成
+
 メインの目的はWindowDriver/ControlDriverを作成することです。Pickupで要素にしたいコントロールを選択したり、Attachの形式をDesignerタブで設定したりします。
 
 ![Sln.BaseFunction.png](Img/Sln.BaseFunction.png)

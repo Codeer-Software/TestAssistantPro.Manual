@@ -1,4 +1,4 @@
-# ControlDriver
+# ControlDriverを実装する
 
 ControlDriver はその名の通り、Button や TextBox など Control に対応するドライバです。
 多くの物は使いまわすことができます。
