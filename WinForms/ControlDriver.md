@@ -2,12 +2,14 @@
 
 ControlDriver はその名の通り、Button や TextBox など Control に対応するドライバです。
 多くの物は使いまわすことができます。
-TestAssistantPro を使って WinForms のテストプロジェクトを作成すると以下のパッケージがインストールされ
-それぞれに定義されているコントロールドライバとキャプチャジェネレータが使えるようになります。
-コントロールドライバの種類はそれぞれのリンクを参照してください。
+TestAssistantPro を使って WinForms のテストプロジェクトを作成すると次のパッケージがインストールされます。
 
 + [Ong.Frinedly.FormsStandardControls](https://github.com/ShinichiIshizuka/Ong.Friendly.FormsStandardControls)
 + [Codeer.Friendly.Windows.NativeStandardControls](https://github.com/Codeer-Software/Friendly.Windows.NativeStandardControls)
+
+これによりそれぞれに定義されているコントロールドライバとキャプチャジェネレータが使えます。
+コントロールドライバの種類はそれぞれのリンクを参照してください。
+
 
 また、WinFormsのサードパーティ製のコントロールで
 GrapeCity社のC1FlexGridとSpreadに対するドライバもOSSで公開しています。
@@ -15,8 +17,8 @@ GrapeCity社のC1FlexGridとSpreadに対するドライバもOSSで公開して�
 + [Friendly.FarPoint](https://github.com/Codeer-Software/Friendly.FarPoint)
 
 しかし、世の中には大量の3rdパーティ製のコントロールがあり、さらには各プロジェクト固有のコントロールも存在します。
-TestAssistantPro はそのような場合でもそれぞれに対する ControlDriver と CaptureGenerator を実装することで対応することが可能です
-ControlDriverはFriendlyの基本機能を使うことで簡単に実装することができます。
+TestAssistantPro はそのような場合でもそれぞれに対する ControlDriver と CaptureGenerator を実装することで対応できます。
+ControlDriverはFriendlyの基本機能を使うことで簡単に実装できます。
 [こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md#controldriver)でも説明していますので参照お願いします。
 TestAssistantPro で AnalyzeWindow に認識させて WindowDriver を作るときに表示する場合は ControlDriverAttribute 属性を付けます。
 Ong.Friendly.FormsStandardControls の FormsCheckBox を例にすると以下のようになっています。
@@ -36,14 +38,14 @@ public class FormsCheckBoxEx : FormsCheckBox
 ```
 
 # Capture Code Generator
-ControlDriver は手動で Friendly を使ったテストを書く時にも作成するものですが
-キャプチャジェネレータは TestAssistantPro を使うときだけ出てくるユーティリティクラスです。
+ControlDriver は手動で Friendly を使ったテストを書く時にも作成するもです。
+しかし、キャプチャジェネレータは TestAssistantPro を使うときだけ出てくるユーティリティクラスです。
 ControlDriver に対応する CaptureCodeGenerator を作っておくと TestAssistantPro でキャプチャ時に操作からコードを作成できます。
 ControlDriver との紐づけは CaptureCodeGeneratorAttribute で行います。
 また CaptureCodeGeneratorBase を継承しておく必要があります。
 CaptureCodeGenerator は Capture 時に対象プロセス内に生成され、最初に Attach() が呼び出されます。
 そこでイベントに接続してイベントが発生したときに生成したコードを AddSentense で追加します。
-例えば CheckBox の CaptureCode の実装は以下のようなものです。
+たとえば CheckBox の CaptureCode の実装は以下のようなものです。
 
 ```cs
 using System;
@@ -82,14 +84,13 @@ namespace Ong.Friendly.FormsStandardControls.Generator
 }
 ```
 AddSentence は引数で渡されたオブジェクトを接続したコードを登録します。
-通常のオブジェクトは ToString() で文字列にしたものになりますが、
-一部特殊な置換が行わるクラスがあります。
+通常のオブジェクトは ToString() を利用した文字列になりますが、一部特殊な置換が行わるクラスもあります。
 
 |  Token  |  説明  |
 | ---- | ---- |
 |  TokenName  |  現在選択されている名前になります。  |
 |  TokenSeparator  |  空行になります。複数個連続で登録されている場合は一行にまとめられます。  |
-|  TokenAsync  |  その操作によりモーダルダイアログが表示された場合はAsyncのオブジェクトが入ります。引数なのでカンマの挿入に関して前後もしくは無しが引数で設定できます。  |
+|  TokenAsync  |  その操作によりモーダルダイアログが表示された場合はAsyncのオブジェクトが入ります。引数なのでカンマの挿入に関して前後もしくはなしが引数で設定できます。  |
 
 # 演習
 ## AnalyzeWindow から ControlDriver と CaptureGenerator を作成する
@@ -114,10 +115,10 @@ BlockControl の機能としてはブロックをドラッグで移動させる�
 ### ControlDriver 実装
 これは [BlockControl]() と [Frinedly]()の知識があれば簡単に実装できます。
 BlockCotrol はプロダクトのコードなのでその開発チームなら知っているはずです。
-この実装は基本は開発チームに行ってもらうのが費用対効果が良いでしょう。
+この実装は基本的には開発チームに行ってもらうのが費用対効果の面で良いでしょう。
 BlockControlDriver の公開APIの仕様は自由に決定してかまいません。
-Ong.Friendly.FormsStandardControl の設計に合すならば
-変更を及ぼす操作はメソッドでつくり Emulate プレフィックスを付けます。
+Ong.Friendly.FormsStandardControl の設計に合す並ば
+変更を及ぼす操作はメソッドで作り Emulate 接頭辞を付けます。
 今回はこのようにします。
 
 ```cs
@@ -150,7 +151,7 @@ namespace Driver.Controls
 
 ### キャプチャジェネレータの実装
 イベントを受ける必要があるので BlockControl が定義されているアセンブリを参照します。具体的には WinFormApp.exe を参照します。
-リフレクションを駆使すれば参照無しでも可能ですが、難易度があがるので説明を省きます。
+リフレクションを駆使すれば参照なしでも可能ですが、難易度があがるので説明を省きます。
 必要でしたら Friendly.XamControls で実装していますので[こちら](https://github.com/Codeer-Software/Friendly.XamControls/blob/master/Project/Friendly.XamControls.Generator/XamComboEditorDriverGenerator.cs)を参照お願いします。
 
 ```cs
@@ -205,15 +206,15 @@ namespace Driver.InTarget
 ![CreateDriver.BlockControlDriver.Capture.png](Img/CreateDriver.BlockControlDriver.Capture.png)
 
 ### デバッグする
-上手く動かない場合はデバッグして問題を見つけます。
+うまく動かない場合はデバッグして問題を見つけます。
 対象プロセス内で動いているので対象プロセスをデバッグする必要があります。
-Attach にブレイクポイントを貼って Shift キーを押しながら Capture を実行してみてください。
+Attach にブレークポイントを貼って Shift キーを押しながら Capture を実行してみてください。
 
 ### DockContentの閉じるに反応するようにする
 DockContentも標準のコントロールではないのでそのままでは対応できません。
 こちらも同様に作成してみます。
 作成後にDockContentを継承したウィンドウに対してドライバを作るとCoreの部分がDockContentDriverになります。
-演習の順番的に先ほど既に作っている場合は、手動でWindowControlの部分を書き換えてください。
+演習の順番的に先ほどすでに作っている場合は、手動でWindowControlの部分を書き換えてください。
 
 ![ControlDriver.DockContent.png](Img/ControlDriver.DockContent.png)
 

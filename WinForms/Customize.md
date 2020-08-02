@@ -1,7 +1,7 @@
 # カスタマイズ
 
-TestAssitantProはCodeer.TestAssistant.GeneratorToolkit に定義されているインターフェイスを実装することでその挙動をカスタマイズすることができます。
-ソリューション内で実装してもよいですし、実装されているdllを参照するでも構いません。
+TestAssitantProはCodeer.TestAssistant.GeneratorToolkit に定義されているインタフェースを実装することでその挙動をカスタマイズできます。
+ソリューション内で実装してもよいですし、実装されているdllを参照するでもかまいません。
 Analyze, Capture, Execute 時に使われる機能です。これらは実装中にデバッグすることも可能です。
 
 # AnalyzeWindow
@@ -9,8 +9,8 @@ Analyze, Capture, Execute 時に使われる機能です。これらは実装中
 IWindowAnalysisMenuAction を実装することで AnalyzeWindow のツリーに表示されるメニューを拡張できます。
 新規作成時にテンプレートが Driver.InTarget に作成されています。
 これは対象プロセス内部で実行されます。
-デバッグする場合は Shift キーを押しながらAnalyzeを実行してください
-ツリーで選択されているコントロールのオブジェクトを元にコードを生成したりデザイナへのコントロールの登録を実行したりできます。
+デバッグする場合は Shift キーを押しながらAnalyzeを実行してください。
+ツリーで選択されているコントロールのオブジェクトを元にコードを生成したりデザイナーへのコントロールの登録を実行したりできます。
 プロジェクトでドライバを使っていて定型作業のようなものが見つかればメニューとして追加することで作業の効率を上げることができます。
 
 ```cs
@@ -54,7 +54,7 @@ namespace Driver.InTarget
 ![IWindowAnalysisMenuAction.png](Img/IWindowAnalysisMenuAction.png)
 
 ### Outputへの出力
-任意のテキストを Output に出力することができます。
+任意のテキストを Output に出力できます。
 GridColumnDefineToOutput ではグリッドのカラム定義をアウトプットに出力しています。
 ```cs
 static void GridColumnDefineToOutput(DataGridView grid)
@@ -76,8 +76,8 @@ static void GridColumnDefineToOutput(DataGridView grid)
 
 ![AnalyzeWindow.Output.png](Img/AnalyzeWindow.Output.png)
 
-### コードビューワーへの出力
-任意のコードをコードビューワーに出力することができます。
+### コードビューアへの出力
+任意のコードをコードビューアに出力できます。
 ```cs
 static void GridColumnDefineToCodeViewer(object target, DataGridView grid)
 {
@@ -101,9 +101,9 @@ static void GridColumnDefineToCodeViewer(object target, DataGridView grid)
 
 ![DriverCreatorAdapter.AddCode.png](Img/DriverCreatorAdapter.AddCode.png)
 
-### デザイナへコントロールの登録
-任意のコントロールをデザイナへ登録することができます。
-通常の PickupChildren は UserControl 以下は登録しないので UserControl も関係なく最後まで検索して登録するメソッドなども作れます。
+### デザイナーへコントロールの登録
+任意のコントロールをデザイナーへ登録できます。
+通常の PickupChildren は UserControl 以下を登録しないので UserControl も関係なく最後まで検索して登録するメソッドなども作れます。
 ```cs
 void PickupChildrenFlat(Control control)
 {
@@ -134,8 +134,8 @@ void PickupChildrenFlat(Control control)
 
 ![DriverCreatorAdapter.AddDriverElements.png](Img/DriverCreatorAdapter.AddDriverElements.png)
 
-### デザイナへの登録時のデフォルトの名前のカスタマイズ
-IDriverElementNameGenerator を実装すると名前をカスタマイズすることができます。
+### デザイナーへの登録時のデフォルトの名前のカスタマイズ
+IDriverElementNameGenerator を実装すると名前をカスタマイズできます。
 実装次第では近くのラベルのテキストを利用するなどもできます。
 
 ```cs
@@ -170,7 +170,7 @@ namespace Driver.InTarget
 
 ### DriverCreatorAdapter
 DriverCreatorAdapter は IWindowAnalysisMenuAction, IDriverElementNameGenerator の実装中に使うことができます。
-前述の例にあるようにコードの追加、デザイナへのコントロールの登録に使る他、現在ソリューションに保持してるドライバの情報を使うことができます。
+前述の例にあるようにコードの追加、デザイナーへのコントロールの登録に使るほか、現在ソリューションに保持しているドライバの情報を使うことができます。
 <br>
 
 プロパティ
@@ -195,9 +195,9 @@ DriverCreatorAdapter は IWindowAnalysisMenuAction, IDriverElementNameGenerator 
 
 | 定義 | 説明 |
 | ---- | ---- |
-| void AddDriverElements(object driverElement) | デザイナにコントロールを追加します。 |
+| void AddDriverElements(object driverElement) | デザイナーにコントロールを追加します。 |
 | void AddCode(string fileName, string code, object target)  | コードを追加します。 |
-| void AddCodeLineSelectInfo(string fileName, string key, object target)  | コードに含まれるキーワードに対応するオブジェクトを設定します。例えばプロパティ名に対応するコントロールを設定しておけば、コードビューワー上で行が選択されたときに対象アプリ上でそのコントロールが強調表示されます。 |
+| void AddCodeLineSelectInfo(string fileName, string key, object target)  | コードに含まれるキーワードに対応するオブジェクトを設定します。たとえばプロパティ名に対応するコントロールを設定しておけば、コードビューア上で行が選択されたときに対象アプリケーション上でそのコントロールが強調表示されます。 |
 
 # Capture
 キャプチャ時のドライバツリーでも同様にコンテキストメニューをカスタマイズできます。

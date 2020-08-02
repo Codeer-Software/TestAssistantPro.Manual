@@ -5,7 +5,7 @@ Friendly と Driver/Scenario パターンはこちらを参照お願いします
 + [Friendly](https://github.com/Codeer-Software/Friendly/blob/master/README.jp.md)
 + [Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)
 
-解説は[こちらのサンプル](WinFormsApp)を操作する例を使いながらおこないます。
+解説は[こちらのサンプル](WinFormsApp)を操作する例を使いながら行います。
 WinFormsAppフォルダ以下にソースコードがあるので最初にダウンロード/ビルドをお願いします。
 ダウンロード後には「ブロックの解除」をお願いします。
 
@@ -17,11 +17,11 @@ WinFormsAppフォルダ以下にソースコードがあるので最初にダウ
 + [カスタマイズ](Customize.md)
 
 # サンプルの説明
-サンプルには WinForms のアプリでよくあるドッキングウィンドウタイプのアプリを用意しました。
-Friendly を使って自動テストを作成しようとするときに多くの場合最初に表示されるメインウィンドウで躓きます。
+サンプルには WinForms でよくあるドッキングウィンドウタイプのアプリケーションを用意しました。
+Friendly を使って自動テストを作成しようとするときに多くの場合最初に表示されるメインウィンドウでつまずきます。
 ドッキングウィンドウはドライバ作成にコツが必要で前提知識なしに作成するのは困難です。
-その他、シンプルなダイアログ、ネイティブのダイアログ、プロジェクト固有のコントロールもあり
-一般的な WinForms のアプリの操作方法が一通り学べるようにしています。
+そのほか、シンプルなダイアログ、ネイティブのダイアログ、プロジェクト固有のコントロールもあり
+一般的な WinForms のアプリケーションの操作方法が一通り学べるようにしています。
 
 ![MainFrame.png](Img/MainFrame.png)
 

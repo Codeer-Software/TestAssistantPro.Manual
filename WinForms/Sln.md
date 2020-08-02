@@ -1,7 +1,7 @@
 # テストソリューションの新規作成
 
 テストソリューションの新規作成について説明します。<br>
-TestAssistantPro を使うことで WinForms のアプリの自動テストに最適なソリューションを作成することができます。
+TestAssistantPro を使うことで WinForms のアプリケーションの自動テストに最適なソリューションを作成できます。
 ウィザードに従うと以下のプロジェクトが作成され、それぞれに必要な最新の Nuget パッケージがインストールされます。
 
 * Driver
@@ -25,7 +25,7 @@ TestAssistantPro を使うことで WinForms のアプリの自動テストに�
   * NUnit
 
 ここで作るのは基本構成です。
-作業が進みボリュームが大きくなってきた場合、必要に応じてそれぞれの役割を持つ dll を複数個に分割していくことも可能です。
+作業を進めることでボリュームが大きくなってきた場合、必要に応じてそれぞれの役割を持つ dll を複数個に分割していくことも可能です。
 TestAssistantPro はこの構成以外でも Driver の作成やシナリオの作成を行うことができます。
 それらは WinForms用のものであれば Ong.Friendly.FormsStandardControls がインストールされているプロジェクトで使うことが可能です。
 テストフレームワークも NUnit が入りますが、これも NUnit である必要はありません。プロジェクトに適したものを採用してください。
@@ -55,9 +55,9 @@ Testの方はApplication(Driver.InTarget)のバージョン以上を指定して
 
 ## ProcessControllerの調整
 Driver/TestController.cs の targetPath を書き換えます。
-これでNunitでテスト実行した場合に対象プロセスが起動するようになります。
+こうすることでNunitを使ってテスト実行した場合に対象プロセスを起動できます。
 TestControllerフォルダ以下には対象アプリケーションを管理するコードが入っています。
-このコード自体はあくまでテンプレートですので、プロジェクトにあわせて書き換えてください。
+このコード自体はあくまでテンプレートですので、プロジェクトに合わせて書き換えてください。
 ```cs
 using Codeer.Friendly.Windows;
 using System.Diagnostics;
