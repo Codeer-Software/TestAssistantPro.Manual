@@ -8,11 +8,16 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 
 ## 目次
 
-1. [テストソリューションを新規作成する](Sln.md)
-2. [アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](WindowDriver.md)
-3. [ControlDriverを実装する](ControlDriver.md)
-4. [アプリケーションの操作を記録してシナリオを作成する](Scenario.md)
-5. [AnalyzeWindowをカスタマイズする](Customize.md)
+- 機能
+  - [AnalyzeWindow](feature/AnalyzeWindow.md)
+  - [AnalyzeWindowで生成されるコード](feature/GeneratedCode.md)
+  - [Attach方法ごとのコード](feature/Attach.md)
+- チュートリアル
+  1. [テストソリューションを新規作成する](tutorial/Sln.md)
+  2. [アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](tutorial/WindowDriver.md)
+  3. [ControlDriverを実装する](tutorial/ControlDriver.md)
+  4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
+  5. [AnalyzeWindowをカスタマイズする](tutorial/Customize.md)
 
 ## 利用するサンプルアプリケーション
 
