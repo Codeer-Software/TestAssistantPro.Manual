@@ -29,31 +29,31 @@ WindowDriverは[こちらの演習](WindowDriver.md#演習)で作成していま
 まずはドキュメントを開くシナリオを作ってみます。
 OpenDocument という関数を作り、そこで右クリックから Capture を実行します。
 
-![!Capture.Start.png](Img/Capture.Start.png)
+![!Capture.Start.png](../Img/Capture.Start.png)
 
 ツリー上でドキュメントを選択して右クリックメニューから Open Document を実行します。
 Capture ウィンドウ上に次のようにコードが出ているので Generate ボタンを押します。
 
-![!Capture.OpenDocument.png](Img/Capture.OpenDocument.png)
+![!Capture.OpenDocument.png](../Img/Capture.OpenDocument.png)
 
 先ほどの OpenDocument 関数にコードが出ているので、
 一度対象プロジェクトのドキュメントを閉じてから
 OpenDocument 上で右クリックから Execute を実行します。
 そうすると OpenDocument のみが実行されます。
 
-![!Capture.Execute.png](Img/Capture.Execute.png)
+![!Capture.Execute.png](../Img/Capture.Execute.png)
 
 今度はドキュメント上で検索をしてみます。
 同様に Search 関数を作り Capture を実行します。
 今度は最後に Assert も書いてみます。
 (Assert の処理は[こちら](Customize.md#Capture)を参照お願いします。)
 
-![!Capture.Assert.png](Img/Capture.Assert.png)
+![!Capture.Assert.png](../Img/Capture.Assert.png)
 
 これもまた同様に Search 関数のみ実行してみます。
 実行前に OutputForm の Clear ボタンを押して OutputForm をクリアしておきます。
 
-![!Capture.Search.Execute.png](Img/Capture.Search.Execute.png)
+![!Capture.Search.Execute.png](../Img/Capture.Search.Execute.png)
 
 期待通りの動作をすると今度は一つのテスト関数から呼び出だすようにしてまとめて実行してみます。
 せっかくなので NUnit から実行します。
@@ -104,7 +104,7 @@ Friendly の操作は一般的に最適な操作方法を提供しています�
 一般的なキーマウス処理よりはタイミングの面で有利です。
 詳細はこちらを参照お願いします。
 
-![!Capture.KeyMouse.png](Img/Capture.KeyMouse.png)
+![!Capture.KeyMouse.png](../Img/Capture.KeyMouse.png)
 
 ## 複数のアプリケーションを操作する場合
 WindowsAppFriend を複数持つ場合は AppInfoAttribute でアプリケーションの名前を指定できます。
