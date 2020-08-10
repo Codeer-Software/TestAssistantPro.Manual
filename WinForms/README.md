@@ -12,10 +12,12 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
   - [AnalyzeWindow](feature/AnalyzeWindow.md)
   - [AnalyzeWindowで生成されるコード](feature/GeneratedCode.md)
   - [Attach方法ごとのコード](feature/Attach.md)
+  - [ControlDriver](feature/ControlDriver.md)
+  - [CaptureCodeGenerator](feature/CaptureCodeGenerator.md)
 - チュートリアル
   1. [テストソリューションを新規作成する](tutorial/Sln.md)
   2. [アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](tutorial/WindowDriver.md)
-  3. [ControlDriverを実装する](tutorial/ControlDriver.md)
+  3. [ControlDriverとCaptureCodeGeneratorを作成する](tutorial/ControlDriver.md)
   4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
   5. [AnalyzeWindowをカスタマイズする](tutorial/Customize.md)
 
