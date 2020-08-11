@@ -86,7 +86,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="DialogWindow.xaml">
+    <Compile Include="ChargeOfPartyUserControl.xaml.cs">
+      <DependentUpon>ChargeOfPartyUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControlWindow.xaml.cs">
+      <DependentUpon>CustomControlWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiUserControlWindow.xaml.cs">
+      <DependentUpon>MultiUserControlWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ReservationInformationUserControl.xaml.cs">
+      <DependentUpon>ReservationInformationUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleWindow.xaml.cs">
+      <DependentUpon>SimpleWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ChargeOfPartyUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControlWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -98,36 +117,24 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DialogWindow.xaml.cs">
-      <DependentUpon>DialogWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="OptionUserControl3.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="MultiUserControlWindow.xaml">
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="OptionUserControl2.xaml">
       <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
-    <Page Include="OptionUserControl1.xaml">
+    <Page Include="ReservationInformationUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SimpleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OptionUserControl3.xaml.cs">
-      <DependentUpon>OptionUserControl3.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="OptionUserControl2.xaml.cs">
-      <DependentUpon>OptionUserControl2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="OptionUserControl1.xaml.cs">
-      <DependentUpon>OptionUserControl1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

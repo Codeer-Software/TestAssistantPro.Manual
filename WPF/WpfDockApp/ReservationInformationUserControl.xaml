@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="WpfDockApp.ReservationInformationUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfDockApp"
+             mc:Ignorable="d" 
+             Width="450" Height="250" FontSize="16">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <CheckBox Grid.Column="0" Grid.Row="0" Content="Smoking" Margin="20,0,0,0" FontSize="16"/>
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Number of people" VerticalAlignment="Center" Margin="20,0,0,0"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Width="200" VerticalAlignment="Center" Margin="20,0,0,0" HorizontalAlignment="Left"/>
+        <RadioButton Grid.Column="0" Grid.Row="2" Content="Course" Margin="20,0,0,0" Background="{x:Null}" FontSize="16"/>
+        <RadioButton Grid.Column="0" Grid.Row="3" Content="A la carte" Margin="20,0,0,0" Background="{x:Null}" FontSize="16"/>
+    </Grid>
+</UserControl>

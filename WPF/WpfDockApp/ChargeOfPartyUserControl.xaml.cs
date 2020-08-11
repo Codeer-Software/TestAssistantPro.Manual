@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WpfDockApp
 {
     /// <summary>
-    /// OptionUserControl2.xaml の相互作用ロジック
+    /// ChargeOfPartyUserControl.xaml の相互作用ロジック
     /// </summary>
-    public partial class OptionUserControl2 : UserControl
+    public partial class ChargeOfPartyUserControl : UserControl
     {
-        public OptionUserControl2()
+        public ChargeOfPartyUserControl()
         {
             InitializeComponent();
         }
