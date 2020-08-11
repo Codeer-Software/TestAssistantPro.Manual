@@ -1,4 +1,4 @@
-# AnalyzeWindowで生成されるコード
+# WindowDriver/UserControlDriverのコード
 
 <!--TODO:UserContorlDriverとはなにか？ControlDriverとの違いは？
 この文章でいきなり登場している。AnalyzeWindowの説明ではControlDriverを作成するとなっているが、

@@ -9,17 +9,19 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 ## 目次
 
 - 機能
-  - [AnalyzeWindow](feature/AnalyzeWindow.md)
-  - [AnalyzeWindowで生成されるコード](feature/GeneratedCode.md)
+  - [AnalyzeWindowの使い方](feature/AnalyzeWindow.md)
+  - [WindowDriver/UserControlDriverのコード](feature/GeneratedCode.md)
   - [Attach方法ごとのコード](feature/Attach.md)
-  - [ControlDriver](feature/ControlDriver.md)
-  - [CaptureCodeGenerator](feature/CaptureCodeGenerator.md)
+  - [ControlDriverのコード](feature/ControlDriver.md)
+  - [CaptureCodeGeneratorのコード](feature/CaptureCodeGenerator.md)
+  - TODO シナリオ<br>
+  - TODO カスタマイズ<br>
 - チュートリアル
   1. [テストソリューションを新規作成する](tutorial/Sln.md)
   2. [アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](tutorial/WindowDriver.md)
   3. [ControlDriverとCaptureCodeGeneratorを作成する](tutorial/ControlDriver.md)
-  4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
-  5. [AnalyzeWindowをカスタマイズする](tutorial/Customize.md)
+  4. TODO [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
+  5. TODO [AnalyzeWindowをカスタマイズする](tutorial/Customize.md)
 
 ## 利用するサンプルアプリケーション
 
@@ -36,11 +38,4 @@ Friendly を使って自動テストを作成しようとするときに多く�
 ![NativeWindows.png](Img/NativeWindows.png)
 
 ## サンプルアプリケーションの準備
-
-> **コメント**
-> 
-> サンプルアプリケーション用のリポジトリを作ってクローンさせたほうが良い。
-> もしくはリリースに exe をおいておくか。
-
-サンプルアプリケーションのソースコードを[こちら](WinFormsApp)から取得してビルドしてください。
-ダウンロード後には「ブロックの解除」を行ってください。
+サンプルアプリケーションは[こちら](https://github.com/Codeer-Software/TestAssistantPro.Manual/releases/download/ver0.1/WinFormApp.zip)からダウンロードできます。ダウンロード後には「ブロックの解除」を行ってください。ソースコードは[こちら](WinFormsApp)にあります。
