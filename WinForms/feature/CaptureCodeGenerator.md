@@ -1,4 +1,4 @@
-# CaptureCodeGenerator
+# CaptureCodeGeneratorのコード
 
 CaptureCodeGeneratorは TestAssistantPro を利用して画面キャプチャしたコードを生成するための機能を提供するコンポーネントです。
 ControlDriver に対応する CaptureCodeGenerator を作っておくと TestAssistantPro でキャプチャ時に操作からコードを作成できます。
@@ -44,8 +44,7 @@ namespace Ong.Friendly.FormsStandardControls.Generator
     }
 }
 ```
-<!--TODO: 次の内容がよくわからない。引数で渡されたオブジェクトを接続したコードとは？-->
-AddSentenceメソッドは引数で渡されたオブジェクトを接続したコードを登録します。
+AddSentenceメソッドは引数で渡されたオブジェクトを文字列化したコードを登録します。
 通常のオブジェクトは ToString() を利用した文字列になりますが、一部特殊な置換が行わるクラスもあります。
 
 |  Token  |  説明  |

@@ -1,9 +1,9 @@
 # AnalyzeWindow
 
-AnalyzeWindow は対象のアプリケーションを解析してツリーのルートのコントロールに対してWindowDriverおよびControlDriverを作成するものです。
+AnalyzeWindow は対象のアプリケーションを解析してツリーのルートのコントロールに対してWindowDriverおよびUserControlDriverを作成するものです。
 Designer タブの設定をもとにコードを生成します。生成されるコードは Current Code タブでプレビューできます。
 
-WindowDriverとControlDriverに関しては[こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)を参照してください。
+WindowDriverとUserControlDriverに関しては[こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)を参照してください。
 
 
 ![AnalyzeWindow](../Img/AnalyzeWindow.png)
@@ -89,7 +89,6 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 | Create Attach Code | AttachMethod を作るかどうかを指定します。 |
 | Extension | Attach する対象のクラスを指定します。 |
 | Method | 特定方法です。 <!--TODO: 何の特定方法？--> <br />- Type Full Name: .Net の TypeFullName で特定します。<br>- Window Text: Win32 の WindowText で特定します。<br />- Variable Window Text: WindowText から特定しますが常に同じ WindowText でない場合に使います。<br>- Custom: カスタムの特定手法です。 |
-| Many Exists | 複数存在する場合があるかです。<!--TODO: なにが複数存在するのか？というか画面にないがどの項目か？--> |
 | グリッド | WindowDriver/UserControlDriver の子要素です。Tree から選択します。 |
 
 
@@ -114,6 +113,10 @@ Designer タブでの設定によって出力されるコードが表示され�
 
 <!--TODO: 操作をしても何も表示されず、真っ白な画面のスクリーンショットを貼り付けても意味がないのでいったん省略。内容を表示させる方法が判明した時点で、内容があるスクリーンショットを貼り付けること-->
 
+## Create Control Driver
+ControlDriver と CaptureGeneratorの雛型を作成します。Visual Studio 上で格納するフォルダにドロップします。この時ネームスペースはそのフォルダ名が使われます。コードの詳細に関しては[ControlDriverのコード](feature/ControlDriver.md)と[CaptureCodeGeneratorのコード](feature/CaptureCodeGenerator.md)を参照してください。
+
+![ControlDriver.CreateControlDriver.png](../Img/ControlDriver.CreateControlDriver.png)
 
 # デバッグ
 これらの WindowDriver/USerControlDriver は、テスト中はもちろん Capture 中にも使われます。

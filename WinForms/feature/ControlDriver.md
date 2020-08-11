@@ -1,4 +1,4 @@
-# ControlDriver
+# ControlDriverのコード
 
 ControlDriver はその名の通り、Button や TextBox など Control に対応するドライバです。
 多くの物は複数のアプリケーション間で再利用できます。
