@@ -10,19 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfDockApp
 {
     /// <summary>
-    /// OptionUserControl3.xaml の相互作用ロジック
+    /// SimpleWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class OptionUserControl3 : UserControl
+    public partial class SimpleWindow : Window
     {
-        public OptionUserControl3()
+        public SimpleWindow()
         {
             InitializeComponent();
+        }
+
+        private void OK_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

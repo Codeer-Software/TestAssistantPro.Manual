@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace WpfDockApp
 {
     /// <summary>
-    /// DialogWindow.xaml の相互作用ロジック
+    /// CustomControlWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class DialogWindow : Window
+    public partial class CustomControlWindow : Window
     {
-        public DialogWindow()
+        public CustomControlWindow()
         {
             InitializeComponent();
         }

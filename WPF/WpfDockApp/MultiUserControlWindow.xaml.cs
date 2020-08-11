@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WpfDockApp
 {
     /// <summary>
-    /// OptionUserControl1.xaml の相互作用ロジック
+    /// MultiUserControlWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class OptionUserControl1 : UserControl
+    public partial class MultiUserControlWindow : Window
     {
-        public OptionUserControl1()
+        public MultiUserControlWindow()
         {
             InitializeComponent();
         }

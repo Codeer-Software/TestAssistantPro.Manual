@@ -150,5 +150,28 @@ namespace WpfDockApp
                 }
             }
         }
+
+        private void SimpleDialog_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new SimpleWindow();
+            dialog.ShowDialog();
+        }
+
+        private void MultiUserControlDialog_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new MultiUserControlWindow();
+            dialog.ShowDialog();
+        }
+
+        private void CustomControlDialog_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new CustomControlWindow();
+            dialog.ShowDialog();
+        }
+
+        private void MessageBoxDialog_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(this, "Message.");
+        }
     }
 }

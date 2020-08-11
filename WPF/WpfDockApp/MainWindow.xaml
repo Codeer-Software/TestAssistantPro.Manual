@@ -19,10 +19,10 @@
                 <MenuItem Header="Save" InputGestureText="Ctrl+S" Click="MenuItemSave_Click"/>
             </MenuItem>
             <MenuItem Header="etc.">
-                <MenuItem Header="Simple Dialog"/>
-                <MenuItem Header="Multi UserControl Dialog"/>
-                <MenuItem Header="Custom Control Dialog"/>
-                <MenuItem Header="MessageBox"/>
+                <MenuItem x:Name="SimpleDialog" Header="Simple Dialog" Click="SimpleDialog_Click"/>
+                <MenuItem x:Name="MultiUserControlDialog" Header="Multi UserControl Dialog" Click="MultiUserControlDialog_Click"/>
+                <MenuItem x:Name="CustomControlDialog" Header="Custom Control Dialog" Click="CustomControlDialog_Click"/>
+                <MenuItem x:Name="MessageBoxDialog" Header="MessageBox" Click="MessageBoxDialog_Click"/>
             </MenuItem>
         </Menu>
         <avalonDock:DockingManager Grid.Row="1" x:Name="_dockingManager">
