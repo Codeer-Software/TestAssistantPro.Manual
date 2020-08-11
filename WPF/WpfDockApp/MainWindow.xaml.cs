@@ -1,18 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfDockApp
 {
@@ -21,25 +11,11 @@ namespace WpfDockApp
     /// </summary>
     public partial class MainWindow : MahApps.Metro.Controls.MetroWindow
     {
-        private string treename;
-
         public MainWindow()
         {
             InitializeComponent();
 
             this.Loaded += MainWindow_Loaded;
-            ListView1.SelectionChanged += ListView_SelectionChanged;
-            ListView2.SelectionChanged += ListView_SelectionChanged;
-        }
-
-        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.AddedItems.Count == 1)
-            {
-                var item = e.AddedItems[0] as string;
-                TextBlock1.Text = $"Job = {treename}";
-                TextBlock2.Text = $"Item = {item}";
-            }
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -64,10 +40,9 @@ namespace WpfDockApp
         private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
         {
             var treeViewItem = sender as TreeViewItem;
-            treename = (string)treeViewItem.Header;
             var documents = GetDocuments((string)treeViewItem.Header);
-            ListView1.ItemsSource = documents;
-            ListView2.ItemsSource = documents;
+            DataGrid1.ItemsSource = documents;
+            DataGrid2.ItemsSource = documents;
             e.Handled = true;
         }
 
@@ -77,311 +52,103 @@ namespace WpfDockApp
             {
                 new TreeViewItem() 
                 {
-                    Header = "受発注管理",
+                    Header = "Oder management",
+                    IsExpanded = true,
                     ItemsSource = new TreeViewItem[]
                     {
-                        new TreeViewItem() { Header = "受注管理"},
-                        new TreeViewItem() { Header = "発注管理"},
-                        new TreeViewItem() { Header = "受け入れ管理"},
-                        new TreeViewItem() { Header = "支払い管理"},
-                        new TreeViewItem() { Header = "納品検収管理"},
-                        new TreeViewItem() { Header = "請求管理"},
-                        new TreeViewItem() { Header = "売上管理"},
-                    },
-                },
-                new TreeViewItem()
-                {
-                    Header = "在庫管理",
-                    ItemsSource = new TreeViewItem[]
-                    {
-                        new TreeViewItem() { Header = "出庫計画"},
-                        new TreeViewItem() { Header = "補充計画"},
-                        new TreeViewItem() { Header = "補充管理"},
-                        new TreeViewItem() { Header = "出庫管理"},
-                        new TreeViewItem() { Header = "在庫一覧"},
-                        new TreeViewItem() { Header = "棚卸"},
-                    },
-                },
-                new TreeViewItem()
-                {
-                    Header = "工程管理",
-                    ItemsSource = new TreeViewItem[]
-                    {
-                        new TreeViewItem() { Header = "生産計画立案"},
-                        new TreeViewItem() { Header = "外注工程管理"},
-                        new TreeViewItem() { Header = "進捗管理"},
-                        new TreeViewItem() { Header = "品質管理"},
-                        new TreeViewItem() { Header = "設備管理"},
-                        new TreeViewItem() { Header = "出荷管理"},
+                        new TreeViewItem() { Header = "Accepted"},
+                        new TreeViewItem() { Header = "Sended"},
                     },
                 },
             };
             return treeViewItem;
         }
 
-        public string[] GetDocuments(string header)
+        public string[][] GetDocuments(string header)
         {
-            string[] documents = new string[] { };
+            string[][] documents = new string[][] { };
             switch (header)
             {
-                case "受発注管理":
-                    documents = new string[] 
-                    {
-                        "受注管理",
-                        "発注管理",
-                        "受け入れ管理",
-                        "支払い管理",
-                        "納品検収管理",
-                        "請求管理",
-                        "売上管理",
-                    };
+                case "Accepted":
+                    documents = new string[][]{
+                            new []{ "ABC, LTD.", "cherry blossom", "Chris", "100" },
+                            new []{ "ABC, LTD.", "ume  blossom", "Chris", "300" },
+                            new []{ "DEF, LTD.", "tulipm", "Pat", "300" },
+                            new []{ "DEF, LTD.", "dandelion", "Pat", "700" },
+                            new []{ "DEF, LTD.", "peach blossom", "Pat", "800" },
+                            new []{ "GHI, LTD.", "flowering dogwood", "Alex", "900" },
+                        };
                     break;
-                case "受注管理":
-                    documents = new string[]
-                    {
-                        "受注日",
-                        "納品先",
-                        "発送日",
-                        "商品コード",
-                        "商品名",
-                        "数量",
-                        "単価",
-                        "合計金額",
-                    };
-                    break;
-                case "発注管理":
-                    documents = new string[]
-                    {
-                        "発注日",
-                        "発注先",
-                        "到着日",
-                        "商品コード",
-                        "商品名",
-                        "数量",
-                        "単価",
-                        "合計金額",
-                    };
-                    break;
-                case "受け入れ管理":
-                    documents = new string[]
-                    {
-                        "発注日",
-                        "発注先",
-                        "到着日",
-                        "商品コード",
-                        "商品名",
-                        "数量",
-                        "単価",
-                        "合計金額",
-                    };
-                    break;
-                case "支払い管理":
-                    documents = new string[]
-                    {
-                        "発注日",
-                        "発注先",
-                        "発注先口座",
-                        "支払日",
-                        "商品コード",
-                        "商品名",
-                        "数量",
-                        "単価",
-                        "合計金額",
-                    };
-                    break;
-                case "納品検収管理":
-                    documents = new string[]
-                    {
-                        "発注日",
-                        "発注先",
-                        "納品日",
-                        "商品コード",
-                        "商品名",
-                        "数量",
-                        "単価",
-                        "合計金額",
-                        "検収結果",
-                    };
-                    break;
-                case "請求管理":
-                    documents = new string[]
-                    {
-                        "受注日",
-                        "納品先",
-                        "請求先",
-                        "発送日",
-                        "商品コード",
-                        "商品名",
-                        "数量",
-                        "単価",
-                        "合計金額",
-                    };
-                    break;
-                case "売上管理":
-                    documents = new string[]
-                    {
-                        "入金日",
-                        "請求先",
-                        "商品コード",
-                        "商品名",
-                        "数量",
-                        "単価",
-                        "合計金額",
-                    };
-                    break;
-                case "在庫管理":
-                    documents = new string[]
-                    {
-                        "出庫計画",
-                        "補充計画",
-                        "補充管理",
-                        "出庫管理",
-                        "在庫一覧",
-                        "棚卸",
-                    };
-                    break;
-                case "出庫計画":
-                    documents = new string[]
-                    {
-                        "発送日",
-                        "納品先",
-                        "商品コード",
-                        "商品名",
-                        "数量",
-                    };
-                    break;
-                case "補充計画":
-                    documents = new string[]
-                    {
-                        "商品コード",
-                        "商品名",
-                        "在庫数量",
-                        "出庫数量",
-                        "不足数量",
-                        "ロット数量",
-                    };
-                    break;
-                case "出庫管理":
-                    documents = new string[]
-                    {
-                        "商品コード",
-                        "商品名",
-                        "在庫数量",
-                        "出庫数量",
-                    };
-                    break;
-                case "補充管理":
-                    documents = new string[]
-                    {
-                        "商品コード",
-                        "商品名",
-                        "在庫数量",
-                        "入庫数量",
-                        "入庫日",
-                    };
-                    break;
-                case "在庫一覧":
-                    documents = new string[]
-                    {
-                        "商品コード",
-                        "商品名",
-                        "在庫数量",
-                        "棚番",
-                    };
-                    break;
-                case "棚卸":
-                    documents = new string[]
-                    {
-                        "商品コード",
-                        "商品名",
-                        "在庫数量",
-                        "棚番",
-                        "実在数量",
-                    };
-                    break;
-                case "工程管理":
-                    documents = new string[]
-                    {
-                        "生産計画立案",
-                        "外注工程管理",
-                        "進捗管理",
-                        "品質管理",
-                        "設備管理",
-                        "出荷管理",
-                    };
-                    break;
-                case "生産計画立案":
-                    documents = new string[]
-                    {
-                        "商品コード",
-                        "商品名",
-                        "生産数量",
-                        "完成日",
-                    };
-                    break;
-                case "外注工程管理":
-                    documents = new string[]
-                    {
-                        "商品コード",
-                        "商品名",
-                        "数量",
-                        "発注先",
-                        "納品日",
-                    };
-                    break;
-                case "進捗管理":
-                    documents = new string[]
-                    {
-                        "商品コード",
-                        "商品名",
-                        "数量",
-                        "発注先",
-                        "納品日",
-                        "確認日",
-                        "進捗率",
-                    };
-                    break;
-                case "品質管理":
-                    documents = new string[]
-                    {
-                        "商品コード",
-                        "商品名",
-                        "数量",
-                        "発注先",
-                        "納品日",
-                        "確認日",
-                        "検収結果",
-                    };
-                    break;
-                case "設備管理":
-                    documents = new string[]
-                    {
-                        "設備商品コード",
-                        "設備名",
-                        "数量",
-                        "発注先",
-                        "確認日",
-                        "結果",
-                    };
-                    break;
-                case "出荷管理":
-                    documents = new string[]
-                    {
-                        "商品コード",
-                        "商品名",
-                        "数量",
-                        "納品先",
-                        "発送日",
-                    };
+                case "Sended":
+                    documents = new string[][]{
+                            new []{ "JKL, LTD.", "dianthus pink", "Dana", "800" },
+                            new []{ "JKL, LTD.", "marigold", "Dana", "600" },
+                            new []{ "JKL, LTD.", "azalea", "Dana", "700" },
+                            new []{ "JKL, LTD.", "phalaenopsis orchid", "Dana", "900" },
+                            new []{ "OPQ, LTD.", "daphne", "Hunter", "200" },
+                            new []{ "STU, LTD.", "lily of the valley", "Jamie", "300" },
+                        };
                     break;
             }
             return documents;
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new DialogWindow();
-            dialog.ShowDialog();
+            var dlg = new OpenFileDialog();
+            dlg.ShowDialog();
+        }
+
+        private void MenuItemSave_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new SaveFileDialog();
+            dlg.ShowDialog();
+        }
+
+        private void ButtonCopy_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(TextBox1.Text);
+        }
+
+        private void ButtonSaveFile_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new SaveFileDialog();
+            if (dlg.ShowDialog(this) == true)
+            {
+                File.WriteAllText(dlg.FileName, TextBox1.Text);
+            }
+        }
+
+        private void ButtonClear_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox1.Text = string.Empty;
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            var hits = new List<string>();
+            if (Document1.IsSelected)
+            {
+                var items = DataGrid1.Items;
+                for (int row = 0; row < items.Count; row++)
+                {
+                    var texts = (string[])items[row];
+                    for (int col = 0; col < texts.Length; col++)
+                    {
+                        string text = texts[col];
+                        {
+                            if (text.Contains(SearchText1.Text))
+                            {
+                                hits.Add($"OrderDocumentForm({row},{col}) : {text}");
+                            }
+                        }
+                    }
+                }
+                foreach (var hit in hits)
+                {
+                    TextBox1.Text += hit + "\n";
+                }
+            }
         }
     }
 }
