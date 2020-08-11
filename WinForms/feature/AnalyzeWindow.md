@@ -116,7 +116,7 @@ Designer タブでの設定によって出力されるコードが表示され�
 ## Create Control Driver
 ControlDriver と CaptureGeneratorの雛型を作成します。Visual Studio 上で格納するフォルダにドロップします。この時ネームスペースはそのフォルダ名が使われます。コードの詳細に関しては[ControlDriverのコード](feature/ControlDriver.md)と[CaptureCodeGeneratorのコード](feature/CaptureCodeGenerator.md)を参照してください。
 
-![ControlDriver.CreateControlDriver.png](../Img/ControlDriver.CreateControlDriver.png)
+![ControlDriver.CreateControlDriver.Drop.png](../Img/ControlDriver.CreateControlDriver.png)
 
 # デバッグ
 これらの WindowDriver/USerControlDriver は、テスト中はもちろん Capture 中にも使われます。
