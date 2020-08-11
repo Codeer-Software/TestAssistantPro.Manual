@@ -114,7 +114,7 @@ Designer タブでの設定によって出力されるコードが表示され�
 <!--TODO: 操作をしても何も表示されず、真っ白な画面のスクリーンショットを貼り付けても意味がないのでいったん省略。内容を表示させる方法が判明した時点で、内容があるスクリーンショットを貼り付けること-->
 
 ## Create Control Driver
-ControlDriver と CaptureGeneratorの雛型を作成します。Visual Studio 上で格納するフォルダにドロップします。この時ネームスペースはそのフォルダ名が使われます。コードの詳細に関しては[ControlDriverのコード](feature/ControlDriver.md)と[CaptureCodeGeneratorのコード](feature/CaptureCodeGenerator.md)を参照してください。
+ControlDriver と CaptureGeneratorの雛型を作成します。Visual Studio 上で格納するフォルダにドロップします。この時ネームスペースはそのフォルダ名が使われます。コードの詳細に関しては[ControlDriverのコード](ControlDriver.md)と[CaptureCodeGeneratorのコード](CaptureCodeGenerator.md)を参照してください。
 
 ![ControlDriver.CreateControlDriver.Drop.png](../Img/ControlDriver.CreateControlDriver.Drop.png)
 
