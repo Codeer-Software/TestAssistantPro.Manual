@@ -1,8 +1,8 @@
 # Attach方法ごとのコード
-<!--TODO: 内容から説明したいであろうことを推測してタイトルを設定。間違いないか確認-->
 
-<!--TODO: Attachとはそもそも何か、何のためのものかが分からない。-->
-Attachは拡張対象のWindowAppFriend/Driverから求めるWindowDriver/UserControlDriverを取得します。
+Attachとはプログラムコードからアプリケーションを動かす際に。操作する対象の要素(WindowDriver/UserControlDriver)と接続する処理のことをさします。
+実際にはプログラムコードのメソッドとして実現されます。
+
 出力されるコードとしてはWindowDriverを取得する拡張メソッドは無限待ちで実装されます。
 これはテスト実行時のトップレベルウィドウの待ち合わせを考えてのものです。
 UserControlDriverを取得する方はなければnullを返すというコードが生成されます。
@@ -18,9 +18,9 @@ AttachにはWinndowDriver/UserControlDriverごとの次の4種類があります
 
 それぞれの種類ごとに生成されるコードを次に記載します。
 
-## WindowDriverIdentifyAttribute
+## WindowDriverへの接続
 
-<!--TODO: WindowDriverIdentifyAttribute がなになのかが分からない。適切なタイトルおよび説明文を追加-->
+WindowDriverを接続の対象とする関数には`WindowDriverIdentifyAttribute`属性を付与します。
 
 ### TypeFullName
 
@@ -80,7 +80,9 @@ public static class MainFormDriverExtensions
 }
 ```
 
-## UserControlDriverIdentifyAttribute
+## UserContorlDriverへの接続
+
+UserControlDriverを接続の対象とする関数には`UserControlDriverIdentifyAttribute`属性を付与します。
 
 ### TypeFullName
 
