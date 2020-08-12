@@ -47,13 +47,13 @@ AnalyzeWindow を起動するにはDriverプロジェクトで生成するコー
 ## UI解析ツリー
 
 AnalyzeWindowの左ペインに表示される対象アプリケーションのコントロールがツリー上に表示されているエリアです。
-このUI解析ツリーを選択して、WindowDriver/ControlDriverのプロパティにする対象を決定します。
+このUI解析ツリーを選択して、WindowDriver/UserControlDriverのプロパティにする対象を決定します。
 ツリーで要素を選択することで対象アプリケーションの対応するコントロールが赤枠で囲まれます。
 また、Ctrlキーを押しながらアプリケーションのコントロールにマウスオバーすることでツリーの対応するノードを選択することもできます。
 
 ![UI解析ツリー](../Img/AnalyzeWindow.UiAnalyzeTree.png)
 
-要素をダブルクリックすることで、WindowDriver/ControlDriverのプロパティとして登録されます。
+要素をダブルクリックすることで、WindowDriver/UserControlDriverのプロパティとして登録されます。
 登録されたコントロールは右ペインのグリッドに追加されます。また、要素を右クリックすることで次のメニューが表示され、操作を行えます。
 
 | メニュー | 説明 |
@@ -70,15 +70,10 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 
 ## Designerタブ
 
-<!--TODO: 何のためのペインかの説明が必要。推測で記載しているが問題ないか確認-->
-
 右ペインの下段に「Designerタブ」を選択することで表示されます。
-作成するWindowDriver/ControlDriverの構成を設定します。
+作成するWindowDriver/UserControlDriverの構成を設定します。
 
 ![Designerタブ](../Img/AnalyzeWindow.Designer.png)
-
-<!--TODO: UserControlDriverとは何か。
-最初の説明ではControlDriverと書かれているが違いはあるのか？-->
 
 | 項目 | 説明 |
 |-----|-----|
@@ -87,7 +82,7 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 | Class Name | 作成する WindowDriver/UserControlDriver の名前を指定します。ネームスペースは AnalyzeWindow を表示するときに指定していたフォルダになります。 |
 | Create Attach Code | AttachMethod を作るかどうかを指定します。 |
 | Extension | Attach する対象のクラスを指定します。 |
-| Method | 特定方法です。 <!--TODO: 何の特定方法？--> <br />- Type Full Name: .Net の TypeFullName で特定します。<br>- Window Text: Win32 の WindowText で特定します。<br />- Variable Window Text: WindowText から特定しますが常に同じ WindowText でない場合に使います。<br>- Custom: カスタムの特定手法です。 |
+| Method | WindowDriver/UserControlDriverをアプリケーションもしくは親のWindowDriver/UserControlDriverから取得する方法です。 <br />- Type Full Name: .Net の TypeFullName で特定します。<br>- Window Text: Win32 の WindowText で特定します。<br />- Variable Window Text: WindowText から特定しますが常に同じ WindowText でない場合に使います。<br>- Custom: カスタムの特定手法です。 |
 | グリッド | WindowDriver/UserControlDriver の子要素です。Tree から選択します。 |
 
 
@@ -109,16 +104,17 @@ Designer タブでの設定によって出力されるコードが表示され�
 ## Outputタブ
 
 メニューによって実行した結果が表示されます。
-
-<!--TODO: 操作をしても何も表示されず、真っ白な画面のスクリーンショットを貼り付けても意味がないのでいったん省略。内容を表示させる方法が判明した時点で、内容があるスクリーンショットを貼り付けること-->
+![Outputタブ](../Img/AnalyzeWindow.Output.png)
 
 ## Create Control Driver
+
 ControlDriverとCaptureGeneratorのひな型を作成します。Visual Studio 上で格納するフォルダにドロップします。この時ネームスペースはそのフォルダ名が使われます。コードの詳細に関しては[ControlDriverのコード](ControlDriver.md)と[CaptureCodeGeneratorのコード](CaptureCodeGenerator.md)を参照してください。
 
 ![ControlDriver.CreateControlDriver.Drop.png](../Img/ControlDriver.CreateControlDriver.Drop.png)
 
 # デバッグ
-これらの WindowDriver/USerControlDriver は、テスト中はもちろん Capture 中にも使われます。
+
+これらの WindowDriver/UserControlDriver は、テスト中はもちろん Capture 中にも使われます。
 うまくキャプチャできない場合はデバッグして原因を突きやめてください。
 Ctrl キーを押しながら Capture するとデバッグできます。
 Attach メソッドをカスタマイズした場合などデバッグの必要性が出てくると思います。
@@ -126,6 +122,7 @@ Attach メソッドをカスタマイズした場合などデバッグの必要�
 現在 Capture中なのかどうかは TestAssistantMode を使うと判定できます。
 Capture 中だけの処理を書きたい場合に便利です。
 WinFormsのDesignModeのイメージで使ってください。
+
 ```cs
 using Codeer.Friendly;
 using Codeer.Friendly.Dynamic;
@@ -189,6 +186,7 @@ namespace Driver.Windows
 ![WindowDriver.Log.png](../Img/WindowDriver.Log.png)
 
 # ネイティブのウィンドウに関して
+
 .Netで実装していても以下のウィンドウはネイティブのものが使われます。
 
 |  Window  |  Driver  |
@@ -200,7 +198,7 @@ namespace Driver.Windows
 
 これらのドライバは新規作成時、 Driver/Windows/Native 以下に作成されています。
 
-# 生成済みのドライバのメンテ
+# 生成済みのドライバのメンテナンス
 
 生成済みのドライバに関しては基本は手でメンテナンスになります。プロパティの名前変更などもVisualStudioのリファクタリング機能を使って自由にできます。
 ただ コントロールドライバを付け足したい場合やAttach方法を変更したい場合など、AnalyzeWindow を使った方が楽な場合もあります。

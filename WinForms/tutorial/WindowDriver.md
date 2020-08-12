@@ -74,8 +74,6 @@ namespace Driver.Windows
 }
 ```
 
-<!--TODO: そもそもキャプチャの説明がないため、説明を追加する必要がある-->
-
 次に画面操作を行い、生成したドライバを使ったテストコードを生成します。
 Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックして表示されたコンテキストメニューから[Capture]を選択してください。
 
@@ -225,7 +223,7 @@ namespace Driver.Windows
 ## TreeFormとOutputFormのドライバの作成
 
 TreeForm と OutputForm は UserControlDriver として作成します。
-これはAttach方式にします。<!--TODO: Attachとはそもそも何なのかの説明が必要-->
+これはAttach方式にします。
 Attach対象は MainFromDriver ではなく WindowsAppFrined (アプリケーション全体)にします。
 これはフローティング状態にするなどさまざまな状態を作ることができるからです。
 
@@ -327,10 +325,7 @@ namespace Driver.Windows
 <!--TODO: Documentとはそもそもどのウィンドウ？同じタイプとは？-->
 
 Document は同じタイプのものが複数存在します。
-
-<!--TODO: なぜMany Existsではないのか？なぜ VariableWindowTextなのか-->
-Many Exists を使うこともできますが、今回は取得方法を VariableWindowText にします。
-これも WindowsAppFriend にAttachするように設定します。
+取得方法は VariableWindowText を利用し、 WindowsAppFriend にAttachするように設定します。
 
 ![WindowDriver.Document.png](../Img/WindowDriver.Document.png)
 
@@ -376,3 +371,10 @@ namespace Driver.Windows
     }
 }
 ```
+
+## 次の手順
+
+ここまで画面キャプチャを行うためのドライバの作成が完了しました。
+次は標準ではキャプチャに対応していないコントロールに対応するためのControlDriverを作成します。
+
+[ControlDriverとCaptureCodeGeneratorを作成する](ControlDriver.md)

@@ -1,13 +1,9 @@
 # WindowDriver/UserControlDriverのコード
 
-<!--TODO:UserContorlDriverとはなにか？ControlDriverとの違いは？
-この文章でいきなり登場している。AnalyzeWindowの説明ではControlDriverを作成するとなっているが、
-ここではUserControlDriverとControlDriverと違うもののように説明されている。
-コード例もUserControlDriver側が示されており、いったいAnalyzeWindowはどちらのコードを生成するものなのか分からない -->
-
-WindowDriverとUserControlDriverの役割はほとんど同じでコントロールドライバを特定して取得することです。
-それ自体を取得するためにAttachMethodを作ります。<!--TODO:「それ自体を取得するために・・」のそれ自体がなにをさしているか分からない-->
-UserControlDriverの場合はControlDriver同様に親のWindowDriverの子要素として普通にPropertyで取得することもあります。
+WindowDriverとUserControlDriverの役割はコントロールドライバを特定して取得することです。
+そのためにAttachを行うメソッドも作られます。
+Attachを行うメソッドの詳細については[Attach方法ごとのコード](./Attach.md)を参照してください。
+UserControlDriverの場合はControlDriver同様に親のWindowDriverの子要素としてPropertyで取得する方法もあります。
 
 ## WindowDriverのコード例
 
