@@ -16,14 +16,14 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
   - [Attach方法ごとのコード](feature/Attach.md)
   - [ControlDriverのコード](feature/ControlDriver.md)
   - [CaptureCodeGeneratorのコード](feature/CaptureCodeGenerator.md)
-  - TODO カスタマイズ<br>
+  - [AnalyzeWindowをカスタマイズする](feature/CustomizeAnalyzeWindow.md)
+  - [Captureウィンドウをカスタマイズする](feature/CustomizeCaptureWindow.md)
 - チュートリアル
   1. [テストソリューションを新規作成する](tutorial/Sln.md)
   2. [アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](tutorial/WindowDriver.md)
   3. [ControlDriverとCaptureCodeGeneratorを作成する](tutorial/ControlDriver.md)
   4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
-  5. TODO [AnalyzeWindowをカスタマイズする](tutorial/Customize.md)
-
+ 
 ## 利用するサンプルアプリケーション
 
 サンプルには WinForms でよくあるドッキングウィンドウタイプのアプリケーションを用意しました。
