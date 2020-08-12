@@ -9,6 +9,7 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 ## 目次
 
 - 機能
+  - TODO [画面操作のキャプチャと再生](feature/CaptureAndExecute.md)
   - [AnalyzeWindowの使い方](feature/AnalyzeWindow.md)
   - [WindowDriver/UserControlDriverのコード](feature/GeneratedCode.md)
   - [Attach方法ごとのコード](feature/Attach.md)

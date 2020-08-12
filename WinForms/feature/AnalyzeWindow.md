@@ -21,8 +21,7 @@ AnalyzeWindow を起動するにはDriverプロジェクトで生成するコー
 
 ![WindowDriver.SelectTarget.png](../Img/WindowDriver.SelectTarget.png)
 
-以降、VisualS
-tudioの同一セッション中はこの画面が表示されません。
+以降、VisualStudioの同一セッション中はこの画面が表示されません。
 途中で対象のアプリケーションを変えたい場合はコンテキストメニューで表示される「Select Target」を選択することで対象を変更できます。
 
 ![SelectTarget](../Img/SelectTarget.png)
@@ -114,7 +113,7 @@ Designer タブでの設定によって出力されるコードが表示され�
 <!--TODO: 操作をしても何も表示されず、真っ白な画面のスクリーンショットを貼り付けても意味がないのでいったん省略。内容を表示させる方法が判明した時点で、内容があるスクリーンショットを貼り付けること-->
 
 ## Create Control Driver
-ControlDriver と CaptureGeneratorの雛型を作成します。Visual Studio 上で格納するフォルダにドロップします。この時ネームスペースはそのフォルダ名が使われます。コードの詳細に関しては[ControlDriverのコード](ControlDriver.md)と[CaptureCodeGeneratorのコード](CaptureCodeGenerator.md)を参照してください。
+ControlDriverとCaptureGeneratorのひな型を作成します。Visual Studio 上で格納するフォルダにドロップします。この時ネームスペースはそのフォルダ名が使われます。コードの詳細に関しては[ControlDriverのコード](ControlDriver.md)と[CaptureCodeGeneratorのコード](CaptureCodeGenerator.md)を参照してください。
 
 ![ControlDriver.CreateControlDriver.Drop.png](../Img/ControlDriver.CreateControlDriver.Drop.png)
 
