@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using Xceed.Wpf.AvalonDock.Layout;
 
 namespace WpfDockApp
 {
@@ -28,26 +29,74 @@ namespace WpfDockApp
             foreach (var data in this.TreeView.Items)
             {
                 var treeViewItem = data as TreeViewItem;
-                treeViewItem.Selected += TreeViewItem_Selected;
                 foreach (var data2 in treeViewItem.Items)
                 {
                     var treeViewItem2 = data2 as TreeViewItem;
-                    treeViewItem2.Selected += TreeViewItem_Selected;
+                    treeViewItem2.MouseDoubleClick += TreeViewItem_MouseDoubleClick;
                 }
             }
         }
 
-        private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
+        private void TreeViewItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var treeViewItem = sender as TreeViewItem;
-            var documents = GetDocuments((string)treeViewItem.Header);
-            DataGrid1.ItemsSource = documents;
-            DataGrid2.ItemsSource = documents;
+            string header = (string)treeViewItem.Header;
+            MakeDocument(header);
             e.Handled = true;
+        }
+
+        private void MakeDocument(string header)
+        {
+            var documents = GetDocuments(header);
+            bool found = false;
+            foreach (var document in DocumentPane.Children)
+            {
+                if (document is LayoutDocument layoutDocument)
+                {
+                    if (layoutDocument.Title == header)
+                    {
+                        var documentControl = (OrderDocumentUserControl)layoutDocument.Content;
+                        documentControl.SetDocument(documents);
+                        layoutDocument.IsSelected = true;
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (!found)
+            {
+                var layoutDocument = new LayoutDocument();
+                layoutDocument.Title = header;
+                var documentControl = new OrderDocumentUserControl();
+                documentControl.SearchEvent += DocumentControl_SearchEvent;
+                documentControl.SetDocument(documents);
+                layoutDocument.Content = documentControl;
+                DocumentPane.Children.Add(layoutDocument);
+                layoutDocument.IsSelected = true;
+            }
+        }
+
+        private void DocumentControl_SearchEvent(object sender, SearchEventArgs e)
+        {
+            TextBox1.Text = e.SearchResult;
         }
 
         public TreeViewItem[] GetTreeViewItems()
         {
+            var contextMenu1 = new ContextMenu();
+            var menuItem1 = new MenuItem();
+            menuItem1.Header = "Open";
+            menuItem1.Click += Open_Click;
+            menuItem1.Name = "Accepted";
+            contextMenu1.Items.Add(menuItem1);
+
+            var contextMenu2 = new ContextMenu();
+            var menuItem2 = new MenuItem();
+            menuItem2.Header = "Open";
+            menuItem2.Click += Open_Click;
+            menuItem2.Name = "Sended";
+            contextMenu2.Items.Add(menuItem2);
+
             var treeViewItem = new TreeViewItem[] 
             {
                 new TreeViewItem() 
@@ -56,8 +105,8 @@ namespace WpfDockApp
                     IsExpanded = true,
                     ItemsSource = new TreeViewItem[]
                     {
-                        new TreeViewItem() { Header = "Accepted"},
-                        new TreeViewItem() { Header = "Sended"},
+                        new TreeViewItem() { Header = "Accepted", ContextMenu = contextMenu1},
+                        new TreeViewItem() { Header = "Sended", ContextMenu = contextMenu2},
                     },
                 },
             };
@@ -124,33 +173,6 @@ namespace WpfDockApp
             TextBox1.Text = string.Empty;
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            var hits = new List<string>();
-            if (Document1.IsSelected)
-            {
-                var items = DataGrid1.Items;
-                for (int row = 0; row < items.Count; row++)
-                {
-                    var texts = (string[])items[row];
-                    for (int col = 0; col < texts.Length; col++)
-                    {
-                        string text = texts[col];
-                        {
-                            if (text.Contains(SearchText1.Text))
-                            {
-                                hits.Add($"OrderDocumentForm({row},{col}) : {text}");
-                            }
-                        }
-                    }
-                }
-                foreach (var hit in hits)
-                {
-                    TextBox1.Text += hit + "\n";
-                }
-            }
-        }
-
         private void SimpleDialog_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new SimpleWindow();
@@ -172,6 +194,15 @@ namespace WpfDockApp
         private void MessageBoxDialog_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(this, "Message.");
+        }
+
+        private void Open_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            if (menuItem != null)
+            {
+                MakeDocument(menuItem.Name);
+            }
         }
     }
 }
