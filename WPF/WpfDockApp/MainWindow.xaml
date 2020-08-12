@@ -40,55 +40,25 @@
                     </avalonDock:LayoutAnchorablePane>
                     <avalonDock:LayoutPanel Orientation="Vertical">
                         <avalonDock:LayoutPanel Orientation="Horizontal">
-                            <avalonDock:LayoutDocumentPane>
-                                <!-- ドキュメント1 -->
-                                <avalonDock:LayoutDocument x:Name="Document1" Title="Document1">
-                                    <StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBox x:Name="SearchText1" MinWidth="200" Margin="8"/>
-                                            <Button x:Name="SearchButton1" Content="Search" Margin="8" Click="SearchButton_Click"/>
-                                        </StackPanel>
-                                        <DataGrid x:Name="DataGrid1" AutoGenerateColumns="False">
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Header="Company" Binding="{Binding [0]}"/>
-                                                <DataGridTextColumn Header="Flower" Binding="{Binding [1]}"/>
-                                                <DataGridTextColumn Header="Person in charge" Binding="{Binding [2]}"/>
-                                                <DataGridTextColumn Header="money" Binding="{Binding [3]}"/>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-                                    </StackPanel>
-                                </avalonDock:LayoutDocument>
-                                <!-- ドキュメント2 -->
-                                <avalonDock:LayoutDocument x:Name="Document2" Title="Document2">
-                                    <StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBox x:Name="SearchText2" MinWidth="200" Margin="8"/>
-                                            <Button x:Name="SearchButton2" Content="Search" Margin="8" Click="SearchButton_Click"/>
-                                        </StackPanel>
-                                        <DataGrid x:Name="DataGrid2" AutoGenerateColumns="False">
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Header="Company" Binding="{Binding [0]}"/>
-                                                <DataGridTextColumn Header="Flower" Binding="{Binding [1]}"/>
-                                                <DataGridTextColumn Header="Person in charge" Binding="{Binding [2]}"/>
-                                                <DataGridTextColumn Header="money" Binding="{Binding [3]}"/>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
-                                    </StackPanel>
-                                </avalonDock:LayoutDocument>
+                            <avalonDock:LayoutDocumentPane x:Name="DocumentPane">
                             </avalonDock:LayoutDocumentPane>
                         </avalonDock:LayoutPanel>
                         <avalonDock:LayoutAnchorablePane DockHeight="100">
                             <avalonDock:LayoutAnchorable Title="OutputForm">
-                                <StackPanel>
-                                    <ToolBarTray>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <ToolBarTray Grid.Row="0">
                                         <ToolBar>
                                             <Button x:Name="ButtonCopy" Content="Copy" Click="ButtonCopy_Click" />
                                             <Button x:Name="ButtonSaveFile" Content="Save File" Click="ButtonSaveFile_Click" />
                                             <Button x:Name="ButtonClear" Content="Clear" Click="ButtonClear_Click" />
                                         </ToolBar>
                                     </ToolBarTray>
-                                    <TextBox x:Name="TextBox1" AcceptsReturn="True" Height="48"/>
-                                </StackPanel>
+                                    <TextBox x:Name="TextBox1" Grid.Row="1" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+                                </Grid>
                             </avalonDock:LayoutAnchorable>
                         </avalonDock:LayoutAnchorablePane>
                     </avalonDock:LayoutPanel>

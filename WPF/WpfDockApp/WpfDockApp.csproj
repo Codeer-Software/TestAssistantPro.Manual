@@ -95,9 +95,13 @@
     <Compile Include="MultiUserControlWindow.xaml.cs">
       <DependentUpon>MultiUserControlWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OrderDocumentUserControl.xaml.cs">
+      <DependentUpon>OrderDocumentUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReservationInformationUserControl.xaml.cs">
       <DependentUpon>ReservationInformationUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchEventArgs.cs" />
     <Compile Include="SimpleWindow.xaml.cs">
       <DependentUpon>SimpleWindow.xaml</DependentUpon>
     </Compile>
@@ -122,6 +126,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MultiUserControlWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrderDocumentUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
