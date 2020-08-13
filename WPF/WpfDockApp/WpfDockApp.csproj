@@ -35,6 +35,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Codeer.Friendly, Version=2.6.1.0, Culture=neutral, PublicKeyToken=6c44da6fca38aa86, processorArchitecture=MSIL">
+      <HintPath>packages\Codeer.Friendly.2.6.1\lib\net40\Codeer.Friendly.dll</HintPath>
+    </Reference>
+    <Reference Include="Codeer.Friendly.Dynamic, Version=2.6.1.0, Culture=neutral, PublicKeyToken=376bc779077733e8, processorArchitecture=MSIL">
+      <HintPath>packages\Codeer.Friendly.2.6.1\lib\net40\Codeer.Friendly.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="Codeer.Friendly.Windows, Version=2.15.0.0, Culture=neutral, PublicKeyToken=532f270f1da385b3, processorArchitecture=MSIL">
+      <HintPath>packages\Codeer.Friendly.Windows.2.15.0\lib\net20\Codeer.Friendly.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Codeer.Friendly.Windows.Grasp.2.0, Version=2.12.0.0, Culture=neutral, PublicKeyToken=92809a28945fb91d, processorArchitecture=MSIL">
+      <HintPath>packages\Codeer.Friendly.Windows.Grasp.2.12.0\lib\net35\Codeer.Friendly.Windows.Grasp.2.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Codeer.Friendly.Windows.Grasp.3.5, Version=2.12.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Codeer.Friendly.Windows.Grasp.2.12.0\lib\net35\Codeer.Friendly.Windows.Grasp.3.5.dll</HintPath>
+    </Reference>
+    <Reference Include="Codeer.Friendly.Windows.NativeStandardControls, Version=2.15.0.0, Culture=neutral, PublicKeyToken=90759bf0c8b8639e, processorArchitecture=MSIL">
+      <HintPath>packages\Codeer.Friendly.Windows.NativeStandardControls.2.15.0\lib\net40\Codeer.Friendly.Windows.NativeStandardControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Codeer.Friendly.Windows.NativeStandardControls.4.0, Version=2.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Codeer.Friendly.Windows.NativeStandardControls.2.15.0\lib\net40\Codeer.Friendly.Windows.NativeStandardControls.4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Codeer.Friendly.Windows.NativeStandardControls.Generator, Version=2.15.0.0, Culture=neutral, PublicKeyToken=eea982eb65b72dea, processorArchitecture=MSIL">
+      <HintPath>packages\Codeer.Friendly.Windows.NativeStandardControls.2.15.0\lib\net40\Codeer.Friendly.Windows.NativeStandardControls.Generator.dll</HintPath>
+    </Reference>
+    <Reference Include="Codeer.TestAssistant.GeneratorToolKit, Version=3.9.0.0, Culture=neutral, PublicKeyToken=f7af39ab9bcf13fe, processorArchitecture=MSIL">
+      <HintPath>packages\Codeer.TestAssistant.GeneratorToolKit.3.9.0\lib\net20\Codeer.TestAssistant.GeneratorToolKit.dll</HintPath>
+    </Reference>
     <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e, processorArchitecture=MSIL">
       <HintPath>packages\ControlzEx.4.3.1\lib\net462\ControlzEx.dll</HintPath>
     </Reference>
@@ -44,12 +71,35 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="Ong.Friendly.FormsStandardControls, Version=2.16.0.0, Culture=neutral, PublicKeyToken=ee7fcdb5644bd140, processorArchitecture=MSIL">
+      <HintPath>packages\Ong.Friendly.FormsStandardControls.2.16.0\lib\net20\Ong.Friendly.FormsStandardControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Ong.Friendly.FormsStandardControls.Generator, Version=2.16.0.0, Culture=neutral, PublicKeyToken=d15e24feb703b5b0, processorArchitecture=MSIL">
+      <HintPath>packages\Ong.Friendly.FormsStandardControls.2.16.0\lib\net20\Ong.Friendly.FormsStandardControls.Generator.dll</HintPath>
+    </Reference>
+    <Reference Include="RM.Friendly.WPFStandardControls.3.0, Version=1.40.0.0, Culture=neutral, PublicKeyToken=1b8f25b96765ebb0, processorArchitecture=MSIL">
+      <HintPath>packages\RM.Friendly.WPFStandardControls.1.40.0\lib\net40\RM.Friendly.WPFStandardControls.3.0.dll</HintPath>
+    </Reference>
+    <Reference Include="RM.Friendly.WPFStandardControls.3.0.Generator, Version=1.40.0.0, Culture=neutral, PublicKeyToken=41822cddf2e8cce7, processorArchitecture=MSIL">
+      <HintPath>packages\RM.Friendly.WPFStandardControls.1.40.0\lib\net40\RM.Friendly.WPFStandardControls.3.0.Generator.dll</HintPath>
+    </Reference>
+    <Reference Include="RM.Friendly.WPFStandardControls.3.5, Version=1.40.0.0, Culture=neutral, PublicKeyToken=133fc95b5bce0b86, processorArchitecture=MSIL">
+      <HintPath>packages\RM.Friendly.WPFStandardControls.1.40.0\lib\net40\RM.Friendly.WPFStandardControls.3.5.dll</HintPath>
+    </Reference>
+    <Reference Include="RM.Friendly.WPFStandardControls.4.0, Version=1.40.0.0, Culture=neutral, PublicKeyToken=804da7e4293a9f15, processorArchitecture=MSIL">
+      <HintPath>packages\RM.Friendly.WPFStandardControls.1.40.0\lib\net40\RM.Friendly.WPFStandardControls.4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="RM.Friendly.WPFStandardControls.4.0.Generator, Version=1.40.0.0, Culture=neutral, PublicKeyToken=12a0c2a29e956d84, processorArchitecture=MSIL">
+      <HintPath>packages\RM.Friendly.WPFStandardControls.1.40.0\lib\net40\RM.Friendly.WPFStandardControls.4.0.Generator.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
