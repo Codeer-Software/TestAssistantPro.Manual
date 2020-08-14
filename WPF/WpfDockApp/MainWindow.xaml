@@ -34,8 +34,7 @@
                     <avalonDock:LayoutAnchorablePane DockWidth="150">
                         <!-- ツールウィンドウ1 -->
                         <avalonDock:LayoutAnchorable Title="TreeView">
-                            <TreeView x:Name="TreeView">
-                            </TreeView>
+                            <local:TreeUserControl x:Name="TreeUserControl"/>
                         </avalonDock:LayoutAnchorable>
                     </avalonDock:LayoutAnchorablePane>
                     <avalonDock:LayoutPanel Orientation="Vertical">
