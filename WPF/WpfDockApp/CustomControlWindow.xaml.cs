@@ -17,7 +17,7 @@ namespace WpfDockApp
     /// <summary>
     /// CustomControlWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class CustomControlWindow : Window
+    public partial class CustomControlWindow : MahApps.Metro.Controls.MetroWindow
     {
         public CustomControlWindow()
         {

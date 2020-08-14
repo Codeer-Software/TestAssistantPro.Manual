@@ -17,7 +17,7 @@ namespace WpfDockApp
     /// <summary>
     /// MultiUserControlWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class MultiUserControlWindow : Window
+    public partial class MultiUserControlWindow : MahApps.Metro.Controls.MetroWindow
     {
         public MultiUserControlWindow()
         {
