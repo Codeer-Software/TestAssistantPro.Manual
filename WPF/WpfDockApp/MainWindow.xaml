@@ -13,16 +13,16 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu VerticalAlignment="Top">
-            <MenuItem Header="File">
-                <MenuItem Header="Open" InputGestureText="Ctrl+O" Click="MenuItemOpen_Click"/>
-                <MenuItem Header="Save" InputGestureText="Ctrl+S" Click="MenuItemSave_Click"/>
+        <Menu x:Name="Menu" VerticalAlignment="Top">
+            <MenuItem x:Name="MenuFile" Header="File">
+                <MenuItem x:Name="MenuOpen" Header="Open" InputGestureText="Ctrl+O" Click="MenuItemOpen_Click"/>
+                <MenuItem x:Name="MenuSave" Header="Save" InputGestureText="Ctrl+S" Click="MenuItemSave_Click"/>
             </MenuItem>
-            <MenuItem Header="etc.">
-                <MenuItem x:Name="SimpleDialog" Header="Simple Dialog" Click="SimpleDialog_Click"/>
-                <MenuItem x:Name="MultiUserControlDialog" Header="Multi UserControl Dialog" Click="MultiUserControlDialog_Click"/>
-                <MenuItem x:Name="CustomControlDialog" Header="Custom Control Dialog" Click="CustomControlDialog_Click"/>
-                <MenuItem x:Name="MessageBoxDialog" Header="MessageBox" Click="MessageBoxDialog_Click"/>
+            <MenuItem x:Name="MenuEtc" Header="etc.">
+                <MenuItem x:Name="MenuSimpleDialog" Header="Simple Dialog" Click="SimpleDialog_Click"/>
+                <MenuItem x:Name="MenuMultiUserControlDialog" Header="Multi UserControl Dialog" Click="MultiUserControlDialog_Click"/>
+                <MenuItem x:Name="MenuCustomControlDialog" Header="Custom Control Dialog" Click="CustomControlDialog_Click"/>
+                <MenuItem x:Name="MenuMessageBoxDialog" Header="MessageBox" Click="MessageBoxDialog_Click"/>
             </MenuItem>
         </Menu>
         <avalonDock:DockingManager Grid.Row="1" x:Name="_dockingManager">
@@ -44,20 +44,7 @@
                         </avalonDock:LayoutPanel>
                         <avalonDock:LayoutAnchorablePane DockHeight="100">
                             <avalonDock:LayoutAnchorable Title="OutputForm">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <ToolBarTray Grid.Row="0">
-                                        <ToolBar>
-                                            <Button x:Name="ButtonCopy" Content="Copy" Click="ButtonCopy_Click" />
-                                            <Button x:Name="ButtonSaveFile" Content="Save File" Click="ButtonSaveFile_Click" />
-                                            <Button x:Name="ButtonClear" Content="Clear" Click="ButtonClear_Click" />
-                                        </ToolBar>
-                                    </ToolBarTray>
-                                    <TextBox x:Name="TextBox1" Grid.Row="1" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
-                                </Grid>
+                                <local:OutputUserControl x:Name="OutputUserControl"/>
                             </avalonDock:LayoutAnchorable>
                         </avalonDock:LayoutAnchorablePane>
                     </avalonDock:LayoutPanel>

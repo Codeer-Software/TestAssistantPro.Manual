@@ -32,18 +32,21 @@ namespace WpfDockApp
 
         private void TreeUserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            var items = GetTreeViewItems();
-            foreach (var item in items)
+            if (this.TreeView?.Items?.Count == 0)
             {
-                this.TreeView.Items.Add(item);
-            }
-            foreach (var data in this.TreeView.Items)
-            {
-                var treeViewItem = data as TreeViewItem;
-                foreach (var data2 in treeViewItem.Items)
+                var items = GetTreeViewItems();
+                foreach (var item in items)
                 {
-                    var treeViewItem2 = data2 as TreeViewItem;
-                    treeViewItem2.MouseDoubleClick += TreeViewItem_MouseDoubleClick;
+                    this.TreeView.Items.Add(item);
+                }
+                foreach (var data in this.TreeView.Items)
+                {
+                    var treeViewItem = data as TreeViewItem;
+                    foreach (var data2 in treeViewItem.Items)
+                    {
+                        var treeViewItem2 = data2 as TreeViewItem;
+                        treeViewItem2.MouseDoubleClick += TreeViewItem_MouseDoubleClick;
+                    }
                 }
             }
         }

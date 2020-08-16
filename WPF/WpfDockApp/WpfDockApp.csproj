@@ -149,6 +149,9 @@
     <Compile Include="OrderDocumentUserControl.xaml.cs">
       <DependentUpon>OrderDocumentUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OutputUserControl.xaml.cs">
+      <DependentUpon>OutputUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ReservationInformationUserControl.xaml.cs">
       <DependentUpon>ReservationInformationUserControl.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrderDocumentUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OutputUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

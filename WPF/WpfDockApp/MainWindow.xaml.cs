@@ -52,7 +52,7 @@ namespace WpfDockApp
 
         private void DocumentControl_SearchEvent(object sender, SearchEventArgs e)
         {
-            TextBox1.Text = e.SearchResult;
+            OutputUserControl.SetOutputTexts(e.SearchResult);
         }
 
         private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
@@ -65,25 +65,6 @@ namespace WpfDockApp
         {
             var dlg = new SaveFileDialog();
             dlg.ShowDialog();
-        }
-
-        private void ButtonCopy_Click(object sender, RoutedEventArgs e)
-        {
-            Clipboard.SetText(TextBox1.Text);
-        }
-
-        private void ButtonSaveFile_Click(object sender, RoutedEventArgs e)
-        {
-            var dlg = new SaveFileDialog();
-            if (dlg.ShowDialog(this) == true)
-            {
-                File.WriteAllText(dlg.FileName, TextBox1.Text);
-            }
-        }
-
-        private void ButtonClear_Click(object sender, RoutedEventArgs e)
-        {
-            TextBox1.Text = string.Empty;
         }
 
         private void SimpleDialog_Click(object sender, RoutedEventArgs e)
