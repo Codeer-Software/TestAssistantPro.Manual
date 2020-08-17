@@ -142,11 +142,15 @@
     <Compile Include="CustomControlWindow.xaml.cs">
       <DependentUpon>CustomControlWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MakeDocumentEventArgs.cs" />
     <Compile Include="MultiUserControlWindow.xaml.cs">
       <DependentUpon>MultiUserControlWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="OrderDocumentUserControl.xaml.cs">
       <DependentUpon>OrderDocumentUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OutputUserControl.xaml.cs">
+      <DependentUpon>OutputUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ReservationInformationUserControl.xaml.cs">
       <DependentUpon>ReservationInformationUserControl.xaml</DependentUpon>
@@ -154,6 +158,9 @@
     <Compile Include="SearchEventArgs.cs" />
     <Compile Include="SimpleWindow.xaml.cs">
       <DependentUpon>SimpleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeUserControl.xaml.cs">
+      <DependentUpon>TreeUserControl.xaml</DependentUpon>
     </Compile>
     <Page Include="ChargeOfPartyUserControl.xaml">
       <SubType>Designer</SubType>
@@ -183,11 +190,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OutputUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ReservationInformationUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SimpleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TreeUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
