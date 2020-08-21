@@ -23,6 +23,8 @@ namespace WpfDockApp
         public delegate void SearchEventHandler(object sender, SearchEventArgs e);
         public event SearchEventHandler SearchEvent;
 
+        public string Title { get; set; }
+
         public OrderDocumentUserControl()
         {
             InitializeComponent();

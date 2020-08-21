@@ -162,6 +162,7 @@
     <Compile Include="TreeUserControl.xaml.cs">
       <DependentUpon>TreeUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TreeViewModel.cs" />
     <Page Include="ChargeOfPartyUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

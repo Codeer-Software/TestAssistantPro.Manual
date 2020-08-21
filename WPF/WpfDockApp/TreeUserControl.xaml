@@ -7,7 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TreeView x:Name="TreeView">
+        <TreeView x:Name="TreeView" MouseDoubleClick="TreeView_MouseDoubleClick">
+            <TreeView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Open" Click="MenuItem_Click"/>
+                </ContextMenu>
+            </TreeView.ContextMenu>
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate DataType="local:TreeViewModel" ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding Name}" />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+            <TreeView.Resources>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded}" />
+                </Style>
+            </TreeView.Resources>
         </TreeView>
     </Grid>
 </UserControl>

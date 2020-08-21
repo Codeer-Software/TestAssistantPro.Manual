@@ -34,61 +34,26 @@ namespace WpfDockApp
         {
             if (this.TreeView?.Items?.Count == 0)
             {
-                var items = GetTreeViewItems();
-                foreach (var item in items)
-                {
-                    this.TreeView.Items.Add(item);
-                }
-                foreach (var data in this.TreeView.Items)
-                {
-                    var treeViewItem = data as TreeViewItem;
-                    foreach (var data2 in treeViewItem.Items)
-                    {
-                        var treeViewItem2 = data2 as TreeViewItem;
-                        treeViewItem2.MouseDoubleClick += TreeViewItem_MouseDoubleClick;
-                    }
-                }
+                this.TreeView.ItemsSource = GetTreeViewItems();
             }
         }
 
-        private void TreeViewItem_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        public List<TreeViewModel> GetTreeViewItems()
         {
-            var treeViewItem = sender as TreeViewItem;
-            string header = (string)treeViewItem.Header;
-            MakeDocumentEvent?.Invoke(this, new MakeDocumentEventArgs(header, GetDocuments(header)));
-            e.Handled = true;
-        }
-
-        public TreeViewItem[] GetTreeViewItems()
-        {
-            var contextMenu1 = new ContextMenu();
-            var menuItem1 = new MenuItem();
-            menuItem1.Header = "Open";
-            menuItem1.Click += Open_Click;
-            menuItem1.Name = "Accepted";
-            contextMenu1.Items.Add(menuItem1);
-
-            var contextMenu2 = new ContextMenu();
-            var menuItem2 = new MenuItem();
-            menuItem2.Header = "Open";
-            menuItem2.Click += Open_Click;
-            menuItem2.Name = "Sended";
-            contextMenu2.Items.Add(menuItem2);
-
-            var treeViewItem = new TreeViewItem[]
+            var treeViewModels = new List<TreeViewModel>
             {
-                new TreeViewItem()
+                new TreeViewModel()
                 {
-                    Header = "Oder management",
+                    Name = "Oder management",
                     IsExpanded = true,
-                    ItemsSource = new TreeViewItem[]
+                    Children = new  List<TreeViewModel>
                     {
-                        new TreeViewItem() { Header = "Accepted", ContextMenu = contextMenu1},
-                        new TreeViewItem() { Header = "Sended", ContextMenu = contextMenu2},
+                        new TreeViewModel() { Name = "Accepted",IsExpanded = true,},
+                        new TreeViewModel() { Name = "Sended",IsExpanded = true,},
                     },
                 },
             };
-            return treeViewItem;
+            return treeViewModels;
         }
 
         private void Open_Click(object sender, RoutedEventArgs e)
@@ -127,6 +92,27 @@ namespace WpfDockApp
                     break;
             }
             return documents;
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            if (menuItem != null)
+            {
+                var viewModel = (TreeViewModel)TreeView.SelectedItem;
+                MakeDocumentEvent?.Invoke(this, new MakeDocumentEventArgs(viewModel.Name, GetDocuments(viewModel.Name)));
+            }
+        }
+
+        private void TreeView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var viewModel = (TreeViewModel)TreeView.SelectedItem;
+            if (viewModel.Children == null)
+            {
+                string header = viewModel.Name;
+                MakeDocumentEvent?.Invoke(this, new MakeDocumentEventArgs(header, GetDocuments(header)));
+            }
+            e.Handled = true;
         }
     }
 }
