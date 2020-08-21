@@ -27,6 +27,7 @@ BlockControlはSelectIndexという現在選択されているブロックのイ
 
 生成したControlDriverのコードテンプレートを次のように変更してください。
 
+プロセスを超えたプロパティやメソッドの操作にはFriendlyを使っています。詳細は[Friendly](https://github.com/Codeer-Software/Friendly/blob/master/README.jp.md)を参照してください。
 ```cs
 using Codeer.Friendly;
 using Codeer.Friendly.Dynamic;
