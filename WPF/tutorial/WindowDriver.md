@@ -150,10 +150,9 @@ namespace Driver.Windows
     public class MultiUserControlWindowDriver
     {
         public WindowControl Core { get; }
-        public WPFTextBox TextBox => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("UserName").Single().Dynamic(); 
-        public WPFTextBox TextBox0 => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("Tel").Single().Dynamic(); 
-        public ReservationInformationUserControlDriver ReservationInformationUserControl => Core.LogicalTree().ByType("WpfDockApp.ReservationInformationUserControl").Single().Dynamic(); 
-        public WPFButtonBase Button => Core.VisualTree().ByBinding("LightCloseButtonStyle").Single().Dynamic(); 
+        public AppVar ReservationInformationUserControl => Core.LogicalTree().ByType("WpfDockApp.ReservationInformationUserControl").Single().Dynamic(); 
+        public WPFTextBox TextBoxTel => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("UserName").Single().Dynamic(); 
+        public WPFTextBox TextBoxName => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("Tel").Single().Dynamic(); 
 
         public MultiUserControlWindowDriver(WindowControl core)
         {
@@ -175,10 +174,10 @@ namespace Driver.Windows
 }
 ```
 
-## MainFormのドライバの作成
+## MainWindowのドライバの作成
 
 <!--TODO: なぜ、メニューだけを持つウィンドウと考えるか、またそれ以外はどうするのかの概要を記述する-->
-MainForm は複数のドッキングウィンドウで構成されています。ここでは MainForm はメニューだけを持つウィンドウと考えます。
+MainForm は複数のドッキングウィンドウで構成されています。ここでは MainWindowはメニューだけを持つウィンドウと考えます。
 メニューだけをプロパティに追加して、ドライバを生成してください。
 
 ![WindowDriver.MainFrame.png](../Img/WindowDriver.MainFrame.png)
@@ -227,10 +226,10 @@ TreeUserControl と OutputUserControl は UserControlDriver として作成し�
 Attach対象は MainFromDriver ではなく WindowsAppFrined (アプリケーション全体)にします。
 これはフローティング状態にするなどさまざまな状態を作ることができるからです。
 
-まずは TreeForm の UserControlDriver を作ります。
-Ctrlキーを押しながらMainFormのTreeにマウスオーバーすることでTreeViewがUI解析ツリーで選択状態になります。
-一つ上の要素にTreeFormがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
-TreeFormの子要素であるTreeViewをダブルクリックしてプロパティに追加します。
+まずは TreeUserControl の UserControlDriver を作ります。
+Ctrlキーを押しながらMainWindowのTreeにマウスオーバーすることでTreeViewがUI解析ツリーで選択状態になります。
+一つ上の要素にTreeUserControlがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
+TreeUserControlの子要素であるTreeViewをダブルクリックしてプロパティに追加します。
 
 Designerタブの内容を次のように変更し、[Generate]ボタンをクリックしてコードを生成します。
 記載されている内容以外はデフォルトのままにしておきます。
@@ -274,7 +273,7 @@ namespace Driver.Windows
 }
 ```
 
-OutputForm も同様に作成てください。
+OutputUserControl も同様に作成てください。
 
 ```cs
 using Codeer.Friendly;
@@ -316,7 +315,7 @@ namespace Driver.Windows
 <!--TODO: Documentとはそもそもどのウィンドウ？同じタイプとは？-->
 
 Document は同じタイプのものが複数存在します。
-取得方法は Type  Full Name を利用し、 WindowsAppFriend にAttachするように設定します。
+取得方法は Customを利用しTitleプロパティが一致するものを取得し、 WindowsAppFriend にAttachするように設定します。
 
 ![WindowDriver.Document.png](../Img/WindowDriver.Document.png)
 
@@ -347,9 +346,19 @@ namespace Driver.Windows
 
     public static class OrderDocumentUserControlDriverExtensions
     {
-        [UserControlDriverIdentify]
-        public static OrderDocumentUserControlDriver AttachOrderDocumentUserControl(this WindowsAppFriend app)
-            => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).FirstOrDefault()?.Dynamic();
+        [UserControlDriverIdentify(CustomMethod = "TryGet")]
+        public static OrderDocumentUserControlDriver AttachOrderDocumentUserControl(this WindowsAppFriend app, string identifier)
+            => app.GetTopLevelWindows().
+                    Select(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").SingleOrDefault()).
+                    Where(e => !e.IsNull).
+                    Where(e => (string)e.Dynamic().Title == identifier).
+                    FirstOrDefault()?.Dynamic();
+        public static void TryGet(this WindowsAppFriend app, out string[] identifier)
+            => identifier = app.GetTopLevelWindows().
+                Select(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").SingleOrDefault()).
+                Where(e => !e.IsNull).
+                Select(e => (string)e.Dynamic().Title).
+                ToArray();
     }
 }
 ```

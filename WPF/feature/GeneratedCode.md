@@ -13,45 +13,33 @@ using Codeer.Friendly.Dynamic;
 using Codeer.Friendly.Windows;
 using Codeer.Friendly.Windows.Grasp;
 using Codeer.TestAssistant.GeneratorToolKit;
-using Ong.Friendly.FormsStandardControls;
+using RM.Friendly.WPFStandardControls;
+using System.Linq;
 
 namespace Driver.Windows
 {
-    //WindowDriverであることを明示します。
-    //対応するWindowのタイプフルネームを指定します。
-    //WindowDriverAttributeを付けることでTestAssistantProが
-    //AnalyzeWindowでコントロールに対してすでにドライバが割り当てられていることを検知します。
-    [WindowDriver(TypeFullName = "XXX.YForm")]
-    public class YFormDriver
+    [WindowDriver(TypeFullName = "WpfDockApp.YWindow")]
+    public class YWindowDriver
     {
-        //Fromに対応する変数
         public WindowControl Core { get; }
+        public WPFMenuBase Menu => Core.Dynamic().Menu; 
 
-        //ControlDriverを並べる
-        //ControlDriverを特定するのが責務
-        public FormsButton _buttonCancel => Core.Dynamic()._buttonCancel; 
-        public FormsButton _buttonOK => Core.Dynamic()._buttonOK; 
-        public FormsRichTextBox _richTextBoxRemarks => Core.Dynamic()._richTextBoxRemarks; 
-
-        public YFormDriver(WindowControl core)
+        public YWindowDriver(WindowControl core)
         {
             Core = core;
         }
 
-        public YFormDriver(AppVar core)
+        public YWindowDriver(AppVar core)
         {
             Core = new WindowControl(core);
         }
     }
 
-    public static class YFormDriverExtensions
+    public static class YWindowDriverExtensions
     {
-        //アプリケーションからYFormを特定して取得します。
-        //WindowDriverIdentifyAttributeを付けることでTestAssistantProがこのメソッドを使えるようになります。
-        //Attachについては後述します。
-        [WindowDriverIdentify(TypeFullName = "XXX.YForm")]
-        public static YFormDriver AttachYForm(this WindowsAppFriend app)
-            => app.WaitForIdentifyFromTypeFullName("XXX.YForm").Dynamic();
+        [WindowDriverIdentify(TypeFullName = "WpfDockApp.YWindow")]
+        public static YWindowDriver AttachYWindow(this WindowsAppFriend app)
+            => app.WaitForIdentifyFromTypeFullName("WpfDockApp.YWindow").Dynamic();
     }
 }
 ```
