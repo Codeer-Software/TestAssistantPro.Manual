@@ -3,7 +3,7 @@
 AnalyzeWindow は対象のアプリケーションを解析してツリーのルートのコントロールに対してWindowDriverおよびUserControlDriverを作成するものです。
 Designer タブの設定をもとにコードを生成します。生成されるコードは Current Code タブでプレビューできます。
 
-WindowDriverとUserControlDriverに関しては[こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)を参照してください。
+WindowDriverとUserControlDriverに関しては[Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)を参照してください。
 
 
 ![AnalyzeWindow](../Img/AnalyzeWindow.png)
@@ -32,7 +32,7 @@ AnalyzeWindow を起動するにはDriverプロジェクトで生成するコー
 
 | メニュー | 説明 |
 |--------|-----|
-| Display Mode | 表示モードです |
+| Display Mode | |
 | - Control | Control.Controls を元にしたツリーを表示します。 |
 | - Field | Field を元にしたツリーを表示します。 |
 | - Filter Window And UserControl | Form と UserControl のみをツリー上に表示します。 |
@@ -58,7 +58,7 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 
 | メニュー | 説明 |
 |--------|-----|
-| Change The Analysis Target | 解析対象を現在選択中のノードのUIオブジェクトに変更します。 |
+| Change The Analysis Target | 解析対象を現在選択中のノードのUIオブジェクトに変更します。Ctrl+ダブルクリックでも同様の処理をおこなうことができます。 |
 | Pickup | 選択している要素が右側のグリッドに登録されます。 |
 | Pickup Children | 指定したコントロールの子孫のコントロールでドライバが割り当たっているものを一括でピックアップしてグリッドに登録します。子孫をたどるときに UserControl を発見した場合、それ以下は検索しません。それ以下のコントロールもグリッドに登録したい場合はそのUserControlを選択し再度 Pickup Children を実行してください。|
 | Create Control Driver | コントロールドライバを作成します。 |
@@ -86,13 +86,13 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 | グリッド | WindowDriver/UserControlDriver の子要素です。Tree から選択します。 |
 
 
-Attachに関しては[Attachに関して](#Attachに関して)を参照してください。
+Attachに関しては[Attach方法ごとのコード](Attach.md)を参照してください。
 
 ## Current Code タブ
 
 右ペインの下段にある「Current Code」タブを選択することで表示されます。
 Designer タブでの設定によって出力されるコードが表示されます。
-
+Generateでコードを生成せずにここからコードをコピーして利用することもできます。
 ![CurrentCodeタブ](../Img/AnalyzeWindow.CurrentCode.png)
 
 ## Property タブ
