@@ -1,13 +1,13 @@
 # Attach方法ごとのコード
 
-Attachとはプログラムコードからアプリケーションを動かす際に。操作する対象の要素(WindowDriver/UserControlDriver)と接続する処理のことをさします。
-実際にはプログラムコードのメソッドとして実現されます。
+Attachとはプログラムコードからアプリケーションを動かす際に。操作する対象の要素(WindowDriver/UserControlDriver)と接続する処理のことをさします。 実際にはプログラムコードのメソッドとして実現されます。
+これはTestAssistantProを使わない場合にも手書きで作成します。
+詳細は[こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md#attach)を参照してください。
+TestAssistantProはキャプチャ時にこのメソッドを使ってドライバを検索します。
+そのためTestAssitantProを使う場合は`WindowDriverIdentifyAttribute`、`UserControlDriverIdentifyAttribute`属性を付けてTestAssistantProが利用できるようにします。
 
-出力されるコードとしてはWindowDriverを取得する拡張メソッドは無限待ちで実装されます。
-これはテスト実行時のトップレベルウィドウの待ち合わせを考えてのものです。
-UserControlDriverを取得する方はなければnullを返すというコードが生成されます。
-
-AttachにはWinndowDriver/UserControlDriverごとの次の4種類があります。
+<br>
+AttachにはWinndowDriver/UserControlDriverごとに次の4種類があります。
 
 | 種類 | 説明 |
 |-----|-----|
@@ -46,8 +46,11 @@ public static class MainFormDriverExtensions
 ### Custom
 
 キャプチャ時にTryが先に呼び出されます。
-そこで対象が見つかって検索に必要な識別子を作成できたら true を返すように実装します。
-
+このTryメソッドは通常はTestAssistantProからしか利用されません。
+そこで渡されたWindowControlが目的のWindowである場合は true を返すように実装します。
+Tは識別子を表す任意の型に書き換えてください。
+Tryで作成した識別子を使ってAttachメソッドが実行されます。
+次の Variable Window Text がCustomの実装例となりますので、そちらを参考にしてみてください。
 ```cs
 public static class MainFormDriverExtensions
 {
@@ -109,8 +112,10 @@ public static class XUserControlDriverExtensions
 ### Custom
 
 キャプチャ時にTryが先に呼び出されます。
+Tは識別子を表す任意の型に書き換えてください。
 見つかった分だけ識別子を返します。
-
+Tryで作成した識別子を使ってAttachメソッドが実行されます。
+次の Variable Window Text がCustomの実装例となりますので、そちらを参考にしてみてください。
 ```cs
 public static class XUserControlDriverExtensions
 {
@@ -149,7 +154,7 @@ WindowsAppFriendの拡張にすると以下のようにアプリケーション�
 ```cs
 public static class XUserControlDriverExtensions
 {
-    [UserControlDriverIdentify()]
+    [UserControlDriverIdentify]
     public static XUserControlDriver AttachOutputForm(this WindowsAppFriend app)
         => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.XUserControlDriver")).FirstOrDefault()?.Dynamic();
 }
