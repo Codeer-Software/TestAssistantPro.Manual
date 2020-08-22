@@ -24,7 +24,7 @@ Seleniumは公式ドキュメントやそのほかの情報を参照してくだ
 # アーキテクチャ
 TestAssistantProはソリューション内のクラスを使って順次コードを生成していきます。
 
-![Architecture.jpg](Img/Architecture.jpg)
+![Architecture.jpg](Img/Architecture.png)
 
 # 高品質なコード生成をサポートします
 Selenium と Friendly はともに OSS のライブラリなので TestAssistantPro を使わなくても作成/メンテナンスすることは可能です。
