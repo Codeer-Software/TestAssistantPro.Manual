@@ -69,8 +69,7 @@ TestAssistantPro を使えば少ない工数で作成できます。
 + メンバーのアサイン最適化
 
 # 詳細な使い方はこちらを参照お願いします。
-+ [WinForms](WinForms.md)
-+ [WPF](WPF.md)
-+ [Web](Web.md)
-
++ [WinForms](WinForms/README.md)
++ [WPF](WPF/README.md)
++ [Web](Web/README.md)
 
