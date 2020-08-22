@@ -1,7 +1,10 @@
 # アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する
 
 [テストソリューションを新規作成する](./Sln.md)で作成したソリューションにTestAssistantProを利用してアプリケーションのドライバを作ります。
-まずはシンプルなダイアログで操作に慣れていきます。
+
+ドライバ(WindowDriver/UserControlDriver/ControlDriver)が理解できていない場合は先に
+[Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)
+を参照してください。
 
 各機能の詳細な内容は次を参照してください。
 
@@ -11,7 +14,15 @@
 
 ## AnalzeWindowの表示
 
-「[AnalyzeWindow/AnalyzeWindowの起動](../feature/AnalyzeWindow.md#AnalyzeWindowの起動)」を参照して、AnalyzeWindowを表示します。
+ソリューションエクスプローラーのDriverプロジェクトのWindowsフォルダで右クリックしてAnalyze Windowを実行します。
+
+![WindowDriver.Start.png](../Img/WindowDriver.Start.png)
+
+テスト対象のアプリケーションを選択する画面が出ますので、MainFormを選択してください。
+
+![WindowDriver.SelectTarget.png](../Img/WindowDriver.SelectTarget.png)
+
+詳細は「[AnalyzeWindow/AnalyzeWindowの起動](../feature/AnalyzeWindow.md#AnalyzeWindowの起動)」を参照してください。
 
 ## Simple Dialogのドライバの作成
 
@@ -32,6 +43,7 @@ UI解析ツリーのルートで右クリックメニューを表示して[Picku
 ![WindowDriver.SimpleDialog.png](../Img/WindowDriver.SimpleDialog.png)
 
 "Generated"と記載されたメッセージボックスが表示され、[Windows]フォルダの下にファイルが生成されます。
+コードの詳細は[AnalyzeWindowで生成されるコード](../feature/GeneratedCode.md)と[Attach方法ごとのコード](../feature/Attach.md)を参照してください。
 
 ```cs
 using Codeer.Friendly;
@@ -239,8 +251,9 @@ Designerタブの内容を次のように変更し、[Generate]ボタンをク�
 | Create Attach Code | チェックをつける |
 | Extension | WindowAppFriend |
 
-![WindowDriver.TreeForm.png](../Img/WindowDriver.TreeForm.png)
+このオプションの詳細は [Attach方法ごとのコード](../feature/Attach.md)を参照してください。
 
+![WindowDriver.TreeForm.png](../Img/WindowDriver.TreeForm.png)
 
 ```cs
 using Codeer.Friendly;
@@ -316,6 +329,7 @@ namespace Driver.Windows
 
 Document は同じタイプのものが複数存在します。
 取得方法は Customを利用しTitleプロパティが一致するものを取得し、 WindowsAppFriend にAttachするように設定します。
+Attachのオプションの詳細は [Attach方法ごとのコード](../feature/Attach.md)を参照してください。
 
 ![WindowDriver.Document.png](../Img/WindowDriver.Document.png)
 
