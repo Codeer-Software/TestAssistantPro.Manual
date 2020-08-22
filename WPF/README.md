@@ -1,28 +1,32 @@
 # TestAssistantProを利用してWPFアプリケーションのテストを構築する
 
+## 前提知識
 TestAssistantProを使ってFriendlyでの`Driver/Scenarioパターン`に沿ったテストを実装します。
+そのためFriendlyと`Driver/Scenarioパターン`の知識が必要となります。
+特に`Driver/Scenarioパターン`の理解は必須です。
 Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してください。
 
 + [Friendly](https://github.com/Codeer-Software/Friendly/blob/master/README.jp.md)
 + [Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)
 
 ## 目次
+初めてTestAssistantProを使う場合はチュートリアルから読んでください。チュートリアル中に各機能の詳細説明へのリンクを入れているので効率良く使用方法を学習することができます。
+
+- チュートリアル
+  1. [テストソリューションを新規作成する](tutorial/Sln.md)
+  2. [アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](tutorial/WindowDriver.md)
+  3. [ControlDriverとCaptureCodeGeneratorを作成する](tutorial/ControlDriver.md)
+  4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
 
 - 機能
-  - [シナリオを利用してテストケースを構成する](feature/Scenario.md)
-  - [画面操作のキャプチャと再生](feature/CaptureAndExecute.md)
   - [AnalyzeWindowの使い方](feature/AnalyzeWindow.md)
+  - [画面操作のキャプチャと再生](feature/CaptureAndExecute.md)
   - [WindowDriver/UserControlDriverのコード](feature/GeneratedCode.md)
   - [Attach方法ごとのコード](feature/Attach.md)
   - [ControlDriverのコード](feature/ControlDriver.md)
   - [CaptureCodeGeneratorのコード](feature/CaptureCodeGenerator.md)
   - [AnalyzeWindowをカスタマイズする](feature/CustomizeAnalyzeWindow.md)
   - [Captureウィンドウをカスタマイズする](feature/CustomizeCaptureWindow.md)
-- チュートリアル
-  1. [テストソリューションを新規作成する](tutorial/Sln.md)
-  2. [アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](tutorial/WindowDriver.md)
-  3. [ControlDriverとCaptureCodeGeneratorを作成する](tutorial/ControlDriver.md)
-  4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
  
 ## 利用するサンプルアプリケーション
 

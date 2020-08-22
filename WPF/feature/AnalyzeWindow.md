@@ -3,7 +3,7 @@
 AnalyzeWindow は対象のアプリケーションを解析してツリーのルートのコントロールに対してWindowDriverおよびUserControlDriverを作成するものです。
 Designer タブの設定をもとにコードを生成します。生成されるコードは Current Code タブでプレビューできます。
 
-WindowDriverとUserControlDriverに関しては[こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)を参照してください。
+WindowDriverとUserControlDriverに関しては[Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)を参照してください。
 
 
 ![AnalyzeWindow](../Img/AnalyzeWindow.png)
@@ -32,7 +32,7 @@ AnalyzeWindow を起動するにはDriverプロジェクトで生成するコー
 
 | メニュー | 説明 |
 |--------|-----|
-| Display Mode | 表示モードです |
+| Display Mode | |
 | - Logical Tree | 論理ツリー を元にしたツリーを表示します。 |
 | - Visual Tree | ビジュアル ツリー を元にしたツリーを表示します。 |
 | - Field | Field を元にしたツリーを表示します。 |
@@ -40,7 +40,7 @@ AnalyzeWindow を起動するにはDriverプロジェクトで生成するコー
 | Tree Update | |
 | - Auto Update | Tree 自動で更新するかどうかを設定します。通常はONを利用してください。画面の要素が頻繁に更新される場合は動作が重くなるのでチェックをOFFにしてください。 |
 | - Update Now | Tree を即時更新します。 |
-| - Sync with Visual Studio | AnalyzeWindow 上で選択した要素に対応するドライバ上での行が VisualStudio 上で選択されます。またその逆に VisualStudio 上で行を選択するとAnalyzeWindow 上で対応するコントロールが選択されます。 <!--TODO:説明がよくわからない。ドライバ上での行とはなにか-->|
+| - Sync with Visual Studio | AnalyzeWindow 上で選択した要素に対応するドライバコードの行が VisualStudio 上で選択されます。またその逆に VisualStudio 上で行を選択するとAnalyzeWindow 上で対応する要素が選択されます。 |
 | Tool | |
 | - Compile & update | AnalyzeWindow の情報が現在の Visual Stuido のドライバコードをコンパイルしたものに更新されます。 |
 | - Option | ツリーに表示するコントロールの種類を選択します。 |
@@ -59,7 +59,7 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 
 | メニュー | 説明 |
 |--------|-----|
-| Change The Analysis Target | 解析対象を現在選択中のノードのUIオブジェクトに変更します。 |
+| Change The Analysis Target | 解析対象を現在選択中のノードのUIオブジェクトに変更します。 Ctrl+ダブルクリックでも同様の処理をおこなうことができます。|
 | Pickup | 選択している要素が右側のグリッドに登録されます。 |
 | Pickup Children | 指定したコントロールの子孫のコントロールでドライバが割り当たっているものを一括でピックアップしてグリッドに登録します。子孫をたどるときに UserControl を発見した場合、それ以下は検索しません。それ以下のコントロールもグリッドに登録したい場合はそのUserControlを選択し再度 Pickup Children を実行してください。|
 | Create Control Driver | コントロールドライバを作成します。 |
@@ -87,7 +87,7 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 | グリッド | WindowDriver/UserControlDriver の子要素です。Tree から選択します。 |
 
 
-Attachに関しては[Attachに関して](#Attachに関して)を参照してください。
+Attachに関しては[Attach方法ごとのコード](Attach.md)を参照してください。
 
 ## Current Code タブ
 

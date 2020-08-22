@@ -39,7 +39,7 @@ AnalyzeWindow を起動するにはDriverプロジェクトで生成するコー
 | Tree Update | |
 | - Auto Update | Tree 自動で更新するかどうかを設定します。通常はONを利用してください。画面の要素が頻繁に更新される場合は動作が重くなるのでチェックをOFFにしてください。 |
 | - Update Now | Tree を即時更新します。 |
-| - Sync with Visual Studio | AnalyzeWindow 上で選択した要素に対応するドライバ上での行が VisualStudio 上で選択されます。またその逆に VisualStudio 上で行を選択するとAnalyzeWindow 上で対応するコントロールが選択されます。 <!--TODO:説明がよくわからない。ドライバ上での行とはなにか-->|
+| - Sync with Visual Studio | AnalyzeWindow 上で選択した要素に対応するドライバコードの行が VisualStudio 上で選択されます。またその逆に VisualStudio 上で行を選択するとAnalyzeWindow 上で対応する要素が選択されます。|
 | Tool | |
 | - Compile & update | AnalyzeWindow の情報が現在の Visual Stuido のドライバコードをコンパイルしたものに更新されます。 |
 | - Option | ツリーに表示するコントロールの種類を選択します。 |
