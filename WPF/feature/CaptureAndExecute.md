@@ -44,12 +44,16 @@ Async の詳細は[こちら](https://github.com/Codeer-Software/Friendly/blob/m
 ```cs
 void AsyncTest()
 {
-    var mainForm = _app.AttachMainForm();
+    var mainWindow = _app.AttachMainWindow();
 
     var async = new Async();
-    mainForm._menuStrip.FindItem("etc.", "Simple Dialog").EmulateClick(async);
-    var simpleForm = _app.AttachSimpleForm();
-    simpleForm._buttonCancel.EmulateClick();
+    mainWindow.Menu.GetItem("etc.", "Simple Dialog").EmulateClick(async);
+    var simpleWindow = _app.AttachSimpleWindow();
+    simpleWindow.TextBox.EmulateChangeText("Test");
+    simpleWindow.DatePicker.EmulateChangeDate(new DateTime(2020, 8, 13));
+    simpleWindow.ComboBox.EmulateChangeSelectedIndex(1);
+    simpleWindow.TextBox0.EmulateChangeText("テストの値");
+    simpleWindow.OK.EmulateClick();
     async.WaitForCompletion();
 }
 ```

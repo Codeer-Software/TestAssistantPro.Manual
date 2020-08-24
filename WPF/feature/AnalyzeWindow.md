@@ -156,7 +156,32 @@ namespace Driver.Windows
     {
         [WindowDriverIdentify(TypeFullName = "WpfDockApp.MainWindow")]
         public static MainWindowDriver AttachMainWindow(this WindowsAppFriend app)
-            => app.WaitForIdentifyFromTypeFullName("WpfDockApp.MainWindow").Dynamic();
+        {
+            switch (TestAssistantMode.CurrentMode)
+            {
+                //TestAssistantPro以外で実行
+                case TestAssistantMode.Mode.Non:
+                    break;
+                //AnalyzeWindowから呼ばれた場合
+                case TestAssistantMode.Mode.Analyze:
+                    break;
+                //Captureから呼ばれた場合
+                case TestAssistantMode.Mode.Capture:
+                    break;
+                //Executeから呼ばれた場合
+                case TestAssistantMode.Mode.Execute:
+                    break;
+            }
+
+            //Analyze or Capture から呼ばれた場合に true
+            if (TestAssistantMode.IsCreatingMode)
+            {
+                //ログを出力できる
+                Logger.WriteLine("log ....");
+            }
+
+            return app.WaitForIdentifyFromTypeFullName("WpfDockApp.MainWindow").Dynamic();
+        }
     }
 }
 ```
