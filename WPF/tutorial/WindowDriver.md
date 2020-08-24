@@ -105,7 +105,7 @@ Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックし�
 
 ![UserControlDriver.Analyze.png](../Img/UserControlDriver.Analyze.png)
 
-最初に右側のUserControlのドライバを作りみます。
+最初に右側のUserControlのドライバを作ります。
 ツリー上で[ReservationInformationUserControl]を選択し、右クリックから[Change The Analysis Target]を選択します。
 解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ReservationInformationUserControl]を起点にした内容で置き換わります。
 必要なコントロールを Designer に登録して Generate ボタンでコードを生成します。
@@ -140,7 +140,7 @@ namespace Driver.Windows
 }
 ```
 
-次に左側のUserControlに対するコードを生成します。今回はドライバを作成せずFormに直接UserControlの要素を配置します。
+次に左側のUserControlに対するコードを生成します。今回はドライバを作成せずWindowに直接UserControlの要素を配置します。
 UI解析ツリーの[ChangeOfPartyUserControl]の下に表示されている2つのテキストボックスをダブルクリックしてDesignerタブのグリッドに追加してください。
 
 ![UserControlDriver.Form.png](../Img/UserControlDriver.Form.png)
@@ -189,7 +189,7 @@ namespace Driver.Windows
 ## MainWindowのドライバの作成
 
 <!--TODO: なぜ、メニューだけを持つウィンドウと考えるか、またそれ以外はどうするのかの概要を記述する-->
-MainForm は複数のドッキングウィンドウで構成されています。ここでは MainWindowはメニューだけを持つウィンドウと考えます。
+MainWindow は複数のドッキングウィンドウで構成されています。ここでは MainWindowはメニューだけを持つウィンドウと考えます。
 メニューだけをプロパティに追加して、ドライバを生成してください。
 
 ![WindowDriver.MainFrame.png](../Img/WindowDriver.MainFrame.png)
@@ -240,7 +240,7 @@ Attach対象は MainFromDriver ではなく WindowsAppFrined (アプリケーシ
 
 まずは TreeUserControl の UserControlDriver を作ります。
 Ctrlキーを押しながらMainWindowのTreeにマウスオーバーすることでTreeViewがUI解析ツリーで選択状態になります。
-一つ上の要素にTreeUserControlがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
+いくつか上の要素にTreeUserControlがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
 TreeUserControlの子要素であるTreeViewをダブルクリックしてプロパティに追加します。
 
 Designerタブの内容を次のように変更し、[Generate]ボタンをクリックしてコードを生成します。
@@ -256,7 +256,6 @@ Designerタブの内容を次のように変更し、[Generate]ボタンをク�
 ![WindowDriver.TreeForm.png](../Img/WindowDriver.TreeForm.png)
 
 ```cs
-using Codeer.Friendly;
 using Codeer.Friendly.Dynamic;
 using Codeer.Friendly.Windows;
 using Codeer.Friendly.Windows.Grasp;
@@ -270,18 +269,12 @@ namespace Driver.Windows
     public class TreeUserControlDriver
     {
         public WPFUserControl Core { get; }
+        public WPFTreeView TreeView => Core.Dynamic().TreeView; 
 
         public TreeUserControlDriver(AppVar core)
         {
             Core = new WPFUserControl(core);
         }
-    }
-
-    public static class TreeUserControlDriverExtensions
-    {
-        [UserControlDriverIdentify]
-        public static TreeUserControlDriver AttachTreeUserControl(this WindowsAppFriend app)
-            => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WpfDockApp.TreeUserControl")).FirstOrDefault()?.Dynamic();
     }
 }
 ```
