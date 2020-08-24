@@ -94,6 +94,14 @@
     <Compile Include="CustomControlWindow.xaml.cs">
       <DependentUpon>CustomControlWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ItemsControlWindow.xaml.cs">
+      <DependentUpon>ItemsControlWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListBoxViewModel.cs" />
+    <Compile Include="ListView1ViewModel.cs" />
+    <Compile Include="ListView2ViewModel.cs.cs" />
+    <Compile Include="ListView3ViewModel.cs" />
+    <Compile Include="ListViewDataTemplateSelector.cs" />
     <Compile Include="MakeDocumentEventArgs.cs" />
     <Compile Include="MultiUserControlWindow.xaml.cs">
       <DependentUpon>MultiUserControlWindow.xaml</DependentUpon>
@@ -120,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControlWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemsControlWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
