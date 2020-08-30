@@ -148,4 +148,4 @@ namespace PageObject
 ここまで基本的なページオブジェクトを作成できました。
 次はテーブルなど繰り返しのデータを表示する要素を操作するための、Component Objectを作成します。
 
-[繰り返し要素を操作するためのComponen Objectを作成する](ComponentObject.md)
+[繰り返し要素のプロパティを追加する](ComponentObject.md)
