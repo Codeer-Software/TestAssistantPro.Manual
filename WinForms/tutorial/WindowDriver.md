@@ -2,9 +2,9 @@
 
 [テストソリューションを新規作成する](./Sln.md)で作成したソリューションにTestAssistantProを利用してアプリケーションのドライバを作ります。
 
-ドライバ(WindowDriver/UserControlDriver/ControlDriver)が理解できていない場合は先に
+この手順を始める前に、ドライバの概要を理解するために、
 [Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)
-を参照してください。
+を参照しておいてください。
 
 各機能の詳細な内容は次を参照してください。
 
