@@ -10,18 +10,18 @@ namespace WpfDockApp
         {
             InitializeComponent();
 
-            this.Loaded += ItemsControlWindow_Loaded;
+            Loaded += ItemsControlWindow_Loaded;
         }
 
-        private void ItemsControlWindow_Loaded(object sender, RoutedEventArgs e)
+        void ItemsControlWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            if (this._listBox?.Items?.Count == 0)
+            if (_listBox?.Items?.Count == 0)
             {
-                this._listBox.ItemsSource = GetListBoxItems();
+                _listBox.ItemsSource = GetListBoxItems();
             }
-            if (this._listView?.Items?.Count == 0)
+            if (_listView?.Items?.Count == 0)
             {
-                this._listView.ItemsSource = GetListViewItems();
+                _listView.ItemsSource = GetListViewItems();
             }
         }
         public List<ListBoxViewModel> GetListBoxItems()

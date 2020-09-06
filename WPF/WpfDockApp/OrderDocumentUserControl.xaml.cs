@@ -21,7 +21,7 @@ namespace WpfDockApp
             _dataGrid.ItemsSource = document;
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             var hits = new List<string>();
             var items = _dataGrid.Items;

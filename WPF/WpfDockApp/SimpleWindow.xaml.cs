@@ -12,10 +12,10 @@ namespace WpfDockApp
         {
             InitializeComponent();
 
-            this.DataContext = this;
+            DataContext = this;
         }
 
-        private string userName = string.Empty;
+        string userName = string.Empty;
 
         public string UserName
         {
@@ -30,7 +30,7 @@ namespace WpfDockApp
             }
         }
 
-        private DateTime? birthday ;
+        DateTime? birthday ;
 
         public DateTime? Birthday
         {
@@ -45,7 +45,7 @@ namespace WpfDockApp
             }
         }
 
-        private string userLanguage;
+        string userLanguage;
 
         public string UserLanguage
         {
@@ -60,7 +60,7 @@ namespace WpfDockApp
             }
         }
 
-        private string remarks;
+        string remarks;
 
         public string Remarks
         {
@@ -77,14 +77,14 @@ namespace WpfDockApp
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged([CallerMemberName]string propertyName = "")
+        void OnPropertyChanged([CallerMemberName]string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void OK_Click(object sender, RoutedEventArgs e)
+        void OK_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

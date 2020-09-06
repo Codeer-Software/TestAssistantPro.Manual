@@ -16,12 +16,12 @@ namespace WpfDockApp
             _textBox.Text = searchResult;
         }
 
-        private void ButtonCopy_Click(object sender, RoutedEventArgs e)
+        void ButtonCopy_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Clipboard.SetText(_textBox.Text);
         }
 
-        private void ButtonSaveFile_Click(object sender, RoutedEventArgs e)
+        void ButtonSaveFile_Click(object sender, RoutedEventArgs e)
         {
             var dlg = new SaveFileDialog();
             if (dlg.ShowDialog() == true)
@@ -30,7 +30,7 @@ namespace WpfDockApp
             }
         }
 
-        private void ButtonClear_Click(object sender, RoutedEventArgs e)
+        void ButtonClear_Click(object sender, RoutedEventArgs e)
         {
             _textBox.Text = string.Empty;
         }

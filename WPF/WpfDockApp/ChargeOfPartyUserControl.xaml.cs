@@ -9,10 +9,10 @@ namespace WpfDockApp
         public ChargeOfPartyUserControl()
         {
             InitializeComponent();
-            this.DataContext = this;
+            DataContext = this;
         }
 
-        private string userName = string.Empty;
+        string userName = string.Empty;
 
         public string UserName
         {
@@ -27,7 +27,7 @@ namespace WpfDockApp
             }
         }
 
-        private string tel = string.Empty;
+        string tel = string.Empty;
 
         public string Tel
         {
@@ -44,7 +44,7 @@ namespace WpfDockApp
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged([CallerMemberName]string propertyName = "")
+        void OnPropertyChanged([CallerMemberName]string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

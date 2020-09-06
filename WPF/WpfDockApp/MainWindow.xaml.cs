@@ -14,7 +14,7 @@ namespace WpfDockApp
             _treeUserControl.MakeDocumentEvent += TreeUserControl_MakeDocumentEvent;
         }
 
-        private void TreeUserControl_MakeDocumentEvent(object sender, MakeDocumentEventArgs e)
+        void TreeUserControl_MakeDocumentEvent(object sender, MakeDocumentEventArgs e)
         {
             var documents = e.Document;
             bool found = false;
@@ -46,48 +46,48 @@ namespace WpfDockApp
             }
         }
 
-        private void DocumentControl_SearchEvent(object sender, SearchEventArgs e)
+        void DocumentControl_SearchEvent(object sender, SearchEventArgs e)
         {
             _outputUserControl.SetOutputTexts(e.SearchResult);
         }
 
-        private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
+        void MenuItemOpen_Click(object sender, RoutedEventArgs e)
         {
             var dlg = new OpenFileDialog();
             dlg.ShowDialog();
         }
 
-        private void MenuItemSave_Click(object sender, RoutedEventArgs e)
+        void MenuItemSave_Click(object sender, RoutedEventArgs e)
         {
             var dlg = new SaveFileDialog();
             dlg.ShowDialog();
         }
 
-        private void SimpleDialog_Click(object sender, RoutedEventArgs e)
+        void SimpleDialog_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new SimpleWindow();
             dialog.ShowDialog();
         }
 
-        private void MultiUserControlDialog_Click(object sender, RoutedEventArgs e)
+        void MultiUserControlDialog_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new MultiUserControlWindow();
             dialog.ShowDialog();
         }
 
-        private void CustomControlDialog_Click(object sender, RoutedEventArgs e)
+        void CustomControlDialog_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new CustomControlWindow();
             dialog.ShowDialog();
         }
 
-        private void ItemsControlDialog_Click(object sender, RoutedEventArgs e)
+        void ItemsControlDialog_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new ItemsControlWindow();
             dialog.ShowDialog();
         }
 
-        private void MessageBoxDialog_Click(object sender, RoutedEventArgs e)
+        void MessageBoxDialog_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(this, "Message.");
         }

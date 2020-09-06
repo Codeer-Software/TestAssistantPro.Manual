@@ -14,14 +14,14 @@ namespace WpfDockApp
         {
             InitializeComponent();
 
-            this.Loaded += TreeUserControl_Loaded;
+            Loaded += TreeUserControl_Loaded;
         }
 
-        private void TreeUserControl_Loaded(object sender, RoutedEventArgs e)
+        void TreeUserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (this._treeView?.Items?.Count == 0)
+            if (_treeView?.Items?.Count == 0)
             {
-                this._treeView.ItemsSource = GetTreeViewItems();
+                _treeView.ItemsSource = GetTreeViewItems();
             }
         }
 
@@ -43,7 +43,7 @@ namespace WpfDockApp
             return treeViewModels;
         }
 
-        private void Open_Click(object sender, RoutedEventArgs e)
+        void Open_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = sender as MenuItem;
             if (menuItem != null)
@@ -81,7 +81,7 @@ namespace WpfDockApp
             return documents;
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             var menuItem = sender as MenuItem;
             if (menuItem != null)
@@ -91,7 +91,7 @@ namespace WpfDockApp
             }
         }
 
-        private void TreeView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        void TreeView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var viewModel = (TreeViewModel)_treeView.SelectedItem;
             if (viewModel.Children == null)
