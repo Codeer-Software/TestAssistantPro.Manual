@@ -13,11 +13,11 @@
         </Grid.RowDefinitions>
         <ToolBarTray Grid.Row="0">
             <ToolBar>
-                <Button x:Name="ButtonCopy" Content="Copy" Click="ButtonCopy_Click" />
-                <Button x:Name="ButtonSaveFile" Content="Save File" Click="ButtonSaveFile_Click" />
-                <Button x:Name="ButtonClear" Content="Clear" Click="ButtonClear_Click" />
+                <Button x:Name="_buttonCopy" Content="Copy" Click="ButtonCopy_Click" />
+                <Button x:Name="_buttonSaveFile" Content="Save File" Click="ButtonSaveFile_Click" />
+                <Button x:Name="_buttonClear" Content="Clear" Click="ButtonClear_Click" />
             </ToolBar>
         </ToolBarTray>
-        <TextBox x:Name="TextBox" Grid.Row="1" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+        <TextBox x:Name="_textBox" Grid.Row="1" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
     </Grid>
 </UserControl>

@@ -11,7 +11,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="ListBox" Grid.Column="0" Margin="8" BorderThickness="1">
+        <ListBox x:Name="_listBox" Grid.Column="0" Margin="8" BorderThickness="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -28,7 +28,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListView x:Name="ListView" Grid.Column="1" Margin="8" BorderThickness="1">
+        <ListView x:Name="_listView" Grid.Column="1" Margin="8" BorderThickness="1">
             <ListView.ItemTemplateSelector>
                 <local:ListViewDataTemplateSelector>
                     <local:ListViewDataTemplateSelector.DataTemplate1>

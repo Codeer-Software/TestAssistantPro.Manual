@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace WpfDockApp
@@ -14,9 +9,7 @@ namespace WpfDockApp
         public DataTemplate DataTemplate2 { get; set; }
         public DataTemplate DataTemplate3 { get; set; }
 
-
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
-
         {
             if (item is ListView1ViewModel)
             {

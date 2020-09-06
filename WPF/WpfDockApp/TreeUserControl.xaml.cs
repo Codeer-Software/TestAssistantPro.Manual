@@ -1,23 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfDockApp
 {
-    /// <summary>
-    /// TreeUserControl.xaml の相互作用ロジック
-    /// </summary>
     public partial class TreeUserControl : UserControl
     {
         public delegate void MakeDocumentEventHandler(object sender, MakeDocumentEventArgs e);
@@ -32,9 +19,9 @@ namespace WpfDockApp
 
         private void TreeUserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (this.TreeView?.Items?.Count == 0)
+            if (this._treeView?.Items?.Count == 0)
             {
-                this.TreeView.ItemsSource = GetTreeViewItems();
+                this._treeView.ItemsSource = GetTreeViewItems();
             }
         }
 
@@ -99,14 +86,14 @@ namespace WpfDockApp
             var menuItem = sender as MenuItem;
             if (menuItem != null)
             {
-                var viewModel = (TreeViewModel)TreeView.SelectedItem;
+                var viewModel = (TreeViewModel)_treeView.SelectedItem;
                 MakeDocumentEvent?.Invoke(this, new MakeDocumentEventArgs(viewModel.Name, GetDocuments(viewModel.Name)));
             }
         }
 
         private void TreeView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var viewModel = (TreeViewModel)TreeView.SelectedItem;
+            var viewModel = (TreeViewModel)_treeView.SelectedItem;
             if (viewModel.Children == null)
             {
                 string header = viewModel.Name;
