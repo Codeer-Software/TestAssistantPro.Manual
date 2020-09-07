@@ -1,4 +1,4 @@
-# ItemsControlに対応する
+# カスタマイズされたItemsControlに対応する
 
 DataTemplateによってカスタマイズされたItemsControlに対しては、そのItemに対してUserControlを作成します。
 WindowDriver、UserControlDriverについて理解できていない場合は先にこちらを参照してください。
@@ -106,6 +106,7 @@ namespace Driver.Windows
 }
 ```
 
+### それぞれのListViewItemのドライバを作成する
 ListViewのListViewtemの一行目のドライバを作ります。ツリー上で最初の[ListViewItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListViewItem]を起点にした内容で置き換わります。Class Name は SampleListViewItem1Driver に変更し、必要なコントロールを Designer に登録します。 
 それから Create Attach Code にチェックを入れて SampleListViewItemBaseDriver にアタッチできるようにします。Methodは Type Full Name を選択してください。
 Generate ボタンでコードを生成します。
