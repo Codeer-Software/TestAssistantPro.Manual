@@ -15,6 +15,7 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 - チュートリアル
   1. [テストソリューションを新規作成する](tutorial/Sln.md)
   2. [アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](tutorial/WindowDriver.md)
+  2. [ItemsControlに対応する](tutorial/ItemsControlDriver.md)
   3. [ControlDriverとCaptureCodeGeneratorを作成する](tutorial/ControlDriver.md)
   4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
 
@@ -36,11 +37,10 @@ Friendly を使って自動テストを作成しようとするときに多く�
 そのほか、シンプルなダイアログ、ネイティブのダイアログ、プロジェクト固有のコントロールもあり
 一般的な WPF のアプリケーションの操作方法が一通り学べるようにしています。
 
-![MainFrame.png](Img/MainFrame.png)
-
-![SampleDialogs.png](Img/SampleDialogs.png)
-
-![NativeWindows.png](Img/NativeWindows.png)
+![DemoApp1.png](Img/DemoApp1.png)
+![DemoApp2.png](Img/DemoApp2.png)
+![DemoApp3.png](Img/DemoApp3.png)
+![DemoApp4.png](Img/DemoApp4.png)
 
 ## サンプルアプリケーションの準備
 サンプルアプリケーションは[こちら](https://github.com/Codeer-Software/TestAssistantPro.Manual/releases/download/ver0.1/WpfDockApp.zip)からダウンロードできます。ダウンロード後には「ブロックの解除」を行ってください。ソースコードは[こちら](WpfDockApp)にあります。
