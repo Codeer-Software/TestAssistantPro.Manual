@@ -15,7 +15,7 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 - チュートリアル
   1. [テストソリューションを新規作成する](tutorial/Sln.md)
   2. [アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](tutorial/WindowDriver.md)
-  2. [ItemsControlに対応する](tutorial/ItemsControlDriver.md)
+  2. [カスタマイズされたItemsControlに対応する](tutorial/ItemsControlDriver.md)
   3. [ControlDriverとCaptureCodeGeneratorを作成する](tutorial/ControlDriver.md)
   4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
 

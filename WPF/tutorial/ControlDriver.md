@@ -190,7 +190,7 @@ public class OrderDocumentUserControlDriver
     //追加
     public LayoutDocumentControlDriver LayoutDocumentControl 
         //親方向に検索して最初に見つかったLayoutDocumentControl
-        => Core.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").FirstOrDefault()?.Dynamic();
+        => Core.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").First().Dynamic();
 
     public OrderDocumentUserControlDriver(AppVar core)
     {

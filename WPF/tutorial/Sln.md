@@ -58,7 +58,7 @@ Visual Studioを起動して「新しいプロジェクトの追加」ダイア�
 「Application(Driver.InTarget)」はDriver.InTargetプロジェクトで利用するバージョンを指定します。テスト対象のアプリケーションにインジェクトションされるコードとなるため、必ずテスト対象のアプリケーションで利用されている.netのバージョン以下の値を指定する必要があります。
 「Test(Driver, Schenario)」には、必ず「Application(Driver.InTarget)」のバージョン以上を指定してください。
 
-サンプルアプリケーションは .NET Framework 4.5が利用されてます。そのため「Application(Driver.InTarget)」には「.NET Framework 4.5」を選択する必要があります。
+サンプルアプリケーションは .NET Framework 4.7.2が利用されてます。そのため「Application(Driver.InTarget)」には「.NET Framework 4.7.2」を選択する必要があります。
 
 ![Sln3.png](../Img/Sln3.png)
 

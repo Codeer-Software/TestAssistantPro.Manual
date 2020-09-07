@@ -377,7 +377,7 @@ namespace Driver.Windows
                     ToArray();
 
         static string GetTitle(AppVar e)
-            => e.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").ToArray().First().Dynamic().Model.Title;
+            => e.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").First().Dynamic().Model.Title;
     }
 }
 ```
