@@ -328,6 +328,9 @@ namespace Driver.Windows
 
 Document は同じタイプのものが複数存在します。
 取得方法は Customを利用しTitleプロパティが一致するものを取得し、 WindowsAppFriend にAttachするように設定します。
+Titleの取得はドキュメントを親方向にたどっていって存在するLayoutDocumentControlに対する操作で実現できます。
+この辺りは使っているライブラリの知識が必要です。
+多くの場合アプリ開発チームのメンバーならば対応可能です。
 Attachのオプションの詳細は [Attach方法ごとのコード](../feature/Attach.md)を参照してください。
 
 ![WindowDriver.Document.png](../Img/WindowDriver.Document.png)
