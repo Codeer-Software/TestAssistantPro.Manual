@@ -174,6 +174,8 @@ namespace Driver.InTarget
 }
 ```
 
+LayoutDocumentControlはOrderDocumentUserControlより親方向に存在します。
+これはAnalyzeWindowでは見つけることができません。
 OrderDocumentUserControlDriverに手書きで加えます。
 ```cs
 [UserControlDriver(TypeFullName = "WpfDockApp.OrderDocumentUserControl")]
