@@ -50,6 +50,15 @@ namespace Driver.Windows
 ```
 そしてこのListBoxのControlDriverをListBox&lt;SampleListBoxItemDriver>にします。
 
+使い方はこのようになります。
+```cs
+var itemsControlWindow = _app.AttachItemsControlWindow();
+itemsControlWindow._listBox.EmulateChangeSelectedIndex(2);
+itemsControlWindow._listBox.GetItemDriver(2).CheckBox.EmulateCheck(true);
+itemsControlWindow._listBox.GetItemDriver(2).ComboBox.EmulateChangeSelectedIndex(2);
+itemsControlWindow._listBox.GetItemDriver(2).TextBox.EmulateChangeText("abc");
+```
+
 [ItemsControlWindowのドライバ作成](#ItemsControlWindowのドライバ作成)
 
 ## 複数種類のアイテムへの対応(DataTemplateSelector)
@@ -276,6 +285,10 @@ namespace Driver.Windows
     }
 }
 ```
+## キャプチャ
+キャプチャしてみます。
+
+![ItemsControlCapture.png](../Img/ItemsControlCapture.png)
 
 ## 次の手順
 
