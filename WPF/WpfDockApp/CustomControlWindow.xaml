@@ -8,6 +8,6 @@
         mc:Ignorable="d"
         Title="CustomControl" Height="204.035" Width="286.762" FontSize="16">
     <Grid>
-        <local:NumericUpDownControl Height="28" Value="{Binding Age.Value}" Canvas.Left="136" Canvas.Top="283" Width="179"/>
+        <local:NumericUpDownControl x:Name="_numericUpDown" Height="28" Canvas.Left="136" Canvas.Top="283" Width="179"/>
     </Grid>
 </Controls:MetroWindow>

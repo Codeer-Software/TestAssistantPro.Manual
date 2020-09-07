@@ -1,11 +1,13 @@
 # ControlDriverとCaptureCodeGeneratorを作成する
 
-ここではサンプルとしてBlockControlのControlDriverとCaptureCodeGeneratorを作成します。
-MainFrameのメニューから[etc]-[Custom Control Dialog]選択して、[CustomControlDialog]を表示してください。
-このダイアログではAddボタンを押すことでブロックが画面上に追加されます。
-BlockControlはブロックをドラッグで移動させることができます。
+ここではサンプルとしてNumericUpDownControlのControlDriverとCaptureCodeGeneratorを作成します。
+メニューから[etc]-[Custom Control Dialog]選択して、[CustomControlWindow]を表示してください。
+WPFではNumericUpDownは標準では存在しないため必要なら自作します。
 
-![ControlDriver.BlockControl.png](../Img/ControlDriver.BlockControl.png)
+![ControlDriver.NumeriDropDownControl.png](../Img/ControlDriver.NumeriDropDownControl.png)
+
+## WPFの場合はUserControlDriverにしてもよい
+WinFormsの場合はカスタムコントロールは独自のControlDriverを作るしかないのですが、WPFの場合は標準コントロールを組み合わせて作ることが多く、場合によってはUserControlDriverにしてもよいです。この例のNumericUpDownもUserControlにすることも可能です。どちらにするかは時々で判断してください。
 
 ## ControlDriverとCaptureCodeGeneratorのコードテンプレートを生成する
 
@@ -22,9 +24,8 @@ UI解析ツリーからBlockControlを選択し、コンテキスメニューよ
 
 ## ControlDriverの実装
 
-BlockControlはSelectIndexという現在選択されているブロックのインデックスを取得または設定するプロパティを公開しています。
-また、MoveBlockというメソッドも公開しているため、このドライバではその2つを実装します。
-
+NumericUpDownControlはValueを取得または設定するプロパティを公開しています。
+また、TextBoxをValueTextBoxで取得できますので操作することができます。
 生成したControlDriverのコードテンプレートを次のように変更してください。
 
 プロセスを超えたプロパティやメソッドの操作にはFriendlyを使っています。詳細は[Friendly](https://github.com/Codeer-Software/Friendly/blob/master/README.jp.md)を参照してください。
@@ -32,143 +33,140 @@ BlockControlはSelectIndexという現在選択されているブロックのイ
 using Codeer.Friendly;
 using Codeer.Friendly.Dynamic;
 using Codeer.TestAssistant.GeneratorToolKit;
-using Ong.Friendly.FormsStandardControls;
-using System.Drawing;
+using RM.Friendly.WPFStandardControls;
 
 namespace Driver.Controls
 {
-    //実装するにはBlockControlのAPIを知っている必要がある
-    [ControlDriver(TypeFullName = "WinFormsApp.BlockControl", Priority = 2)]
-    public class BlockControlDriver : FormsControlBase
+    [ControlDriver(TypeFullName = "WpfDockApp.NumericUpDownControl", Priority = 2)]
+    public class NumericUpDownControlDriver : WPFUIElement
     {
-        public BlockControlDriver(AppVar appVar)
+        public NumericUpDownControlDriver(AppVar appVar)
             : base(appVar) { }
 
-        //選択インデックス
-        public int SelectedIndex => this.Dynamic().SelectedIndex;
+		public int Value => this.Dynamic().Value;
 
-        //選択変更
-        public void EmulateChangeSelectedIndex(int index) => this.Dynamic().SelectedIndex = index;
-
-        //移動
-        public void EmulateMoveBlock(int index, Point location) => this.Dynamic().MoveBlock(index, location);
-    }
+		public void EmulateChangeValue(int value)
+		{
+			var textBox = this.Dynamic().ValueTextBox;
+			if (textBox != null)
+			{
+				textBox.Focus();
+				textBox.Text = value.ToString();
+			}
+		}
+	}
 }
 ```
 
 ## CaptureCodeGeneratorの実装
 
-次にBlockControlのCaptureCodeGeneratorをコードテンプレートを編集して作成します。
-イベントを受ける必要があるので BlockControl が定義されている WinFormApp.exe を参照します。
+次にNumericUpDownControlのCaptureCodeGeneratorをコードテンプレートを編集して作成します。
+イベントを受ける必要があるので NumericUpDownControl が定義されている WpfDockApp.exe を参照します。
 コードテンプレートを次のように変更してください。
 
 ```cs
 using System;
-using System.Drawing;
 using Codeer.TestAssistant.GeneratorToolKit;
-using WinFormsApp;
+using WpfDockApp;
 
 namespace Driver.InTarget
 {
-    [CaptureCodeGenerator("Driver.Controls.BlockControlDriver")]
-    public class BlockControlDriverGenerator : CaptureCodeGeneratorBase
+    [CaptureCodeGenerator("Driver.Controls.NumericUpDownControlDriver")]
+    public class NumericUpDownControlDriverGenerator : CaptureCodeGeneratorBase
     {
-        BlockControl _control;
+		NumericUpDownControl _control;
+		protected override void Attach()
+		{
+			_control = (NumericUpDownControl)ControlObject;
+			_control.ValueChanged += ValueChanged;
+		}
 
-        protected override void Attach()
-        {
-            _control = (BlockControl)ControlObject;
-            _control.SelectChanged += SelectChanged;
-            _control.BlockMoved += BlockMoved;
-        }
+		protected override void Detach()
+		{
+			_control.ValueChanged -= ValueChanged;
+		}
 
-        protected override void Detach()
-        {
-            _control.SelectChanged -= SelectChanged;
-            _control.BlockMoved -= BlockMoved;
-        }
-
-        void SelectChanged(object sender, EventArgs e)
-        {
-            if (!_control.Focused) return;
-            AddSentence(new TokenName(), ".EmulateChangeSelectedIndex(" + _control.SelectedIndex, new TokenAsync(CommaType.Before), ");");
-        }
-
-        void BlockMoved(object sender, BlockMoveEventArgs e)
-        {
-            if (!_control.Focused) return;
-            AddUsingNamespace(typeof(Point).Namespace);
-            AddSentence(new TokenName(), ".EmulateMoveBlock(" + _control.SelectedIndex, $", new Point({e.MoveLocation.X}, {e.MoveLocation.Y})", new TokenAsync(CommaType.Before), ");");
-        }
-    }
+		void ValueChanged(object sender, EventArgs e)
+		{
+			if (_control.ValueTextBox.IsFocused || _control.UpButton.IsFocused || _control.DownButton.IsFocused)
+				AddSentence(new TokenName(), ".EmulateChangeValue(" + _control.Value, new TokenAsync(CommaType.Before), ");");
+		}
+	}
 }
-
 ```
 
 ## ControlDriverとCaptureCodeGeneratorの利用
 
 作成したControlDriverとCaptureCodeGenaratorを利用してコードを生成します。
-通常の手順でWindowDriverを作成してください。UI解析ツリーからBlockControlを選択することで、グリッドに作成したBlockControlDriverを利用したプロパティが追加されることを確認できます。
+通常の手順でWindowDriverを作成してください。UI解析ツリーからNumericUpDownControlを選択することで、グリッドに作成したNumericUpDownControlDriverを利用したプロパティが追加されることを確認できます。
 
-![CreateDriver.AssignBlockControlDriver.png](../Img/CreateDriver.AssignBlockControlDriver.png)
+![CreateDriver.AssignNumericUpDownControlDriver.png](../Img/CreateDriver.AssignNumericUpDownControlDriver.png)
 
 WindowDriverを作成してキャプチャも行ってください。操作を行うことでCaptureCodeGeneratorを利用してコードが生成されることを確認できます。
 
-![CreateDriver.BlockControlDriver.Capture.png](../Img/CreateDriver.BlockControlDriver.Capture.png)
+![CreateDriver.NumericUpDownControlDriver.Capture.png](../Img/CreateDriver.NumericUpDownControlDriver.Capture.png)
 
 ### デバッグ
 
 うまく動かない場合はデバッグして問題を見つけます。
 Attach にブレークポイントを貼って Shift キーを押しながら Capture を実行してみてください。
 
-### DockContentの閉じるに反応するようにする
+### ドキュメントの閉じるに反応するようにする
 
-DockContentも標準のコントロールではないのでそのままでは対応できません。
+ドキュメントも標準のコントロールではないのでそのままでは対応できません。
 こちらも同様に作成してみます。
-作成後にDockContentを継承したウィンドウに対してドライバを作るとCoreの部分がDockContentDriverになります。
-演習の順番的に先ほどすでに作っている場合は、手動でWindowControlの部分を書き換えてください。
+これはドキュメントを親方向にたどっていって存在するLayoutDocumentControlに対する操作で実現できます。
+この辺りは使っているライブラリの知識が必要です。
+多くの場合アプリ開発チームのメンバーならば対応可能です。
 
-![ControlDriver.DockContent.png](../Img/ControlDriver.DockContent.png)
+![ControlDriver.LayoutDocumentControl.png](../Img/ControlDriver.LayoutDocumentControl.png)
 
 ```cs
 using Codeer.Friendly;
+using Codeer.Friendly.Dynamic;
 using Codeer.TestAssistant.GeneratorToolKit;
-using Ong.Friendly.FormsStandardControls;
+using RM.Friendly.WPFStandardControls;
 
 namespace Driver.Controls
 {
-    [ControlDriver(TypeFullName = "WeifenLuo.WinFormsUI.Docking.DockContent", Priority = 2)]
-    public class DockContentDriver : FormsControlBase
+    [ControlDriver(TypeFullName = "Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl", Priority = 2)]
+    public class LayoutDocumentControlDriver : WPFUIElement
     {
-        public DockContentDriver(AppVar appVar)
+        public LayoutDocumentControlDriver(AppVar appVar)
             : base(appVar) { }
+
+        public void Close() => this.Dynamic().Model.Close();
     }
 }
 ```
 
+CaptureGeneratorはイベントを使うので、Xceed.Wpf.AvalonDock.Themes.VS2013をNugetからインストールします。バージョンはWpfDockAppに入っているものと合わせてください。
+
+![ControlDriver.DriverInTarget.Nuget.png](../Img/ControlDriver.DriverInTarget.Nuget.png)
+
 ```cs
-using System.Windows.Forms;
 using Codeer.TestAssistant.GeneratorToolKit;
+using Xceed.Wpf.AvalonDock.Controls;
 
 namespace Driver.InTarget
 {
-    [CaptureCodeGenerator("Driver.Controls.DockContentDriver")]
-    public class DockContentDriverGenerator : CaptureCodeGeneratorBase
+    [CaptureCodeGenerator("Driver.Controls.LayoutDocumentControlDriver")]
+    public class LayoutDocumentControlDriverGenerator : CaptureCodeGeneratorBase
     {
-        Form _control;
+        LayoutDocumentControl _control;
 
         protected override void Attach()
         {
-            _control = (Form)ControlObject;
-            _control.FormClosed += FormClosed;
+            _control = (LayoutDocumentControl)ControlObject;
+            _control.Model.Closed += ModelClosed;
         }
 
         protected override void Detach()
         {
-            _control.FormClosed -= FormClosed;
+            _control.Model.Closed -= ModelClosed;
         }
 
-        void FormClosed(object sender, FormClosedEventArgs e)
+        private void ModelClosed(object sender, System.EventArgs e)
         {
             AddSentence(new TokenName(), ".Close();");
         }
@@ -176,25 +174,25 @@ namespace Driver.InTarget
 }
 ```
 
+OrderDocumentUserControlDriverに手書きで加えます。
 ```cs
-[UserControlDriver(TypeFullName = "WinFormsApp.OrderDocumentForm")]
-public class OrderDocumentFormDriver
+[UserControlDriver(TypeFullName = "WpfDockApp.OrderDocumentUserControl")]
+public class OrderDocumentUserControlDriver
 {
-    //WindowControl -> DockContentDriver
-    public DockContentDriver Core { get; }
+    public WPFUserControl Core { get; }
+    public WPFTextBox _searchText => Core.Dynamic()._searchText; 
+    public WPFContextMenu _searchTextContextMenu => new WPFContextMenu{Target = _searchText.AppVar};
+    public WPFButtonBase _searchButton => Core.Dynamic()._searchButton; 
+    public WPFDataGrid _dataGrid => Core.Dynamic()._dataGrid;
 
-    public FormsButton _searchButton => Core.Dynamic()._searchButton;
-    public FormsTextBox _searchTextBox => Core.Dynamic()._searchTextBox;
-    public FormsDataGridView _grid => Core.Dynamic()._grid;
+    //追加
+    public LayoutDocumentControlDriver LayoutDocumentControl 
+        //親方向に検索して最初に見つかったLayoutDocumentControl
+        => Core.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").FirstOrDefault()?.Dynamic();
 
-    public OrderDocumentFormDriver(WindowControl core)
+    public OrderDocumentUserControlDriver(AppVar core)
     {
-        Core = new DockContentDriver(core.AppVar);
-    }
-
-    public OrderDocumentFormDriver(AppVar core)
-    {
-        Core = new DockContentDriver(core);
+        Core = new WPFUserControl(core);
     }
 }
 ```

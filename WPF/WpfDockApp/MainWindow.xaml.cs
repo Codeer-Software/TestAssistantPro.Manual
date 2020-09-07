@@ -37,7 +37,6 @@ namespace WpfDockApp
                 var layoutDocument = new LayoutDocument();
                 layoutDocument.Title = e.Header;
                 var documentControl = new OrderDocumentUserControl();
-                documentControl.Title = e.Header;
                 documentControl.SearchEvent += DocumentControl_SearchEvent;
                 documentControl.SetDocument(documents);
                 layoutDocument.Content = documentControl;

@@ -347,10 +347,10 @@ namespace Driver.Windows
     public class OrderDocumentUserControlDriver
     {
         public WPFUserControl Core { get; }
-        public WPFTextBox SearchText => Core.Dynamic()._searchText; 
-        public WPFContextMenu SearchTextContextMenu => new WPFContextMenu{Target = SearchText.AppVar};
-        public WPFButtonBase SearchButton => Core.Dynamic()._searchButton; 
-        public WPFDataGrid DataGrid => Core.Dynamic()._dataGrid; 
+        public WPFTextBox _searchText => Core.Dynamic()._searchText; 
+        public WPFContextMenu _searchTextContextMenu => new WPFContextMenu{Target = _searchText.AppVar};
+        public WPFButtonBase _searchButton => Core.Dynamic()._searchButton; 
+        public WPFDataGrid _dataGrid => Core.Dynamic()._dataGrid; 
 
         public OrderDocumentUserControlDriver(AppVar core)
         {
@@ -363,16 +363,18 @@ namespace Driver.Windows
         [UserControlDriverIdentify(CustomMethod = "TryGet")]
         public static OrderDocumentUserControlDriver AttachOrderDocumentUserControl(this WindowsAppFriend app, string identifier)
             => app.GetTopLevelWindows().
-                    Select(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").SingleOrDefault()).
-                    Where(e => !e.IsNull).
-                    Where(e => (string)e.Dynamic().Title == identifier).
+                    SelectMany(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").ToArray()).
+                    Where(e => GetTitle(e) == identifier).
                     FirstOrDefault()?.Dynamic();
-        public static void TryGet(this WindowsAppFriend app, out string[] identifier)
-            => identifier = app.GetTopLevelWindows().
-                Select(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").SingleOrDefault()).
-                Where(e => !e.IsNull).
-                Select(e => (string)e.Dynamic().Title).
-                ToArray();
+
+        public static void TryGet(this WindowsAppFriend app, out string[] identifiers)
+             => identifiers = app.GetTopLevelWindows().
+                    SelectMany(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").ToArray()).
+                    Select(e => GetTitle(e)).
+                    ToArray();
+
+        static string GetTitle(AppVar e)
+            => e.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").ToArray().First().Dynamic().Model.Title;
     }
 }
 ```
