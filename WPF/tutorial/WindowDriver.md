@@ -60,14 +60,14 @@ namespace Driver.Windows
     public class SimpleWindowDriver
     {
         public WindowControl Core { get; }
-        public WPFTextBox TextBox => Core.LogicalTree().ByBinding("UserName").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
-        public WPFDatePicker DatePicker => Core.LogicalTree().ByBinding("Birthday").Single().Dynamic(); 
-        public WPFComboBox ComboBox => Core.LogicalTree().ByBinding("UserLanguage").Single().Dynamic(); 
-        public WPFTextBox TextBox0 => Core.LogicalTree().ByBinding("Remarks").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu0 => new WPFContextMenu{Target = TextBox0.AppVar};
-        public WPFButtonBase OK => Core.Dynamic()._oK; 
-        public WPFButtonBase Cancel => Core.Dynamic()._cancel; 
+        public WPFTextBox UserName => Core.LogicalTree().ByBinding("UserName").Single().Dynamic(); 
+        public WPFContextMenu UserNameContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
+        public WPFDatePicker Birthday => Core.LogicalTree().ByBinding("Birthday").Single().Dynamic(); 
+        public WPFComboBox UserLanguage => Core.LogicalTree().ByBinding("UserLanguage").Single().Dynamic(); 
+        public WPFTextBox Remarks => Core.LogicalTree().ByBinding("Remarks").Single().Dynamic(); 
+        public WPFContextMenu RemarksContextMenu => new WPFContextMenu{Target = Remarks.AppVar};
+        public WPFButtonBase _oK => Core.Dynamic()._oK; 
+        public WPFButtonBase _cancel => Core.Dynamic()._cancel; 
 
         public SimpleWindowDriver(WindowControl core)
         {
@@ -129,11 +129,11 @@ namespace Driver.Windows
     public class ReservationInformationUserControlDriver
     {
         public WPFUserControl Core { get; }
-        public WPFToggleButton Smoking => Core.Dynamic()._smoking; 
-        public WPFTextBox NumberOfPeople => Core.Dynamic()._numberOfPeople; 
-        public WPFContextMenu NumberOfPeopleContextMenu => new WPFContextMenu{Target = NumberOfPeople.AppVar};
-        public WPFToggleButton Course => Core.Dynamic()._course; 
-        public WPFToggleButton Alacarte => Core.Dynamic()._alacarte; 
+        public WPFToggleButton _smoking => Core.Dynamic()._smoking; 
+        public WPFTextBox _numberOfPeople => Core.Dynamic()._numberOfPeople; 
+        public WPFContextMenu _numberOfPeopleContextMenu => new WPFContextMenu{Target = NumberOfPeople.AppVar};
+        public WPFToggleButton _course => Core.Dynamic()._course; 
+        public WPFToggleButton _alacarte => Core.Dynamic()._alacarte; 
 
         public ReservationInformationUserControlDriver(AppVar core)
         {
@@ -166,10 +166,10 @@ namespace Driver.Windows
     {
         public WindowControl Core { get; }
         public AppVar ReservationInformationUserControl => Core.LogicalTree().ByType("WpfDockApp.ReservationInformationUserControl").Single().Dynamic(); 
-        public WPFTextBox TextBox => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("UserName").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
-        public WPFTextBox TextBox0 => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("Tel").Single().Dynamic(); 
-        public WPFContextMenu TextBox0ContextMenu => new WPFContextMenu{Target = TextBox0.AppVar};
+        public WPFTextBox UserName => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("UserName").Single().Dynamic(); 
+        public WPFContextMenu UserNameContextMenu => new WPFContextMenu{Target = UserName.AppVar};
+        public WPFTextBox Tel => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("Tel").Single().Dynamic(); 
+        public WPFContextMenu TelContextMenu => new WPFContextMenu{Target = Tel.AppVar};
 
         public MultiUserControlWindowDriver(WindowControl core)
         {
@@ -301,11 +301,11 @@ namespace Driver.Windows
     public class OutputUserControlDriver
     {
         public WPFUserControl Core { get; }
-        public WPFButtonBase ButtonCopy => Core.Dynamic()._buttonCopy; 
-        public WPFButtonBase ButtonSaveFile => Core.Dynamic()._buttonSaveFile; 
-        public WPFButtonBase ButtonClear => Core.Dynamic()._buttonClear; 
-        public WPFTextBox TextBox => Core.Dynamic()._textBox; 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
+        public WPFButtonBase _buttonCopy => Core.Dynamic()._buttonCopy; 
+        public WPFButtonBase _buttonSaveFile => Core.Dynamic()._buttonSaveFile; 
+        public WPFButtonBase _buttonClear => Core.Dynamic()._buttonClear; 
+        public WPFTextBox _textBox => Core.Dynamic()._textBox; 
+        public WPFContextMenu _textBoxContextMenu => new WPFContextMenu{Target = _textBox.AppVar};
 
         public OutputUserControlDriver(AppVar core)
         {

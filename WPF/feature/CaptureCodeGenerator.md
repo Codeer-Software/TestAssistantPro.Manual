@@ -9,37 +9,44 @@ CaptureCodeGeneratorはCapture時に生成され、最初に`Attach`メソッド
 CheckBoxでの実装例を次に記載します。
 
 ```cs
-using System;
-using System.Windows.Forms;
+using System.Windows.Controls.Primitives;
 using Codeer.TestAssistant.GeneratorToolKit;
+using System.Windows;
 
-namespace Ong.Friendly.FormsStandardControls.Generator
+namespace RM.Friendly.WPFStandardControls.Generator
 {
-    [CaptureCodeGenerator("Ong.Friendly.FormsStandardControls.FormsCheckBox")]
-    public class FormsCheckBoxGenerator : CaptureCodeGeneratorBase
+    [CaptureCodeGenerator("RM.Friendly.WPFStandardControls.WPFToggleButton")]
+    public class WPFToggleButtonGenerator : CaptureCodeGeneratorBase
     {
-        CheckBox _control;
-        
+        ToggleButton _control;
+
         protected override void Attach()
         {
-            _control = (CheckBox)ControlObject;
-            _control.CheckStateChanged += CheckStateChanged;
+            _control = (ToggleButton)ControlObject;
+            _control.Checked += ChangeCheck;
+            _control.Unchecked += ChangeCheck;
+            _control.Indeterminate += ChangeCheck;
         }
-        
+
         protected override void Detach()
         {
-            _control.CheckStateChanged -= CheckStateChanged;
+            _control.Checked -= ChangeCheck;
+            _control.Unchecked -= ChangeCheck;
+            _control.Indeterminate -= ChangeCheck;
         }
-        
-        void CheckStateChanged(object sender, EventArgs e)
-        {
-            //フォーカスがあるときだけコードを生成する
-            if (!_control.Focused) return;
 
-            //追加で必要なネームスペースを登録
-            AddUsingNamespace(typeof(CheckState).Namespace);
-            //コードを追加
-            AddSentence(new TokenName(), ".EmulateCheck(CheckState." + _control.CheckState, new TokenAsync(CommaType.Before), ");");
+        void ChangeCheck(object sender, RoutedEventArgs e)
+        {
+            //フォーカスがある場合のみコードを生成する
+            if (_control.IsFocused)
+            {
+                string isChecked = "null";
+                if (_control.IsChecked.HasValue)
+                {
+                    isChecked = _control.IsChecked.Value ? "true" : "false";
+                }
+                AddSentence(new TokenName(), ".EmulateCheck(" + isChecked, new TokenAsync(CommaType.Before), ");");
+            }
         }
     }
 }

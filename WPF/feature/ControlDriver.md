@@ -3,16 +3,15 @@
 ControlDriver はその名の通り、Button や TextBox など Control に対応するドライバです。
 多くの物は複数のアプリケーション間で再利用できます。
 
-TestAssistantPro を使って WinForms のテストプロジェクトを作成すると次のパッケージがインストールされ、含まれるControlDriverを利用できます。
+TestAssistantPro を使って WPF のテストプロジェクトを作成すると次のパッケージがインストールされ、含まれるControlDriverを利用できます。
 
-+ [Ong.Frinedly.FormsStandardControls](https://github.com/ShinichiIshizuka/Ong.Friendly.FormsStandardControls)
++ [RM.Frinedly.WPFStandardControls](https://github.com/Roommetro/Friendly.WPFStandardControls/)
 + [Codeer.Friendly.Windows.NativeStandardControls](https://github.com/Codeer-Software/Friendly.Windows.NativeStandardControls)
 
 詳細はそれぞれのリンクを参照してください。
 
-また、WinFormsのサードパーティ製のコントロールでGrapeCity社のC1FlexGridとSpreadに対するドライバもOSSで公開しています。
-+ [Friendly.C1.Win](https://github.com/Codeer-Software/Friendly.C1.Win)
-+ [Friendly.FarPoint](https://github.com/Codeer-Software/Friendly.FarPoint)
+また、WPFのサードパーティ製のコントロールでInfragistics社のXamControlsに対するドライバもOSSで公開しています。
++ [Friendly.XamControls](https://github.com/Codeer-Software/Friendly.XamControls)
 
 ## カスタムControllDriver
 アプリケーションによっては固有のコントロールや上述した以外の3rdパティーのコントロールを利用することがあります。
@@ -23,8 +22,8 @@ TestAssistantPro で AnalyzeWindow に認識させるためには ControlDriverA
 
 ```cs
 //対応するコントロールを指定することでTestAssistantProでCheckBoxを選択したときにこのクラスが割り当たります
-[ControlDriver(TypeFullName = "System.Windows.Forms.CheckBox")]
-public class FormsCheckBox : FormsControlBase
+[ControlDriver(TypeFullName = "System.Windows.Controls.ComboBox")]
+public class WPFComboBox : WPFSelectorCore<ComboBox>
 {
 
 ```
@@ -32,8 +31,8 @@ public class FormsCheckBox : FormsControlBase
 同一のコントロールに対して複数の ControlDriver を割り当てることも可能です。その場合 Priority を指定すると高い方が優先的に選択されます。
 
 ```cs
-[ControlDriver(TypeFullName = "System.Windows.Forms.CheckBox", Priority = 1)]
-public class FormsCheckBoxEx : FormsCheckBox
+[ControlDriver(TypeFullName = "System.Windows.Controls.ComboBox", Priority = 1)]
+public class WPFComboBoxEx : WPFComboBox
 {
 
 ```
