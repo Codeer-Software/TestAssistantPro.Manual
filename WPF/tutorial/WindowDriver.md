@@ -33,9 +33,13 @@
 
 UI解析ツリーのルートで右クリックメニューを表示して[Pickup Children]を実行します。
 そうするとグリッドに ControlDriver の割り当たった要素がピックアップされます。
+ピックアップされた要素をグリッド上で選択すると対応するコントロールが赤枠で囲まれます。
+特に使わないものもピックアップされるので必要ないものは削除しておきます。
+タイトルバーのボタン類は使わないので消しておきます。
 
 - 名前はデフォルトでは変数名になっていますが、変更できます。
 - ラベルは Pickup Chidlren では無視されますが、必要ならツリーの要素をダブルクリックすることにより追加で登録できます。
+- グリッド上で要素を選択しDeleteキーを押すことで削除できます。
 
 必要な要素を登録したら[Generate]ボタンを押してコードを生成します。
 [Create Attach Code]はデフォルトの状態で生成してください。
@@ -366,13 +370,13 @@ namespace Driver.Windows
         [UserControlDriverIdentify(CustomMethod = "TryGet")]
         public static OrderDocumentUserControlDriver AttachOrderDocumentUserControl(this WindowsAppFriend app, string identifier)
             => app.GetTopLevelWindows().
-                    SelectMany(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").ToArray()).
+                    SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
                     Where(e => GetTitle(e) == identifier).
                     FirstOrDefault()?.Dynamic();
 
         public static void TryGet(this WindowsAppFriend app, out string[] identifiers)
              => identifiers = app.GetTopLevelWindows().
-                    SelectMany(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").ToArray()).
+                    SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
                     Select(e => GetTitle(e)).
                     ToArray();
 
