@@ -288,6 +288,7 @@ namespace Driver.Windows
 ## キャプチャ
 キャプチャしてみます。
 注意点はItemsContorlのアイテムはアクティブにならないとコードが生成されません。一度アクティブにしてから操作してください。
+
 ![ItemsControlCapture.png](../Img/ItemsControlCapture.png)
 
 ## 次の手順

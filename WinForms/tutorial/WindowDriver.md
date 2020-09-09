@@ -12,13 +12,16 @@
 - [AnalyzeWindowで生成されるコード](../feature/GeneratedCode.md)
 - [Attach方法ごとのコード](../feature/Attach.md)
 
+## 事前準備
+WinFormsApp.exeを起動してください。ドライバの作成は操作対象のアプリを解析しながらおこないます。
+
 ## AnalzeWindowの表示
 
 ソリューションエクスプローラーのDriverプロジェクトのWindowsフォルダで右クリックしてAnalyze Windowを実行します。
 
 ![WindowDriver.Start.png](../Img/WindowDriver.Start.png)
 
-テスト対象のアプリケーションを選択する画面が出ますので、MainFormを選択してください。
+テスト対象のアプリケーションを選択する画面が出ますので、MainFormを選択してください。（ダブルクリックもしくは選択状態にしてからEnterキー押下で選択できます）
 
 ![WindowDriver.SelectTarget.png](../Img/WindowDriver.SelectTarget.png)
 
@@ -141,9 +144,14 @@ namespace Driver.Windows
     }
 }
 ```
+解析対象を親ウィンドウ戻すにはツリーのルートの[←]をダブルクリックするか、そこを右クリックで[Change The Analysis Target]を選択します。
+
+![UserControlDriver.ReturnParent.png](../Img/UserControlDriver.ReturnParent.png)
 
 次に左側のUserControlに対するコードを生成します。今回はドライバを作成せずFormに直接UserControlの要素を配置します。
+UserControlDriverを作るか親のWindowDriverに直接配置するかはその時々で判断してください。ダイアログで常に表示されているUserControlであるならば親のWindowDriverに直接配置しても良い場合が多いです。
 UI解析ツリーの[ChangeOfPartyUserControl]の下に表示されている2つのテキストボックスをダブルクリックしてDesignerタブのグリッドに追加してください。
+またReservationInformationUserControlも追加してください。先ほど作ったReservationInformationUserControlDriverが割り当たります。
 
 ![UserControlDriver.Form.png](../Img/UserControlDriver.Form.png)
 
@@ -190,8 +198,7 @@ namespace Driver.Windows
 
 ## MainFormのドライバの作成
 
-<!--TODO: なぜ、メニューだけを持つウィンドウと考えるか、またそれ以外はどうするのかの概要を記述する-->
-MainForm は複数のドッキングウィンドウで構成されています。ここでは MainForm はメニューだけを持つウィンドウと考えます。
+MainForm は複数のドッキングウィンドウで構成されています。ここでは MainForm はメニューだけを持つウィンドウと考えます。残りのTreeFormやOutputFormはUserControlでAttach形式で作成します。（後ほど説明します）
 メニューだけをプロパティに追加して、ドライバを生成してください。
 
 ![WindowDriver.MainFrame.png](../Img/WindowDriver.MainFrame.png)
@@ -241,7 +248,7 @@ Attach対象は MainFromDriver ではなく WindowsAppFrined (アプリケーシ
 
 まずは TreeForm の UserControlDriver を作ります。
 Ctrlキーを押しながらMainFormのTreeにマウスオーバーすることでTreeViewがUI解析ツリーで選択状態になります。
-一つ上の要素にTreeFormがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
+AnalyzeWindowのTree上で一つ上の要素にTreeFormがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
 TreeFormの子要素であるTreeViewをダブルクリックしてプロパティに追加します。
 
 Designerタブの内容を次のように変更し、[Generate]ボタンをクリックしてコードを生成します。
@@ -294,7 +301,7 @@ namespace Driver.Windows
 }
 ```
 
-OutputForm も同様に作成てください。
+OutputForm も同様に作成してください。
 
 ```cs
 using Codeer.Friendly;
@@ -335,10 +342,7 @@ namespace Driver.Windows
 ```
 
 ## Documentのドライバの作成
-
-<!--TODO: Documentとはそもそもどのウィンドウ？同じタイプとは？-->
-
-Document は同じタイプのものが複数存在します。
+Document は TreeView の AcceptedもしくはSendedから開くことができます。これは同じクラスで表示するデータが異なっているだけです。一般的にドキュメントは同じタイプのものが複数存在します。
 Attach方法は VariableWindowText を利用し、 WindowsAppFriend にAttachするように設定します。
 Attachのオプションの詳細は [Attach方法ごとのコード](../feature/Attach.md)を参照してください。
 

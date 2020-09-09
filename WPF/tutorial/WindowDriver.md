@@ -12,13 +12,16 @@
 - [AnalyzeWindowで生成されるコード](../feature/GeneratedCode.md)
 - [Attach方法ごとのコード](../feature/Attach.md)
 
+## 事前準備
+WpfDockApp.exeを起動してください。ドライバの作成は操作対象のアプリを解析しながらおこないます。
+
 ## AnalzeWindowの表示
 
 ソリューションエクスプローラーのDriverプロジェクトのWindowsフォルダで右クリックしてAnalyze Windowを実行します。
 
 ![WindowDriver.Start.png](../Img/WindowDriver.Start.png)
 
-テスト対象のアプリケーションを選択する画面が出ますので、MainWindowを選択してください。
+テスト対象のアプリケーションを選択する画面が出ますので、MainWindowを選択してください。（ダブルクリックもしくは選択状態にしてからEnterキー押下で選択できます）
 
 ![WindowDriver.SelectTarget.png](../Img/WindowDriver.SelectTarget.png)
 
@@ -108,7 +111,6 @@ Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックし�
 
 次は2つのUserContorlが含まれているMultiUserControlWindowのドライバを作成します。
 対象アプリケーションのメニューから[etc] - [Multi UserControl Dialog]を選択して、ダイアログを表示します。
-
 ![UserControlDriver.Analyze.png](../Img/UserControlDriver.Analyze.png)
 
 最初に右側のUserControlのドライバを作ります。
@@ -146,10 +148,13 @@ namespace Driver.Windows
     }
 }
 ```
+解析対象を親ウィンドウ戻すにはツリーのルートの[←]をダブルクリックするか、そこを右クリックで[Change The Analysis Target]を選択します。
 
-次に左側のUserControlに対するコードを生成します。今回はドライバを作成せずWindowに直接UserControlの要素を配置します。
+![UserControlDriver.ReturnParent.png](../Img/UserControlDriver.ReturnParent.png)
+
+次に左側のUserControlに対するコードを生成します。今回はドライバを作成せずWindowに直接UserControlの要素を配置します。UserControlDriverを作るか親のWindowDriverに直接配置するかはその時々で判断してください。ダイアログで常に表示されているUserControlであるならば親のWindowDriverに直接配置しても良い場合が多いです。
 UI解析ツリーの[ChangeOfPartyUserControl]の下に表示されている2つのテキストボックスをダブルクリックしてDesignerタブのグリッドに追加してください。
-
+またReservationInformationUserControlも追加してください。先ほど作ったReservationInformationUserControlDriverが割り当たります。
 ![UserControlDriver.Form.png](../Img/UserControlDriver.Form.png)
 
 [Generate]ボタンをクリックしてコードを生成します。
@@ -196,11 +201,9 @@ namespace Driver.Windows
 ```
 
 ## MainWindowのドライバの作成
-
-<!--TODO: なぜ、メニューだけを持つウィンドウと考えるか、またそれ以外はどうするのかの概要を記述する-->
-MainWindow は複数のドッキングウィンドウで構成されています。ここでは MainWindowはメニューだけを持つウィンドウと考えます。
+MainWindow は複数のドッキングウィンドウで構成されています。ここでは MainWindow はメニューだけを持つウィンドウと考えます。残りのTreeViewやOutputViewはUserControlでAttach形式で作成します。（後ほど説明します）
 メニューだけをプロパティに追加して、ドライバを生成してください。
-
+Controlキーを押しながらメニューの辺りにカーソルを持っていくとメニューもしくはその子要素を選択できます。その後にAnalyzeWindowのTreeでメニューを選択します。ドライバーが割り当たっている要素は文字色が青になっています。
 ![WindowDriver.MainFrame.png](../Img/WindowDriver.MainFrame.png)
 
 ```cs
@@ -248,8 +251,8 @@ Attach対象は MainFromDriver ではなく WindowsAppFrined (アプリケーシ
 これはフローティング状態にするなどさまざまな状態を作ることができるからです。
 
 まずは TreeUserControl の UserControlDriver を作ります。
-Ctrlキーを押しながらMainWindowのTreeにマウスオーバーすることでTreeViewがUI解析ツリーで選択状態になります。
-いくつか上の要素にTreeUserControlがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
+Ctrlキーを押しながらMainWindowのTreeにマウスオーバーすることでTreeUserControlの子要素がUI解析ツリーで選択状態になります。
+AnalyzeWindowのTree上でいくつか上の要素にTreeUserControlがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
 TreeUserControlの子要素であるTreeViewをダブルクリックしてプロパティに追加します。
 
 Designerタブの内容を次のように変更し、[Generate]ボタンをクリックしてコードを生成します。
@@ -288,7 +291,9 @@ namespace Driver.Windows
 }
 ```
 
-OutputUserControl も同様に作成てください。
+OutputUserControl も同様に作成してください。
+
+![WindowDriver.TreeForm.png](../Img/WindowDriver.OutputView.png)
 
 ```cs
 using Codeer.Friendly;
@@ -327,11 +332,16 @@ namespace Driver.Windows
 ```
 
 ## Documentのドライバの作成
-
-<!--TODO: Documentとはそもそもどのウィンドウ？同じタイプとは？-->
-
-Document は同じタイプのものが複数存在します。
-取得方法は Customを利用しTitleプロパティが一致するものを取得し、 WindowsAppFriend にAttachするように設定します。
+Document は TreeView の AcceptedもしくはSendedから開くことができます。これは同じクラスで表示するデータが異なっているだけです。一般的にドキュメントは同じタイプのものが複数存在します。
+このような場合は Attach で Custom の取得方法を利用します。それぞれの特定方法はものによって異なるのでコードで実装する必要があります。
+今回はTitleプロパティで判断するようにします。AnalyzeWindowではAttachを下記のように設定します。
+またPickupChildrenで要素を取得してからGenerateを実行します。
+| 項目 | 設定内容 |
+|-----|--------|
+| Create Attach Code | チェックをつける |
+| Extension | WindowAppFriend |
+| Method | Custom |
+生成されたコードを以下のように書き換えます。
 Titleの取得はドキュメントを親方向にたどっていって存在するLayoutDocumentControlに対する操作で実現できます。
 この辺りは使っているライブラリの知識が必要です。
 多くの場合アプリ開発チームのメンバーならば対応可能です。
