@@ -36,10 +36,10 @@ namespace Driver.Windows
     public class SampleListBoxItemDriver
     {
         public WPFUserControl Core { get; }
-        public WPFToggleButton CheckBox => Core.VisualTree().ByBinding("CheckBoxData").Single().Dynamic(); 
-        public WPFComboBox ComboBox => Core.VisualTree().ByBinding("ComboBoxData").Single().Dynamic(); 
-        public WPFTextBox TextBox => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
+        public WPFToggleButton CheckBoxData => Core.VisualTree().ByBinding("CheckBoxData").Single().Dynamic(); 
+        public WPFComboBox ComboBoxData => Core.VisualTree().ByBinding("ComboBoxData").Single().Dynamic(); 
+        public WPFTextBox TextData => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
+        public WPFContextMenu TextDataContextMenu => new WPFContextMenu{Target = TextData.AppVar};
 
         public SampleListBoxItemDriver(AppVar core)
         {
@@ -54,9 +54,9 @@ namespace Driver.Windows
 ```cs
 var itemsControlWindow = _app.AttachItemsControlWindow();
 itemsControlWindow._listBox.EmulateChangeSelectedIndex(2);
-itemsControlWindow._listBox.GetItemDriver(2).CheckBox.EmulateCheck(true);
-itemsControlWindow._listBox.GetItemDriver(2).ComboBox.EmulateChangeSelectedIndex(2);
-itemsControlWindow._listBox.GetItemDriver(2).TextBox.EmulateChangeText("abc");
+itemsControlWindow._listBox.GetItemDriver(2).CheckBoxData.EmulateCheck(true);
+itemsControlWindow._listBox.GetItemDriver(2).ComboBoxData.EmulateChangeSelectedIndex(2);
+itemsControlWindow._listBox.GetItemDriver(2).TextData.EmulateChangeText("abc");
 ```
 
 [ItemsControlWindowのドライバ作成](#ItemsControlWindowのドライバ作成)
@@ -87,7 +87,7 @@ item1.TextBox.EmulateChangeText("abc");
 ```
 
 ### 基本となるListViewItemのドライバを作成する
-まずListViewのListViewtemの基本となるドライバを作ります。ツリー上で最初の[ListViewItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListViewItem]を起点にした内容で置き換わります。Class Name は ListViewItemBaseDriver に変更し、 コントロールを Designer に登録せずに Generate ボタンでコードを生成します。
+まずListViewのListViewtemの基本となるドライバを作ります。ツリー上で最初の[ListViewItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListViewItem]を起点にした内容で置き換わります。Class Name は SampleListViewItemBaseDriver に変更し、 コントロールを Designer に登録せずに Generate ボタンでコードを生成します。
 
 ![ListViewItemBaseDriver.Analyze.png](../Img/ListViewItemBaseDriver.Analyze.png)
 
@@ -138,10 +138,10 @@ namespace Driver.Windows
     public class SampleListViewItem1Driver
     {
         public WPFUserControl Core { get; }
-        public WPFToggleButton CheckBox => Core.VisualTree().ByBinding("CheckBoxData").Single().Dynamic(); 
-        public WPFComboBox ComboBox => Core.VisualTree().ByBinding("ComboBoxData").Single().Dynamic(); 
-        public WPFTextBox TextBox => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
+        public WPFToggleButton CheckBoxData => Core.VisualTree().ByBinding("CheckBoxData").Single().Dynamic(); 
+        public WPFComboBox ComboBoxData => Core.VisualTree().ByBinding("ComboBoxData").Single().Dynamic(); 
+        public WPFTextBox TextData => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
+        public WPFContextMenu TextDataContextMenu => new WPFContextMenu{Target = TextData.AppVar};
 
         public SampleListViewItem1Driver(AppVar core)
         {
@@ -178,11 +178,11 @@ namespace Driver.Windows
     public class SampleListViewItem2Driver
     {
         public WPFUserControl Core { get; }
-        public WPFComboBox ComboBox => Core.VisualTree().ByBinding("ComboBoxData").SingleOrDefault()?.Dynamic(); 
-        public WPFTextBox TextBox => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
-        public WPFDatePicker DatePicker => Core.VisualTree().ByBinding("DateData").Single().Dynamic(); 
-        public WPFContextMenu DatePickerContextMenu => new WPFContextMenu{Target = DatePicker.AppVar};
+        public WPFComboBox ComboBoxData => Core.VisualTree().ByBinding("ComboBoxData").SingleOrDefault()?.Dynamic(); 
+        public WPFTextBox TextData => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
+        public WPFContextMenu TextDataContextMenu => new WPFContextMenu{Target = TextData.AppVar};
+        public WPFDatePicker DateData => Core.VisualTree().ByBinding("DateData").Single().Dynamic(); 
+        public WPFContextMenu DateDataContextMenu => new WPFContextMenu{Target = DateData.AppVar};
 
         public SampleListViewItem2Driver(AppVar core)
         {
@@ -218,11 +218,11 @@ namespace Driver.Windows
     public class SampleListViewItem3Driver
     {
         public WPFUserControl Core { get; }
-        public WPFTextBox TextBox => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
-        public WPFDatePicker DatePicker => Core.VisualTree().ByBinding("DateData").Single().Dynamic(); 
-        public WPFContextMenu DatePickerContextMenu => new WPFContextMenu{Target = DatePicker.AppVar};
-        public WPFSlider Slider => Core.VisualTree().ByBinding("SliderData").Single().Dynamic(); 
+        public WPFTextBox TextData => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
+        public WPFContextMenu TextDataContextMenu => new WPFContextMenu{Target = TextData.AppVar};
+        public WPFDatePicker DateData => Core.VisualTree().ByBinding("DateData").Single().Dynamic(); 
+        public WPFContextMenu DateDataContextMenu => new WPFContextMenu{Target = DateData.AppVar};
+        public WPFSlider SliderData => Core.VisualTree().ByBinding("SliderData").Single().Dynamic(); 
 
         public SampleListViewItem3Driver(AppVar core)
         {
@@ -287,7 +287,7 @@ namespace Driver.Windows
 ```
 ## キャプチャ
 キャプチャしてみます。
-
+注意点はItemsContorlのアイテムはアクティブにならないとコードが生成されません。一度アクティブにしてから操作してください。
 ![ItemsControlCapture.png](../Img/ItemsControlCapture.png)
 
 ## 次の手順
