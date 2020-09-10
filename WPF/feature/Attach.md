@@ -107,24 +107,29 @@ public static class XUserControlDriverExtensions
 ```
 
 Customの実装例です。<br>
-TODO
 ```cs
 public static class OrderDocumentUserControlDriverExtensions
 {
+    //ここをに特定のためのカスタムコードを入れる
     [UserControlDriverIdentify(CustomMethod = "TryGet")]
     public static OrderDocumentUserControlDriver AttachOrderDocumentUserControl(this WindowsAppFriend app, string identifier)
+        //アプリの全てのウィンドウからTypeが一致するものを取得
         => app.GetTopLevelWindows().
-                Select(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").SingleOrDefault()).
-                Where(e => !e.IsNull).
-                Where(e => (string)e.Dynamic().Title == identifier).
+                SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
+                //その中でタイトルが一致するものを取得
+                Where(e => GetTitle(e) == identifier).
                 FirstOrDefault()?.Dynamic();
 
-    public static void TryGet(this WindowsAppFriend app, out string[] identifier)
-        => identifier = app.GetTopLevelWindows().
-            Select(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").SingleOrDefault()).
-            Where(e => !e.IsNull).
-            Select(e => (string)e.Dynamic().Title).
-            ToArray();
+    public static void TryGet(this WindowsAppFriend app, out string[] identifiers)
+        //アプリの全てのウィンドウからTypeが一致するものを取得
+            => identifiers = app.GetTopLevelWindows().
+                SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
+                //識別子にタイトルを使う
+                Select(e => GetTitle(e)).
+                ToArray();
+
+    static string GetTitle(AppVar e)
+        => e.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").First().Dynamic().Model.Title;
 }
 ```
 
