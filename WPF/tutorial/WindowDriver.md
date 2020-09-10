@@ -341,6 +341,7 @@ Document は TreeView の AcceptedもしくはSendedから開くことができ�
 | Create Attach Code | チェックをつける |
 | Extension | WindowAppFriend |
 | Method | Custom |
+
 生成されたコードを以下のように書き換えます。
 Titleの取得はドキュメントを親方向にたどっていって存在するLayoutDocumentControlに対する操作で実現できます。
 この辺りは使っているライブラリの知識が必要です。
@@ -377,16 +378,21 @@ namespace Driver.Windows
 
     public static class OrderDocumentUserControlDriverExtensions
     {
+        //ここをに特定のためのカスタムコードを入れる
         [UserControlDriverIdentify(CustomMethod = "TryGet")]
         public static OrderDocumentUserControlDriver AttachOrderDocumentUserControl(this WindowsAppFriend app, string identifier)
+            //アプリの全てのウィンドウからTypeが一致するものを取得
             => app.GetTopLevelWindows().
                     SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
+                    //その中でタイトルが一致するものを取得
                     Where(e => GetTitle(e) == identifier).
                     FirstOrDefault()?.Dynamic();
 
         public static void TryGet(this WindowsAppFriend app, out string[] identifiers)
+            //アプリの全てのウィンドウからTypeが一致するものを取得
              => identifiers = app.GetTopLevelWindows().
                     SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
+                    //識別子にタイトルを使う
                     Select(e => GetTitle(e)).
                     ToArray();
 
