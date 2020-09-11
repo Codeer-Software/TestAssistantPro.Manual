@@ -378,7 +378,8 @@ namespace Driver.Windows
 
     public static class OrderDocumentUserControlDriverExtensions
     {
-        //ここをに特定のためのカスタムコードを入れる
+        //ここに特定のためのカスタムコードを入れる
+        //キャプチャ時にTestAssistantProが使うCustomMethod名を指定します。
         [UserControlDriverIdentify(CustomMethod = "TryGet")]
         public static OrderDocumentUserControlDriver AttachOrderDocumentUserControl(this WindowsAppFriend app, string identifier)
             //アプリの全てのウィンドウからTypeが一致するものを取得
@@ -388,6 +389,8 @@ namespace Driver.Windows
                     Where(e => GetTitle(e) == identifier).
                     FirstOrDefault()?.Dynamic();
 
+        //キャプチャ時にTestAssisatntProが使います。
+        //発見した目的のUserControlの識別子をout引数に入れます。
         public static void TryGet(this WindowsAppFriend app, out string[] identifiers)
             //アプリの全てのウィンドウからTypeが一致するものを取得
              => identifiers = app.GetTopLevelWindows().

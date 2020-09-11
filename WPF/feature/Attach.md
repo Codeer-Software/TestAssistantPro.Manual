@@ -110,7 +110,8 @@ Customの実装例です。<br>
 ```cs
 public static class OrderDocumentUserControlDriverExtensions
 {
-    //ここをに特定のためのカスタムコードを入れる
+    //ここに特定のためのカスタムコードを入れる
+    //キャプチャ時にTestAssistantProが使うCustomMethod名を指定します。
     [UserControlDriverIdentify(CustomMethod = "TryGet")]
     public static OrderDocumentUserControlDriver AttachOrderDocumentUserControl(this WindowsAppFriend app, string identifier)
         //アプリの全てのウィンドウからTypeが一致するものを取得
@@ -120,6 +121,8 @@ public static class OrderDocumentUserControlDriverExtensions
                 Where(e => GetTitle(e) == identifier).
                 FirstOrDefault()?.Dynamic();
 
+    //キャプチャ時にTestAssisatntProが使います。
+    //発見した目的のUserControlの識別子をout引数に入れます。
     public static void TryGet(this WindowsAppFriend app, out string[] identifiers)
         //アプリの全てのウィンドウからTypeが一致するものを取得
             => identifiers = app.GetTopLevelWindows().
@@ -129,6 +132,9 @@ public static class OrderDocumentUserControlDriverExtensions
                 ToArray();
 
     static string GetTitle(AppVar e)
+        //タイトルを取得します。
+        //UserContorlから親方向にたどって見つかるLayoutDocumentControlが持っています。
+        //これは利用しているライブラリ(今回はXceed)の知識が必要です。
         => e.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").First().Dynamic().Model.Title;
 }
 ```

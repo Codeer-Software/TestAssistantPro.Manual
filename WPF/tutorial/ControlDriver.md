@@ -177,26 +177,41 @@ namespace Driver.InTarget
 LayoutDocumentControlはOrderDocumentUserControlより親方向に存在します。
 これはAnalyzeWindowでは見つけることができません。
 OrderDocumentUserControlDriverに手書きで加えます。
+using Driver.Controls; も書き加えてください
 ```cs
-[UserControlDriver(TypeFullName = "WpfDockApp.OrderDocumentUserControl")]
-public class OrderDocumentUserControlDriver
+using Codeer.Friendly;
+using Codeer.Friendly.Dynamic;
+using Codeer.Friendly.Windows;
+using Codeer.Friendly.Windows.Grasp;
+using Codeer.TestAssistant.GeneratorToolKit;
+using RM.Friendly.WPFStandardControls;
+using System.Linq;
+
+//追加
+using Driver.Controls;
+
+namespace Driver.Windows
 {
-    public WPFUserControl Core { get; }
-    public WPFTextBox _searchText => Core.Dynamic()._searchText; 
-    public WPFContextMenu _searchTextContextMenu => new WPFContextMenu{Target = _searchText.AppVar};
-    public WPFButtonBase _searchButton => Core.Dynamic()._searchButton; 
-    public WPFDataGrid _dataGrid => Core.Dynamic()._dataGrid;
-
-    //追加
-    public LayoutDocumentControlDriver LayoutDocumentControl 
-        //親方向に検索して最初に見つかったLayoutDocumentControl
-        => Core.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").First().Dynamic();
-
-    public OrderDocumentUserControlDriver(AppVar core)
+    [UserControlDriver(TypeFullName = "WpfDockApp.OrderDocumentUserControl")]
+    public class OrderDocumentUserControlDriver
     {
-        Core = new WPFUserControl(core);
+        public WPFUserControl Core { get; }
+        public WPFTextBox _searchText => Core.Dynamic()._searchText;
+        public WPFContextMenu _searchTextContextMenu => new WPFContextMenu { Target = _searchText.AppVar };
+        public WPFButtonBase _searchButton => Core.Dynamic()._searchButton;
+        public WPFDataGrid _dataGrid => Core.Dynamic()._dataGrid;
+
+        //追加
+        public LayoutDocumentControlDriver LayoutDocumentControl
+            //親方向に検索して最初に見つかったLayoutDocumentControl
+            => Core.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").First().Dynamic();
+
+
+        public OrderDocumentUserControlDriver(AppVar core)
+        {
+            Core = new WPFUserControl(core);
+        }
     }
-}
 ```
 
 ## 次の手順
