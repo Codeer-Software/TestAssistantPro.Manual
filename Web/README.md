@@ -18,6 +18,7 @@ TestAssistantProを使って`Selenium WebDriver`での`Pageオブジェクトパ
   4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
 - 機能
   - [AnalyzeWindowの使い方](feature/AnalyzeWindow.md)
+  - [ComponentObject](feature/ComponentObject.md)
   - [画面操作のキャプチャと再生](feature/CaptureAndExecute.md)
   - [PageObject/ComponentObjectのコード](feature/GeneratedCode.md)
   - [PageObjectへのアタッチ](feature/Attach.md)
