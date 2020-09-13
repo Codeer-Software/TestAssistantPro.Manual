@@ -3,6 +3,12 @@ TestAssistantPro.Manual
 
 [English](README.en.md)
 
+
+## 初期設定
+  1. [インストール](Install.md)
+  2. [ライセンスの管理](License.md)
+
+
 ## 具体的な使い方はこちら
 + [WinForms](WinForms/README.md)
 + [WPF](WPF/README.md)
@@ -67,9 +73,3 @@ TestAssistantPro を使えば少ない工数で作成できます。
 + 作成効率up
 + メンテナンス性up
 + メンバーのアサイン最適化
-
-# 詳細な使い方はこちらを参照お願いします。
-+ [WinForms](WinForms/README.md)
-+ [WPF](WPF/README.md)
-+ [Web](Web/README.md)
-

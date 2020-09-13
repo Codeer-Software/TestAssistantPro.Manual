@@ -12,9 +12,6 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 ## 目次
 初めてTestAssistantProを使う場合はチュートリアルから読んでください。チュートリアル中に各機能の詳細説明へのリンクを入れているので効率良く使用方法を学習することができます。
 
-- 拡張機能のインストール
-  1. [インストール](feature/Install.md)
-
 - チュートリアル
   1. [テストソリューションを新規作成する](tutorial/Sln.md)
   2. [アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](tutorial/WindowDriver.md)

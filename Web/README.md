@@ -11,9 +11,6 @@ TestAssistantProを使って`Selenium WebDriver`での`Pageオブジェクトパ
 
 初めてTestAssistantProを使う場合はチュートリアルからよんでください。チュートリアルの中には各機能説明へのリンクがはいっているため、効率よく使用方法を学習できます。
 
-- 拡張機能のインストール
-  1. [インストール](feature/Install.md)
-  
 - チュートリアル
   1. [テストソリューションを作成する](tutorial/Sln.md)
   2. [アプリケーションを解析してPageObjectを作成する](tutorial/PageObject.md)
