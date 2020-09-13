@@ -19,6 +19,7 @@ TestAssistantProを使って`Selenium WebDriver`での`Pageオブジェクトパ
 - 機能
   - [AnalyzeWindowの使い方](feature/AnalyzeWindow.md)
   - [ComponentObject](feature/ComponentObject.md)
+  - [ControlDriver](feature/ControlDriver.md)
   - [画面操作のキャプチャと再生](feature/CaptureAndExecute.md)
   - [PageObject/ComponentObjectのコード](feature/GeneratedCode.md)
   - [PageObjectへのアタッチ](feature/Attach.md)

@@ -35,11 +35,11 @@ AnalyzeWindowの左ペインに表示される画面のHTML要素がツリー上
 | Design Component Object | 指定した要素以下をComponent Objectとして構築します。 |
 | Monitoring |  |
 
-## Designerタブ
+## Driver Propertyタブ
 
-右ペインの下段に「Designerタブ」を選択することで表示されます。 作成するPageObject/ComponentObjectの構成を設定します。
+右ペインの下段に「Driver Property」タブを選択することで表示されます。 作成するPageObject/ComponentObjectの構成を設定します。
 
-![Designer Tab](../img/analyzewindow_designer_tab.png)
+![Driver Property Tab](../img/analyzewindow_designer_tab.png)
 
 | 項目 | 説明 |
 |-----|-----|
