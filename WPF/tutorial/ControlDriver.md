@@ -7,7 +7,10 @@ WPFではNumericUpDownは標準では存在しないため必要なら自作し�
 ![ControlDriver.NumeriDropDownControl.png](../Img/ControlDriver.NumeriDropDownControl.png)
 
 ## WPFの場合はUserControlDriverにしてもよい
-WinFormsの場合はカスタムコントロールは独自のControlDriverを作るしかないのですが、WPFの場合は標準コントロールを組み合わせて作ることが多く、場合によってはUserControlDriverにしてもよいです。この例のNumericUpDownもUserControlにすることも可能です。どちらにするかは時々で判断してください。
+
+WinFormsの場合、カスタムコントロールは独自のControlDriverを作るしかありません。
+しかし、WPFの場合は標準コントロールを組み合わせて作ることが多く、場合によってはUserControlDriverにしてもよいでしょう。
+この例のように、NumericUpDownもUserControlにすることも可能です。どちらにするかは状況によって判断してください。
 
 ## ControlDriverとCaptureCodeGeneratorのコードテンプレートを生成する
 
@@ -25,7 +28,7 @@ UI解析ツリーからBlockControlを選択し、コンテキスメニューよ
 ## ControlDriverの実装
 
 NumericUpDownControlはValueを取得または設定するプロパティを公開しています。
-また、TextBoxをValueTextBoxで取得できますので操作することができます。
+また、TextBoxをValueTextBoxで取得できますので操作できます。
 生成したControlDriverのコードテンプレートを次のように変更してください。
 
 プロセスを超えたプロパティやメソッドの操作にはFriendlyを使っています。詳細は[Friendly](https://github.com/Codeer-Software/Friendly/blob/master/README.jp.md)を参照してください。
@@ -115,11 +118,10 @@ Attach にブレークポイントを貼って Shift キーを押しながら Ca
 
 ### ドキュメントの閉じるに反応するようにする
 
-ドキュメントも標準のコントロールではないのでそのままでは対応できません。
-こちらも同様に作成してみます。
+ドキュメントも標準のコントロールではないのでそのままでは対応できません。こちらも同様に作成してみます。
 これはドキュメントを親方向にたどっていって存在するLayoutDocumentControlに対する操作で実現できます。
-この辺りは使っているライブラリの知識が必要です。
-多くの場合アプリ開発チームのメンバーならば対応可能です。
+このような操作は利用しているライブラリの知識が必要です。
+多くの場合、アプリケーション開発チームのメンバーなら対応可能でしょう。
 
 ![ControlDriver.LayoutDocumentControl.png](../Img/ControlDriver.LayoutDocumentControl.png)
 

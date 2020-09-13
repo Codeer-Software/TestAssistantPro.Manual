@@ -17,7 +17,11 @@ ListBoxとListViewが含まれているItemsControl Windowのドライバを作�
 AnalyzeWindowは自動的にその内容を読み取りUI解析ツリーを更新します。
 
 ## シンプルなListBoxItemのドライバ作成 
-最初に左側のListBoxのListBoxItemのドライバを作ります。ツリー上で[ListBoxItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListBoxItem]を起点にした内容で置き換わります。Class Name は ListBoxItemDriver になっていますが先頭に識別用の文字を追加して SampleListBoxItemDriver に変更し、 必要なコントロールを Designer に登録して Generate ボタンでコードを生成します。
+
+最初に左側のListBoxのListBoxItemのドライバを作ります。ツリー上で[ListBoxItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 
+解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListBoxItem]を起点にした内容で置き換わります。
+Class Name は ListBoxItemDriver になっていますが先頭に識別用の文字を追加して SampleListBoxItemDriver に変更ます。
+最後に、必要なコントロールを Designer に登録して Generate ボタンでコードを生成します。
 
 ![ListBoxItemDriver.Analyze.png](../Img/ListBoxItemDriver.Analyze.png)
 
@@ -87,7 +91,9 @@ item1.TextBox.EmulateChangeText("abc");
 ```
 
 ### 基本となるListViewItemのドライバを作成する
-まずListViewのListViewtemの基本となるドライバを作ります。ツリー上で最初の[ListViewItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListViewItem]を起点にした内容で置き換わります。Class Name は SampleListViewItemBaseDriver に変更し、 コントロールを Designer に登録せずに Generate ボタンでコードを生成します。
+まずListViewのListViewtemの基本となるドライバを作ります。ツリー上で最初の[ListViewItem]を選択し、右クリックから[Change The Analysis Target]を選択します。
+解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListViewItem]を起点にした内容で置き換わります。
+Class Name は SampleListViewItemBaseDriver に変更し、 コントロールを Designer に登録せず、 Generate ボタンでコードを生成します。
 
 ![ListViewItemBaseDriver.Analyze.png](../Img/ListViewItemBaseDriver.Analyze.png)
 
@@ -117,9 +123,11 @@ namespace Driver.Windows
 
 ### それぞれのListViewItemのドライバを作成する
 ListViewのListViewtemの一行目のドライバを作ります。ツリー上で最初の[ListViewItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListViewItem]を起点にした内容で置き換わります。Class Name は SampleListViewItem1Driver に変更し、必要なコントロールを Designer に登録します。 
-それから Create Attach Code にチェックを入れて SampleListViewItemBaseDriver にアタッチできるようにします。Methodは Type Full Name を選択してください。
+そして SampleListViewItemBaseDriver へアタッチするために、Create Attach Code をチェックします。
+Methodは Type Full Name を選択してください。
 Generate ボタンでコードを生成します。
-しかし、このままではSampleListViewItemBaseから無条件にSampleListViewItem1Driverに変換されてしまうので、DataContextがListView1ViewModelの時以外はnullを返すように変更します。
+しかし、このままではSampleListViewItemBaseから無条件で、SampleListViewItem1Driverに変換されてしまいます。
+そのためDataContextがListView1ViewModelの時以外はnullを返すように変更します。
 
 ![ListView1ItemDriver.Analyze.png](../Img/ListView1ItemDriver.Analyze.png)
 
@@ -245,7 +253,7 @@ namespace Driver.Windows
 
 ## ItemsControlWindowのドライバ作成
 ListBoxとListViewが含まれているItemsControl Windowのドライバを作成します。
-ピックアップすると最初はWPFListBox、WPFListViewがタイプとして選択されていますので、WPFListBox&lt;SampleListBoxItem>、WPFListView&lt;SampleListViewItem>にそれぞれ変更してください。
+ピックアップすると最初はWPFListBox、WPFListViewがタイプとして選択されます。WPFListBox&lt;SampleListBoxItem>、WPFListView&lt;SampleListViewItem>にそれぞれ変更してください。
 
 ![ItemsControlDialog.png](../Img/ItemsControlDialog.png)
 

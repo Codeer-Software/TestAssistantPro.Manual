@@ -13,7 +13,7 @@
 - [Attach方法ごとのコード](../feature/Attach.md)
 
 ## 事前準備
-WpfDockApp.exeを起動してください。ドライバの作成は操作対象のアプリを解析しながらおこないます。
+WpfDockApp.exeを起動してください。ドライバの作成は操作対象のアプリケーションを解析しながら行います。
 
 ## AnalzeWindowの表示
 
@@ -160,7 +160,9 @@ namespace Driver.Windows
 
 ![UserControlDriver.ReturnParent.png](../Img/UserControlDriver.ReturnParent.png)
 
-次に左側のUserControlに対するコードを生成します。今回はドライバを作成せずWindowに直接UserControlの要素を配置します。UserControlDriverを作るか親のWindowDriverに直接配置するかはその時々で判断してください。ダイアログで常に表示されているUserControlであるならば親のWindowDriverに直接配置しても良い場合が多いです。
+次に左側のUserControlに対するコードを生成します。今回はドライバを作成せずWindowに直接UserControlの要素を配置します。
+UserControlDriverを作るか親のWindowDriverに直接配置するかは状況によって判断してください。
+ダイアログで常に表示されているUserControlの場合は、親のWindowDriverに直接配置しても良い場合が多くあります。
 UI解析ツリーの[ChangeOfPartyUserControl]の下に表示されている2つのテキストボックスをダブルクリックしてDesignerタブのグリッドに追加してください。
 またReservationInformationUserControlも追加してください。先ほど作ったReservationInformationUserControlDriverが割り当たります。
 ![UserControlDriver.Form.png](../Img/UserControlDriver.Form.png)
@@ -209,9 +211,11 @@ namespace Driver.Windows
 ```
 
 ## MainWindowのドライバの作成
-MainWindow は複数のドッキングウィンドウで構成されています。ここでは MainWindow はメニューだけを持つウィンドウと考えます。残りのTreeViewやOutputViewはUserControlでAttach形式で作成します。（後ほど説明します）
+MainWindow は複数のドッキングウィンドウで構成されています。ここでは MainWindow はメニューだけを持つウィンドウと考えます。
+残りのTreeViewやOutputViewはUserControlとしてAttach形式で作成します。（のちほど説明します）
 メニューだけをプロパティに追加して、ドライバを生成してください。
-Controlキーを押しながらメニューの辺りにカーソルを持っていくとメニューもしくはその子要素を選択できます。その後にAnalyzeWindowのTreeでメニューを選択します。ドライバーが割り当たっている要素は文字色が青になっています。
+Controlキーを押しながらメニューのあたりにカーソルを持っていくとメニューもしくはその子要素を選択できます。
+その後にAnalyzeWindowのTreeでメニューを選択します。ドライバが割り当たっている要素は文字色が青になっています。
 ![WindowDriver.MainFrame.png](../Img/WindowDriver.MainFrame.png)
 
 ```cs
@@ -344,6 +348,7 @@ Document は TreeView の AcceptedもしくはSendedから開くことができ�
 このような場合は Attach で Custom の取得方法を利用します。それぞれの特定方法はものによって異なるのでコードで実装する必要があります。
 今回はTitleプロパティで判断するようにします。AnalyzeWindowではAttachを下記のように設定します。
 またPickupChildrenで要素を取得してからGenerateを実行します。
+
 | 項目 | 設定内容 |
 |-----|--------|
 | Create Attach Code | チェックをつける |
@@ -352,8 +357,8 @@ Document は TreeView の AcceptedもしくはSendedから開くことができ�
 
 生成されたコードを以下のように書き換えます。
 Titleの取得はドキュメントを親方向にたどっていって存在するLayoutDocumentControlに対する操作で実現できます。
-この辺りは使っているライブラリの知識が必要です。
-多くの場合アプリ開発チームのメンバーならば対応可能です。
+この作業には利用しているライブラリの知識が必要です。
+多くの場合、アプリケーション開発チームのメンバーは対応可能でしょう。
 Attachのオプションの詳細は [Attach方法ごとのコード](../feature/Attach.md)を参照してください。
 
 ![WindowDriver.Document.png](../Img/WindowDriver.Document.png)
