@@ -107,6 +107,14 @@ Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックし�
 
 選択していたテストメソッドにコードが挿入されていることを確認してください。
 
+## 少しづつ確認しながら作成する
+上記の例のようにドライバを作成したら、キャプチャできるか確認してください。
+特に最初のうちは少しづつ作業を進めることが重要です。
+問題があれば[デバッグし](../feature/CaptureAndExecute.md#デバッグ)ながらキャプチャをしてみて問題を突き止めてください。
+また、CaptureウィンドウのAttachツリーも役に立ちます。現在アタッチされているWindowが表示されます。
+
+![CaptureAttachTree.png](../Img/CaptureAttachTree.png)
+
 ## Multi UserControl Dialogのドライバの作成
 
 次は2つのUserContorlが含まれているMultiUserControlWindowのドライバを作成します。
@@ -400,6 +408,9 @@ namespace Driver.Windows
                     ToArray();
 
         static string GetTitle(AppVar e)
+            //タイトルを取得します。
+            //UserContorlから親方向にたどって見つかるLayoutDocumentControlが持っています。
+            //これは利用しているライブラリ(今回はXceed)の知識が必要です。
             => e.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").First().Dynamic().Model.Title;
     }
 }
