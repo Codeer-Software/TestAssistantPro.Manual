@@ -4,8 +4,8 @@
   "description": "Under construction. so please refer here.<br> https://github.com/Codeer-Software/TestAssistantPro.Samples",
   "main": "index.js",
   "scripts": {
-    "lint": "textlint \"W**/**/*.md\" \"README.md\"",
-    "fixlint": "textlint \"W**/**/*.md\" \"README.md\""
+    "lint": "textlint \"W**/**/*.md\" \"README.md\" \"Install.md\"",
+    "fixlint": "textlint \"W**/**/*.md\" \"README.md\" \"Install.md\""
   },
   "repository": {
     "type": "git",

@@ -95,7 +95,9 @@ Ctrl キーを押しながらExecuteを実行するとテストプロセスを�
 Shift キーを押しながら Excecute を実行すると対象プロセスをデバッグできます。Dll インジェクションで対象プロセスにロードさせる処理を作っている時に便利です。
 Ctrl + Shift を押しながら Execute を実行すると両方を同時にデバッグできます。
 <br>
-またこれはCaptureも同様です。操作してもコードが出力されない場合は特定の仕方に問題がある場合があります。そのような場合はデバッグして原因を突き止めてください。
+<!-- textlint-disable japanese/no-doubled-joshi -->
+またこれはCaptureも同様で、操作してもコードが出力されない場合があります。その場合は、特定の方法に問題があるため、デバッグして原因を突きとめてください。
+<!-- textlint-enable japanese/no-doubled-joshi -->
 
 <br>
 デバッグにはCaptureウィンドウのAttachツリーも役に立ちます。現在アタッチされているWindowが表示されます。
