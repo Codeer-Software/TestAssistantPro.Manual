@@ -10,7 +10,7 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 + [Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)
 
 ## 目次
-初めてTestAssistantProを使う場合はチュートリアルから読んでください。チュートリアル中に各機能の詳細説明へのリンクを入れているので効率良く使用方法を学習することができます。
+初めてTestAssistantProを使う場合はチュートリアルから読んでください。チュートリアル中に各機能の詳細説明へのリンクを入れているので効率良く使用方法を学習できます。
 
 - チュートリアル
   1. [テストソリューションを新規作成する](tutorial/Sln.md)

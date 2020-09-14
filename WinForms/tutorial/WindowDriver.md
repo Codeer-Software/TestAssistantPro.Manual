@@ -13,7 +13,7 @@
 - [Attach方法ごとのコード](../feature/Attach.md)
 
 ## 事前準備
-WinFormsApp.exeを起動してください。ドライバの作成は操作対象のアプリを解析しながらおこないます。
+WinFormsApp.exeを起動してください。ドライバの作成は操作対象のアプリケーションを解析しながら行います。
 
 ## AnalzeWindowの表示
 
@@ -100,10 +100,11 @@ Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックし�
 
 選択していたテストメソッドにコードが挿入されていることを確認してください。
 
-## 少しづつ確認しながら作成する
+## 少しずつ確認しながら作成する
+
 上記の例のようにドライバを作成したら、キャプチャできるか確認してください。
-特に最初のうちは少しづつ作業を進めることが重要です。
-問題があれば[デバッグし](../feature/CaptureAndExecute.md#デバッグ)ながらキャプチャをしてみて問題を突き止めてください。
+特に最初のうちは少しずつ作業を進めることが重要です。
+問題があれば[デバッグし](../feature/CaptureAndExecute.md#デバッグ)ながらキャプチャをしてみて問題を突きとめてください。
 また、CaptureウィンドウのAttachツリーも役に立ちます。現在アタッチされているWindowが表示されます。
 
 ![CaptureAttachTree.png](../Img/CaptureAttachTree.png)
@@ -157,7 +158,7 @@ namespace Driver.Windows
 ![UserControlDriver.ReturnParent.png](../Img/UserControlDriver.ReturnParent.png)
 
 次に左側のUserControlに対するコードを生成します。今回はドライバを作成せずFormに直接UserControlの要素を配置します。
-UserControlDriverを作るか親のWindowDriverに直接配置するかはその時々で判断してください。ダイアログで常に表示されているUserControlであるならば親のWindowDriverに直接配置しても良い場合が多いです。
+UserControlDriverを作るか親のWindowDriverに直接配置するかはそのときどきで判断してください。ダイアログで常に表示されているUserControlである並ば親のWindowDriverに直接配置しても良い場合が多いです。
 UI解析ツリーの[ChangeOfPartyUserControl]の下に表示されている2つのテキストボックスをダブルクリックしてDesignerタブのグリッドに追加してください。
 またReservationInformationUserControlも追加してください。先ほど作ったReservationInformationUserControlDriverが割り当たります。
 
@@ -206,7 +207,7 @@ namespace Driver.Windows
 
 ## MainFormのドライバの作成
 
-MainForm は複数のドッキングウィンドウで構成されています。ここでは MainForm はメニューだけを持つウィンドウと考えます。残りのTreeFormやOutputFormはUserControlでAttach形式で作成します。（後ほど説明します）
+MainForm は複数のドッキングウィンドウで構成されています。ここでは MainForm はメニューだけを持つウィンドウと考えます。残りのTreeFormやOutputFormはUserControlをAttach形式で作成します。（のちほど説明します）
 メニューだけをプロパティに追加して、ドライバを生成してください。
 
 ![WindowDriver.MainFrame.png](../Img/WindowDriver.MainFrame.png)

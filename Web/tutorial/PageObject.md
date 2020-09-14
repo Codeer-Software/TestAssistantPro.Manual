@@ -98,17 +98,36 @@ namespace PageObject
 
 画面遷移が完了したら[Analyze Window]の[Analyze]ボタンをクリックして再解析を行います。再解析が完了したら次のようになるように[Page Property]を設定してください。
 
-- 上から2つ目のドロップダウンで[EndsWith]を選択し、対応するテキストボックスの値を"/Movies/Create"に設定します。
 - [Name]の値を"MovieCreatePage"に設定します。
 
 また、[Elements Property]に次の要素を追加してください。TypeやNameなどは追加した状態から変更しないでください。
 
-- 画面ヘッダにある3つのリンク
 - 画面内にある各テキストボックス
 - [追加]ボタン
 - [追加]ボタンの下にある[リストへ戻る]リンク
 
 ![Analyze window of movie create page](../img/pageobject_analyzewindow_movie_create.png)
+
+### 要素特定方法の明示的な設定
+
+画面のサブタイトルの要素をプロパティに追加します。コントロールキーを押しながらブラウザの要素を選択するか、またはAnalyzeWindowのHTML要素ツリーからサブタイトルの要素をプロパティに追加してください。
+
+![](../img/pageobject_select_subtitle.png)
+
+追加されたプロパティのIdentify列を選択して表示されるドロップダウンで"*custom"を選択してください。
+
+![](../img/pageobject_select_custom.png)
+
+「Custom Identiy」ダイアログが表示されます。このダイアログでは要素を特定する条件をより詳細に設定できます。初期状態ではリストの一番下のh4にだけチェックがついています。次の内容を設定してください。
+
+- h4要素の上のmain要素を選択する
+- main要素の Identify 列で "ByCssSelector(main[role=main])"を選択する
+
+画面下部に選択した2つの要素の指定が連結されていることを確認できます。「OK」ボタンを押して修正を確定してください。
+
+![](../img/pageobject_detail_identify.png)
+
+### コードの生成
 
 [Generate]ボタンをクリックすることで次のようなコードが生成されます。
 
@@ -122,23 +141,21 @@ namespace PageObject
 {
     public class MovieCreatePage : PageBase
     {
-        public AnchorDriver to_home => ById("to-home").Wait();
-        public AnchorDriver to_movies => ById("to-movies").Wait();
-        public AnchorDriver to_controls => ById("to-controls").Wait();
         public TextBoxDriver movie_title => ById("movie-title").Wait();
         public DateDriver movie_releasedate => ById("movie-releasedate").Wait();
         public TextBoxDriver movie_genre => ById("movie-genre").Wait();
         public TextBoxDriver movie_price => ById("movie-price").Wait();
         public ButtonDriver to_add => ById("to-add").Wait();
         public AnchorDriver to_index => ById("to-index").Wait();
+        public IWebElement h4 => ByCssSelector("main[role='main']").ByTagName("h4").Wait().Find();
 
         public MovieCreatePage(IWebDriver driver) : base(driver) { }
     }
 
-    public static class MovieCreatePageExtensions
+    public static class PageObjectExtensions
     {
-        [PageObjectIdentify("/Movies/Create", UrlComapreType.EndsWith)]
-        public static MovieCreatePage AttachMovieCreatePage(this IWebDriver driver) => new MovieCreatePage(driver);
+        [PageObjectIdentify("Create - Demo", TitleComapreType.Equals)]
+        public static MovieCreatePage AttachPageObject(this IWebDriver driver) => new MovieCreatePage(driver);
     }
 }
 ```
@@ -146,6 +163,6 @@ namespace PageObject
 ## 次の手順
 
 ここまで基本的なページオブジェクトを作成できました。
-次はテーブルなど繰り返しのデータを表示する要素を操作するための、Component Objectを作成します。
+次は画面コンポーネントを操作するための、Component Objectを作成します。
 
-[繰り返し要素のプロパティを追加する](ComponentObject.md)
+[画面コンポーネントのプロパティを追加する](ComponentObject.md)
