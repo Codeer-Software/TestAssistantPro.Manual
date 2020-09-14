@@ -9,8 +9,21 @@ https://tools.codeer.co.jp/<br>
 メールアドレスとパスワードは購入時にご担当者にメールで送られます。
 初期パスワードは必ず変更してください。
 
+ログイン
+
+![Login.png](Img/Login.png)
+
+パスワードリセット
+
+![ResetPassword1.png](Img/ResetPassword1.png)
+
+![ResetPassword2.png](Img/ResetPassword2.png)
+
 ## ライセンス削除
 ### Visual Studio からライセンスの削除
 メニューの拡張機能から 「Licence Information」 を選択し、ダイアログで「Cancel Authentication」を実行してください。
 
+![CancelAuthentication.png](Img/CancelAuthentication.png)
+
 ### ライセンスサーバーから担当者の削除
+![DeleteLicense.png](Img/DeleteLicense.png)
