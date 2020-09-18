@@ -23,6 +23,7 @@
                 <MenuItem x:Name="_menuMultiUserControlDialog" Header="Multi UserControl Dialog" Click="MultiUserControlDialog_Click"/>
                 <MenuItem x:Name="_menuCustomControlDialog" Header="Custom Control Dialog" Click="CustomControlDialog_Click"/>
                 <MenuItem x:Name="_itemsControllDialog" Header="ItemsControl Dialog" Click="ItemsControlDialog_Click"/>
+                <MenuItem x:Name="_itemsControll2Dialog" Header="ItemsControl2 Dialog" Click="ItemsControl2Dialog_Click"/>
                 <MenuItem x:Name="_menuMessageBoxDialog" Header="MessageBox" Click="MessageBoxDialog_Click"/>
             </MenuItem>
         </Menu>

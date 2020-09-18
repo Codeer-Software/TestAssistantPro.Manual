@@ -86,6 +86,12 @@ namespace WpfDockApp
             dialog.ShowDialog();
         }
 
+        void ItemsControl2Dialog_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new ItemsControl2Window();
+            dialog.ShowDialog();
+        }
+
         void MessageBoxDialog_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(this, "Message.");
