@@ -33,3 +33,6 @@ namespace Driver.Controls
 	}
 }
 ```
+
+## 次の手順
+[CaptureCodeGeneratorの実装](ControlDriver3.md)

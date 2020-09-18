@@ -36,3 +36,6 @@ namespace Driver.InTarget
 ```
 ## 注意
 Driver.InTarget.dllは対象プロセス内部で動作します。そのため対象プロセスにアタッチした後、そのプロセスが起動している間にビルドしようとしてもdllファイルは対象プロセスが握っている状態なのでビルドできません。ビルドする場合は対象プロセスを一度終了させてください。
+
+## 次の手順
+[ControlDriverとCaptureCodeGeneratorの利用](ControlDriver4.md)
