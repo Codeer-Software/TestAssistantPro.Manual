@@ -40,3 +40,6 @@ namespace Driver.Windows
     }
 }
 ```
+
+## 次の手順
+[キャプチャ](ItemsControlDriver4.md)

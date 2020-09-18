@@ -10,3 +10,6 @@ UI解析ツリーからBlockControlを選択し、コンテキスメニューよ
 次に CaptureGenerator を選択し Driver.InTarget の任意のフォルダにドロップします。
 
 ![ControlDriver.CreateControlDriver.Drop.png](../Img/ControlDriver.CreateControlDriver.Drop.png)
+
+## 次の手順
+[ControlDriverの実装](ControlDriver2.md)

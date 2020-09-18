@@ -9,3 +9,7 @@
 ![WindowDriver.SelectTarget.png](../Img/WindowDriver.SelectTarget.png)
 
 詳細は「[AnalyzeWindow/AnalyzeWindowの起動](../feature/AnalyzeWindow.md#AnalyzeWindowの起動)」を参照してください。
+
+
+## 次の手順
+[Simple Dialogのドライバの作成](WindowDriver2.md)

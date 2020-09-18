@@ -45,5 +45,5 @@ itemsControlWindow._listBox.GetItemDriver(2).ComboBoxData.EmulateChangeSelectedI
 itemsControlWindow._listBox.GetItemDriver(2).TextData.EmulateChangeText("abc");
 ```
 
-[ItemsControlWindowのドライバ作成](#ItemsControlWindowのドライバ作成)
-
+## 次の手順
+[DateTemplateでカスタマイズしたListBoxItemのドライバ作成る](ItemsControlDriver1.md)

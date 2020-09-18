@@ -73,3 +73,6 @@ Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックし�
 ![WindowDriver.Capture.SimpleDialog.png](../Img/WindowDriver.Capture.SimpleDialog.png)
 
 選択していたテストメソッドにコードが挿入されていることを確認してください。
+
+## 次の手順
+[Multi UserControl Dialogのドライバの作成](WindowDriver3.md)
