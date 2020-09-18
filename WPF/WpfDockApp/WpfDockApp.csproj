@@ -61,6 +61,9 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="unvell.ReoGrid, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\unvell.ReoGridWPF.dll.2.2.0\lib\net20\unvell.ReoGrid.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -93,6 +96,9 @@
     </Compile>
     <Compile Include="CustomControlWindow.xaml.cs">
       <DependentUpon>CustomControlWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsControl2Window.xaml.cs">
+      <DependentUpon>ItemsControl2Window.xaml</DependentUpon>
     </Compile>
     <Compile Include="ItemsControlWindow.xaml.cs">
       <DependentUpon>ItemsControlWindow.xaml</DependentUpon>
@@ -128,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControlWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemsControl2Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
