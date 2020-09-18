@@ -1,10 +1,10 @@
 # Attach方法ごとのコード
 
-Attachとはプログラムコードからアプリケーションを動かす際に。操作する対象の要素(WindowDriver/UserControlDriver)と接続する処理のことをさします。 実際にはプログラムコードのメソッドとして実現されます。
+Attachとはプログラムコードからアプリケーションを動かす際に、操作する対象の要素(WindowDriver/UserControlDriver)と接続する処理のことをさします。 実際にはプログラムコードのメソッドとして実現されます。
 これはTestAssistantProを使わない場合にも手書きで作成します。
 詳細は[こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md#attach)を参照してください。
 TestAssistantProはキャプチャ時にこのメソッドを使ってドライバを検索します。
-そのためTestAssitantProを使う場合は`WindowDriverIdentifyAttribute`、`UserControlDriverIdentifyAttribute`属性を付けてTestAssistantProが利用できるようにします。
+そのためTestAssitantProを使うために`WindowDriverIdentifyAttribute`、`UserControlDriverIdentifyAttribute`属性を付けます。
 
 <br>
 AttachにはWinndowDriver/UserControlDriverごとに次の4種類があります。
@@ -33,7 +33,7 @@ public static class MainWindowDriverExtensions
 ### Custom
 
 キャプチャ時にTryが先に呼び出されます。
-このTryメソッドは通常はTestAssistantProからしか利用されません。
+このTryメソッドは通常、TestAssistantProからしか利用されません。
 そこで渡されたWindowControlが目的のWindowである場合は true を返すように実装します。
 Tは識別子を表す任意の型に書き換えてください。
 Tryで作成した識別子を使ってAttachメソッドが実行されます。
@@ -107,24 +107,35 @@ public static class XUserControlDriverExtensions
 ```
 
 Customの実装例です。<br>
-TODO
 ```cs
 public static class OrderDocumentUserControlDriverExtensions
 {
+    //ここに特定のためのカスタムコードを入れる
+    //キャプチャ時にTestAssistantProが使うCustomMethod名を指定します。
     [UserControlDriverIdentify(CustomMethod = "TryGet")]
     public static OrderDocumentUserControlDriver AttachOrderDocumentUserControl(this WindowsAppFriend app, string identifier)
+        //アプリの全てのウィンドウからTypeが一致するものを取得
         => app.GetTopLevelWindows().
-                Select(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").SingleOrDefault()).
-                Where(e => !e.IsNull).
-                Where(e => (string)e.Dynamic().Title == identifier).
+                SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
+                //その中でタイトルが一致するものを取得
+                Where(e => GetTitle(e) == identifier).
                 FirstOrDefault()?.Dynamic();
 
-    public static void TryGet(this WindowsAppFriend app, out string[] identifier)
-        => identifier = app.GetTopLevelWindows().
-            Select(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").SingleOrDefault()).
-            Where(e => !e.IsNull).
-            Select(e => (string)e.Dynamic().Title).
-            ToArray();
+    //キャプチャ時にTestAssisatntProが使います。
+    //発見した目的のUserControlの識別子をout引数に入れます。
+    public static void TryGet(this WindowsAppFriend app, out string[] identifiers)
+        //アプリの全てのウィンドウからTypeが一致するものを取得
+            => identifiers = app.GetTopLevelWindows().
+                SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
+                //識別子にタイトルを使う
+                Select(e => GetTitle(e)).
+                ToArray();
+
+    static string GetTitle(AppVar e)
+        //タイトルを取得します。
+        //UserContorlから親方向にたどって見つかるLayoutDocumentControlが持っています。
+        //これは利用しているライブラリ(今回はXceed)の知識が必要です。
+        => e.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").First().Dynamic().Model.Title;
 }
 ```
 

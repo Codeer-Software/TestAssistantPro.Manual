@@ -1,23 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfDockApp
 {
-    /// <summary>
-    /// OrderDocumentUserControl.xaml の相互作用ロジック
-    /// </summary>
     public partial class OrderDocumentUserControl : UserControl
     {
         public delegate void SearchEventHandler(object sender, SearchEventArgs e);
@@ -32,13 +18,13 @@ namespace WpfDockApp
 
         public void SetDocument(string[][] document)
         {
-            DataGrid.ItemsSource = document;
+            _dataGrid.ItemsSource = document;
         }
 
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             var hits = new List<string>();
-            var items = DataGrid.Items;
+            var items = _dataGrid.Items;
             for (int row = 0; row < items.Count; row++)
             {
                 var texts = (string[])items[row];
@@ -46,7 +32,7 @@ namespace WpfDockApp
                 {
                     string text = texts[col];
                     {
-                        if (text.Contains(SearchText.Text))
+                        if (text.Contains(_searchText.Text))
                         {
                             hits.Add($"OrderDocument ({row},{col}) : {text}");
                         }

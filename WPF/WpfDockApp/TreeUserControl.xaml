@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TreeView x:Name="TreeView" MouseDoubleClick="TreeView_MouseDoubleClick">
+        <TreeView x:Name="_treeView" MouseDoubleClick="TreeView_MouseDoubleClick">
             <TreeView.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Open" Click="MenuItem_Click"/>

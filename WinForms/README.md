@@ -10,7 +10,7 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 + [Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)
 
 ## 目次
-初めてTestAssistantProを使う場合はチュートリアルから読んでください。チュートリアル中に各機能の詳細説明へのリンクを入れているので効率良く使用方法を学習することができます。
+初めてTestAssistantProを使う場合はチュートリアルから読んでください。チュートリアル中に各機能の詳細説明へのリンクを入れているので効率良く使用方法を学習できます。
 
 - チュートリアル
   1. [テストソリューションを新規作成する](tutorial/Sln.md)
@@ -29,7 +29,10 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
   - [Captureウィンドウをカスタマイズする](feature/CustomizeCaptureWindow.md)
  
 ## 利用するサンプルアプリケーション
+### ダウンロード
+サンプルアプリケーションは[こちら](https://github.com/Codeer-Software/TestAssistantPro.Manual/releases/download/ver0.1/WinFormApp.zip)からダウンロードできます。ダウンロード後には「ブロックの解除」を行ってください。ソースコードは[こちら](WinFormsApp)にあります。
 
+### 内容
 サンプルには WinForms でよくあるドッキングウィンドウタイプのアプリケーションを用意しました。
 Friendly を使って自動テストを作成しようとするときに多くの場合最初に表示されるメインウィンドウでつまずきます。
 ドッキングウィンドウはドライバ作成にコツが必要で前提知識なしに作成するのは困難です。
@@ -42,5 +45,3 @@ Friendly を使って自動テストを作成しようとするときに多く�
 
 ![NativeWindows.png](Img/NativeWindows.png)
 
-## サンプルアプリケーションの準備
-サンプルアプリケーションは[こちら](https://github.com/Codeer-Software/TestAssistantPro.Manual/releases/download/ver0.1/WinFormApp.zip)からダウンロードできます。ダウンロード後には「ブロックの解除」を行ってください。ソースコードは[こちら](WinFormsApp)にあります。

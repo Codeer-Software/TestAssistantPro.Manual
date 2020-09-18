@@ -8,10 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="SearchText" MinWidth="200" Margin="8"/>
-            <Button x:Name="SearchButton" Content="Search" Margin="8" Click="SearchButton_Click"/>
+            <TextBox x:Name="_searchText" MinWidth="200" Margin="8"/>
+            <Button x:Name="_searchButton" Content="Search" Margin="8" Click="SearchButton_Click"/>
         </StackPanel>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False">
+        <DataGrid x:Name="_dataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Company" Binding="{Binding [0]}"/>
                 <DataGridTextColumn Header="Flower" Binding="{Binding [1]}"/>

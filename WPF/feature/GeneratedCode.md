@@ -18,11 +18,17 @@ using System.Linq;
 
 namespace Driver.Windows
 {
-    [WindowDriver(TypeFullName = "WpfDockApp.YWindow")]
+    //WindowDriverであることを明示します。
+    //対応するWindowのタイプフルネームを指定します。
+    //WindowDriverAttributeを付けることでTestAssistantProが
+    //AnalyzeWindowでコントロールに対してすでにドライバが割り当てられていることを検知します。
+    [WindowDriver(TypeFullName = "XXX.YWindow")]
     public class YWindowDriver
     {
         public WindowControl Core { get; }
-        public WPFMenuBase Menu => Core.Dynamic().Menu; 
+        public WPFDatePicker Birthday => Core.LogicalTree().ByBinding("Birthday").Single().Dynamic(); 
+        public WPFComboBox UserLanguage => Core.LogicalTree().ByBinding("UserLanguage").Single().Dynamic(); 
+        public WPFTextBox Remarks => Core.LogicalTree().ByBinding("Remarks").Single().Dynamic(); 
 
         public YWindowDriver(WindowControl core)
         {
@@ -37,9 +43,12 @@ namespace Driver.Windows
 
     public static class YWindowDriverExtensions
     {
-        [WindowDriverIdentify(TypeFullName = "WpfDockApp.YWindow")]
+        //アプリケーションからYWindowを特定して取得します。
+        //WindowDriverIdentifyAttributeを付けることでTestAssistantProがこのメソッドを使えるようになります。
+        //Attachについては後述します。
+        [WindowDriverIdentify(TypeFullName = "XXX.YWindow")]
         public static YWindowDriver AttachYWindow(this WindowsAppFriend app)
-            => app.WaitForIdentifyFromTypeFullName("WpfDockApp.YWindow").Dynamic();
+            => app.WaitForIdentifyFromTypeFullName("XXX.YWindow").Dynamic();
     }
 }
 ```
@@ -67,8 +76,8 @@ namespace Driver.Windows
 
         //ControlDriverを並べる
         //ControlDriverを特定するのが責務
-        public FormsRadioButton _radioA => Core.Dynamic()._radioButtonAlacarte; 
-        public FormsRadioButton _radioB => Core.Dynamic()._radioButtonCourse; 
+        public WPFTextBox UserName => Core.LogicalTree().ByBinding("UserName").Single().Dynamic(); 
+        public WPFTextBox Remarks => Core.LogicalTree().ByBinding("Remarks").Single().Dynamic(); 
 
         public ZUserControlDriver(WindowControl core)
         {

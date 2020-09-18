@@ -1,17 +1,16 @@
-# 画面操作のキャプチャと再生
+# 画面操作のキャプチャと実行
 
 TestAssistantProには、対になるCaptureとExecuteという機能があります。
-<!--TODO ExecuteというよりはReplay?-->
 
-- Capture機能は、アプリケーションの操作をプログラムコードとして記録します。
-- Execute機能は、記録したプログラムコードを実行して対象アプリケーション上で操作を再現します。
+- Capture機能は、アプリケーションの操作からプログラムコードを生成します。
+- Execute機能は、指定の関数を実行します。この時WindowsAppFriendには現在接続しているプロセスが入ります。
 
 ## Capture
 
-アプリケーションの操作をプログラムコードとして記録します。
+アプリケーションの操作からプログラムコードを生成します。
 Captureでプログラムコードを生成するためには、WindowDriverおよびUserControlDriverが作成されている必要があります。詳細な内容は[AnalyzeWindowの使い方](./AnalyzeWindow.md)を参照してください。
 
-Capture機能を実行するには、プログラムコードを記録したいメソッドを右クリックして、[Capture]を選択してください。Captureウィンドウが表示され、画面操作の記録が開始されます。
+Capture機能を実行するには、プログラムコードを生成したいメソッドを右クリックして、[Capture]を選択してください。Captureウィンドウが表示され、画面操作のキャプチャが開始されます。
 
 ![Captureコンテキストメニュー](../Img/CaptureAndExecute.CaptureContextMenu.png)
 
@@ -24,7 +23,7 @@ Capture機能を実行するには、プログラムコードを記録したい�
 ![生成されたコード](../Img/CaptureAndExecute.GeneratedCode.png)
 
 
-### キーボード操作とマウス操作の記録
+### キーボード操作とマウス操作の生成
 
 Friendly の操作は一般的に最適な操作方法を提供していますが、API呼び出しが基本ですので人の操作とは異なります。
 場合によってはより人の操作に近い方が良い場合もあります。
@@ -49,10 +48,6 @@ void AsyncTest()
     var async = new Async();
     mainWindow.Menu.GetItem("etc.", "Simple Dialog").EmulateClick(async);
     var simpleWindow = _app.AttachSimpleWindow();
-    simpleWindow.TextBox.EmulateChangeText("Test");
-    simpleWindow.DatePicker.EmulateChangeDate(new DateTime(2020, 8, 13));
-    simpleWindow.ComboBox.EmulateChangeSelectedIndex(1);
-    simpleWindow.TextBox0.EmulateChangeText("テストの値");
     simpleWindow.OK.EmulateClick();
     async.WaitForCompletion();
 }
@@ -85,13 +80,13 @@ namespace Scenario
 
 ## Execute
 
-記録したプログラムコードを実行して対象アプリケーション上で操作を再現します。
+指定の関数を実行します。この時WindowsAppFriendには現在接続しているプロセスが入ります。
 
-実行したいメソッドを右クリックして、[Execute]を選択してください。プログラムコードが実行され、操作が再生されます。
+実行したいメソッドを右クリックして、[Execute]を選択してください。プログラムコードが実行されます。
 
 ![Executeコンテキストメニュー](../Img/CaptureAndExecute.ExecuteContextMenu.png)
 
-操作を正しく再生するためにはアプリケーションが操作を実行できる状態になっている必要があります。たとえば、ダイアログの操作を記録したプログラムコードを再生する場合は、ダイアログが表示されている状態から実行する必要があることに注意してください。
+関数を意図通り実行するためにはアプリケーションが操作を実行できる状態になっている必要があります。たとえば、ダイアログの操作するプログラムコードを実行する場合は、ダイアログが表示されている状態から実行する必要があることに注意してください。
 
 ### デバッグ
 
@@ -99,3 +94,12 @@ Ctrl キーを押しながらExecuteを実行するとテストプロセスを�
 (これは Debug メニューと同じ動作になります)
 Shift キーを押しながら Excecute を実行すると対象プロセスをデバッグできます。Dll インジェクションで対象プロセスにロードさせる処理を作っている時に便利です。
 Ctrl + Shift を押しながら Execute を実行すると両方を同時にデバッグできます。
+<br>
+<!-- textlint-disable japanese/no-doubled-joshi -->
+またこれはCaptureも同様で、操作してもコードが出力されない場合があります。その場合は、特定の方法に問題があるため、デバッグして原因を突きとめてください。
+<!-- textlint-enable japanese/no-doubled-joshi -->
+
+<br>
+デバッグにはCaptureウィンドウのAttachツリーも役に立ちます。現在アタッチされているWindowが表示されます。
+
+![CaptureAttachTree.png](../Img/CaptureAttachTree.png)

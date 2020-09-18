@@ -5,7 +5,7 @@ OpenDocument という関数を作り、そこで右クリックから Capture �
 
 ![!Capture.Start.png](../Img/Capture.Start.png)
 
-ツリー上でドキュメントを選択して右クリックメニューから Open Document を実行します。
+ツリー上でドキュメントを選択して右クリックメニューから Open を実行します。
 Capture ウィンドウ上に次のようにコードが出ているので Generate ボタンを押します。
 
 ![!Capture.OpenDocument.png](../Img/Capture.OpenDocument.png)

@@ -50,7 +50,7 @@ Visual Studioを起動して「新しいプロジェクトの追加」ダイア�
 
 ![Sln1.png](../Img/Sln1.png)
 
-「新しいプロジェクトを構成します」画面表示されるため任意のプロジェクト名と場所を入力して「作成」ボタンを押下してください。
+「新しいプロジェクトを構成します」画面が表示されるため任意のプロジェクト名と場所を入力して「作成」ボタンを押下してください。
 
 ![Sln2.png](../Img/Sln2.png)
 
@@ -72,6 +72,9 @@ Visual Studioを起動して「新しいプロジェクトの追加」ダイア�
 
 テスト対象アプリケーションをテストするために、テスト対象アプリケーションの実行ファイルのパスを指定します。
 「Driver」プロジェクトのTestController/ProcessController.csファイルを開いて、targetPath変数にパスを設定してください。
+
+### サンプルアプリケーションの準備
+サンプルアプリケーションは[こちら](https://github.com/Codeer-Software/TestAssistantPro.Manual/releases/download/ver0.1/WinFormApp.zip)からダウンロードできます。ダウンロード後には「ブロックの解除」を行ってください。ソースコードは[こちら](WinFormsApp)にあります。
 
 ```cs
 using Codeer.Friendly.Windows;

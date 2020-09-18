@@ -6,8 +6,8 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:WpfDockApp"
         mc:Ignorable="d"
-        Title="CustomControl" Height="605" Width="975" FontSize="16">
+        Title="CustomControl" Height="204.035" Width="286.762" FontSize="16">
     <Grid>
-        
+        <local:NumericUpDownControl x:Name="_numericUpDown" Height="28" Canvas.Left="136" Canvas.Top="283" Width="179"/>
     </Grid>
 </Controls:MetroWindow>

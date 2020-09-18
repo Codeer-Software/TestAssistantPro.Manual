@@ -1,29 +1,24 @@
-﻿using Microsoft.Win32;
-using System.Collections.Generic;
-using System.IO;
+﻿using MahApps.Metro.Controls;
+using Microsoft.Win32;
 using System.Windows;
-using System.Windows.Controls;
 using Xceed.Wpf.AvalonDock.Layout;
 
 namespace WpfDockApp
 {
-    /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
-    /// </summary>
-    public partial class MainWindow : MahApps.Metro.Controls.MetroWindow
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
             InitializeComponent();
 
-            TreeUserControl.MakeDocumentEvent += TreeUserControl_MakeDocumentEvent;
+            _treeUserControl.MakeDocumentEvent += TreeUserControl_MakeDocumentEvent;
         }
 
-        private void TreeUserControl_MakeDocumentEvent(object sender, MakeDocumentEventArgs e)
+        void TreeUserControl_MakeDocumentEvent(object sender, MakeDocumentEventArgs e)
         {
             var documents = e.Document;
             bool found = false;
-            foreach (var document in DocumentPane.Children)
+            foreach (var document in _documentPane.Children)
             {
                 if (document is LayoutDocument layoutDocument)
                 {
@@ -42,63 +37,62 @@ namespace WpfDockApp
                 var layoutDocument = new LayoutDocument();
                 layoutDocument.Title = e.Header;
                 var documentControl = new OrderDocumentUserControl();
-                documentControl.Title = e.Header;
                 documentControl.SearchEvent += DocumentControl_SearchEvent;
                 documentControl.SetDocument(documents);
                 layoutDocument.Content = documentControl;
-                DocumentPane.Children.Add(layoutDocument);
+                _documentPane.Children.Add(layoutDocument);
                 layoutDocument.IsSelected = true;
             }
         }
 
-        private void DocumentControl_SearchEvent(object sender, SearchEventArgs e)
+        void DocumentControl_SearchEvent(object sender, SearchEventArgs e)
         {
-            OutputUserControl.SetOutputTexts(e.SearchResult);
+            _outputUserControl.SetOutputTexts(e.SearchResult);
         }
 
-        private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
+        void MenuItemOpen_Click(object sender, RoutedEventArgs e)
         {
             var dlg = new OpenFileDialog();
             dlg.ShowDialog();
         }
 
-        private void MenuItemSave_Click(object sender, RoutedEventArgs e)
+        void MenuItemSave_Click(object sender, RoutedEventArgs e)
         {
             var dlg = new SaveFileDialog();
             dlg.ShowDialog();
         }
 
-        private void SimpleDialog_Click(object sender, RoutedEventArgs e)
+        void SimpleDialog_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new SimpleWindow();
             dialog.ShowDialog();
         }
 
-        private void MultiUserControlDialog_Click(object sender, RoutedEventArgs e)
+        void MultiUserControlDialog_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new MultiUserControlWindow();
             dialog.ShowDialog();
         }
 
-        private void CustomControlDialog_Click(object sender, RoutedEventArgs e)
+        void CustomControlDialog_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new CustomControlWindow();
             dialog.ShowDialog();
         }
 
-        private void ItemsControlDialog_Click(object sender, RoutedEventArgs e)
+        void ItemsControlDialog_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new ItemsControlWindow();
             dialog.ShowDialog();
         }
 
-        private void ItemsControl2Dialog_Click(object sender, RoutedEventArgs e)
+        void ItemsControl2Dialog_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new ItemsControl2Window();
             dialog.ShowDialog();
         }
 
-        private void MessageBoxDialog_Click(object sender, RoutedEventArgs e)
+        void MessageBoxDialog_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(this, "Message.");
         }

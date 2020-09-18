@@ -12,13 +12,16 @@
 - [AnalyzeWindowで生成されるコード](../feature/GeneratedCode.md)
 - [Attach方法ごとのコード](../feature/Attach.md)
 
+## 事前準備
+WpfDockApp.exeを起動してください。ドライバの作成は操作対象のアプリケーションを解析しながら行います。
+
 ## AnalzeWindowの表示
 
 ソリューションエクスプローラーのDriverプロジェクトのWindowsフォルダで右クリックしてAnalyze Windowを実行します。
 
 ![WindowDriver.Start.png](../Img/WindowDriver.Start.png)
 
-テスト対象のアプリケーションを選択する画面が出ますので、MainWindowを選択してください。
+テスト対象のアプリケーションを選択する画面が出ますので、MainWindowを選択してください。（ダブルクリックもしくは選択状態にしてからEnterキー押下で選択できます）
 
 ![WindowDriver.SelectTarget.png](../Img/WindowDriver.SelectTarget.png)
 
@@ -33,9 +36,13 @@
 
 UI解析ツリーのルートで右クリックメニューを表示して[Pickup Children]を実行します。
 そうするとグリッドに ControlDriver の割り当たった要素がピックアップされます。
+ピックアップされた要素をグリッド上で選択すると対応するコントロールが赤枠で囲まれます。
+特に使わないものもピックアップされるので必要ないものは削除しておきます。
+タイトルバーのボタン類は使わないので消しておきます。
 
 - 名前はデフォルトでは変数名になっていますが、変更できます。
 - ラベルは Pickup Chidlren では無視されますが、必要ならツリーの要素をダブルクリックすることにより追加で登録できます。
+- グリッド上で要素を選択しDeleteキーを押すことで削除できます。
 
 必要な要素を登録したら[Generate]ボタンを押してコードを生成します。
 [Create Attach Code]はデフォルトの状態で生成してください。
@@ -60,14 +67,14 @@ namespace Driver.Windows
     public class SimpleWindowDriver
     {
         public WindowControl Core { get; }
-        public WPFTextBox TextBox => Core.LogicalTree().ByBinding("UserName").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
-        public WPFDatePicker DatePicker => Core.LogicalTree().ByBinding("Birthday").Single().Dynamic(); 
-        public WPFComboBox ComboBox => Core.LogicalTree().ByBinding("UserLanguage").Single().Dynamic(); 
-        public WPFTextBox TextBox0 => Core.LogicalTree().ByBinding("Remarks").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu0 => new WPFContextMenu{Target = TextBox0.AppVar};
-        public WPFButtonBase OK => Core.Dynamic().OK; 
-        public WPFButtonBase Cancel => Core.Dynamic().Cancel; 
+        public WPFTextBox UserName => Core.LogicalTree().ByBinding("UserName").Single().Dynamic(); 
+        public WPFContextMenu UserNameContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
+        public WPFDatePicker Birthday => Core.LogicalTree().ByBinding("Birthday").Single().Dynamic(); 
+        public WPFComboBox UserLanguage => Core.LogicalTree().ByBinding("UserLanguage").Single().Dynamic(); 
+        public WPFTextBox Remarks => Core.LogicalTree().ByBinding("Remarks").Single().Dynamic(); 
+        public WPFContextMenu RemarksContextMenu => new WPFContextMenu{Target = Remarks.AppVar};
+        public WPFButtonBase _oK => Core.Dynamic()._oK; 
+        public WPFButtonBase _cancel => Core.Dynamic()._cancel; 
 
         public SimpleWindowDriver(WindowControl core)
         {
@@ -100,11 +107,18 @@ Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックし�
 
 選択していたテストメソッドにコードが挿入されていることを確認してください。
 
+## 少しずつ確認しながら作成する
+上記の例のようにドライバを作成したら、キャプチャできるか確認してください。
+特に最初のうちは少しずつ作業を進めることが重要です。
+問題があれば[デバッグし](../feature/CaptureAndExecute.md#デバッグ)ながらキャプチャをしてみて問題を突きとめてください。
+また、CaptureウィンドウのAttachツリーも役に立ちます。現在アタッチされているWindowが表示されます。
+
+![CaptureAttachTree.png](../Img/CaptureAttachTree.png)
+
 ## Multi UserControl Dialogのドライバの作成
 
 次は2つのUserContorlが含まれているMultiUserControlWindowのドライバを作成します。
 対象アプリケーションのメニューから[etc] - [Multi UserControl Dialog]を選択して、ダイアログを表示します。
-
 ![UserControlDriver.Analyze.png](../Img/UserControlDriver.Analyze.png)
 
 最初に右側のUserControlのドライバを作ります。
@@ -129,11 +143,11 @@ namespace Driver.Windows
     public class ReservationInformationUserControlDriver
     {
         public WPFUserControl Core { get; }
-        public WPFToggleButton Smoking => Core.Dynamic().Smoking; 
-        public WPFTextBox NumberOfPeople => Core.Dynamic().NumberOfPeople; 
-        public WPFContextMenu NumberOfPeopleContextMenu => new WPFContextMenu{Target = NumberOfPeople.AppVar};
-        public WPFToggleButton Course => Core.Dynamic().Course; 
-        public WPFToggleButton Alacarte => Core.Dynamic().Alacarte; 
+        public WPFToggleButton _smoking => Core.Dynamic()._smoking; 
+        public WPFTextBox _numberOfPeople => Core.Dynamic()._numberOfPeople; 
+        public WPFContextMenu _numberOfPeopleContextMenu => new WPFContextMenu{Target = NumberOfPeople.AppVar};
+        public WPFToggleButton _course => Core.Dynamic()._course; 
+        public WPFToggleButton _alacarte => Core.Dynamic()._alacarte; 
 
         public ReservationInformationUserControlDriver(AppVar core)
         {
@@ -142,10 +156,15 @@ namespace Driver.Windows
     }
 }
 ```
+解析対象を親ウィンドウ戻すにはツリーのルートの[←]をダブルクリックするか、そこを右クリックで[Change The Analysis Target]を選択します。
+
+![UserControlDriver.ReturnParent.png](../Img/UserControlDriver.ReturnParent.png)
 
 次に左側のUserControlに対するコードを生成します。今回はドライバを作成せずWindowに直接UserControlの要素を配置します。
+UserControlDriverを作るか親のWindowDriverに直接配置するかは状況によって判断してください。
+ダイアログで常に表示されているUserControlの場合は、親のWindowDriverに直接配置しても良い場合が多くあります。
 UI解析ツリーの[ChangeOfPartyUserControl]の下に表示されている2つのテキストボックスをダブルクリックしてDesignerタブのグリッドに追加してください。
-
+またReservationInformationUserControlも追加してください。先ほど作ったReservationInformationUserControlDriverが割り当たります。
 ![UserControlDriver.Form.png](../Img/UserControlDriver.Form.png)
 
 [Generate]ボタンをクリックしてコードを生成します。
@@ -166,10 +185,10 @@ namespace Driver.Windows
     {
         public WindowControl Core { get; }
         public AppVar ReservationInformationUserControl => Core.LogicalTree().ByType("WpfDockApp.ReservationInformationUserControl").Single().Dynamic(); 
-        public WPFTextBox TextBox => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("UserName").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
-        public WPFTextBox TextBox0 => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("Tel").Single().Dynamic(); 
-        public WPFContextMenu TextBox0ContextMenu => new WPFContextMenu{Target = TextBox0.AppVar};
+        public WPFTextBox UserName => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("UserName").Single().Dynamic(); 
+        public WPFContextMenu UserNameContextMenu => new WPFContextMenu{Target = UserName.AppVar};
+        public WPFTextBox Tel => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("Tel").Single().Dynamic(); 
+        public WPFContextMenu TelContextMenu => new WPFContextMenu{Target = Tel.AppVar};
 
         public MultiUserControlWindowDriver(WindowControl core)
         {
@@ -191,254 +210,12 @@ namespace Driver.Windows
 }
 ```
 
-## ItemsControl Dialogのドライバの作成
-
-次はListBoxとListViewが含まれているItemsControl Windowのドライバを作成します。
-対象アプリケーションのメニューから[etc] - [ItemsControl  Dialog]を選択して、ダイアログを表示します。
-AnalyzeWindowは自動的にその内容を読み取りUI解析ツリーを更新します。
-UI解析ツリーのルートで右クリックメニューを表示して[Pickup Children]を実行します。 そうするとグリッドに ListBoxとListViewがピックアップされます。
-[Generate]ボタンを押してコードを生成します。 [Create Attach Code]はデフォルトの状態で生成してください。
-![ItemsControlDriver.Analyze.png](../Img/ItemsControlDriver.Analyze.png)
-
-```cs
-using Codeer.Friendly;
-using Codeer.Friendly.Dynamic;
-using Codeer.Friendly.Windows;
-using Codeer.Friendly.Windows.Grasp;
-using Codeer.TestAssistant.GeneratorToolKit;
-using RM.Friendly.WPFStandardControls;
-using System.Linq;
-
-namespace Driver.Windows
-{
-    [WindowDriver(TypeFullName = "WpfDockApp.ItemsControlWindow")]
-    public class ItemsControlWindowDriver
-    {
-        public WindowControl Core { get; }
-        public WPFListBox<CctListBoxItemDriver> ListBox => Core.Dynamic().ListBox; 
-        public WPFListView<ListViewItemBaseDriver> ListView => Core.Dynamic().ListView; 
-
-        public ItemsControlWindowDriver(WindowControl core)
-        {
-            Core = core;
-        }
-
-        public ItemsControlWindowDriver(AppVar core)
-        {
-            Core = new WindowControl(core);
-        }
-    }
-
-    public static class ItemsControlWindowDriverExtensions
-    {
-        [WindowDriverIdentify(TypeFullName = "WpfDockApp.ItemsControlWindow")]
-        public static ItemsControlWindowDriver AttachItemsControlWindow(this WindowsAppFriend app)
-            => app.WaitForIdentifyFromTypeFullName("WpfDockApp.ItemsControlWindow").Dynamic();
-    }
-}
-```
-
-最初に右側のListBoxのListBoxItemのドライバを作ります。ツリー上で[ListBoxItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListBoxItem]を起点にした内容で置き換わります。Class Name は ListBoxItemDriver になっていますが先頭に識別用の文字を追加して XxxxListBoxItemDriver に変更し、 必要なコントロールを Designer に登録して Generate ボタンでコードを生成します。
-![ListBoxItemDriver.Analyze.png](../Img/ListBoxItemDriver.Analyze.png)
-
-```cs
-using Codeer.Friendly;
-using Codeer.Friendly.Dynamic;
-using Codeer.Friendly.Windows;
-using Codeer.Friendly.Windows.Grasp;
-using Codeer.TestAssistant.GeneratorToolKit;
-using RM.Friendly.WPFStandardControls;
-using System.Linq;
-
-namespace Driver.Windows
-{
-    [UserControlDriver(TypeFullName = "System.Windows.Controls.ListBoxItem")]
-    public class CctListBoxItemDriver
-    {
-        public WPFUserControl Core { get; }
-        public WPFToggleButton CheckBox => Core.VisualTree().ByBinding("CheckBoxData").Single().Dynamic(); 
-        public WPFComboBox ComboBox => Core.VisualTree().ByBinding("ComboBoxData").Single().Dynamic(); 
-        public WPFTextBox TextBox => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
-
-        public CctListBoxItemDriver(AppVar core)
-        {
-            Core = new WPFUserControl(core);
-        }
-    }
-}
-```
-右側のListViewはデータバインドしたViewModelの型をもとにDataTemplateSelectorで利用するコントロールを変更してあります。
-ListView1ViewModelだとCheckBox・ComboBox・TextBox、ListView2ViewModelだとComboBox・TextBox・DatePicker、ListView3ViewModelだとTextBox・DatePicker・Sliderとなっています。
-まずListViewのListViewtemの基本となるドライバを作ります。ツリー上で最初の[ListViewItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListViewItem]を起点にした内容で置き換わります。Class Name は ListViewItemBaseDriver に変更し、 コントロールを Designer に登録せずに Generate ボタンでコードを生成します。
-![ListViewItemBaseDriver.Analyze.png](../Img/ListViewItemBaseDriver.Analyze.png)
-
-```cs
-using Codeer.Friendly;
-using Codeer.Friendly.Dynamic;
-using Codeer.Friendly.Windows;
-using Codeer.Friendly.Windows.Grasp;
-using Codeer.TestAssistant.GeneratorToolKit;
-using RM.Friendly.WPFStandardControls;
-using System.Linq;
-
-namespace Driver.Windows
-{
-    [UserControlDriver(TypeFullName = "System.Windows.Controls.ListViewItem")]
-    public class ListViewItemBaseDriver
-    {
-        public WPFUserControl Core { get; }
-
-        public ListViewItemBaseDriver(AppVar core)
-        {
-            Core = new WPFUserControl(core);
-        }
-    }
-}
-```
-
-ListViewのListViewtemの一行目のドライバを作ります。ツリー上で最初の[ListViewItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListViewItem]を起点にした内容で置き換わります。Class Name は ListView1ItemDriver に変更し、  必要なコントロールを Designer に登録して Generate ボタンでコードを生成します。
-ListViewtemは全てまずListViewItemBaseDriverと認識されますのでその中でコントロールのDataContextの型がListView1ViewModelであるListViewtemをListViewItem1Driverとして割り当てるExtensionを追加します。
-![ListView1ItemDriver.Analyze.png](../Img/ListView1ItemDriver.Analyze.png)
-
-```cs
-using Codeer.Friendly;
-using Codeer.Friendly.Dynamic;
-using Codeer.Friendly.Windows;
-using Codeer.Friendly.Windows.Grasp;
-using Codeer.TestAssistant.GeneratorToolKit;
-using RM.Friendly.WPFStandardControls;
-using System.Linq;
-
-namespace Driver.Windows
-{
-    [UserControlDriver(TypeFullName = "System.Windows.Controls.ListViewItem")]
-    public class ListViewItem1Driver
-    {
-        public WPFUserControl Core { get; }
-        public WPFToggleButton CheckBox => Core.VisualTree().ByBinding("CheckBoxData").Single().Dynamic(); 
-        public WPFComboBox ComboBox => Core.VisualTree().ByBinding("ComboBoxData").Single().Dynamic(); 
-        public WPFTextBox TextBox => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
-
-        public ListViewItem1Driver(AppVar core)
-        {
-            Core = new WPFUserControl(core);
-        }
-    }
-
-    public static class ListViewItem1DriverExtensions
-    {
-        [UserControlDriverIdentify]
-        public static ListViewItem1Driver AsListViewItem1(this ListViewItemBaseDriver parent)
-        {
-            string typeName = parent.Core.Dynamic().DataContext.GetType().Name;
-            if (typeName == "ListView1ViewModel")
-            {
-                ListViewItem1Driver listViewItem1Driver = parent.Core.VisualTree().ByType("System.Windows.Controls.ListViewItem").FirstOrDefault()?.Dynamic();
-                return listViewItem1Driver;
-            }
-            return null;
-        }
-    }
-}
-```
-
-同様に二行目や三行目のドライバを作ります。これでListViewのドライバは完成です。
-```cs
-using Codeer.Friendly;
-using Codeer.Friendly.Dynamic;
-using Codeer.Friendly.Windows;
-using Codeer.Friendly.Windows.Grasp;
-using Codeer.TestAssistant.GeneratorToolKit;
-using RM.Friendly.WPFStandardControls;
-using System.Linq;
-
-namespace Driver.Windows
-{
-    [UserControlDriver(TypeFullName = "System.Windows.Controls.ListViewItem")]
-    public class ListViewItem2Driver
-    {
-        public WPFUserControl Core { get; }
-        public WPFComboBox ComboBox => Core.VisualTree().ByBinding("ComboBoxData").SingleOrDefault()?.Dynamic(); 
-        public WPFTextBox TextBox => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
-        public WPFDatePicker DatePicker => Core.VisualTree().ByBinding("DateData").Single().Dynamic(); 
-        public WPFContextMenu DatePickerContextMenu => new WPFContextMenu{Target = DatePicker.AppVar};
-
-        public ListViewItem2Driver(AppVar core)
-        {
-            Core = new WPFUserControl(core);
-        }
-    }
-
-    public static class ListViewItem2DriverExtensions
-    {
-        [UserControlDriverIdentify]
-        public static ListViewItem2Driver AsListViewItem2(this ListViewItemBaseDriver parent)
-        {
-            string typeName = parent.Core.Dynamic().DataContext.GetType().Name;
-            if (typeName == "ListView2ViewModel")
-            {
-                ListViewItem2Driver listViewItem2Driver = parent.Core.VisualTree().ByType("System.Windows.Controls.ListViewItem").FirstOrDefault()?.Dynamic();
-                return listViewItem2Driver;
-            }
-            return null;
-        }
-    }
-}
-```
-
-```cs
-using Codeer.Friendly;
-using Codeer.Friendly.Dynamic;
-using Codeer.Friendly.Windows;
-using Codeer.Friendly.Windows.Grasp;
-using Codeer.TestAssistant.GeneratorToolKit;
-using RM.Friendly.WPFStandardControls;
-using System.Linq;
-
-namespace Driver.Windows
-{
-    [UserControlDriver(TypeFullName = "System.Windows.Controls.ListViewItem")]
-    public class ListViewItem3Driver
-    {
-        public WPFUserControl Core { get; }
-        public WPFTextBox TextBox => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
-        public WPFDatePicker DatePicker => Core.VisualTree().ByBinding("DateData").Single().Dynamic(); 
-        public WPFContextMenu DatePickerContextMenu => new WPFContextMenu{Target = DatePicker.AppVar};
-        public WPFSlider Slider => Core.VisualTree().ByBinding("SliderData").Single().Dynamic(); 
-
-        public ListViewItem3Driver(AppVar core)
-        {
-            Core = new WPFUserControl(core);
-        }
-    }
-
-    public static class ListViewItem3DriverExtensions
-    {
-        [UserControlDriverIdentify]
-        public static ListViewItem3Driver AsListViewItem3(this ListViewItemBaseDriver parent)
-        {
-            string typeName = parent.Core.Dynamic().DataContext.GetType().Name;
-            if (typeName == "ListView3ViewModel")
-            {
-                ListViewItem3Driver listViewItem3Driver = parent.Core.VisualTree().ByType("System.Windows.Controls.ListViewItem").FirstOrDefault()?.Dynamic();
-                return listViewItem3Driver;
-            }
-            return null;
-        }
-    }
-}
-```
-
 ## MainWindowのドライバの作成
-
-<!--TODO: なぜ、メニューだけを持つウィンドウと考えるか、またそれ以外はどうするのかの概要を記述する-->
-MainWindow は複数のドッキングウィンドウで構成されています。ここでは MainWindowはメニューだけを持つウィンドウと考えます。
+MainWindow は複数のドッキングウィンドウで構成されています。ここでは MainWindow はメニューだけを持つウィンドウと考えます。
+残りのTreeViewやOutputViewはUserControlとしてAttach形式で作成します。（のちほど説明します）
 メニューだけをプロパティに追加して、ドライバを生成してください。
-
+Controlキーを押しながらメニューのあたりにカーソルを持っていくとメニューもしくはその子要素を選択できます。
+その後にAnalyzeWindowのTreeでメニューを選択します。ドライバが割り当たっている要素は文字色が青になっています。
 ![WindowDriver.MainFrame.png](../Img/WindowDriver.MainFrame.png)
 
 ```cs
@@ -456,7 +233,7 @@ namespace Driver.Windows
     public class MainWindowDriver
     {
         public WindowControl Core { get; }
-        public WPFMenuBase Menu => Core.Dynamic().Menu; 
+        public WPFMenuBase Menu => Core.Dynamic()._menu; 
 
         public MainWindowDriver(WindowControl core)
         {
@@ -486,8 +263,8 @@ Attach対象は MainFromDriver ではなく WindowsAppFrined (アプリケーシ
 これはフローティング状態にするなどさまざまな状態を作ることができるからです。
 
 まずは TreeUserControl の UserControlDriver を作ります。
-Ctrlキーを押しながらMainWindowのTreeにマウスオーバーすることでTreeViewがUI解析ツリーで選択状態になります。
-いくつか上の要素にTreeUserControlがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
+Ctrlキーを押しながらMainWindowのTreeにマウスオーバーすることでTreeUserControlの子要素がUI解析ツリーで選択状態になります。
+AnalyzeWindowのTree上でいくつか上の要素にTreeUserControlがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
 TreeUserControlの子要素であるTreeViewをダブルクリックしてプロパティに追加します。
 
 Designerタブの内容を次のように変更し、[Generate]ボタンをクリックしてコードを生成します。
@@ -516,7 +293,7 @@ namespace Driver.Windows
     public class TreeUserControlDriver
     {
         public WPFUserControl Core { get; }
-        public WPFTreeView TreeView => Core.Dynamic().TreeView; 
+        public WPFTreeView TreeView => Core.Dynamic()._treeView; 
 
         public TreeUserControlDriver(AppVar core)
         {
@@ -526,7 +303,9 @@ namespace Driver.Windows
 }
 ```
 
-OutputUserControl も同様に作成てください。
+OutputUserControl も同様に作成してください。
+
+![WindowDriver.TreeForm.png](../Img/WindowDriver.OutputView.png)
 
 ```cs
 using Codeer.Friendly;
@@ -543,11 +322,11 @@ namespace Driver.Windows
     public class OutputUserControlDriver
     {
         public WPFUserControl Core { get; }
-        public WPFButtonBase ButtonCopy => Core.Dynamic().ButtonCopy; 
-        public WPFButtonBase ButtonSaveFile => Core.Dynamic().ButtonSaveFile; 
-        public WPFButtonBase ButtonClear => Core.Dynamic().ButtonClear; 
-        public WPFTextBox TextBox => Core.Dynamic().TextBox; 
-        public WPFContextMenu TextBoxContextMenu => new WPFContextMenu{Target = TextBox.AppVar};
+        public WPFButtonBase _buttonCopy => Core.Dynamic()._buttonCopy; 
+        public WPFButtonBase _buttonSaveFile => Core.Dynamic()._buttonSaveFile; 
+        public WPFButtonBase _buttonClear => Core.Dynamic()._buttonClear; 
+        public WPFTextBox _textBox => Core.Dynamic()._textBox; 
+        public WPFContextMenu _textBoxContextMenu => new WPFContextMenu{Target = _textBox.AppVar};
 
         public OutputUserControlDriver(AppVar core)
         {
@@ -565,11 +344,21 @@ namespace Driver.Windows
 ```
 
 ## Documentのドライバの作成
+Document は TreeView の AcceptedもしくはSendedから開くことができます。これは同じクラスで表示するデータが異なっているだけです。一般的にドキュメントは同じタイプのものが複数存在します。
+このような場合は Attach で Custom の取得方法を利用します。それぞれの特定方法はものによって異なるのでコードで実装する必要があります。
+今回はTitleプロパティで判断するようにします。AnalyzeWindowではAttachを下記のように設定します。
+またPickupChildrenで要素を取得してからGenerateを実行します。
 
-<!--TODO: Documentとはそもそもどのウィンドウ？同じタイプとは？-->
+| 項目 | 設定内容 |
+|-----|--------|
+| Create Attach Code | チェックをつける |
+| Extension | WindowAppFriend |
+| Method | Custom |
 
-Document は同じタイプのものが複数存在します。
-取得方法は Customを利用しTitleプロパティが一致するものを取得し、 WindowsAppFriend にAttachするように設定します。
+生成されたコードを以下のように書き換えます。
+Titleの取得はドキュメントを親方向にたどっていって存在するLayoutDocumentControlに対する操作で実現できます。
+この作業には利用しているライブラリの知識が必要です。
+多くの場合、アプリケーション開発チームのメンバーは対応可能でしょう。
 Attachのオプションの詳細は [Attach方法ごとのコード](../feature/Attach.md)を参照してください。
 
 ![WindowDriver.Document.png](../Img/WindowDriver.Document.png)
@@ -589,10 +378,10 @@ namespace Driver.Windows
     public class OrderDocumentUserControlDriver
     {
         public WPFUserControl Core { get; }
-        public WPFTextBox SearchText => Core.Dynamic().SearchText; 
-        public WPFContextMenu SearchTextContextMenu => new WPFContextMenu{Target = SearchText.AppVar};
-        public WPFButtonBase SearchButton => Core.Dynamic().SearchButton; 
-        public WPFDataGrid DataGrid => Core.Dynamic().DataGrid; 
+        public WPFTextBox _searchText => Core.Dynamic()._searchText; 
+        public WPFContextMenu _searchTextContextMenu => new WPFContextMenu{Target = _searchText.AppVar};
+        public WPFButtonBase _searchButton => Core.Dynamic()._searchButton; 
+        public WPFDataGrid _dataGrid => Core.Dynamic()._dataGrid; 
 
         public OrderDocumentUserControlDriver(AppVar core)
         {
@@ -602,19 +391,32 @@ namespace Driver.Windows
 
     public static class OrderDocumentUserControlDriverExtensions
     {
+        //ここに特定のためのカスタムコードを入れる
+        //キャプチャ時にTestAssistantProが使うCustomMethod名を指定します。
         [UserControlDriverIdentify(CustomMethod = "TryGet")]
         public static OrderDocumentUserControlDriver AttachOrderDocumentUserControl(this WindowsAppFriend app, string identifier)
+            //アプリの全てのウィンドウからTypeが一致するものを取得
             => app.GetTopLevelWindows().
-                    Select(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").SingleOrDefault()).
-                    Where(e => !e.IsNull).
-                    Where(e => (string)e.Dynamic().Title == identifier).
+                    SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
+                    //その中でタイトルが一致するものを取得
+                    Where(e => GetTitle(e) == identifier).
                     FirstOrDefault()?.Dynamic();
-        public static void TryGet(this WindowsAppFriend app, out string[] identifier)
-            => identifier = app.GetTopLevelWindows().
-                Select(e => e.VisualTree().ByType("WpfDockApp.OrderDocumentUserControl").SingleOrDefault()).
-                Where(e => !e.IsNull).
-                Select(e => (string)e.Dynamic().Title).
-                ToArray();
+
+        //キャプチャ時にTestAssisatntProが使います。
+        //発見した目的のUserControlの識別子をout引数に入れます。
+        public static void TryGet(this WindowsAppFriend app, out string[] identifiers)
+            //アプリの全てのウィンドウからTypeが一致するものを取得
+             => identifiers = app.GetTopLevelWindows().
+                    SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
+                    //識別子にタイトルを使う
+                    Select(e => GetTitle(e)).
+                    ToArray();
+
+        static string GetTitle(AppVar e)
+            //タイトルを取得します。
+            //UserContorlから親方向にたどって見つかるLayoutDocumentControlが持っています。
+            //これは利用しているライブラリ(今回はXceed)の知識が必要です。
+            => e.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").First().Dynamic().Model.Title;
     }
 }
 ```
@@ -622,6 +424,6 @@ namespace Driver.Windows
 ## 次の手順
 
 ここまで画面キャプチャを行うためのドライバの作成が完了しました。
-次は標準ではキャプチャに対応していないコントロールに対応するためのControlDriverを作成します。
+次はItemsControlでDataTemplateによってカスタマイズしたものへ対応します。
 
-[ControlDriverとCaptureCodeGeneratorを作成する](ControlDriver.md)
+[カスタマイズされたItemsControlに対応する](ItemsControlDriver.md)

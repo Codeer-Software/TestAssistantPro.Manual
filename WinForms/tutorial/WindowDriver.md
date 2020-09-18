@@ -2,9 +2,9 @@
 
 [テストソリューションを新規作成する](./Sln.md)で作成したソリューションにTestAssistantProを利用してアプリケーションのドライバを作ります。
 
-ドライバ(WindowDriver/UserControlDriver/ControlDriver)が理解できていない場合は先に
+この手順を始める前に、ドライバの概要を理解するために、
 [Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)
-を参照してください。
+を参照しておいてください。
 
 各機能の詳細な内容は次を参照してください。
 
@@ -12,13 +12,16 @@
 - [AnalyzeWindowで生成されるコード](../feature/GeneratedCode.md)
 - [Attach方法ごとのコード](../feature/Attach.md)
 
+## 事前準備
+WinFormsApp.exeを起動してください。ドライバの作成は操作対象のアプリケーションを解析しながら行います。
+
 ## AnalzeWindowの表示
 
 ソリューションエクスプローラーのDriverプロジェクトのWindowsフォルダで右クリックしてAnalyze Windowを実行します。
 
 ![WindowDriver.Start.png](../Img/WindowDriver.Start.png)
 
-テスト対象のアプリケーションを選択する画面が出ますので、MainFormを選択してください。
+テスト対象のアプリケーションを選択する画面が出ますので、MainFormを選択してください。（ダブルクリックもしくは選択状態にしてからEnterキー押下で選択できます）
 
 ![WindowDriver.SelectTarget.png](../Img/WindowDriver.SelectTarget.png)
 
@@ -97,6 +100,15 @@ Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックし�
 
 選択していたテストメソッドにコードが挿入されていることを確認してください。
 
+## 少しずつ確認しながら作成する
+
+上記の例のようにドライバを作成したら、キャプチャできるか確認してください。
+特に最初のうちは少しずつ作業を進めることが重要です。
+問題があれば[デバッグし](../feature/CaptureAndExecute.md#デバッグ)ながらキャプチャをしてみて問題を突きとめてください。
+また、CaptureウィンドウのAttachツリーも役に立ちます。現在アタッチされているWindowが表示されます。
+
+![CaptureAttachTree.png](../Img/CaptureAttachTree.png)
+
 ## Multi UserControl Dialogのドライバの作成
 
 次は2つのUserContorlが含まれているMultiUserControlFormのドライバを作成します。
@@ -141,9 +153,14 @@ namespace Driver.Windows
     }
 }
 ```
+解析対象を親ウィンドウ戻すにはツリーのルートの[←]をダブルクリックするか、そこを右クリックで[Change The Analysis Target]を選択します。
+
+![UserControlDriver.ReturnParent.png](../Img/UserControlDriver.ReturnParent.png)
 
 次に左側のUserControlに対するコードを生成します。今回はドライバを作成せずFormに直接UserControlの要素を配置します。
+UserControlDriverを作るか親のWindowDriverに直接配置するかはそのときどきで判断してください。ダイアログで常に表示されているUserControlである並ば親のWindowDriverに直接配置しても良い場合が多いです。
 UI解析ツリーの[ChangeOfPartyUserControl]の下に表示されている2つのテキストボックスをダブルクリックしてDesignerタブのグリッドに追加してください。
+またReservationInformationUserControlも追加してください。先ほど作ったReservationInformationUserControlDriverが割り当たります。
 
 ![UserControlDriver.Form.png](../Img/UserControlDriver.Form.png)
 
@@ -190,8 +207,7 @@ namespace Driver.Windows
 
 ## MainFormのドライバの作成
 
-<!--TODO: なぜ、メニューだけを持つウィンドウと考えるか、またそれ以外はどうするのかの概要を記述する-->
-MainForm は複数のドッキングウィンドウで構成されています。ここでは MainForm はメニューだけを持つウィンドウと考えます。
+MainForm は複数のドッキングウィンドウで構成されています。ここでは MainForm はメニューだけを持つウィンドウと考えます。残りのTreeFormやOutputFormはUserControlをAttach形式で作成します。（のちほど説明します）
 メニューだけをプロパティに追加して、ドライバを生成してください。
 
 ![WindowDriver.MainFrame.png](../Img/WindowDriver.MainFrame.png)
@@ -241,7 +257,7 @@ Attach対象は MainFromDriver ではなく WindowsAppFrined (アプリケーシ
 
 まずは TreeForm の UserControlDriver を作ります。
 Ctrlキーを押しながらMainFormのTreeにマウスオーバーすることでTreeViewがUI解析ツリーで選択状態になります。
-一つ上の要素にTreeFormがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
+AnalyzeWindowのTree上で一つ上の要素にTreeFormがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
 TreeFormの子要素であるTreeViewをダブルクリックしてプロパティに追加します。
 
 Designerタブの内容を次のように変更し、[Generate]ボタンをクリックしてコードを生成します。
@@ -294,7 +310,7 @@ namespace Driver.Windows
 }
 ```
 
-OutputForm も同様に作成てください。
+OutputForm も同様に作成してください。
 
 ```cs
 using Codeer.Friendly;
@@ -335,10 +351,7 @@ namespace Driver.Windows
 ```
 
 ## Documentのドライバの作成
-
-<!--TODO: Documentとはそもそもどのウィンドウ？同じタイプとは？-->
-
-Document は同じタイプのものが複数存在します。
+Document は TreeView の AcceptedもしくはSendedから開くことができます。これは同じクラスで表示するデータが異なっているだけです。一般的にドキュメントは同じタイプのものが複数存在します。
 Attach方法は VariableWindowText を利用し、 WindowsAppFriend にAttachするように設定します。
 Attachのオプションの詳細は [Attach方法ごとのコード](../feature/Attach.md)を参照してください。
 

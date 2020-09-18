@@ -13,18 +13,18 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu x:Name="Menu" VerticalAlignment="Top">
-            <MenuItem x:Name="MenuFile" Header="File">
-                <MenuItem x:Name="MenuOpen" Header="Open" InputGestureText="Ctrl+O" Click="MenuItemOpen_Click"/>
-                <MenuItem x:Name="MenuSave" Header="Save" InputGestureText="Ctrl+S" Click="MenuItemSave_Click"/>
+        <Menu x:Name="_menu" VerticalAlignment="Top">
+            <MenuItem x:Name="_menuFile" Header="File">
+                <MenuItem x:Name="_menuOpen" Header="Open" InputGestureText="Ctrl+O" Click="MenuItemOpen_Click"/>
+                <MenuItem x:Name="_menuSave" Header="Save" InputGestureText="Ctrl+S" Click="MenuItemSave_Click"/>
             </MenuItem>
-            <MenuItem x:Name="MenuEtc" Header="etc.">
-                <MenuItem x:Name="MenuSimpleDialog" Header="Simple Dialog" Click="SimpleDialog_Click"/>
-                <MenuItem x:Name="MenuMultiUserControlDialog" Header="Multi UserControl Dialog" Click="MultiUserControlDialog_Click"/>
-                <MenuItem x:Name="MenuCustomControlDialog" Header="Custom Control Dialog" Click="CustomControlDialog_Click"/>
-                <MenuItem x:Name="ItemsControllDialog" Header="ItemsControl Dialog" Click="ItemsControlDialog_Click"/>
-                <MenuItem x:Name="ItemsControll2Dialog" Header="ItemsControl2 Dialog" Click="ItemsControl2Dialog_Click"/>
-                <MenuItem x:Name="MenuMessageBoxDialog" Header="MessageBox" Click="MessageBoxDialog_Click"/>
+            <MenuItem x:Name="_menuEtc" Header="etc.">
+                <MenuItem x:Name="_menuSimpleDialog" Header="Simple Dialog" Click="SimpleDialog_Click"/>
+                <MenuItem x:Name="_menuMultiUserControlDialog" Header="Multi UserControl Dialog" Click="MultiUserControlDialog_Click"/>
+                <MenuItem x:Name="_menuCustomControlDialog" Header="Custom Control Dialog" Click="CustomControlDialog_Click"/>
+                <MenuItem x:Name="_itemsControllDialog" Header="ItemsControl Dialog" Click="ItemsControlDialog_Click"/>
+                <MenuItem x:Name="_itemsControll2Dialog" Header="ItemsControl2 Dialog" Click="ItemsControl2Dialog_Click"/>
+                <MenuItem x:Name="_menuMessageBoxDialog" Header="MessageBox" Click="MessageBoxDialog_Click"/>
             </MenuItem>
         </Menu>
         <avalonDock:DockingManager Grid.Row="1" x:Name="_dockingManager">
@@ -34,19 +34,18 @@
             <avalonDock:LayoutRoot>
                 <avalonDock:LayoutPanel Orientation="Horizontal">
                     <avalonDock:LayoutAnchorablePane DockWidth="150">
-                        <!-- ツールウィンドウ1 -->
                         <avalonDock:LayoutAnchorable Title="TreeView">
-                            <local:TreeUserControl x:Name="TreeUserControl"/>
+                            <local:TreeUserControl x:Name="_treeUserControl"/>
                         </avalonDock:LayoutAnchorable>
                     </avalonDock:LayoutAnchorablePane>
                     <avalonDock:LayoutPanel Orientation="Vertical">
                         <avalonDock:LayoutPanel Orientation="Horizontal">
-                            <avalonDock:LayoutDocumentPane x:Name="DocumentPane">
+                            <avalonDock:LayoutDocumentPane x:Name="_documentPane">
                             </avalonDock:LayoutDocumentPane>
                         </avalonDock:LayoutPanel>
                         <avalonDock:LayoutAnchorablePane DockHeight="100">
                             <avalonDock:LayoutAnchorable Title="OutputForm">
-                                <local:OutputUserControl x:Name="OutputUserControl"/>
+                                <local:OutputUserControl x:Name="_outputUserControl"/>
                             </avalonDock:LayoutAnchorable>
                         </avalonDock:LayoutAnchorablePane>
                     </avalonDock:LayoutPanel>

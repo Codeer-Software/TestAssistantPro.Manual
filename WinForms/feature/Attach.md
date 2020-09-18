@@ -1,10 +1,10 @@
 # Attach方法ごとのコード
 
-Attachとはプログラムコードからアプリケーションを動かす際に。操作する対象の要素(WindowDriver/UserControlDriver)と接続する処理のことをさします。 実際にはプログラムコードのメソッドとして実現されます。
+Attachとはプログラムコードからアプリケーションを動かす際に、操作する対象の要素(WindowDriver/UserControlDriver)と接続する処理のことをさします。 実際にはプログラムコードのメソッドとして実現されます。
 これはTestAssistantProを使わない場合にも手書きで作成します。
 詳細は[こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md#attach)を参照してください。
 TestAssistantProはキャプチャ時にこのメソッドを使ってドライバを検索します。
-そのためTestAssitantProを使う場合は`WindowDriverIdentifyAttribute`、`UserControlDriverIdentifyAttribute`属性を付けてTestAssistantProが利用できるようにします。
+そのためTestAssitantProで利用するために`WindowDriverIdentifyAttribute`、`UserControlDriverIdentifyAttribute`属性を付けます。
 
 <br>
 AttachにはWinndowDriver/UserControlDriverごとに次の4種類があります。
@@ -46,7 +46,7 @@ public static class MainFormDriverExtensions
 ### Custom
 
 キャプチャ時にTryが先に呼び出されます。
-このTryメソッドは通常はTestAssistantProからしか利用されません。
+このTryメソッドは通常、TestAssistantProからしか利用されません。
 そこで渡されたWindowControlが目的のWindowである場合は true を返すように実装します。
 Tは識別子を表す任意の型に書き換えてください。
 Tryで作成した識別子を使ってAttachメソッドが実行されます。
