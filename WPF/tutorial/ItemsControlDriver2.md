@@ -185,4 +185,4 @@ namespace Driver.Windows
 ```
 
 ## 次の手順
-[複数種類のアイテムへの対応(DataTemplateSelector)](ItemsControlDriver3.md)
+[ItemsControlWindowのドライバ作成](ItemsControlDriver3.md)

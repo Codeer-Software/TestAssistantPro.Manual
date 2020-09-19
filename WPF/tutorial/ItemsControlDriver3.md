@@ -1,4 +1,4 @@
-## ItemsControlWindowのドライバ作成
+## カスタマイズされたItemsControlのドライバを使う
 ListBoxとListViewが含まれているItemsControl Windowのドライバを作成します。
 ピックアップすると最初はWPFListBox、WPFListViewがタイプとして選択されます。WPFListBox&lt;SampleListBoxItem>、WPFListView&lt;SampleListViewItem>にそれぞれ変更してください。
 
@@ -41,5 +41,21 @@ namespace Driver.Windows
 }
 ```
 
+## キャプチャ
+キャプチャしてみます。
+注意点はItemsContorlのアイテムはアクティブにならないとコードが生成されません。一度アクティブにしてから操作してください。
+
+![ItemsControlCapture.png](../Img/ItemsControlCapture.png)
+
 ## 次の手順
-[キャプチャ](ItemsControlDriver4.md)
+
+次は標準ではキャプチャに対応していないコントロールに対応するためのControlDriverを作成します。
+
+[ControlDriverとCaptureCodeGeneratorを作成する](ControlDriver.md)
+
+
+## 次の手順
+
+次は標準ではキャプチャに対応していないコントロールに対応するためのControlDriverを作成します。
+
+[ControlDriverとCaptureCodeGeneratorを作成する](ControlDriver.md)

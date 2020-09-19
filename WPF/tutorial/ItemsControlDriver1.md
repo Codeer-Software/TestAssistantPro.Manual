@@ -1,4 +1,4 @@
-## シンプルなListBoxItemのドライバ作成 
+## DateTemplateでカスタマイズしたListBoxItemのドライバ作成る
 
 最初に左側のListBoxのListBoxItemのドライバを作ります。ツリー上で[ListBoxItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 
 解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListBoxItem]を起点にした内容で置き換わります。
@@ -46,4 +46,4 @@ itemsControlWindow._listBox.GetItemDriver(2).TextData.EmulateChangeText("abc");
 ```
 
 ## 次の手順
-[DateTemplateでカスタマイズしたListBoxItemのドライバ作成る](ItemsControlDriver1.md)
+[複数種類のアイテムへの対応(DataTemplateSelector)](ItemsControlDriver2.md)
