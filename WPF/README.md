@@ -28,10 +28,8 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 		3. [カスタマイズされたItemsControlのドライバを使う](tutorial/ItemsControlDriver3.md)
 	3. [ControlDriverとCaptureCodeGeneratorを作成する](tutorial/ControlDriver.md)
 		1. [ControlDriverとCaptureCodeGeneratorのコードテンプレートを生成する](tutorial/ControlDriver1.md)
-		2. [ControlDriverの実装](tutorial/ControlDriver2.md)
-		3. [CaptureCodeGeneratorの実装](tutorial/ControlDriver3.md)
-		4. [ControlDriverとCaptureCodeGeneratorの利用](tutorial/ControlDriver4.md)
-		5. [ドキュメントの閉じるに反応するようにする](tutorial/ControlDriver5.md)
+		2. [NumericUpDownControl](tutorial/ControlDriver2.md)
+		3. [ドキュメントの閉じるに反応するようにする](tutorial/ControlDriver3.md)
 	4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
 
 - 機能
