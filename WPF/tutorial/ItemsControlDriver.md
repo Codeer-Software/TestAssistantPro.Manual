@@ -16,3 +16,4 @@ ListBoxとListViewが含まれているItemsControl Windowのドライバを作�
 対象アプリケーションのメニューから[etc] - [ItemsControl  Dialog]を選択して、ダイアログを表示します。
 AnalyzeWindowは自動的にその内容を読み取りUI解析ツリーを更新します。
 
+![ItemsControlWindow.png](../Img/ItemsControlWindow.png)
