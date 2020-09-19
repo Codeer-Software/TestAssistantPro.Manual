@@ -87,9 +87,7 @@ WindowDriverを作成してキャプチャも行ってください。操作を�
 ![CreateDriver.NumericUpDownControlDriver.Capture.png](../Img/CreateDriver.NumericUpDownControlDriver.Capture.png)
 
 ## デバッグ
-
-うまく動かない場合はデバッグして問題を見つけます。
-Attach にブレークポイントを貼って Shift キーを押しながら Capture を実行してみてください。
+上手く動かない場合は[デバッグ](../feature/CaptureAndExecute.md#デバッグ)で原因を特定することができます。
 
 ## 次の手順
 [ドキュメントの閉じるに反応するようにする](ControlDriver3.md)

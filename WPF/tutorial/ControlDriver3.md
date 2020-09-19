@@ -91,14 +91,19 @@ namespace Driver.Windows
         public LayoutDocumentControlDriver LayoutDocumentControl
             //親方向に検索して最初に見つかったLayoutDocumentControl
             => Core.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").First().Dynamic();
-
-
+            
         public OrderDocumentUserControlDriver(AppVar core)
         {
             Core = new WPFUserControl(core);
         }
     }
 ```
+
+閉じる操作がキャプチャできるか確認します。
+
+![ControlDriver.Capture.Document.png](../Img/ControlDriver.Capture.Document.png)
+
+上手く動かない場合は[デバッグ](../feature/CaptureAndExecute.md#デバッグ)で原因を特定することができます。
 
 ## 次の手順
 
