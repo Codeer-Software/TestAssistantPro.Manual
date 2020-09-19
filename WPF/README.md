@@ -26,7 +26,6 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 		1. [DateTemplateでカスタマイズしたListBoxItemのドライバ作成る](tutorial/ItemsControlDriver1.md)
 		2. [複数種類のアイテムへの対応(DataTemplateSelector)](tutorial/ItemsControlDriver2.md)
 		3. [カスタマイズされたItemsControlのドライバを使う](tutorial/ItemsControlDriver3.md)
-		4. [キャプチャ](tutorial/ItemsControlDriver4.md)
 	3. [ControlDriverとCaptureCodeGeneratorを作成する](tutorial/ControlDriver.md)
 		1. [ControlDriverとCaptureCodeGeneratorのコードテンプレートを生成する](tutorial/ControlDriver1.md)
 		2. [ControlDriverの実装](tutorial/ControlDriver2.md)
