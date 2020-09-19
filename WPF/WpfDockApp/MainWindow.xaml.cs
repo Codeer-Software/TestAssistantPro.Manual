@@ -86,9 +86,9 @@ namespace WpfDockApp
             dialog.ShowDialog();
         }
 
-        void ItemsControl2Dialog_Click(object sender, RoutedEventArgs e)
+        void CustomItemsControlDialog_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new ItemsControl2Window();
+            var dialog = new CustomItemsControlWindow();
             dialog.ShowDialog();
         }
 

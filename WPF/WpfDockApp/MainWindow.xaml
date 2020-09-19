@@ -19,12 +19,12 @@
                 <MenuItem x:Name="_menuSave" Header="Save" InputGestureText="Ctrl+S" Click="MenuItemSave_Click"/>
             </MenuItem>
             <MenuItem x:Name="_menuEtc" Header="etc.">
-                <MenuItem x:Name="_menuSimpleDialog" Header="Simple Dialog" Click="SimpleDialog_Click"/>
-                <MenuItem x:Name="_menuMultiUserControlDialog" Header="Multi UserControl Dialog" Click="MultiUserControlDialog_Click"/>
-                <MenuItem x:Name="_menuCustomControlDialog" Header="Custom Control Dialog" Click="CustomControlDialog_Click"/>
-                <MenuItem x:Name="_itemsControllDialog" Header="ItemsControl Dialog" Click="ItemsControlDialog_Click"/>
-                <MenuItem x:Name="_itemsControll2Dialog" Header="ItemsControl2 Dialog" Click="ItemsControl2Dialog_Click"/>
-                <MenuItem x:Name="_menuMessageBoxDialog" Header="MessageBox" Click="MessageBoxDialog_Click"/>
+                <MenuItem Header="Simple Dialog" Click="SimpleDialog_Click"/>
+                <MenuItem Header="Multi UserControl Dialog" Click="MultiUserControlDialog_Click"/>
+                <MenuItem Header="Custom Control Dialog" Click="CustomControlDialog_Click"/>
+                <MenuItem Header="ItemsControl Dialog" Click="ItemsControlDialog_Click"/>
+                <MenuItem Header="Custom ItemsControl Dialog" Click="CustomItemsControlDialog_Click"/>
+                <MenuItem Header="MessageBox" Click="MessageBoxDialog_Click"/>
             </MenuItem>
         </Menu>
         <avalonDock:DockingManager Grid.Row="1" x:Name="_dockingManager">

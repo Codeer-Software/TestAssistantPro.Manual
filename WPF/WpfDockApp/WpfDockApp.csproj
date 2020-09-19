@@ -98,8 +98,8 @@
     <Compile Include="CustomControlWindow.xaml.cs">
       <DependentUpon>CustomControlWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ItemsControl2Window.xaml.cs">
-      <DependentUpon>ItemsControl2Window.xaml</DependentUpon>
+    <Compile Include="CustomItemsControlWindow.xaml.cs">
+      <DependentUpon>CustomItemsControlWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ItemsControlWindow.xaml.cs">
       <DependentUpon>ItemsControlWindow.xaml</DependentUpon>
@@ -139,7 +139,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ItemsControl2Window.xaml">
+    <Page Include="CustomItemsControlWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
