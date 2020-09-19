@@ -33,10 +33,10 @@ namespace Driver.Windows
     public class OrderDocumentUserControlDriver
     {
         public WPFUserControl Core { get; }
-        public WPFTextBox _searchText => Core.Dynamic()._searchText; 
-        public WPFContextMenu _searchTextContextMenu => new WPFContextMenu{Target = _searchText.AppVar};
-        public WPFButtonBase _searchButton => Core.Dynamic()._searchButton; 
-        public WPFDataGrid _dataGrid => Core.Dynamic()._dataGrid; 
+        public WPFTextBox _searchText => Core.Dynamic()._searchText;
+        public WPFContextMenu _searchTextContextMenu => new WPFContextMenu { Target = _searchText.AppVar };
+        public WPFButtonBase _searchButton => Core.Dynamic()._searchButton;
+        public WPFDataGrid _dataGrid => Core.Dynamic()._dataGrid;
 
         public OrderDocumentUserControlDriver(AppVar core)
         {
@@ -60,21 +60,32 @@ namespace Driver.Windows
         //キャプチャ時にTestAssisatntProが使います。
         //発見した目的のUserControlの識別子をout引数に入れます。
         public static void TryGet(this WindowsAppFriend app, out string[] identifiers)
-            //アプリの全てのウィンドウからTypeが一致するものを取得
+             //アプリの全てのウィンドウからTypeが一致するものを取得
              => identifiers = app.GetTopLevelWindows().
                     SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
                     //識別子にタイトルを使う
                     Select(e => GetTitle(e)).
+                    Where(e => e != null).
                     ToArray();
 
         static string GetTitle(AppVar e)
+        {
             //タイトルを取得します。
             //UserContorlから親方向にたどって見つかるLayoutDocumentControlが持っています。
             //これは利用しているライブラリ(今回はXceed)の知識が必要です。
-            => e.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").First().Dynamic().Model.Title;
+            var layoutDocumentControl = e.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").FirstOrDefault();
+            if (layoutDocumentControl == null) return null;
+            return layoutDocumentControl.Dynamic().Model.Title;
+        }
     }
 }
 ```
+
+AcceptedとSendedを両方操作してキャプチャできるか確認します。
+
+![WindowDriver.Capture.Document.png](../Img/WindowDriver.Capture.Document.png)
+
+上手く動かない場合は[デバッグ](../feature/CaptureAndExecute.md#デバッグ)で原因を特定することができます。
 
 ## 次の手順
 

@@ -74,5 +74,7 @@ Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックし�
 
 選択していたテストメソッドにコードが挿入されていることを確認してください。
 
+上手く動かない場合は[デバッグ](../feature/CaptureAndExecute.md#デバッグ)で原因を特定することができます。
+
 ## 次の手順
 [Multi UserControl Dialogのドライバの作成](WindowDriver3.md)

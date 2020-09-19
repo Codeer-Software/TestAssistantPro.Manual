@@ -67,7 +67,7 @@ namespace Driver.Windows
     public class MultiUserControlWindowDriver
     {
         public WindowControl Core { get; }
-        public AppVar ReservationInformationUserControl => Core.LogicalTree().ByType("WpfDockApp.ReservationInformationUserControl").Single().Dynamic(); 
+        public ReservationInformationUserControlDriver ReservationInformationUserControl => Core.LogicalTree().ByType("WpfDockApp.ReservationInformationUserControl").Single().Dynamic(); 
         public WPFTextBox UserName => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("UserName").Single().Dynamic(); 
         public WPFContextMenu UserNameContextMenu => new WPFContextMenu{Target = UserName.AppVar};
         public WPFTextBox Tel => Core.LogicalTree().ByType("WpfDockApp.ChargeOfPartyUserControl").Single().LogicalTree().ByBinding("Tel").Single().Dynamic(); 
@@ -92,6 +92,12 @@ namespace Driver.Windows
     }
 }
 ```
+
+一通り作成できたらキャプチャできるか確認します。
+
+![WindowDriver.Capture.MultiUserControl.png](../Img/WindowDriver.Capture.MultiUserControl.png)
+
+上手く動かない場合は[デバッグ](../feature/CaptureAndExecute.md#デバッグ)で原因を特定することができます。
 
 ## 次の手順
 [MainWindowのドライバの作成](WindowDriver4.md)

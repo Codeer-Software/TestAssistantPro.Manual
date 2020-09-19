@@ -43,5 +43,11 @@ namespace Driver.Windows
 }
 ```
 
+メニューを操作してキャプチャできるか確認します。
+
+![WindowDriver.Capture.MainWindow.png](../Img/WindowDriver.Capture.MainWindow.png)
+
+上手く動かない場合は[デバッグ](../feature/CaptureAndExecute.md#デバッグ)で原因を特定することができます。
+
 ## 次の手順
 [TreeUserControlとOutputUserControl のドライバの作成](WindowDriver5.md)

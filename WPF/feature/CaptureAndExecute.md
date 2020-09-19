@@ -96,7 +96,7 @@ Shift キーを押しながら Excecute を実行すると対象プロセスを�
 Ctrl + Shift を押しながら Execute を実行すると両方を同時にデバッグできます。
 <br>
 <!-- textlint-disable japanese/no-doubled-joshi -->
-またこれはCaptureも同様で、操作してもコードが出力されない場合があります。その場合は、特定の方法に問題があるため、デバッグして原因を突きとめてください。
+またこれはCaptureも同様で、操作してもコードが出力されない場合があります。その場合は、特定の方法に問題があるため、デバッグして原因を突きとめてください。上手く動作しないWindowDriver/UserControlDriverのAttachやプロパティにブレイクポイントを貼ってみてください。
 <!-- textlint-enable japanese/no-doubled-joshi -->
 
 <br>

@@ -46,13 +46,7 @@ namespace Driver.Windows
 注意点はItemsContorlのアイテムはアクティブにならないとコードが生成されません。一度アクティブにしてから操作してください。
 
 ![ItemsControlCapture.png](../Img/ItemsControlCapture.png)
-
-## 次の手順
-
-次は標準ではキャプチャに対応していないコントロールに対応するためのControlDriverを作成します。
-
-[ControlDriverとCaptureCodeGeneratorを作成する](ControlDriver.md)
-
+上手く動かない場合は[デバッグ](../feature/CaptureAndExecute.md#デバッグ)で原因を特定することができます。
 
 ## 次の手順
 
