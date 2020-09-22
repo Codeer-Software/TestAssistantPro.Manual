@@ -30,7 +30,7 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
  
 ## 利用するサンプルアプリケーション
 ### ダウンロード
-サンプルアプリケーションは[こちら](https://github.com/Codeer-Software/TestAssistantPro.Manual/releases/download/ver0.1/WinFormApp.zip)からダウンロードできます。ダウンロード後には「ブロックの解除」を行ってください。ソースコードは[こちら](WinFormsApp)にあります。
+サンプルアプリケーションは[こちら](https://github.com/Codeer-Software/TestAssistantPro.Manual/releases/download/ver0.1/WinFormsApp.zip)からダウンロードできます。ダウンロード後には「ブロックの解除」を行ってください。ソースコードは[こちら](WinFormsApp)にあります。
 
 ### 内容
 サンプルには WinForms でよくあるドッキングウィンドウタイプのアプリケーションを用意しました。
