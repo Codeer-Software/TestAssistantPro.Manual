@@ -100,7 +100,7 @@ public static class XUserControlDriverExtensions
     {
     }
 
-    public static void TryGet(this ParentDriver parent, out T[] identifier)
+    public static T[] TryGet(this ParentDriver parent)
     {
     }
 }
@@ -123,9 +123,9 @@ public static class OrderDocumentUserControlDriverExtensions
 
     //キャプチャ時にTestAssisatntProが使います。
     //発見した目的のUserControlの識別子をout引数に入れます。
-    public static void TryGet(this WindowsAppFriend app, out string[] identifiers)
+    public static string[] TryGet(this WindowsAppFriend app)
         //アプリの全てのウィンドウからTypeが一致するものを取得
-            => identifiers = app.GetTopLevelWindows().
+            => app.GetTopLevelWindows().
                 SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
                 //識別子にタイトルを使う
                 Select(e => GetTitle(e)).

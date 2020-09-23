@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.reservationInformationUserControl1 = new WinFormsApp.ReservationInformationUserControl();
-            this.chargeOfPartyUserControl1 = new WinFormsApp.ChargeOfPartyUserControl();
+            this._reservationInformationUserControl = new WinFormsApp.ReservationInformationUserControl();
+            this._chargeOfPartyUserControl = new WinFormsApp.ChargeOfPartyUserControl();
             this.SuspendLayout();
             // 
-            // reservationInformationUserControl1
+            // _reservationInformationUserControl
             // 
-            this.reservationInformationUserControl1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.reservationInformationUserControl1.Location = new System.Drawing.Point(236, 12);
-            this.reservationInformationUserControl1.Name = "reservationInformationUserControl1";
-            this.reservationInformationUserControl1.Size = new System.Drawing.Size(268, 150);
-            this.reservationInformationUserControl1.TabIndex = 1;
+            this._reservationInformationUserControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._reservationInformationUserControl.Location = new System.Drawing.Point(236, 12);
+            this._reservationInformationUserControl.Name = "_reservationInformationUserControl";
+            this._reservationInformationUserControl.Size = new System.Drawing.Size(268, 150);
+            this._reservationInformationUserControl.TabIndex = 1;
             // 
-            // chargeOfPartyUserControl1
+            // _chargeOfPartyUserControl
             // 
-            this.chargeOfPartyUserControl1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.chargeOfPartyUserControl1.Location = new System.Drawing.Point(12, 12);
-            this.chargeOfPartyUserControl1.Name = "chargeOfPartyUserControl1";
-            this.chargeOfPartyUserControl1.Size = new System.Drawing.Size(205, 150);
-            this.chargeOfPartyUserControl1.TabIndex = 0;
+            this._chargeOfPartyUserControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._chargeOfPartyUserControl.Location = new System.Drawing.Point(12, 12);
+            this._chargeOfPartyUserControl.Name = "_chargeOfPartyUserControl";
+            this._chargeOfPartyUserControl.Size = new System.Drawing.Size(205, 150);
+            this._chargeOfPartyUserControl.TabIndex = 0;
             // 
             // MultiUserControlForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(520, 181);
-            this.Controls.Add(this.reservationInformationUserControl1);
-            this.Controls.Add(this.chargeOfPartyUserControl1);
+            this.Controls.Add(this._reservationInformationUserControl);
+            this.Controls.Add(this._chargeOfPartyUserControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "MultiUserControlForm";
             this.Text = "MultiUserControlForm";
@@ -64,7 +64,7 @@
 
         #endregion
 
-        private ChargeOfPartyUserControl chargeOfPartyUserControl1;
-        private ReservationInformationUserControl reservationInformationUserControl1;
+        private ChargeOfPartyUserControl _chargeOfPartyUserControl;
+        private ReservationInformationUserControl _reservationInformationUserControl;
     }
 }

@@ -21,7 +21,7 @@ namespace Driver.Windows
     [UserControlDriver(TypeFullName = "System.Windows.Controls.ListBoxItem")]
     public class SampleListBoxItemDriver
     {
-        public WPFUserControl Core { get; }
+        public WPFUIElement Core { get; }
         public WPFToggleButton CheckBoxData => Core.VisualTree().ByBinding("CheckBoxData").Single().Dynamic(); 
         public WPFComboBox ComboBoxData => Core.VisualTree().ByBinding("ComboBoxData").Single().Dynamic(); 
         public WPFTextBox TextData => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
@@ -29,7 +29,7 @@ namespace Driver.Windows
 
         public SampleListBoxItemDriver(AppVar core)
         {
-            Core = new WPFUserControl(core);
+            Core = new WPFUIElement(core);
         }
     }
 }

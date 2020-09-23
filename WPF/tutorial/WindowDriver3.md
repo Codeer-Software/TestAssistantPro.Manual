@@ -25,7 +25,7 @@ namespace Driver.Windows
     [UserControlDriver(TypeFullName = "WpfDockApp.ReservationInformationUserControl")]
     public class ReservationInformationUserControlDriver
     {
-        public WPFUserControl Core { get; }
+        public WPFUIElement Core { get; }
         public WPFToggleButton _smoking => Core.Dynamic()._smoking; 
         public WPFTextBox _numberOfPeople => Core.Dynamic()._numberOfPeople; 
         public WPFContextMenu _numberOfPeopleContextMenu => new WPFContextMenu{Target = NumberOfPeople.AppVar};
@@ -34,7 +34,7 @@ namespace Driver.Windows
 
         public ReservationInformationUserControlDriver(AppVar core)
         {
-            Core = new WPFUserControl(core);
+            Core = new WPFUIElement(core);
         }
     }
 }

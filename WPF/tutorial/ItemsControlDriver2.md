@@ -44,11 +44,11 @@ namespace Driver.Windows
     [UserControlDriver(TypeFullName = "System.Windows.Controls.ListViewItem")]
     public class SampleListViewItemBaseDriver
     {
-        public WPFUserControl Core { get; }
+        public WPFUIElement Core { get; }
 
         public SampleListViewItemBaseDriver(AppVar core)
         {
-            Core = new WPFUserControl(core);
+            Core = new WPFUIElement(core);
         }
     }
 }
@@ -78,7 +78,7 @@ namespace Driver.Windows
     [UserControlDriver(TypeFullName = "System.Windows.Controls.ListViewItem")]
     public class SampleListViewItem1Driver
     {
-        public WPFUserControl Core { get; }
+        public WPFUIElement Core { get; }
         public WPFToggleButton CheckBoxData => Core.VisualTree().ByBinding("CheckBoxData").Single().Dynamic(); 
         public WPFComboBox ComboBoxData => Core.VisualTree().ByBinding("ComboBoxData").Single().Dynamic(); 
         public WPFTextBox TextData => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
@@ -86,7 +86,7 @@ namespace Driver.Windows
 
         public SampleListViewItem1Driver(AppVar core)
         {
-            Core = new WPFUserControl(core);
+            Core = new WPFUIElement(core);
         }
     }
 
@@ -118,7 +118,7 @@ namespace Driver.Windows
     [UserControlDriver(TypeFullName = "System.Windows.Controls.ListViewItem")]
     public class SampleListViewItem2Driver
     {
-        public WPFUserControl Core { get; }
+        public WPFUIElement Core { get; }
         public WPFComboBox ComboBoxData => Core.VisualTree().ByBinding("ComboBoxData").SingleOrDefault()?.Dynamic(); 
         public WPFTextBox TextData => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
         public WPFContextMenu TextDataContextMenu => new WPFContextMenu{Target = TextData.AppVar};
@@ -127,7 +127,7 @@ namespace Driver.Windows
 
         public SampleListViewItem2Driver(AppVar core)
         {
-            Core = new WPFUserControl(core);
+            Core = new WPFUIElement(core);
         }
     }
 
@@ -158,7 +158,7 @@ namespace Driver.Windows
     [UserControlDriver(TypeFullName = "System.Windows.Controls.ListViewItem")]
     public class SampleListViewItem3Driver
     {
-        public WPFUserControl Core { get; }
+        public WPFUIElement Core { get; }
         public WPFTextBox TextData => Core.VisualTree().ByBinding("TextData").Single().Dynamic(); 
         public WPFContextMenu TextDataContextMenu => new WPFContextMenu{Target = TextData.AppVar};
         public WPFDatePicker DateData => Core.VisualTree().ByBinding("DateData").Single().Dynamic(); 
@@ -167,7 +167,7 @@ namespace Driver.Windows
 
         public SampleListViewItem3Driver(AppVar core)
         {
-            Core = new WPFUserControl(core);
+            Core = new WPFUIElement(core);
         }
     }
 
