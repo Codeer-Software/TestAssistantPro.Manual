@@ -124,7 +124,7 @@ public static class XUserControlDriverExtensions
     {
     }
 
-    public static void TryGet(this ParentDriver parent, out T[] identifier)
+    public static T[] TryGet(this ParentDriver parent)
     {
     }
 }
@@ -141,8 +141,8 @@ public static class XUserControlDriverExtensions
     public static XUserControlDriver AttachXUserControl(this ParentDriver parent, string text)
         => parent.Core.IdentifyFromWindowText("").Dynamic();
 
-    public static void TryGet(this ParentDriver parent, out string[] texts)
-        => texts = parent.Core.GetFromTypeFullName("WinFormsApp.XUserControlDriver").Select(e => (string)e.Dynamic().Text).ToArray();
+    public static string[] TryGet(this ParentDriver parent)
+        => parent.Core.GetFromTypeFullName("WinFormsApp.XUserControlDriver").Select(e => (string)e.Dynamic().Text).ToArray();
 }
 ```
 

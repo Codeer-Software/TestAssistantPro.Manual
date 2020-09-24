@@ -12,4 +12,4 @@ UI解析ツリーからBlockControlを選択し、コンテキスメニューよ
 ![ControlDriver.CreateControlDriver.Drop.png](../Img/ControlDriver.CreateControlDriver.Drop.png)
 
 ## 次の手順
-[ControlDriverの実装](ControlDriver2.md)
+[NumericUpDownControl](ControlDriver2.md)

@@ -26,6 +26,7 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 		2. [ControlDriverの実装](tutorial/ControlDriver2.md)
 		3. [DockContentの閉じるに反応するようにする](tutorial/ControlDriver3.md)
   4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
+  5. [自社のプロダクトに適用する](tutorial/Apply.md)
 
 - 機能
   - [AnalyzeWindowの使い方](feature/AnalyzeWindow.md)

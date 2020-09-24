@@ -32,7 +32,7 @@ namespace Driver.Windows
     [UserControlDriver(TypeFullName = "WpfDockApp.OrderDocumentUserControl")]
     public class OrderDocumentUserControlDriver
     {
-        public WPFUserControl Core { get; }
+        public WPFUIElement Core { get; }
         public WPFTextBox _searchText => Core.Dynamic()._searchText;
         public WPFContextMenu _searchTextContextMenu => new WPFContextMenu { Target = _searchText.AppVar };
         public WPFButtonBase _searchButton => Core.Dynamic()._searchButton;
@@ -40,7 +40,7 @@ namespace Driver.Windows
 
         public OrderDocumentUserControlDriver(AppVar core)
         {
-            Core = new WPFUserControl(core);
+            Core = new WPFUIElement(core);
         }
     }
 
@@ -58,10 +58,10 @@ namespace Driver.Windows
                     FirstOrDefault()?.Dynamic();
 
         //キャプチャ時にTestAssisatntProが使います。
-        //発見した目的のUserControlの識別子をout引数に入れます。
-        public static void TryGet(this WindowsAppFriend app, out string[] identifiers)
+        //発見した目的のUserControlの識別子を配列で戻します。
+        public static string[] TryGet(this WindowsAppFriend app)
              //アプリの全てのウィンドウからTypeが一致するものを取得
-             => identifiers = app.GetTopLevelWindows().
+             => app.GetTopLevelWindows().
                     SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
                     //識別子にタイトルを使う
                     Select(e => GetTitle(e)).

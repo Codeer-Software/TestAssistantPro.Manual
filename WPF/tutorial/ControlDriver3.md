@@ -81,7 +81,7 @@ namespace Driver.Windows
     [UserControlDriver(TypeFullName = "WpfDockApp.OrderDocumentUserControl")]
     public class OrderDocumentUserControlDriver
     {
-        public WPFUserControl Core { get; }
+        public WPFUIElement Core { get; }
         public WPFTextBox _searchText => Core.Dynamic()._searchText;
         public WPFContextMenu _searchTextContextMenu => new WPFContextMenu { Target = _searchText.AppVar };
         public WPFButtonBase _searchButton => Core.Dynamic()._searchButton;
@@ -94,7 +94,7 @@ namespace Driver.Windows
             
         public OrderDocumentUserControlDriver(AppVar core)
         {
-            Core = new WPFUserControl(core);
+            Core = new WPFUIElement(core);
         }
     }
 ```
@@ -110,4 +110,4 @@ namespace Driver.Windows
 ここまで画面キャプチャを行うためのすべての処理が完了しました。
 次は実際に画面をキャプチャしてシナリオを作成します。
 
-[アプリケーションの操作を記録してシナリオを作成する](Scenario.md)
+[アプリケーションを操作してシナリオを作成する](Scenario.md)

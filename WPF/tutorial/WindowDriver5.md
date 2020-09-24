@@ -35,12 +35,12 @@ namespace Driver.Windows
     [UserControlDriver(TypeFullName = "WpfDockApp.TreeUserControl")]
     public class TreeUserControlDriver
     {
-        public WPFUserControl Core { get; }
+        public WPFUIElement Core { get; }
         public WPFTreeView TreeView => Core.Dynamic()._treeView; 
 
         public TreeUserControlDriver(AppVar core)
         {
-            Core = new WPFUserControl(core);
+            Core = new WPFUIElement(core);
         }
     }
 }
@@ -64,7 +64,7 @@ namespace Driver.Windows
     [UserControlDriver(TypeFullName = "WpfDockApp.OutputUserControl")]
     public class OutputUserControlDriver
     {
-        public WPFUserControl Core { get; }
+        public WPFUIElement Core { get; }
         public WPFButtonBase _buttonCopy => Core.Dynamic()._buttonCopy; 
         public WPFButtonBase _buttonSaveFile => Core.Dynamic()._buttonSaveFile; 
         public WPFButtonBase _buttonClear => Core.Dynamic()._buttonClear; 
@@ -73,7 +73,7 @@ namespace Driver.Windows
 
         public OutputUserControlDriver(AppVar core)
         {
-            Core = new WPFUserControl(core);
+            Core = new WPFUIElement(core);
         }
     }
 
