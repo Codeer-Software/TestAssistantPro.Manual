@@ -1,0 +1,65 @@
+﻿<Window x:Class="WpfDockApp.DataGridWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDockApp"
+        mc:Ignorable="d"
+        Title="DataGridWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridCheckBoxColumn Header="Member" Binding="{Binding AuthMember}" />
+                <DataGridComboBoxColumn Header="Gender" 
+                        SelectedValueBinding="{Binding Gender}"
+                        DisplayMemberPath="Label" 
+                        SelectedValuePath="Value">
+                <DataGridComboBoxColumn.ItemsSource>
+                    <x:Array Type="{x:Type local:GenderComboBoxItem}">
+                            <local:GenderComboBoxItem Label="None" Value="None" />
+                            <local:GenderComboBoxItem Label="Men" Value="Men" />
+                            <local:GenderComboBoxItem Label="Women" Value="Women" />
+                    </x:Array>
+                    </DataGridComboBoxColumn.ItemsSource>
+                </DataGridComboBoxColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="Name" />
+                                <Separator />
+                                <TextBlock Text="Member" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" />
+                                <Separator />
+                                <CheckBox IsEnabled="False" IsChecked="{Binding AuthMember}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBox Text="{Binding Name}" />
+                                <Separator />
+                                <CheckBox IsChecked="{Binding AuthMember}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridHyperlinkColumn Header="Link" Binding="{Binding Link}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

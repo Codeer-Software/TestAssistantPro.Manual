@@ -62,9 +62,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="unvell.ReoGrid, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\unvell.ReoGridWPF.dll.2.2.0\lib\net20\unvell.ReoGrid.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -101,6 +98,11 @@
     <Compile Include="CustomItemsControlWindow.xaml.cs">
       <DependentUpon>CustomItemsControlWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataGridWindow.xaml.cs">
+      <DependentUpon>DataGridWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gender.cs" />
+    <Compile Include="GenderComboBoxItem.cs" />
     <Compile Include="ItemsControlWindow.xaml.cs">
       <DependentUpon>ItemsControlWindow.xaml</DependentUpon>
     </Compile>
@@ -120,6 +122,7 @@
     <Compile Include="OutputUserControl.xaml.cs">
       <DependentUpon>OutputUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Person.cs" />
     <Compile Include="ReservationInformationUserControl.xaml.cs">
       <DependentUpon>ReservationInformationUserControl.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomItemsControlWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DataGridWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -215,5 +222,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

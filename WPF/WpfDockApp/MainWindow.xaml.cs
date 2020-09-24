@@ -92,6 +92,12 @@ namespace WpfDockApp
             dialog.ShowDialog();
         }
 
+        void DataGridDialog_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new DataGridWindow();
+            dialog.ShowDialog();
+        }
+
         void MessageBoxDialog_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(this, "Message.");
