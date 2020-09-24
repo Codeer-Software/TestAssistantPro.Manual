@@ -31,6 +31,7 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 		2. [NumericUpDownControl](tutorial/ControlDriver2.md)
 		3. [ドキュメントの閉じるに反応するようにする](tutorial/ControlDriver3.md)
 	4. [アプリケーションを操作してシナリオを作成する](tutorial/Scenario.md)
+	5. [自社のプロダクトに適用する](tutorial/Scenario.md)
 
 - 機能
   - [AnalyzeWindowの使い方](feature/AnalyzeWindow.md)

@@ -17,6 +17,7 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
   2. [アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](tutorial/WindowDriver.md)
   3. [ControlDriverとCaptureCodeGeneratorを作成する](tutorial/ControlDriver.md)
   4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
+  5. [自社のプロダクトに適用する](tutorial/Apply.md)
 
 - 機能
   - [AnalyzeWindowの使い方](feature/AnalyzeWindow.md)
