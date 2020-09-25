@@ -41,8 +41,8 @@ namespace Driver.Windows
         public static OrderDocumentFormDriver AttachOrderDocumentForm(this WindowsAppFriend app, string text)
             => app.GetTopLevelWindows().SelectMany(e=>e.GetFromTypeFullName("WinFormsApp.OrderDocumentForm")).Where(e=>(string)e.Dynamic().Text == text).FirstOrDefault()?.Dynamic();
 
-        public static void TryGet(this WindowsAppFriend parent, out string[] texts)
-            => texts = parent.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.OrderDocumentForm")).Select(e => (string)e.Dynamic().Text).ToArray();
+        public static string[] TryGet(this WindowsAppFriend parent)
+            => parent.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.OrderDocumentForm")).Select(e => (string)e.Dynamic().Text).ToArray();
 
     }
 }
