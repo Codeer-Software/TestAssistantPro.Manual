@@ -21,10 +21,10 @@
             <MenuItem x:Name="_menuEtc" Header="etc.">
                 <MenuItem Header="Simple Dialog" Click="SimpleDialog_Click"/>
                 <MenuItem Header="Multi UserControl Dialog" Click="MultiUserControlDialog_Click"/>
+                <MenuItem Header="DataGrid Dialog" Click="DataGridDialog_Click"/>
                 <MenuItem Header="Custom Control Dialog" Click="CustomControlDialog_Click"/>
                 <MenuItem Header="ItemsControl Dialog" Click="ItemsControlDialog_Click"/>
                 <MenuItem Header="Custom ItemsControl Dialog" Click="CustomItemsControlDialog_Click"/>
-                <MenuItem Header="DataGrid Dialog" Click="DataGridDialog_Click"/>
                 <MenuItem Header="MessageBox" Click="MessageBoxDialog_Click"/>
             </MenuItem>
         </Menu>

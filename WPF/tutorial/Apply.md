@@ -35,5 +35,5 @@ AnalyzeWindowを使って画面を調べます。
 これらの作業は初めてTestAssistantProを使う場合には戸惑うこともあります。
 Codeerのテスト自動化コンサルティングサービスに依頼することもできます。
 [こちら](https://www.codeer.co.jp/Contact)からご依頼ください。
-<br>
+
 https://www.codeer.co.jp/Contact
