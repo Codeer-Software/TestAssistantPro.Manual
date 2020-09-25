@@ -100,4 +100,4 @@ namespace Driver.Windows
 上手く動かない場合は[デバッグ](../feature/CaptureAndExecute.md#デバッグ)で原因を特定することができます。
 
 ## 次の手順
-[MainWindowのドライバの作成](WindowDriver4.md)
+[DataGrid Dialogのドライバの作成](WindowDriver4.md)
