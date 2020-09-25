@@ -69,8 +69,7 @@ namespace Driver.Windows
     public class MultiUserControlFormDriver
     {
         public WindowControl Core { get; }
-        public ReservationInformationUserControlDriver reservationInformationUserControl1
-             => new ReservationInformationUserControlDriver(Core.Dynamic().reservationInformationUserControl1); 
+        public ReservationInformationUserControlDriver _reservationInformationUserControl => Core.Dynamic()._reservationInformationUserControl; 
         public FormsTextBox _textBoxTel => Core.Dynamic().chargeOfPartyUserControl1._textBoxTel; 
         public FormsTextBox _textBoxName => Core.Dynamic().chargeOfPartyUserControl1._textBoxName; 
 
