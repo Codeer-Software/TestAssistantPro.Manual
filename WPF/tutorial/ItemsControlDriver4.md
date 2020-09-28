@@ -98,12 +98,12 @@ namespace Driver.Windows
     public static class CustomDataGridCellDriverExtensions
     {
         [UserControlDriverIdentify]
-        public static CustomDataGridCellDriver AsCustomDataGridCell(this WPFDataGridCell parent)
+        public static CustomDataGridCellDriver AsCustomDataGridCell(this WPFDataGridCell src)
         {
-            string columnType = parent.Dynamic().Column.GetType().FullName;
+            string columnType = src.Dynamic().Column.GetType().FullName;
             if (typeof(DataGridTemplateColumn).FullName != columnType) return null;
-            if (parent.VisualTree().ByBinding("AuthMember").FirstOrDefault() == null) return null;
-            return parent.Core.Dynamic();
+            if (src.VisualTree().ByBinding("AuthMember").FirstOrDefault() == null) return null;
+            return src.Core.Dynamic();
         }
     }
 }
