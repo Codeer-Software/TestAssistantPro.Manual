@@ -23,7 +23,7 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 		6. [Documentのドライバの作成](tutorial/WindowDriver6.md)
   3. [ControlDriverとCaptureCodeGeneratorを作成する](tutorial/ControlDriver.md)
 		1. [ControlDriverとCaptureCodeGeneratorのコードテンプレートを生成する](tutorial/ControlDriver1.md)
-		2. [ControlDriverの実装](tutorial/ControlDriver2.md)
+		2. [BlockControl](tutorial/ControlDriver2.md)
 		3. [DockContentの閉じるに反応するようにする](tutorial/ControlDriver3.md)
   4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
   5. [自社のプロダクトに適用する](tutorial/Apply.md)

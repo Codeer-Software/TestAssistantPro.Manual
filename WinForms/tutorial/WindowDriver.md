@@ -14,6 +14,7 @@
 
 ## 事前準備
 WinFormsApp.exeを起動してください。ドライバの作成は操作対象のアプリケーションを解析しながら行います。
+![WindowsFormsDockApp.png](../Img/WindowsFormsDockApp.png)
 
 ## 次の手順
 [AnalzeWindowの表示](WindowDriver1.md)

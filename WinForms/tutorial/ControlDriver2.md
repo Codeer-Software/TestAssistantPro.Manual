@@ -1,4 +1,4 @@
-## ControlDriverの実装
+## BlockControl
 
 BlockControlはSelectIndexという現在選択されているブロックのインデックスを取得または設定するプロパティを公開しています。
 また、MoveBlockというメソッドも公開しているため、このドライバではその2つを実装します。
