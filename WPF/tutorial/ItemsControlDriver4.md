@@ -8,9 +8,9 @@ WPFDataGridは標準では以下のものに対応しています。
 - DataGridComboBoxColumn
 - DataGridCheckBoxColumn
 
-DataGridTemplateColumnを使って自由にカスタマイズしたものに関してもセルの内容に対してUSerControlDriverを作成することで対応できます。
+DataGridTemplateColumnを使ってカスタマイズしたセルに関してもセルの内容に対してUSerControlDriverを作成することで対応できます。
 
-### チュートリアル
+### ダイアログのドライバ作成
 対象アプリケーションのメニューから[etc] - [DataGrid Dialog]を選択して、ダイアログを表示します。
 ![DataGridDriver.Analyze.png](../Img/DataGridDriver.Analyze.png)
 
@@ -58,6 +58,7 @@ namespace Driver.Windows
 }
 ```
 
+### DataGridTemplateColumnでカスタマイズされたセルのUSerControl作成
 次に右側の NAME と MEMBER が2段の要素を持つ DataGridTemplateColumn のセルに対するコードを生成します。
 Controlキーを押しながら最終列のセルにカーソルを持っていくとDataGridCellもしくはその子要素を選択できます。
 ツリー上でDataGridCellを選択し、右クリックから[Change The Analysis Target]を選択します。
