@@ -1,54 +1,22 @@
-## TreeUserControlとOutputUserControl のドライバの作成
-
-TreeUserControl と OutputUserControl は UserControlDriver として作成します。
-これはAttach方式にします。
-Attach対象は MainFromDriver ではなく WindowsAppFrined (アプリケーション全体)にします。
-これはフローティング状態にするなどさまざまな状態を作ることができるからです。
-
-まずは TreeUserControl の UserControlDriver を作ります。
-Ctrlキーを押しながらMainWindowのTreeにマウスオーバーすることでTreeUserControlの子要素がUI解析ツリーで選択状態になります。
-AnalyzeWindowのTree上でいくつか上の要素にTreeUserControlがあるので、選択してコンテキストメニューより[Change The Analysis Target]を選択します。
-TreeUserControlの子要素であるTreeViewをダブルクリックしてプロパティに追加します。
-
-Designerタブの内容を次のように変更し、[Generate]ボタンをクリックしてコードを生成します。
-記載されている内容以外はデフォルトのままにしておきます。
+## Documentのドライバの作成
+Document は TreeView の AcceptedもしくはSendedから開くことができます。これは同じクラスで表示するデータが異なっているだけです。一般的にドキュメントは同じタイプのものが複数存在します。
+このような場合は Attach で Custom の取得方法を利用します。それぞれの特定方法はものによって異なるのでコードで実装する必要があります。
+今回はTitleプロパティで判断するようにします。AnalyzeWindowではAttachを下記のように設定します。
+またPickupChildrenで要素を取得してからGenerateを実行します。
 
 | 項目 | 設定内容 |
 |-----|--------|
 | Create Attach Code | チェックをつける |
 | Extension | WindowAppFriend |
+| Method | Custom |
 
-このオプションの詳細は [Attach方法ごとのコード](../feature/Attach.md)を参照してください。
+生成されたコードを以下のように書き換えます。
+Titleの取得はドキュメントを親方向にたどっていって存在するLayoutDocumentControlに対する操作で実現できます。
+この作業には利用しているライブラリの知識が必要です。
+多くの場合、アプリケーション開発チームのメンバーは対応可能でしょう。
+Attachのオプションの詳細は [Attach方法ごとのコード](../feature/Attach.md)を参照してください。
 
-![WindowDriver.TreeForm.png](../Img/WindowDriver.TreeForm.png)
-
-```cs
-using Codeer.Friendly.Dynamic;
-using Codeer.Friendly.Windows;
-using Codeer.Friendly.Windows.Grasp;
-using Codeer.TestAssistant.GeneratorToolKit;
-using RM.Friendly.WPFStandardControls;
-using System.Linq;
-
-namespace Driver.Windows
-{
-    [UserControlDriver(TypeFullName = "WpfDockApp.TreeUserControl")]
-    public class TreeUserControlDriver
-    {
-        public WPFUIElement Core { get; }
-        public WPFTreeView TreeView => Core.Dynamic()._treeView; 
-
-        public TreeUserControlDriver(AppVar core)
-        {
-            Core = new WPFUIElement(core);
-        }
-    }
-}
-```
-
-OutputUserControl も同様に作成してください。
-
-![WindowDriver.TreeForm.png](../Img/WindowDriver.OutputView.png)
+![WindowDriver.Document.png](../Img/WindowDriver.Document.png)
 
 ```cs
 using Codeer.Friendly;
@@ -61,36 +29,67 @@ using System.Linq;
 
 namespace Driver.Windows
 {
-    [UserControlDriver(TypeFullName = "WpfDockApp.OutputUserControl")]
-    public class OutputUserControlDriver
+    [UserControlDriver(TypeFullName = "WpfDockApp.OrderDocumentUserControl")]
+    public class OrderDocumentUserControlDriver
     {
         public WPFUIElement Core { get; }
-        public WPFButtonBase _buttonCopy => Core.Dynamic()._buttonCopy; 
-        public WPFButtonBase _buttonSaveFile => Core.Dynamic()._buttonSaveFile; 
-        public WPFButtonBase _buttonClear => Core.Dynamic()._buttonClear; 
-        public WPFTextBox _textBox => Core.Dynamic()._textBox; 
-        public WPFContextMenu _textBoxContextMenu => new WPFContextMenu{Target = _textBox.AppVar};
+        public WPFTextBox _searchText => Core.Dynamic()._searchText;
+        public WPFContextMenu _searchTextContextMenu => new WPFContextMenu { Target = _searchText.AppVar };
+        public WPFButtonBase _searchButton => Core.Dynamic()._searchButton;
+        public WPFDataGrid _dataGrid => Core.Dynamic()._dataGrid;
 
-        public OutputUserControlDriver(AppVar core)
+        public OrderDocumentUserControlDriver(AppVar core)
         {
             Core = new WPFUIElement(core);
         }
     }
 
-    public static class OutputUserControlDriverExtensions
+    public static class OrderDocumentUserControlDriverExtensions
     {
-        [UserControlDriverIdentify]
-        public static OutputUserControlDriver AttachOutputUserControl(this WindowsAppFriend app)
-            => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OutputUserControl")).FirstOrDefault()?.Dynamic();
+        //ここに特定のためのカスタムコードを入れる
+        //キャプチャ時にTestAssistantProが使うCustomMethod名を指定します。
+        [UserControlDriverIdentify(CustomMethod = "TryGet")]
+        public static OrderDocumentUserControlDriver AttachOrderDocumentUserControl(this WindowsAppFriend app, string identifier)
+            //アプリの全てのウィンドウからTypeが一致するものを取得
+            => app.GetTopLevelWindows().
+                    SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
+                    //その中でタイトルが一致するものを取得
+                    Where(e => GetTitle(e) == identifier).
+                    FirstOrDefault()?.Dynamic();
+
+        //キャプチャ時にTestAssisatntProが使います。
+        //発見した目的のUserControlの識別子を配列で戻します。
+        public static string[] TryGet(this WindowsAppFriend app)
+             //アプリの全てのウィンドウからTypeが一致するものを取得
+             => app.GetTopLevelWindows().
+                    SelectMany(e => e.GetFromTypeFullName("WpfDockApp.OrderDocumentUserControl")).
+                    //識別子にタイトルを使う
+                    Select(e => GetTitle(e)).
+                    Where(e => e != null).
+                    ToArray();
+
+        static string GetTitle(AppVar e)
+        {
+            //タイトルを取得します。
+            //UserContorlから親方向にたどって見つかるLayoutDocumentControlが持っています。
+            //これは利用しているライブラリ(今回はXceed)の知識が必要です。
+            var layoutDocumentControl = e.VisualTree(TreeRunDirection.Ancestors).ByType("Xceed.Wpf.AvalonDock.Controls.LayoutDocumentControl").FirstOrDefault();
+            if (layoutDocumentControl == null) return null;
+            return layoutDocumentControl.Dynamic().Model.Title;
+        }
     }
 }
 ```
 
-それぞれ操作してキャプチャできるか確認します。
+AcceptedとSendedを両方操作してキャプチャできるか確認します。
 
-![WindowDriver.Capture.TreeAndOutput.png](../Img/WindowDriver.Capture.TreeAndOutput.png)
+![WindowDriver.Capture.Document.png](../Img/WindowDriver.Capture.Document.png)
 
 上手く動かない場合は[デバッグ](../feature/CaptureAndExecute.md#デバッグ)で原因を特定することができます。
 
 ## 次の手順
-[Documentのドライバの作成](WindowDriver7.md)
+
+ここまで画面キャプチャを行うためのドライバの作成が完了しました。
+次はItemsControlでDataTemplateによってカスタマイズしたものへ対応します。
+
+[カスタマイズされたItemsControlに対応する](ItemsControlDriver.md)
