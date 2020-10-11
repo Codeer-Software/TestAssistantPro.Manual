@@ -41,7 +41,7 @@ namespace Driver.Controls
 
 ### ControlDriver実装
 次にCheckListBoxDriverを実装します。
-以下のインターフェイスを追加します。
+以下のプロパティとメソッドを追加します。
 + アイテムの取得
 + アイテムにフォーカスを当てる
 + アクティブなアイテムの取得
