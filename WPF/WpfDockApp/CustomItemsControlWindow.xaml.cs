@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 
 namespace WpfDockApp
 {
@@ -7,6 +8,8 @@ namespace WpfDockApp
         public CustomItemsControlWindow()
         {
             InitializeComponent();
+
+            _listBox.ItemsSource = Enumerable.Range(0, 20).ToArray();
         }
     }
 }
