@@ -107,7 +107,6 @@ namespace Driver.Windows
 
 ## 次の手順
 
-ここまで画面キャプチャを行うためのすべての処理が完了しました。
-次は実際に画面をキャプチャしてシナリオを作成します。
+次はItemsControlのControlDriverも作ってみます。
 
-[アプリケーションを操作してシナリオを作成する](Scenario.md)
+[ItemsControlのControlDriverを作る](ControlDriver4.md)
