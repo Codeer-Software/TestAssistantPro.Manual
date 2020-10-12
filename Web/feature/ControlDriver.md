@@ -59,12 +59,19 @@ public class TextBoxDriver : ControlDriverBase
     public static TargetElementInfo TargetElementInfo => new TargetElementInfo("input");
 }
 ```
+### Capture
+操作のキャプチャはJavaScriptで行います。`CaptureCodeGeneratorAttribute`を付けたメソッドがあるとそれが呼び出され実行されます。
+ここでイベント処理を行い操作時にC#のコードが生成されるようにします。
+上記の例では、`change`イベントの発生時に、Editメソッドを実行するC#コードを出力しています。
+このキャプチャ用のJavaScriptで使うことができる変数とメソッドがあります。
 
-TestAssistantProは初めに`GetWebElementCaptureGenerator`で返されるJavaScriptコードをブラウザに埋め込みます。
-このスクリプトはキャプチャの実行時にブラウザの操作をハンドリングし、C#コードを生成するコードを定義します。
-上記の例では、`change`イベントの発生時に、`__codeerTestAssistantPro.pushCode`によりEditメソッドを実行するC#コードを出力しています。
-`element`変数には、このControlDriverが対象としている要素のインスタンスが設定されます。
-C#上の変数名は`__codeerTestAssistantPro.getElementName`メソッドに要素を指定することで取得できます。
+|  TH  |  TH  |
+| ---- | ---- |
+|element | このControlDriverで操作対象としている要素です。|
+|window.__codeerTestAssistantPro.getElementName(element) | 指定の要素に対応するドライバの変数名を取得します。|
+|window.__codeerTestAssistantPro.pushCode(code) | 生成したコードを追加します。|
+|window.__codeerTestAssistantPro.pushUsings(code) | C#のコード上で必要なUsingを追加します。|
+|window.__codeerTestAssistantPro.addPolling(func) | ポーリングでコールバックされる関数を登録します。|
 
 要素の状態を監視して変更を検知する場合などは、`__codeerTestAssistantPro.addPolling`メソッドにコールバックを設定してください。
 このコールバックは定期的に実行さるため、変更を検知し、変更が検知されたときにC#コードを出力するようにします。
@@ -73,17 +80,18 @@ C#上の変数名は`__codeerTestAssistantPro.getElementName`メソッドに要�
 [CaptureCodeGenerator]
 public string GetWebElementCaptureGenerator()
 {
+    var guid = Guid.NewGuid();
     return $@"
     __codeerTestAssistantPro.addPolling(() => {{
-        
-        const editor = element.querySelector('{_editorTag}');
-        if (!!editor) return;
-
-        let oldValue = window.__InlineEditableDriverBase['{guid}'];
+        //前回の値を取得する
+        let oldValue = window.__captureCache['{guid}'];
         let value = element.querySelector('span').innerText;
         if (!oldValue) {{
+            //初回の場合は前回値はない
             oldValue = value;
         }}
+
+        //値が異なっていたら編集されていたとみなし、コード生成
         if (oldValue != value) {{
             const name = __codeerTestAssistantPro.getElementName(element);
             __codeerTestAssistantPro.pushCode(name + '.Edit(""' + value + '"");');
