@@ -45,3 +45,37 @@ ItemDriverを作るときにはそれをキャプチャするための仕組み�
 サンプルはこちらを参照してください。
 
 [ItemsControlのControlDriverを作る](../tutorial/ControlDriver4.md)
+
+### ItemDriverGetterAttribute
+ItemDriverGetterAttributeをアイテムを取得するメソッドに設定します。
+キャプチャ中にはActiveItemKeyPropertyで指定されたプロパティが呼び出されます。
+それを使ってアイテムが取得されキャプチャ対象になります。
+
+![ItemDriverGetterAttribute.png](../Img/ItemDriverGetterAttribute.png)
+
+ActiveItemKeyPropertyにはint,string,int[],string[],IItemKeyを使うことができます。
+ActiveItemKeyPropertyのCurrentCellはWPFDataGridCellになっています。
+WPFDataGridCellはIItemKeyを実装しています。
+```cs
+public WPFDataGridCell CurrentCell { get; }
+
+[ItemDriverGetter(ActiveItemKeyProperty = "CurrentCell")]
+public WPFDataGridCell GetCell(int itemIndex, int col)
+```
+
+実際にWPFDataGridのGetCellを呼び出すときにはGetArguments()で取得したオブジェクトが使われ、生成されるコードにはGetArgumentsCode()が使われます。
+
+```cs
+public class WPFDataGridCell : IItemKey
+{
+    //実際の引数
+    public object[] GetArguments()
+        => new object[] { 
+                (int)App.Type<WPFDataGridCell>().GetItemIndex(this),
+                (int)App.Type<WPFDataGridCell>().GetColumnIndex(this) 
+            };
+
+    //生成されるコード
+    public string GetArgumentsCode()
+        => $"{(int)App.Type<WPFDataGridCell>().GetItemIndex(this)}, {(int)App.Type<WPFDataGridCell>().GetColumnIndex(this)}";
+}
