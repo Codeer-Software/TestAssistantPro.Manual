@@ -54,7 +54,7 @@ ItemDriverGetterAttributeをアイテムを取得するメソッドに設定し�
 ![ItemDriverGetterAttribute.png](../Img/ItemDriverGetterAttribute.png)
 
 ActiveItemKeyPropertyにはint,string,int[],string[],IItemKeyを使うことができます。
-ActiveItemKeyPropertyのCurrentCellはWPFDataGridCellになっています。
+例えばActiveItemKeyPropertyのCurrentCellはWPFDataGridCellになっています。
 WPFDataGridCellはIItemKeyを実装しています。
 ```cs
 public WPFDataGridCell CurrentCell { get; }
