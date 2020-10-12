@@ -41,6 +41,7 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
   - [WindowDriver/UserControlDriverのコード](feature/GeneratedCode.md)
   - [Attach方法ごとのコード](feature/Attach.md)
   - [ControlDriverのコード](feature/ControlDriver.md)
+  - [ItemsControlのControlDriver](feature/ItemsControlDriver.md)
   - [CaptureCodeGeneratorのコード](feature/CaptureCodeGenerator.md)
   - [AnalyzeWindowをカスタマイズする](feature/CustomizeAnalyzeWindow.md)
   - [Captureウィンドウをカスタマイズする](feature/CustomizeCaptureWindow.md)

@@ -3,7 +3,7 @@
 ### 雛型作成
 ItemsControlのControlDriverを作ります。
 これはいくつかの手法があります。
-[こちら]()を参照してそれぞれのケースで最も最適な方法を選択してください。
+[こちら](../feature/ItemsControlDriver.md)を参照してそれぞれのケースで最も最適な方法を選択してください。
 ここではItemのDriverをUserControlDriverにする手法を使います。
 まずはControlDriverのベースを作ります。
 
