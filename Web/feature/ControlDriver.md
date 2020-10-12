@@ -65,7 +65,7 @@ public class TextBoxDriver : ControlDriverBase
 上記の例では、`change`イベントの発生時に、Editメソッドを実行するC#コードを出力しています。
 このキャプチャ用のJavaScriptで使うことができる変数とメソッドがあります。
 
-|  TH  |  TH  |
+|  変数/メソッド |  説明  |
 | ---- | ---- |
 |element | このControlDriverで操作対象としている要素です。|
 |window.__codeerTestAssistantPro.getElementName(element) | 指定の要素に対応するドライバの変数名を取得します。|
@@ -105,3 +105,17 @@ public string GetWebElementCaptureGenerator()
 
 `TargetElementInfoAttribute`が設定されたメソッドはAnalyuzeWindowで要素が選択された際に利用されます。
 選択された要素が、指定されたセレクタと一致した場合に、デフォルトの値として該当のControlDriverが選択されます。
+
+例えばこれはタグがinputの時にこのドライバが選択されます。
+```cs
+[TargetElementInfo]
+public static TargetElementInfo TargetElementInfo => new TargetElementInfo("input");
+```
+
+この書き方であればタグがinputでtype属性がcheckboxの場合にこのドライバが選択されます。
+```cs
+[TargetElementInfo]
+public static TargetElementInfo TargetElementInfo => new TargetElementInfo("input", "type", "checkbox");
+```
+
+上記の二つはともにinputタグですが、より指定の細かいマッチングの方が優先されます。
