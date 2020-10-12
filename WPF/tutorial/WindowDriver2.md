@@ -68,7 +68,7 @@ Analyze Window を閉じて Scenario/Test.csのTestMethod1で右クリックし�
 
 ![WindowDriver.CaptureStart.png](../Img/WindowDriver.CaptureStart.png)
 
-[Capture]ウィンドウが表示されたら、Simple Dialogを操作して、内容を記録します。最後に[Generate]ボタンをクリックして、コードを生成します。
+[Capture]ウィンドウが表示されたら、Simple Dialogを操作して、コードを作成します。最後に[Generate]ボタンをクリックして、コードを生成します。
 
 ![WindowDriver.Capture.SimpleDialog.png](../Img/WindowDriver.Capture.SimpleDialog.png)
 

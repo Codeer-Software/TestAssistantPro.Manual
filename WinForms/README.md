@@ -25,12 +25,12 @@ Friendlyと`Driver/Scenarioパターン`は次のリンクを参照してくだ�
 		1. [ControlDriverとCaptureCodeGeneratorのコードテンプレートを生成する](tutorial/ControlDriver1.md)
 		2. [BlockControl](tutorial/ControlDriver2.md)
 		3. [DockContentの閉じるに反応するようにする](tutorial/ControlDriver3.md)
-  4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
+  4. [アプリケーションを操作してシナリオを作成する](tutorial/Scenario.md)
   5. [自社のプロダクトに適用する](tutorial/Apply.md)
 
 - 機能
   - [AnalyzeWindowの使い方](feature/AnalyzeWindow.md)
-  - [画面操作のキャプチャと再生](feature/CaptureAndExecute.md)
+  - [画面操作によるコードの生成と実行](feature/CaptureAndExecute.md)
   - [WindowDriver/UserControlDriverのコード](feature/GeneratedCode.md)
   - [Attach方法ごとのコード](feature/Attach.md)
   - [ControlDriverのコード](feature/ControlDriver.md)

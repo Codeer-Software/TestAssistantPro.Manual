@@ -1,15 +1,15 @@
-# 画面操作のキャプチャと再生
+# 画面操作によるコードの生成と実行
 
 TestAssistantProには、対になるCaptureとExecuteという機能があります。
 
-- Capture機能は、アプリケーションの操作をプログラムコードとして記録します。
-- Execute機能は、記録したプログラムコードを実行して対象アプリケーション上で操作を再現します。
+- Capture機能は、アプリケーションの操作からプログラムコードを作成します。
+- Execute機能は、関数単位で処理を実行します。
 
 ## Capture
 
-アプリケーションの操作をプログラムコードとして記録します。 Captureでプログラムコードを生成するためには、PageObjectおよびComponentObjectが作成されている必要があります。詳細な内容は[AnalyzeWindow](AnalyzeWindow.md)を参照してください。
+アプリケーションの操作することでプログラムコードを作成します。 Captureでプログラムコードを生成するためには、PageObjectおよびComponentObjectが作成されている必要があります。詳細な内容は[AnalyzeWindow](AnalyzeWindow.md)を参照してください。
 
-Capture機能を実行するには、プログラムコードを記録したいメソッドを右クリックして、[Capture]を選択してください。Captureウィンドウが表示され、画面操作の記録が開始されます。
+Capture機能を実行するには、プログラムコードを作成したいメソッドを右クリックして、[Capture]を選択してください。Captureウィンドウが表示されます。
 
 ![Capture Menu](../img/captureandexecute_capture_menu.png)
 
@@ -23,7 +23,7 @@ Capture機能を実行するには、プログラムコードを記録したい�
 
 ## Execute
 
-記録したプログラムコードを実行して操作を再現します。
-実行したいメソッドを右クリックして、[Execute]を選択してください。プログラムコードが実行され、操作が再生されます。
+プログラムコードを作成した関数を実行します。
+実行したいメソッドを右クリックして、[Execute]を選択してください。プログラムコードが実行されます。
 
 ![Replay](../img/captureandexecute_execute_menu.png)

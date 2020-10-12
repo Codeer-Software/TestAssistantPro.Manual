@@ -15,12 +15,12 @@ TestAssistantProを使って`Selenium WebDriver`での`Pageオブジェクトパ
   1. [テストソリューションを作成する](tutorial/Sln.md)
   2. [アプリケーションを解析してPageObjectを作成する](tutorial/PageObject.md)
   3. [繰り返し要素のプロパティを追加する](tutorial/ComponentObject.md)
-  4. [アプリケーションの操作を記録してシナリオを作成する](tutorial/Scenario.md)
+  4. [アプリケーションを操作してシナリオを作成する](tutorial/Scenario.md)
 - 機能
   - [AnalyzeWindowの使い方](feature/AnalyzeWindow.md)
   - [ComponentObject](feature/ComponentObject.md)
   - [ControlDriver](feature/ControlDriver.md)
-  - [画面操作のキャプチャと再生](feature/CaptureAndExecute.md)
+  - [画面操作によるコードの生成と実行](feature/CaptureAndExecute.md)
   - [PageObject/ComponentObjectのコード](feature/GeneratedCode.md)
   - [PageObjectへのアタッチ](feature/Attach.md)
 

@@ -103,7 +103,5 @@ public string GetWebElementCaptureGenerator()
 }
 ```
 
-キャプチャした動作を再生するメソッドは任意の名前をつけることができますが、慣例として`Edit`という名前を利用することを推奨します。
-
 `TargetElementInfoAttribute`が設定されたメソッドはAnalyuzeWindowで要素が選択された際に利用されます。
 選択された要素が、指定されたセレクタと一致した場合に、デフォルトの値として該当のControlDriverが選択されます。
