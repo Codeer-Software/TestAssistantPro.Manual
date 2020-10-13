@@ -92,5 +92,12 @@ namespace Driver.Windows
     }
 }
 ```
+
+一通り作成できたらキャプチャできるか確認します。
+
+![WindowDriver.Capture.MultiUserControl.png](../Img/WindowDriver.Capture.MultiUserControl.png)
+
+上手く動かない場合は[デバッグ](../feature/CaptureAndExecute.md#デバッグ)で原因を特定することができます。
+
 ## 次の手順
 [MainFormのドライバの作成](WindowDriver4.md)
