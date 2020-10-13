@@ -48,6 +48,12 @@ namespace Driver.Windows
 }
 ```
 
+AcceptedとSendedを両方操作してキャプチャできるか確認します。
+
+![WindowDriver.Capture.Document.png](../Img/WindowDriver.Capture.Document.png)
+
+上手く動かない場合は[デバッグ](../feature/CaptureAndExecute.md#デバッグ)で原因を特定することができます。
+
 ## 次の手順
 
 ここまで画面キャプチャを行うためのドライバの作成が完了しました。

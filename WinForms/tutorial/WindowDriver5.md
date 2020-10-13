@@ -100,5 +100,11 @@ namespace Driver.Windows
 }
 ```
 
+それぞれ操作してキャプチャできるか確認します。
+
+![WindowDriver.Capture.TreeAndOutput.png](../Img/WindowDriver.Capture.TreeAndOutput.png)
+
+上手く動かない場合は[デバッグ](../feature/CaptureAndExecute.md#デバッグ)で原因を特定することができます。
+
 ## 次の手順
 [Documentのドライバの作成](WindowDriver6.md)
