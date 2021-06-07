@@ -115,7 +115,7 @@ ControlDriverとCaptureGeneratorのひな型を作成します。Visual Studio �
 # デバッグ
 
 これらの WindowDriver/UserControlDriver は、テスト中はもちろん Capture 中にも使われます。
-うまくキャプチャできない場合はデバッグして原因を突きやめてください。
+うまくキャプチャできない場合はデバッグして原因を突き止めてください。
 Ctrl キーを押しながら Capture するとデバッグできます。
 Attach メソッドをカスタマイズした場合などデバッグの必要性が出てくると思います。
 ログを出したい場合は Logger を 使えば Capture ウィンドウにログを出力できます。
