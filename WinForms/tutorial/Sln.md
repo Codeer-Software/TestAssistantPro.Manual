@@ -74,7 +74,7 @@ Visual Studioを起動して「新しいプロジェクトの追加」ダイア�
 「Driver」プロジェクトのTestController/ProcessController.csファイルを開いて、targetPath変数にパスを設定してください。
 
 ### サンプルアプリケーションの準備
-サンプルアプリケーションは[こちら](https://github.com/Codeer-Software/TestAssistantPro.Manual/releases/download/ver0.1/WinFormApp.zip)からダウンロードできます。ダウンロード後には「ブロックの解除」を行ってください。ソースコードは[こちら](WinFormsApp)にあります。
+サンプルアプリケーションは[こちら](https://github.com/Codeer-Software/TestAssistantPro.Manual/releases/download/ver0.1/WinFormsApp.zip)からダウンロードできます。ダウンロード後には「ブロックの解除」を行ってください。ソースコードは[こちら](https://github.com/Codeer-Software/TestAssistantPro.Manual/archive/refs/tags/ver0.1.zip)にあります。
 
 ```cs
 using Codeer.Friendly.Windows;
