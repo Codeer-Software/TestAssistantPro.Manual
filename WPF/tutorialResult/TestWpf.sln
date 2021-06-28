@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scenario", "Scenario\Scenario.csproj", "{8518E10F-DE49-4229-9A06-E167DF21A1DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Driver", "Driver\Driver.csproj", "{F8EE4EA4-5F11-4523-86EF-40748D58CE4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Driver.InTarget", "Driver.InTarget\Driver.InTarget.csproj", "{EC7E51FC-29DC-4755-ACCA-66DE4DC02691}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8518E10F-DE49-4229-9A06-E167DF21A1DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8518E10F-DE49-4229-9A06-E167DF21A1DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8518E10F-DE49-4229-9A06-E167DF21A1DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8518E10F-DE49-4229-9A06-E167DF21A1DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8EE4EA4-5F11-4523-86EF-40748D58CE4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8EE4EA4-5F11-4523-86EF-40748D58CE4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8EE4EA4-5F11-4523-86EF-40748D58CE4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8EE4EA4-5F11-4523-86EF-40748D58CE4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC7E51FC-29DC-4755-ACCA-66DE4DC02691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC7E51FC-29DC-4755-ACCA-66DE4DC02691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC7E51FC-29DC-4755-ACCA-66DE4DC02691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC7E51FC-29DC-4755-ACCA-66DE4DC02691}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1468A8D9-C3EA-48BE-821A-DEA07D6E115C}
+	EndGlobalSection
+EndGlobal

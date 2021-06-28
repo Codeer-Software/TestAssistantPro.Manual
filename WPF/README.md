@@ -61,3 +61,7 @@ Friendly を使って自動テストを作成しようとするときに多く�
 ![DemoApp2.png](Img/DemoApp2.png)
 ![DemoApp3.png](Img/DemoApp3.png)
 ![DemoApp4.png](Img/DemoApp4.png)
+
+## チュートリアルの結果
+
+チュートリアルを最後まで進めたプロジェクトは[こちら](tutorialResult)にあります。
