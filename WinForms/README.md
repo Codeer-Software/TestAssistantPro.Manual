@@ -55,3 +55,6 @@ Friendly を使って自動テストを作成しようとするときに多く�
 
 ![NativeWindows.png](Img/NativeWindows.png)
 
+## チュートリアルの結果
+
+チュートリアルを最後まで進めたプロジェクトは[こちら](tutorialResult)にあります。
