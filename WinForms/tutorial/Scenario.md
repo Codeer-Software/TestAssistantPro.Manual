@@ -38,7 +38,7 @@ Nunit では新しいアプリケーションが起動して処理を実行し�
 [TestCase, Apartment(ApartmentState.STA), TimeoutEx(10000)]
 public void TestMethod1()
 {
-    OpenDcument();
+    OpenDocument();
     Search();
 }
 ```
