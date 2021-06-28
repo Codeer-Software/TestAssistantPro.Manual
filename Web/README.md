@@ -32,4 +32,9 @@ http://testassistantpro-demo.azurewebsites.net/
 
 基本的なデータの検索、追加・更新・削除の操作を通して、TestAssistantProを利用したWebアプリケーションのテスト構築を学べます。
 
+## チュートリアルの結果
+
+チュートリアルを最後まで進めたプロジェクトは[こちら](tutorialResult)にあります。
+
+
 ![トップページ](./img/readme_1.png)
