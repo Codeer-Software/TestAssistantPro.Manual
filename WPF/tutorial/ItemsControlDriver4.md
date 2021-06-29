@@ -86,7 +86,7 @@ namespace Driver.Windows
     public class CustomDataGridCellDriver
     {
         public WPFUIElement Core { get; }
-        public WPFTextBlock Name => Core.VisualTree().ByBinding("Name").Single().Dynamic(); 
+        public WPFTextBox Name => Core.VisualTree().ByBinding("Name").Single().Dynamic(); 
         public WPFToggleButton AuthMember => Core.VisualTree().ByBinding("AuthMember").Single().Dynamic(); 
 
         public CustomDataGridCellDriver(AppVar core)

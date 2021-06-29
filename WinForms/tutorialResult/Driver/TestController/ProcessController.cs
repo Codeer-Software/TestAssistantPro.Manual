@@ -1,6 +1,7 @@
 ﻿using Codeer.Friendly.Windows;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 
 namespace Driver.TestController
 {
@@ -8,8 +9,11 @@ namespace Driver.TestController
     {
         public static WindowsAppFriend Start()
         {
+            var dir = typeof(ProcessController).Assembly.Location;
+            Enumerable.Range(0, 5).ToList().ForEach(e => dir = Path.GetDirectoryName(dir));
+
             //target path
-            var targetPath = @"WinFormsApp.exe";
+            var targetPath = Path.Combine(dir, @"WinFormsApp\bin\Debug\WinFormsApp.exe");
             var info = new ProcessStartInfo(targetPath) { WorkingDirectory = Path.GetDirectoryName(targetPath) };
             var app = new WindowsAppFriend(Process.Start(info));
             app.ResetTimeout();

@@ -1,8 +1,6 @@
 ﻿using Codeer.Friendly.Windows;
 using Driver.TestController;
 using NUnit.Framework;
-using System.Diagnostics;
-using System;
 using Driver.Windows;
 
 namespace Scenario
