@@ -44,7 +44,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WinFormsApp">
-      <HintPath>..\..\WinFormsApp_\WinFormsApp.exe</HintPath>
+      <HintPath>..\..\WinFormsApp\bin\Debug\WinFormsApp.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
