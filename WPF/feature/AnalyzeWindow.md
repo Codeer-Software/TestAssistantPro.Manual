@@ -66,6 +66,7 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 | Show Base Class | 選択したコントロールの親クラスをアウトプットウィンドウに表示します。 |
 | Expand All | ツリーをすべて開きます。 |
 | Close All | ツリーをすべて閉じます。 |
+| CodeView | プロジェクト内に対応するソースコードがある場合はVisualStudioで開きます。この時、AnalyzeWindowを開いていない別のVisualStudioでも、VisualStudioのメニュー（ツール - TestAssistantPro - Code Viewer）がチェックされている場合は、そのVisualStudioでもソースコードを開きます。テストプロジェクトと開発用プロジェクトが別のVisualStudioで開かれている場合に便利です。|
 
 右クリックメニューはカスタマイズできます。詳しくは[こちら](CustomizeAnalyzeWindow.md#UI解析ツリーのコンテキストメニューの拡張)
 
