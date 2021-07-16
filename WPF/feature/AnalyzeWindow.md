@@ -67,7 +67,7 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 | Expand All | ツリーをすべて開きます。 |
 | Close All | ツリーをすべて閉じます。 |
 
-右クリックメニューはカスタマイズできます。詳しくは[こちら](Customize.md#UI解析ツリーのコンテキストメニューの拡張)
+右クリックメニューはカスタマイズできます。詳しくは[こちら](CustomizeAnalyzeWindow.md#UI解析ツリーのコンテキストメニューの拡張)
 
 ## Designerタブ
 
