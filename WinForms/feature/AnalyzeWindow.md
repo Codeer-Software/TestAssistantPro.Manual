@@ -49,7 +49,7 @@ AnalyzeWindow を起動するにはDriverプロジェクトで生成するコー
 AnalyzeWindowの左ペインに表示される対象アプリケーションのコントロールがツリー上に表示されているエリアです。
 このUI解析ツリーを選択して、WindowDriver/UserControlDriverのプロパティにする対象を決定します。
 ツリーで要素を選択することで対象アプリケーションの対応するコントロールが赤枠で囲まれます。
-また、Ctrlキーを押しながらアプリケーションのコントロールにマウスオバーすることでツリーの対応するノードを選択することもできます。
+また、Ctrlキーを押しながらアプリケーションのコントロールにマウスオーバーすることでツリーの対応するノードを選択することもできます。
 
 ![UI解析ツリー](../Img/AnalyzeWindow.UiAnalyzeTree.png)
 
@@ -65,8 +65,9 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 | Show Base Class | 選択したコントロールの親クラスをアウトプットウィンドウに表示します。 |
 | Expand All | ツリーをすべて開きます。 |
 | Close All | ツリーをすべて閉じます。 |
+| CodeView | プロジェクト内に対応するソースコードがある場合はVisualStudioで開きます。この時、AnalyzeWindowを開いていない別のVisualStudioでも、VisualStudioのメニュー（ツール - TestAssistantPro - Code Viewer）がチェックされている場合は、そのVisualStudioでもソースコードを開きます。テストプロジェクトと開発用プロジェクトが別のVisualStudioで開かれている場合に便利です。|
 
-右クリックメニューはカスタマイズできます。詳しくは[こちら](Customize.md#UI解析ツリーのコンテキストメニューの拡張)
+右クリックメニューはカスタマイズできます。詳しくは[こちら](CustomizeAnalyzeWindow.md#UI解析ツリーのコンテキストメニューの拡張)
 
 ## Designerタブ
 

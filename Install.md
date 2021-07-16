@@ -16,7 +16,7 @@ Onlineを選択して検索に「Codeer」と入力します。TestAssistantPro�
 
 ## TestAssistantProのライセンスのActivate
 インストール後にVisual Studio を再起動してからメニューの拡張機能から 「Licence Information」 を選択してください。
-表示されたダイアログで「Licence Kye」と「Developer Name」を入力して「Activate」を実行してください。
+表示されたダイアログで「Licence Key」と「Developer Name」を入力して「Activate」を実行してください。
 「Developer Name」はご担当者の方がランセンスサーバーで識別するために付けるものなので任意の値でかまいません。
 
 ![LicenceActivate.png](Img/LicenceActivate.png)

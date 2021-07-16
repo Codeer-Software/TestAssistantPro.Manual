@@ -21,7 +21,7 @@ AnalyzeWindow を起動するにはPageObjectプロジェクトで生成する�
 
 ## HTML要素ツリー
 
-AnalyzeWindowの左ペインに表示される画面のHTML要素がツリー上に表示されているエリアです。 このHTML要素ツリーを選択して、PageObject/ComponentObjectのプロパティにする対象を決定します。 ツリーで要素を選択することで画面の対応する要素が緑背景に変わります。また、Ctrlキーを押しながら画面の要素にマウスオバーすることでツリーの対応するノードを選択することもできます。
+AnalyzeWindowの左ペインに表示される画面のHTML要素がツリー上に表示されているエリアです。 このHTML要素ツリーを選択して、PageObject/ComponentObjectのプロパティにする対象を決定します。 ツリーで要素を選択することで画面の対応する要素が緑背景に変わります。また、Ctrlキーを押しながら画面の要素にマウスオーバーすることでツリーの対応するノードを選択することもできます。
 
 ![HTML Element Tree](../img/analyzewindow_html_element_tree.png)
 
