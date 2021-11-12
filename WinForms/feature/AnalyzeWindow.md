@@ -93,7 +93,7 @@ Attachに関しては[Attach方法ごとのコード](Attach.md)を参照して�
 
 右ペインの下段にある「Current Code」タブを選択することで表示されます。
 Designer タブでの設定によって出力されるコードが表示されます。
-Generateでコードを生成せずにここからコードをコピーして利用することもできます。
+Generateでコードを生成せずにここからコードをコピーして利用することもできます。<br>
 ![CurrentCodeタブ](../Img/AnalyzeWindow.CurrentCode.png)
 
 ## Property タブ
@@ -101,6 +101,31 @@ Generateでコードを生成せずにここからコードをコピーして利
 選択しているコントロールのプロパティが表示されます。
 
 ![Propertyタブ](../Img/AnalyzeWindow.Property.png)
+
+#### Target
+![Targetコンボボックス](../Img/AnalyzeWindow.Property.Target.png)
+
+表示対象が選択できます。チェックがONのクラスのメンバのみ表示されます。
+
+#### Filter
+![Filterテキストボックス](../Img/AnalyzeWindow.Property.Filter.png)<br>
+表示対象が絞り込めます。メンバ名、型名（bool、string等）でフィルタされます。
+
+#### 表示対象種別
+![表示対象チェックボックス](../Img/AnalyzeWindow.Property.Type.png)<br>
+表示対象の種別が指定できます。チェックがONの属性の項目のみ表示されます。
+
+#### コンテキストメニュー
+![コンテキストメニュー](../Img/AnalyzeWindow.Property.ContextMenu.png)<br>
+右クリックすると表示されます。<br>
+
+| 項目 | 説明 |
+|--------|-----|
+| View Detail | 表示対象を選択されている項目のクラス（または型）へ変更します。<br>![View Detail](../Img/AnalyzeWindow.Property.ContextMenu.ViewDetail.png)<br>移動すると上部に「←」ボタンが表示されます。これを押すと1つ上の階層へ戻ります。<br>現在の階層は上部情報表示欄に表示されます。 |
+| Add to Driver | 選択されている項目が参照できる場合はドライバへ追加します。<br>結果は「Current Code」タブにて確認できます。 |
+| Copy Text | 選択されている項目（Name、Value）をクリップボードへコピーします。Ctrl+Cでも同様の動作が可能です。 |
+| View Code | 選択されている項目の値がクラス名で、プロジェクトに登録されている場合はVisualStudio上で開きます。 |
+
 
 ## Outputタブ
 
