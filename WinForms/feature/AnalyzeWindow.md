@@ -56,7 +56,7 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 要素をダブルクリックすることで、WindowDriver/UserControlDriverのプロパティとして登録されます。
 登録されたコントロールは右ペインのグリッドに追加されます。また、要素を右クリックすることで次のメニューが表示され、操作を行えます。
 
-| メニュー | 説明 |
+| <div style="width:200px">メニュー</div>| 説明 |
 |--------|-----|
 | Change The Analysis Target | 解析対象を現在選択中のノードのUIオブジェクトに変更します。Ctrl+ダブルクリックでも同様の処理を行うことができます。 |
 | Pickup | 選択している要素が右側のグリッドに登録されます。 |
@@ -65,9 +65,42 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 | Show Base Class | 選択したコントロールの親クラスをアウトプットウィンドウに表示します。 |
 | Expand All | ツリーをすべて開きます。 |
 | Close All | ツリーをすべて閉じます。 |
-| CodeView | プロジェクト内に対応するソースコードがある場合はVisualStudioで開きます。この時、AnalyzeWindowを開いていない別のVisualStudioでも、VisualStudioのメニュー（ツール - TestAssistantPro - Code Viewer）がチェックされている場合は、そのVisualStudioでもソースコードを開きます。テストプロジェクトと開発用プロジェクトが別のVisualStudioで開かれている場合に便利です。|
+| View Code | プロジェクト内に対応するソースコードがある場合はVisualStudioで開きます。この時、AnalyzeWindowを開いていない別のVisualStudioでも、VisualStudioのメニュー（ツール - TestAssistantPro - Code Viewer）がチェックされている場合は、そのVisualStudioでもソースコードを開きます。テストプロジェクトと開発用プロジェクトが別のVisualStudioで開かれている場合に便利です。|
+| Trace Event | Event Trace ウィンドウ（後述）を表示します。 |
+| Trace Message | Message Trace ウィンドウ（後述）を表示します。ウィンドウメッセージが取得できる場合のみこの項目が表示されます。 |
 
 右クリックメニューはカスタマイズできます。詳しくは[こちら](CustomizeAnalyzeWindow.md#UI解析ツリーのコンテキストメニューの拡張)
+
+### Trace Event
+![EventTraceウィンドウ](../Img/AnalyzeWindow.EventTraceWindow.png)<br>
+右クリックメニューで「Trace Event」を選択すると「Event Traceウィンドウ」が表示されます。<br>
+画面上部は表示するイベントの種別です。チェックされているイベントが「Log」欄に表示されます。<br>
+「Log」欄で項目をクリックすると「Event Args」欄にイベントの引数が表示されます（取得できた場合のみ）。
+
+#### 右クリックメニュー
+![メニュー](../Img/AnalyzeWindow.EventTraceWindow.ContextMenu.png)<br>
+「Log」欄で右クリックするとメニューが表示されます。<br>
+
+| メニュー| 説明 |
+|--------|-----|
+| Clear | ログを全消去します。 |
+| Check Off | 以後ログの出力対象としないように、「Log」欄で選択されているイベントをチェックOFFします。 |
+
+### Trace Message
+![MessageTraceウィンドウ](../Img/AnalyzeWindow.MessageTraceWindow.png)<br>
+右クリックメニューで「Trace Message」を選択すると「Message Traceウィンドウ」が表示されます。<br>
+画面上部は表示するウィンドウメッセージの種別です。チェックされているメッセージが「Log」欄に表示されます。<br>
+「Log」欄で項目をクリックすると「Parameter」欄にパラメータが表示されます。
+
+#### 右クリックメニュー
+![メニュー](../Img/AnalyzeWindow.MessageTraceWindow.ContextMenu.png)<br>
+「Log」欄で右クリックするとメニューが表示されます。<br>
+
+| メニュー| 説明 |
+|--------|-----|
+| Clear | ログを全消去します。 |
+| Check Off | 以後ログの出力対象としないように、「Log」欄で選択されているメッセージをチェックOFFします。 |
+
 
 ## Designerタブ
 
@@ -115,8 +148,8 @@ Generateでコードを生成せずにここからコードをコピーして利
 ![表示対象チェックボックス](../Img/AnalyzeWindow.Property.Type.png)<br>
 表示対象の種別が指定できます。チェックがONの属性の項目のみ表示されます。
 
-#### コンテキストメニュー
-![コンテキストメニュー](../Img/AnalyzeWindow.Property.ContextMenu.png)<br>
+#### 右クリックメニュー
+![メニュー](../Img/AnalyzeWindow.Property.ContextMenu.png)<br>
 右クリックすると表示されます。<br>
 
 | 項目 | 説明 |
