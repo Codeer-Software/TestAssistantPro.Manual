@@ -57,18 +57,51 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 要素をダブルクリックすることで、WindowDriver/UserControlDriverのプロパティとして登録されます。
 登録されたコントロールは右ペインのグリッドに追加されます。また、要素を右クリックすることで次のメニューが表示され、操作を行えます。
 
-| メニュー | 説明 |
+| <div style="width:200px">メニュー</div>| 説明 |
 |--------|-----|
-| Change The Analysis Target | 解析対象を現在選択中のノードのUIオブジェクトに変更します。 Ctrl+ダブルクリックでも同様の処理を行えます。|
+| Change The Analysis Target | 解析対象を現在選択中のノードのUIオブジェクトに変更します。Ctrl+ダブルクリックでも同様の処理を行うことができます。 |
 | Pickup | 選択している要素が右側のグリッドに登録されます。 |
 | Pickup Children | 指定したコントロールの子孫のコントロールでドライバが割り当たっているものを一括でピックアップしてグリッドに登録します。子孫をたどるときに UserControl を発見した場合、それ以下は検索しません。それ以下のコントロールもグリッドに登録したい場合はそのUserControlを選択し再度 Pickup Children を実行してください。|
 | Create Control Driver | コントロールドライバを作成します。 |
 | Show Base Class | 選択したコントロールの親クラスをアウトプットウィンドウに表示します。 |
 | Expand All | ツリーをすべて開きます。 |
 | Close All | ツリーをすべて閉じます。 |
-| CodeView | プロジェクト内に対応するソースコードがある場合はVisualStudioで開きます。この時、AnalyzeWindowを開いていない別のVisualStudioでも、VisualStudioのメニュー（ツール - TestAssistantPro - Code Viewer）がチェックされている場合は、そのVisualStudioでもソースコードを開きます。テストプロジェクトと開発用プロジェクトが別のVisualStudioで開かれている場合に便利です。|
+| View Code | プロジェクト内に対応するソースコードがある場合はVisualStudioで開きます。この時、AnalyzeWindowを開いていない別のVisualStudioでも、VisualStudioのメニュー（ツール - TestAssistantPro - Code Viewer）がチェックされている場合は、そのVisualStudioでもソースコードを開きます。テストプロジェクトと開発用プロジェクトが別のVisualStudioで開かれている場合に便利です。|
+| Trace Event | Event Trace ウィンドウ（後述）を表示します。 |
+| Trace Message | Message Trace ウィンドウ（後述）を表示します。ウィンドウメッセージが取得できる場合のみこの項目が表示されます。 |
 
 右クリックメニューはカスタマイズできます。詳しくは[こちら](CustomizeAnalyzeWindow.md#UI解析ツリーのコンテキストメニューの拡張)
+
+### Trace Event
+![EventTraceウィンドウ](../Img/AnalyzeWindow.EventTraceWindow.png)<br>
+右クリックメニューで「Trace Event」を選択すると「Event Traceウィンドウ」が表示されます。<br>
+画面上部は表示するイベントの種別です。チェックされているイベントが「Log」欄に表示されます。<br>
+「Log」欄で項目をクリックすると「Event Args」欄にイベントの引数が表示されます（取得できた場合のみ）。
+
+#### 右クリックメニュー
+![メニュー](../Img/AnalyzeWindow.EventTraceWindow.ContextMenu.png)<br>
+「Log」欄で右クリックするとメニューが表示されます。<br>
+
+| メニュー| 説明 |
+|--------|-----|
+| Clear | ログを全消去します。 |
+| Check Off | 以後ログの出力対象としないように、「Log」欄で選択されているイベントをチェックOFFします。 |
+
+### Trace Message
+![MessageTraceウィンドウ](../Img/AnalyzeWindow.MessageTraceWindow.png)<br>
+右クリックメニューで「Trace Message」を選択すると「Message Traceウィンドウ」が表示されます。<br>
+画面上部は表示するウィンドウメッセージの種別です。チェックされているメッセージが「Log」欄に表示されます。<br>
+「Log」欄で項目をクリックすると「Parameter」欄にパラメータが表示されます。
+
+#### 右クリックメニュー
+![メニュー](../Img/AnalyzeWindow.MessageTraceWindow.ContextMenu.png)<br>
+「Log」欄で右クリックするとメニューが表示されます。<br>
+
+| メニュー| 説明 |
+|--------|-----|
+| Clear | ログを全消去します。 |
+| Check Off | 以後ログの出力対象としないように、「Log」欄で選択されているメッセージをチェックOFFします。 |
+
 
 ## Designerタブ
 
@@ -94,7 +127,7 @@ Attachに関しては[Attach方法ごとのコード](Attach.md)を参照して�
 
 右ペインの下段にある「Current Code」タブを選択することで表示されます。
 Designer タブでの設定によって出力されるコードが表示されます。
-
+Generateでコードを生成せずにここからコードをコピーして利用することもできます。<br>
 ![CurrentCodeタブ](../Img/AnalyzeWindow.CurrentCode.png)
 
 ## Property タブ
@@ -102,6 +135,31 @@ Designer タブでの設定によって出力されるコードが表示され�
 選択しているコントロールのプロパティが表示されます。
 
 ![Propertyタブ](../Img/AnalyzeWindow.Property.png)
+
+#### Target
+![Targetコンボボックス](../Img/AnalyzeWindow.Property.Target.png)
+
+表示対象が選択できます。チェックがONのクラスのメンバのみ表示されます。
+
+#### Filter
+![Filterテキストボックス](../Img/AnalyzeWindow.Property.Filter.png)<br>
+表示対象が絞り込めます。メンバ名、型名（bool、string等）でフィルタされます。
+
+#### 表示対象種別
+![表示対象チェックボックス](../Img/AnalyzeWindow.Property.Type.png)<br>
+表示対象の種別が指定できます。チェックがONの属性の項目のみ表示されます。
+
+#### 右クリックメニュー
+![メニュー](../Img/AnalyzeWindow.Property.ContextMenu.png)<br>
+右クリックすると表示されます。<br>
+
+| 項目 | 説明 |
+|--------|-----|
+| View Detail | 表示対象を選択されている項目のクラス（または型）へ変更します。<br>![View Detail](../Img/AnalyzeWindow.Property.ContextMenu.ViewDetail.png)<br>移動すると上部に「←」ボタンが表示されます。これを押すと1つ上の階層へ戻ります。<br>現在の階層は上部情報表示欄に表示されます。 |
+| Add to Driver | 選択されている項目が参照できる場合はドライバへ追加します。<br>結果は「Current Code」タブにて確認できます。 |
+| Copy Text | 選択されている項目（Name、Value）をクリップボードへコピーします。Ctrl+Cでも同様の動作が可能です。 |
+| View Code | 選択されている項目の値がクラス名で、プロジェクトに登録されている場合はVisualStudio上で開きます。 |
+
 
 ## Outputタブ
 
@@ -117,7 +175,7 @@ ControlDriverとCaptureGeneratorのひな型を作成します。Visual Studio �
 # デバッグ
 
 これらの WindowDriver/UserControlDriver は、テスト中はもちろん Capture 中にも使われます。
-うまくキャプチャできない場合はデバッグして原因を突きやめてください。
+うまくキャプチャできない場合はデバッグして原因を突き止めてください。
 Ctrl キーを押しながら Capture するとデバッグできます。
 Attach メソッドをカスタマイズした場合などデバッグの必要性が出てくると思います。
 ログを出したい場合は Logger を 使えば Capture ウィンドウにログを出力できます。
