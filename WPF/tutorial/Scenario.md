@@ -20,7 +20,7 @@ OpenDocument 上で右クリックから Execute を実行します。
 今度はドキュメント上で検索をしてみます。
 同様に Search 関数を作り Capture を実行します。
 今度は最後に Assert も書いてみます。
-(Assert の処理は[こちら](Customize.md#Capture)を参照お願いします。)
+(Assert の処理は[こちら](../feature/CustomizeCaptureWindow.md)を参照お願いします。)
 
 ![!Capture.Assert.png](../Img/Capture.Assert.png)
 
