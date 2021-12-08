@@ -8,7 +8,7 @@ Onlineを選択して検索に「Codeer」と入力します。TestAssistantPro�
 
 ![Install.TAP.png](Img/Install.TAP.png)
 
-## NUnit 3 Test Adapter のインストール
+## NUnit 3 Test Adapter のインストール（Visual Studio 2022では不要）
 
 続いて Nunit 3 Test Adapter をインストールします。Onlineを選択して検索に「Nunit」と入力してダウンロードしてください。ダウンロード完了後に、Visual Studio を再起動します。
 
