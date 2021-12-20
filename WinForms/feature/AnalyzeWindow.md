@@ -71,6 +71,23 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 
 右クリックメニューはカスタマイズできます。詳しくは[こちら](CustomizeAnalyzeWindow.md#UI解析ツリーのコンテキストメニューの拡張)
 
+### WPFでのコンテキストメニューとポップアップ
+WPFではPopup属性の要素やコンテキストメニュー（右クリックメニュー）に対する要素も追加することができます。
+だたし、Ctrl+ダブルクリックではメニューが閉じてしまって登録できない為、このような場合は以下のいずれかの方法で登録が可能です。<br>
+・Ctrl+ダブルクリックではなく、Ctrl+Altキー押下で登録<br>
+・対象となる要素が表示されている時に、<br>
+　１．AnalyzeWindowのツリー上でCtrlキーを押しながらドラッグしてツリー上の項目を選択<br>
+　２．ツリーの項目上でCtrl+Altキー押下で登録<br>
+・対象となる要素が表示されている時に、<br>
+　１．Ctrlキーを押したままマウスのホイールを上下に動かしてツリー上の項目を選択<br>
+　２．Ctrl+Altキー押下で登録<br>
+<br>
+上記3つの登録方法を通して動かすと以下のようになります。<br>
+![いろいろな登録方法](../Img/AnalyzeWindow.selectItem.gif)<br>
+
+Ctrl+Altキーの操作に関してはAnalyzeWindowのステータスバーの「Shortcut Operation」リンクをクリックすると表示されるツールチップで確認できます。<br>
+![いろいろな登録方法](../Img/AnalyzeWindow.statusbar.png)<br>
+
 ### Trace Event
 ![EventTraceウィンドウ](../Img/AnalyzeWindow.EventTraceWindow.png)<br>
 右クリックメニューで「Trace Event」を選択すると「Event Traceウィンドウ」が表示されます。<br>
