@@ -103,3 +103,14 @@ Ctrl + Shift を押しながら Execute を実行すると両方を同時にデ�
 デバッグにはCaptureウィンドウのAttachツリーも役に立ちます。現在アタッチされているWindowが表示されます。
 
 ![CaptureAttachTree.png](../Img/CaptureAttachTree.png)
+
+### プロパティウィンドウ
+
+Capture Windowのツリーでコンテキストメニュー（右クリックメニュー）を開くと「Show Property」という項目があります。<br>
+![Capture.ContextMenu.png](../Img/Capture.ContextMenu.png)
+
+この項目をクリックすると、選択されている項目のプロパティが表示されます。<br>
+![Capture.PropertyWindow.png](../Img/Capture.PropertyWindow.png)
+
+使い方はAnalyze Windowのプロパティタブと同じです（Add to DriverとView Codeは使えません）。<br>
+ウィンドウは複数表示できる為、各項目を同時に確認することができます。
