@@ -1,8 +1,8 @@
-## DateTemplateでカスタマイズしたListBoxItemのドライバ作成る
+## DateTemplateでカスタマイズしたListBoxItemのドライバを作成する
 
-最初に左側のListBoxのListBoxItemのドライバを作ります。ツリー上で[ListBoxItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 
+最初に左側のListBoxのListBoxItemのドライバを作成します。ツリー上で[ListBoxItem]を選択し、右クリックから[Change The Analysis Target]を選択します。 
 解析対象が切り替わり、UI解析ツリーおよびDesignerタブの内容が[ListBoxItem]を起点にした内容で置き換わります。
-Class Name は ListBoxItemDriver になっていますが先頭に識別用の文字を追加して SampleListBoxItemDriver に変更ます。
+Class Name は ListBoxItemDriver になっていますが先頭に識別用の文字を追加して SampleListBoxItemDriver に変更します。
 最後に、必要なコントロールを Designer に登録して Generate ボタンでコードを生成します。
 
 ![ListBoxItemDriver.Analyze.png](../Img/ListBoxItemDriver.Analyze.png)

@@ -29,4 +29,4 @@ AnalyzeWindowは自動的にその内容を読み取りUI解析ツリーを更�
 ![ItemsControlWindow.png](../Img/ItemsControlWindow.png)
 
 ## 次の手順
-[DateTemplateでカスタマイズしたListBoxItemのドライバ作成る](ItemsControlDriver1.md)
+[DateTemplateでカスタマイズしたListBoxItemのドライバを作成する](ItemsControlDriver1.md)
