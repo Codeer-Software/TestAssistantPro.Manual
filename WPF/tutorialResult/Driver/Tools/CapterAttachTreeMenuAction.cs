@@ -10,97 +10,57 @@ using System.Reflection;
 
 namespace Driver.Tools
 {
-    public class CapterAttachTreeMenuAction : ICaptureAttachTreeMenuAction
+    public static class CapterAttachTreeMenuAction
     {
-        public Dictionary<string, MenuAction> GetAction(string accessPath, object driver)
-        {
-            var dic = new Dictionary<string, MenuAction>();
-
-            if (driver is WPFComboBox comboBox) dic["Assert"] = () => Assert(accessPath, comboBox);
-            else if (driver is WPFListBox listBox) dic["Assert"] = () => Assert(accessPath, listBox);
-            else if (driver is WPFListView listView) dic["Assert"] = () => Assert(accessPath, listView);
-            else if (driver is WPFProgressBar progressBar) dic["Assert"] = () => Assert(accessPath, progressBar);
-            else if (driver is WPFRichTextBox richTextBox) dic["Assert"] = () => Assert(accessPath, richTextBox);
-            else if (driver is WPFSelector selector) dic["Assert"] = () => Assert(accessPath, selector);
-            else if (driver is WPFSlider slider) dic["Assert"] = () => Assert(accessPath, slider);
-            else if (driver is WPFTabControl tabControl) dic["Assert"] = () => Assert(accessPath, tabControl);
-            else if (driver is WPFTextBox textBox) dic["Assert"] = () => Assert(accessPath, textBox);
-            else if (driver is WPFTextBlock textBlock) dic["Assert"] = () => Assert(accessPath, textBlock);
-            else if (driver is WPFToggleButton toggleButton) dic["Assert"] = () => Assert(accessPath, toggleButton);
-            else if (driver is WPFTreeView treeView) dic["Assert"] = () => Assert(accessPath, treeView);
-            else if (driver is WPFCalendar calendar) dic["Assert"] = () => Assert(accessPath, calendar);
-            else if (driver is WPFDatePicker datePicker) dic["Assert"] = () => Assert(accessPath, datePicker);
-            else if (driver is WPFDataGrid dataGrid) dic["Assert"] = () => Assert(accessPath, dataGrid);
-            else if (!(driver is WindowsAppFriend)) dic["Assert"] = () => AssertAll(accessPath, driver);
-
-            return dic;
-        }
-
-        void AssertAll(string accessPath, object driver)
-        {
-            foreach (var e in driver.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
-            {
-                if (e.GetIndexParameters().Length != 0) continue;
-                var obj = e.GetValue(driver);
-                if (obj == null) continue;
-
-                var childAccessPath = accessPath + "." + e.Name;
-
-                if (obj is WPFComboBox comboBox) Assert(childAccessPath, comboBox);
-                else if (obj is WPFListBox listBox) Assert(childAccessPath, listBox);
-                else if (obj is WPFListView listView) Assert(childAccessPath, listView);
-                else if (obj is WPFProgressBar progressBar) Assert(childAccessPath, progressBar);
-                else if (obj is WPFRichTextBox richTextBox) Assert(childAccessPath, richTextBox);
-                else if (obj is WPFSelector selector) Assert(childAccessPath, selector);
-                else if (obj is WPFSlider slider) Assert(childAccessPath, slider);
-                else if (obj is WPFTabControl tabControl) Assert(childAccessPath, tabControl);
-                else if (obj is WPFTextBox textBox) Assert(childAccessPath, textBox);
-                else if (obj is WPFTextBlock textBlock) Assert(childAccessPath, textBlock);
-                else if (obj is WPFToggleButton toggleButton) Assert(childAccessPath, toggleButton);
-                else if (obj is WPFTreeView treeView) Assert(childAccessPath, treeView);
-                else if (obj is WPFCalendar calendar) Assert(childAccessPath, calendar);
-                else if (obj is WPFDatePicker datePicker) Assert(childAccessPath, datePicker);
-                else if (obj is WPFDataGrid dataGrid) Assert(childAccessPath, dataGrid);
-            }
-        }
-
-        void Assert(string accessPath, WPFComboBox comboBox)
+        [MenuAction]
+        public static void Assert(WPFComboBox comboBox, string accessPath)
             => CaptureAdaptor.AddCode($"{accessPath}.SelectedIndex.Is({comboBox.SelectedIndex});");
 
-        void Assert(string accessPath, WPFListBox listBox)
+        [MenuAction]
+        public static void Assert(WPFListBox listBox, string accessPath)
             => CaptureAdaptor.AddCode($"{accessPath}.SelectedIndex.Is({listBox.SelectedIndex});");
 
-        void Assert(string accessPath, WPFListView listView)
+        [MenuAction]
+        public static void Assert(WPFListView listView, string accessPath)
             => CaptureAdaptor.AddCode($"{accessPath}.SelectedIndex.Is({listView.SelectedIndex});");
 
-        void Assert(string accessPath, WPFProgressBar progressBar)
+        [MenuAction]
+        public static void Assert(WPFProgressBar progressBar, string accessPath)
             => CaptureAdaptor.AddCode($"{accessPath}.Value.Is({progressBar.Value});");
 
-        void Assert(string accessPath, WPFRichTextBox richTextBox)
+        [MenuAction]
+        public static void Assert(WPFRichTextBox richTextBox, string accessPath)
             => CaptureAdaptor.AddCode($"{accessPath}.Text.Is({ToLiteral(richTextBox.Text)});");
 
-        void Assert(string accessPath, WPFSelector selector)
+        [MenuAction]
+        public static void Assert(WPFSelector selector, string accessPath)
             => CaptureAdaptor.AddCode($"{accessPath}.SelectedIndex.Is({selector.SelectedIndex});");
 
-        void Assert(string accessPath, WPFSlider slider)
+        [MenuAction]
+        public static void Assert(WPFSlider slider, string accessPath)
             => CaptureAdaptor.AddCode($"{accessPath}.Value.Is({slider.Value});");
 
-        void Assert(string accessPath, WPFTabControl tabControl)
+        [MenuAction]
+        public static void Assert(WPFTabControl tabControl, string accessPath)
             => CaptureAdaptor.AddCode($"{accessPath}.SelectedIndex.Is({tabControl.SelectedIndex});");
 
-        void Assert(string accessPath, WPFTextBox textBox)
+        [MenuAction]
+        public static void Assert(WPFTextBox textBox, string accessPath)
             => CaptureAdaptor.AddCode($"{accessPath}.Text.Is({ToLiteral(textBox.Text)});");
 
-        void Assert(string accessPath, WPFTextBlock textBlock)
+        [MenuAction]
+        public static void Assert(WPFTextBlock textBlock, string accessPath)
             => CaptureAdaptor.AddCode($"{accessPath}.Text.Is({ToLiteral(textBlock.Text)});");
 
-        void Assert(string accessPath, WPFToggleButton toggleButton)
+        [MenuAction]
+        public static void Assert(WPFToggleButton toggleButton, string accessPath)
         {
             var value = toggleButton.IsChecked == null ? "null" : toggleButton.IsChecked.Value.ToString().ToLower();
             CaptureAdaptor.AddCode($"{accessPath}.IsChecked.Is({value});");
         }
 
-        void Assert(string accessPath, WPFTreeView treeView)
+        [MenuAction]
+        public static void Assert(WPFTreeView treeView, string accessPath)
         {
             if (treeView.SelectedItem.AppVar.IsNull)
             {
@@ -112,7 +72,8 @@ namespace Driver.Tools
             }
         }
 
-        void Assert(string accessPath, WPFCalendar calendar)
+        [MenuAction]
+        public static void Assert(WPFCalendar calendar, string accessPath)
         {
             CaptureAdaptor.AddUsing(typeof(DateTime).Namespace);
             if (calendar.SelectedDate.HasValue)
@@ -126,7 +87,8 @@ namespace Driver.Tools
             }
         }
 
-        void Assert(string accessPath, WPFDatePicker datePicker)
+        [MenuAction]
+        public static void Assert(WPFDatePicker datePicker, string accessPath)
         {
             CaptureAdaptor.AddUsing(typeof(DateTime).Namespace);
             if (datePicker.SelectedDate.HasValue)
@@ -140,7 +102,8 @@ namespace Driver.Tools
             }
         }
 
-        void Assert(string accessPath, WPFDataGrid dataGrid)
+        [MenuAction]
+        public static void Assert(WPFDataGrid dataGrid, string accessPath)
         {
             var rowCount = dataGrid.ItemCount;
             var colCount = dataGrid.ColCount;
