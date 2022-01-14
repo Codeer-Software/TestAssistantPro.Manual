@@ -1,12 +1,12 @@
 # Captureウィンドウをカスタマイズする
 
-TestAssitantProはCodeer.TestAssistant.GeneratorToolkit に定義されているインタフェースを実装することでその挙動をカスタマイズできます。
+TestAssitantPro は Codeer.TestAssistant.GeneratorToolkit に定義されているインタフェースを実装することでその挙動をカスタマイズできます。
 ソリューション内で実装および実装されているdllの参照のどちらも利用できます。
 
 ## ドライバツリーのコンテキストメニューの拡張
 
 [MenuAction]属性を付けることでドライバツリーに表示されるメニューを拡張できます。
-テストソリューションのDriverプロジェクトにある、Tools/CaptureAttachTreeMenuAction.csファイルにはAssertの定義が標準で実装されています。
+テストソリューションの Driver プロジェクトにある、Tools/CaptureAttachTreeMenuAction.cs ファイルには Assert の定義が標準で実装されています。
 
 
 ```cs
@@ -159,7 +159,7 @@ namespace Driver.Tools
     {
     }
 ```
-staticの場合は上記Assertと同様に、第1引数はそのクラスのオブジェクトとなります。<br>
+static の場合は上記 Assert と同様に、第1引数はそのクラスのオブジェクトとなります。<br>
 第2引数には「string accessPath」と指定することで、アクセスパスを指定することができます（省略可）。
 
 #### メンバの場合
@@ -186,12 +186,12 @@ staticの場合は上記Assertと同様に、第1引数はそのクラスのオ�
 正しく記述することで、右クリックメニューにメソッドが表示されます。<br>
 ![MenuAction_1_.png](../Img/CaptureAttachTreeMenuAction_1.png)<br>
 
-MenuAction属性が付いたメソッドは、上記Assertのように「CaptureAdaptor.AddCode」等を記述しない限り、実行されるだけでキャプチャされたコードが出力されることはありません。
+MenuAction 属性が付いたメソッドは、上記 Assert のように「CaptureAdaptor.AddCode」等を記述しない限り、実行されるだけでキャプチャされたコードが出力されることはありません。
 
 ### メソッドの実行
 ![MenuAction_2_.png](../Img/CaptureAttachTreeMenuAction_2.png)<br>
-対象となるオブジェクトのpublicメソッドが「Methods」項目に一覧表示されます。<br>
-ドライバのクラスでpublicメソッドを書くことで、独自の処理を呼び出すことができます。
+対象となるオブジェクトの public メソッドが「Methods」項目に一覧表示されます。<br>
+ドライバのクラスで public メソッドを書くことで、独自の処理を呼び出すことができます。
 
 ```cs
     public void テスト1(bool x)

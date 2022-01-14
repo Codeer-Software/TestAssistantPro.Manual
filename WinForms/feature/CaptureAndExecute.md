@@ -1,20 +1,20 @@
 # 画面操作のキャプチャと実行
 
-TestAssistantProには、対になるCaptureとExecuteという機能があります。
+TestAssistantPro には、対になる Capture と Execute という機能があります。
 
-- Capture機能は、アプリケーションの操作からプログラムコードを生成します。
-- Execute機能は、指定の関数を実行します。この時WindowsAppFriendには現在接続しているプロセスが入ります。
+- Capture 機能は、アプリケーションの操作からプログラムコードを生成します。
+- Execute 機能は、指定の関数を実行します。この時 WindowsAppFriend には現在接続しているプロセスが入ります。
 
 ## Capture
 
 アプリケーションの操作からプログラムコードを生成します。
-Captureでプログラムコードを生成するためには、WindowDriverおよびUserControlDriverが作成されている必要があります。詳細な内容は[AnalyzeWindowの使い方](./AnalyzeWindow.md)を参照してください。
+Capture でプログラムコードを生成するためには、WindowDriver および UserControlDriver が作成されている必要があります。詳細な内容は[AnalyzeWindowの使い方](./AnalyzeWindow.md)を参照してください。
 
-Capture機能を実行するには、プログラムコードを生成したいメソッドを右クリックして、[Capture]を選択してください。Captureウィンドウが表示され、画面操作のキャプチャが開始されます。
+Capture 機能を実行するには、プログラムコードを生成したいメソッドを右クリックして、[Capture]を選択してください。Capture ウィンドウが表示され、画面操作のキャプチャが開始されます。
 
 ![Captureコンテキストメニュー](../Img/CaptureAndExecute.CaptureContextMenu.png)
 
-この状態で画面操作を行うことで、Captureウィンドウにプログラムコードが追加されていきます。標準の状態では、ControlDriverおよびCaptureCodeGeneratorを利用して、追加するプログラムコードが生成されます。
+この状態で画面操作を行うことで、Capture ウィンドウにプログラムコードが追加されていきます。標準の状態では、ControlDriver および CaptureCodeGenerator を利用して、追加するプログラムコードが生成されます。
 
 ![Captureウィンドウ](../Img/CaptureAndExecute.CaptureWindow.png)
 
@@ -80,7 +80,7 @@ namespace Scenario
 
 ## Execute
 
-指定の関数を実行します。この時WindowsAppFriendには現在接続しているプロセスが入ります。
+指定の関数を実行します。この時 WindowsAppFriend には現在接続しているプロセスが入ります。
 
 実行したいメソッドを右クリックして、[Execute]を選択してください。プログラムコードが実行されます。
 
@@ -90,27 +90,27 @@ namespace Scenario
 
 ### デバッグ
 
-Ctrl キーを押しながらExecuteを実行するとテストプロセスをデバッグできます。
+Ctrl キーを押しながら Execute を実行するとテストプロセスをデバッグできます。
 (これは Debug メニューと同じ動作になります)
-Shift キーを押しながら Excecute を実行すると対象プロセスをデバッグできます。Dll インジェクションで対象プロセスにロードさせる処理を作っている時に便利です。
+Shift キーを押しながら Excecute を実行すると対象プロセスをデバッグできます。WindowsAppFriend.LoadAssembly メソッドなどで Dll インジェクションを使って対象プロセスにロードさせる処理を作っている時に便利です。
 Ctrl + Shift を押しながら Execute を実行すると両方を同時にデバッグできます。
 <br>
 <!-- textlint-disable japanese/no-doubled-joshi -->
-またこれはCaptureも同様で、操作してもコードが出力されない場合があります。その場合は、特定の方法に問題があるため、デバッグして原因を突きとめてください。
+またこれは Capture も同様で、操作してもコードが出力されない場合があります。その場合は、特定の方法に問題があるため、デバッグして原因を突きとめてください。上手く動作しない WindowDriver/UserControlDriver の Attach やプロパティにブレイクポイントを貼ってみてください。
 <!-- textlint-enable japanese/no-doubled-joshi -->
 
 <br>
-デバッグにはCaptureウィンドウのAttachツリーも役に立ちます。現在アタッチされているWindowが表示されます。
+デバッグには Capture ウィンドウの Attach ツリーも役に立ちます。現在アタッチされている Window が表示されます。
 
 ![CaptureAttachTree.png](../Img/CaptureAttachTree.png)
 
 ### プロパティウィンドウ
 
-Capture Windowのツリーでコンテキストメニュー（右クリックメニュー）を開くと「Show Property」という項目があります。<br>
+Capture Window のツリーでコンテキストメニュー（右クリックメニュー）を開くと「Show Property」という項目があります。<br>
 ![Capture.ContextMenu.png](../Img/Capture.ContextMenu.png)
 
 この項目をクリックすると、選択されている項目のプロパティが表示されます。<br>
 ![Capture.PropertyWindow.png](../Img/Capture.PropertyWindow.png)
 
-使い方はAnalyze Windowのプロパティタブと同じです（Add to DriverとView Codeは使えません）。<br>
+使い方は Analyze Window のプロパティタブと同じです（Add to DriverとView Codeは使えません）。<br>
 ウィンドウは複数表示できる為、各項目を同時に確認することができます。

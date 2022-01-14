@@ -1,32 +1,34 @@
 # AnalyzeWindow
 
-AnalyzeWindow は対象のアプリケーションを解析してツリーのルートのコントロールに対してWindowDriverおよびUserControlDriverを作成するものです。
-Designer タブの設定をもとにコードを生成します。生成されるコードは Current Code タブでプレビューできます。
+AnalyzeWindow は対象のアプリケーションを解析してツリーのルートのコントロールに対して WindowDriver および UserControlDriver を作成するものです。
+右ペインの下段あるタブ領域で選択できる Designer タブの設定をもとにコードを生成します。生成されるコードは Current Code タブでプレビューできます。
 
-WindowDriverとUserControlDriverに関しては[Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)を参照してください。
+WindowDriver と UserControlDriver に関しては[Driver/Scenarioパターン](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md)を参照してください。
 
 
 ![AnalyzeWindow](../Img/AnalyzeWindow.png)
 
 ## AnalyzeWindowの起動
 
-AnalyzeWindow を起動するにはDriverプロジェクトで生成するコードを配置したいフォルダで右クリックをします。表示されたコンテキストメニューより「Analyze Window」を選択してください。テンプレートではWindowフォルダが生成したコードを配置するフォルダとして定義されています。
+AnalyzeWindow を起動するには Driver プロジェクトで生成するコードを配置したいフォルダで右クリックをします。表示されたコンテキストメニューより「Analyze Window」を選択してください。テンプレートでは Window フォルダが生成したコードを配置するフォルダとして定義されています。
 
 ![WindowDriver.Start.png](../Img/WindowDriver.Start.png)
 
 テスト対象のアプリケーションを選択する画面が出ますので、対象を選択してください。表示されるアプリケーションは現在起動されているアプリケーションのため、テスト対象のアプリケーションが起動されていない場合は、あらかじめ起動しておく必要があります。
 
-この操作では選択したアプリケーションに対して、解析を行うための処理がインジェクションされます。
-間違ったアプリケーションを選択するとOSの再起動が必要になる場合がありますので間違えないように選択してください。
+この操作では選択したアプリケーションに対して、解析を行うための処理が追加されます。
+間違ったアプリケーションを選択すると OS の再起動が必要になる場合がありますので間違えないように選択してください。
 
 ![WindowDriver.SelectTarget.png](../Img/WindowDriver.SelectTarget.png)
 
-以降、VisualStudioの同一セッション中はこの画面が表示されません。
+以降、VisualStudio を終了させるまでの間はこの画面が表示されません。
 途中で対象のアプリケーションを変えたい場合はコンテキストメニューで表示される「Select Target」を選択することで対象を変更できます。
 
 ![SelectTarget](../Img/SelectTarget.png)
 
 ## メニュー
+
+メニューは AnalyzeWindow の上部にあり表示方法の選択や操作を行えます。
 
 ![Menu](../Img/AnalyzeWineow.Menu.png)
 
@@ -47,15 +49,17 @@ AnalyzeWindow を起動するにはDriverプロジェクトで生成するコー
 
 ## UI解析ツリー
 
-AnalyzeWindowの左ペインに表示される対象アプリケーションのコントロールがツリー上に表示されているエリアです。
-このUI解析ツリーを選択して、WindowDriver/UserControlDriverのプロパティにする対象を決定します。
+UI解析ツリーは AnalyzeWindow の左ペインに表示される対象アプリケーションのコントロールがツリー上に表示されているエリアです。
+このUI解析ツリーを選択して、WindowDriver/UserControlDriver のプロパティにする対象を決定します。
 ツリーで要素を選択することで対象アプリケーションの対応するコントロールが赤枠で囲まれます。
-また、Ctrlキーを押しながらアプリケーションのコントロールにマウスオーバーすることでツリーの対応するノードを選択することもできます。
+また、Ctrl キーを押しながらアプリケーションのコントロールにマウスオーバーすることでツリーの対応するノードを選択することもできます。
 
 ![UI解析ツリー](../Img/AnalyzeWindow.UiAnalyzeTree.png)
 
-要素をダブルクリックすることで、WindowDriver/UserControlDriverのプロパティとして登録されます。
-登録されたコントロールは右ペインのグリッドに追加されます。また、要素を右クリックすることで次のメニューが表示され、操作を行えます。
+要素をダブルクリックすることで、WindowDriver/UserControlDriver のプロパティとして登録されます。
+登録されたコントロールは右ペインのグリッドに追加されます。
+
+要素を右クリックすることで次のコンテキストメニューが表示され、操作を行えます。
 
 | <div style="width:200px">メニュー</div>| 説明 |
 |--------|-----|
@@ -70,17 +74,34 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 | Trace Event | Event Trace ウィンドウ（後述）を表示します。 |
 | Trace Message | Message Trace ウィンドウ（後述）を表示します。ウィンドウメッセージが取得できる場合のみこの項目が表示されます。 |
 
-右クリックメニューはカスタマイズできます。詳しくは[こちら](CustomizeAnalyzeWindow.md#UI解析ツリーのコンテキストメニューの拡張)
+右クリックで表示されるコンテキストメニューはカスタマイズできます。詳しくは[こちら](CustomizeAnalyzeWindow.md#UI解析ツリーのコンテキストメニューの拡張)
+
+### WPFでのコンテキストメニューとポップアップ
+WPFではPopup属性の要素やコンテキストメニュー（右クリックメニュー）に対する要素も追加することができます。
+だたし、Ctrl+ダブルクリックではメニューが閉じてしまって登録できない為、このような場合は以下のいずれかの方法で登録が可能です。<br>
+・Ctrl+ダブルクリックではなく、Ctrl+Altキー押下で登録<br>
+・対象となる要素が表示されている時に、<br>
+　１．AnalyzeWindowのツリー上でCtrlキーを押しながらドラッグしてツリー上の項目を選択<br>
+　２．ツリーの項目上でCtrl+Altキー押下で登録<br>
+・対象となる要素が表示されている時に、<br>
+　１．Ctrlキーを押したままマウスのホイールを上下に動かしてツリー上の項目を選択<br>
+　２．Ctrl+Altキー押下で登録<br>
+<br>
+上記3つの登録方法を通して動かすと以下のようになります（アニメーションgifです。動かない場合は画像をクリックしてください）。<br>
+![いろいろな登録方法](../Img/AnalyzeWindow.selectItem.gif)<br>
+
+Ctrl+Altキーの操作に関してはAnalyzeWindowのステータスバーの「Shortcut Operation」リンクをクリックすると表示されるツールチップで確認できます。<br>
+![いろいろな登録方法](../Img/AnalyzeWindow.statusbar.png)<br>
 
 ### Trace Event
-![EventTraceウィンドウ](../Img/AnalyzeWindow.EventTraceWindow.png)<br>
-右クリックメニューで「Trace Event」を選択すると「Event Traceウィンドウ」が表示されます。<br>
+右クリックで表示されるコンテキストメニューで「Trace Event」を選択すると「Event Traceウィンドウ」が表示されます。<br>
 画面上部は表示するイベントの種別です。チェックされているイベントが「Log」欄に表示されます。<br>
-「Log」欄で項目をクリックすると「Event Args」欄にイベントの引数が表示されます（取得できた場合のみ）。
+「Log」欄で項目をクリックすると「Event Args」欄にイベントの引数が表示されます（取得できた場合のみ）。<br>
+![EventTraceウィンドウ](../Img/AnalyzeWindow.EventTraceWindow.png)<br>
 
 #### 右クリックメニュー
+「Log」欄で右クリックするとコンテキストメニューが表示されます。<br>
 ![メニュー](../Img/AnalyzeWindow.EventTraceWindow.ContextMenu.png)<br>
-「Log」欄で右クリックするとメニューが表示されます。<br>
 
 | メニュー| 説明 |
 |--------|-----|
@@ -88,14 +109,14 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 | Check Off | 以後ログの出力対象としないように、「Log」欄で選択されているイベントをチェックOFFします。 |
 
 ### Trace Message
-![MessageTraceウィンドウ](../Img/AnalyzeWindow.MessageTraceWindow.png)<br>
-右クリックメニューで「Trace Message」を選択すると「Message Traceウィンドウ」が表示されます。<br>
+右クリックで表示されるコンテキストメニューで「Trace Message」を選択すると「Message Traceウィンドウ」が表示されます。<br>
 画面上部は表示するウィンドウメッセージの種別です。チェックされているメッセージが「Log」欄に表示されます。<br>
-「Log」欄で項目をクリックすると「Parameter」欄にパラメータが表示されます。
+「Log」欄で項目をクリックすると「Parameter」欄にパラメータが表示されます。<br>
+![MessageTraceウィンドウ](../Img/AnalyzeWindow.MessageTraceWindow.png)<br>
 
 #### 右クリックメニュー
+「Log」欄で右クリックするとコンテキストメニューが表示されます。<br>
 ![メニュー](../Img/AnalyzeWindow.MessageTraceWindow.ContextMenu.png)<br>
-「Log」欄で右クリックするとメニューが表示されます。<br>
 
 | メニュー| 説明 |
 |--------|-----|
@@ -105,8 +126,8 @@ AnalyzeWindowの左ペインに表示される対象アプリケーションの�
 
 ## Designerタブ
 
-右ペインの下段に「Designerタブ」を選択することで表示されます。
-作成するWindowDriver/UserControlDriverの構成を設定します。
+右ペインの下段にある「Designerタブ」を選択することで表示されます。
+作成する WindowDriver/UserControlDriver の構成を設定します。
 
 ![Designerタブ](../Img/AnalyzeWindow.Designer.png)
 
@@ -127,31 +148,30 @@ Attachに関しては[Attach方法ごとのコード](Attach.md)を参照して�
 
 右ペインの下段にある「Current Code」タブを選択することで表示されます。
 Designer タブでの設定によって出力されるコードが表示されます。
-Generateでコードを生成せずにここからコードをコピーして利用することもできます。<br>
+Generate でコードを生成せずにここからコードをコピーして利用することもできます。<br>
 ![CurrentCodeタブ](../Img/AnalyzeWindow.CurrentCode.png)
 
 ## Property タブ
 
-選択しているコントロールのプロパティが表示されます。
-
+選択しているコントロールのプロパティが表示されます。<br>
 ![Propertyタブ](../Img/AnalyzeWindow.Property.png)
 
 #### Target
+
+表示対象が選択できます。チェックが ON のクラスのメンバのみ表示されます。<br>
 ![Targetコンボボックス](../Img/AnalyzeWindow.Property.Target.png)
 
-表示対象が選択できます。チェックがONのクラスのメンバのみ表示されます。
-
 #### Filter
+表示対象が絞り込めます。メンバ名、型名（bool、string等）でフィルタされます。<br>
 ![Filterテキストボックス](../Img/AnalyzeWindow.Property.Filter.png)<br>
-表示対象が絞り込めます。メンバ名、型名（bool、string等）でフィルタされます。
 
 #### 表示対象種別
+表示対象の種別が指定できます。チェックが ON の属性の項目のみ表示されます。<br>
 ![表示対象チェックボックス](../Img/AnalyzeWindow.Property.Type.png)<br>
-表示対象の種別が指定できます。チェックがONの属性の項目のみ表示されます。
 
 #### 右クリックメニュー
+右クリックするとコンテキストメニューが表示されます。<br>
 ![メニュー](../Img/AnalyzeWindow.Property.ContextMenu.png)<br>
-右クリックすると表示されます。<br>
 
 | 項目 | 説明 |
 |--------|-----|
@@ -163,13 +183,23 @@ Generateでコードを生成せずにここからコードをコピーして利
 
 ## Outputタブ
 
-メニューによって実行した結果が表示されます。
+メニューによって実行した結果が表示されます。詳しくは[こちら](CustomizeAnalyzeWindow.md#Outputタブへの出力)<br>
 ![Outputタブ](../Img/AnalyzeWindow.Output.png)
 
 ## Create Control Driver
 
-ControlDriverとCaptureGeneratorのひな型を作成します。Visual Studio 上で格納するフォルダにドロップします。この時ネームスペースはそのフォルダ名が使われます。コードの詳細に関しては[ControlDriverのコード](ControlDriver.md)と[CaptureCodeGeneratorのコード](CaptureCodeGenerator.md)を参照してください。
+ControlDriver と CaptureGenerator のひな型を作成します。Visual Studio 上で格納するフォルダにドロップします。この時ネームスペースはそのフォルダ名が使われます。コードの詳細に関しては[ControlDriverのコード](ControlDriver.md)と[CaptureCodeGeneratorのコード](CaptureCodeGenerator.md)を参照してください。
 
+どのコントロールに対して ControlDriver を作成するか選択します。<br>
+![SelectType.png](../Img/SelectType.png)
+
+ダイアログから ControlDriver に、どのプロパティ、フィールド、メソッドを追加するかを選択できます。
+![DriverCodeSetting.png](../Img/DriverCodeSetting.png)
+
+タブを Generator にすると CaptureCodeGenerator に、どのイベントを追加するかを選択できます。
+![GeneratorCodeSetting.png](../Img/GeneratorCodeSetting.png)
+
+OKボタンを押すと生成する ControlDriver や CaptureGenerator をドロップするダイアログが表示されます。
 ![ControlDriver.CreateControlDriver.Drop.png](../Img/ControlDriver.CreateControlDriver.Drop.png)
 
 # デバッグ
@@ -179,9 +209,8 @@ ControlDriverとCaptureGeneratorのひな型を作成します。Visual Studio �
 Ctrl キーを押しながら Capture するとデバッグできます。
 Attach メソッドをカスタマイズした場合などデバッグの必要性が出てくると思います。
 ログを出したい場合は Logger を 使えば Capture ウィンドウにログを出力できます。
-現在 Capture中なのかどうかは TestAssistantMode を使うと判定できます。
+現在 Capture 中なのかどうかは TestAssistantMode を使うと判定できます。
 Capture 中だけの処理を書きたい場合に便利です。
-WPFのDesignModeのイメージで使ってください。
 
 ```cs
 using Codeer.Friendly;
@@ -248,7 +277,7 @@ namespace Driver.Windows
 
 # ネイティブのウィンドウに関して
 
-.Netで実装していても以下のウィンドウはネイティブのものが使われます。
+.Netで実装していても以下のウィンドウは Windows 標準のものが使われます。
 
 |  Window  |  Driver  |
 | ---- | ---- |
@@ -261,7 +290,7 @@ namespace Driver.Windows
 
 # 生成済みのドライバのメンテナンス
 
-生成済みのドライバに関しては基本は手でメンテナンスになります。プロパティの名前変更などもVisualStudioのリファクタリング機能を使って自由にできます。
+AnalyzeWindow で生成済みのドライバに関しては基本は手作業でのメンテナンスになります。プロパティの名前変更などもVisualStudioのリファクタリング機能を使って自由にできます。
 ただ コントロールドライバを付け足したい場合やAttach方法を変更したい場合など、AnalyzeWindow を使った方が楽な場合もあります。
-そのようなときは、AnalyzeWindowで目的の状態にして Current Code から必要なコードをコピーして元のコードに貼り付けてください。
+そのようなときは、AnalyzeWindow で目的の状態にして 右ペインの下段あるタブ領域で選択できる Current Code タブから必要なコードをコピーして元のコードに貼り付けてください。
 

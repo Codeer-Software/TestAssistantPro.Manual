@@ -1,9 +1,9 @@
 # WindowDriver/UserControlDriverのコード
 
-WindowDriverとUserControlDriverの役割はコントロールドライバを特定して取得することです。
-そのためにAttachを行うメソッドも作られます。
-Attachを行うメソッドの詳細については[Attach方法ごとのコード](./Attach.md)を参照してください。
-UserControlDriverの場合はControlDriver同様に親のWindowDriverの子要素としてPropertyで取得する方法もあります。
+WindowDriver と UserControlDriver の役割はコントロールドライバを特定して取得することです。
+そのために Attach を行うメソッドも作られます。
+Attach を行うメソッドの詳細については[Attach方法ごとのコード](./Attach.md)を参照してください。
+UserControlDriver の場合は ControlDriver 同様に親の WindowDriver の子要素として Property で取得する方法もあります。
 
 ## WindowDriverのコード例
 

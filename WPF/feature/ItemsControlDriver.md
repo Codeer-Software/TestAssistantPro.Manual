@@ -1,35 +1,35 @@
 # ItemsControlのControlDriver
 
 ## ControlDriver
-WPFでのItemsControlのControlDriverを作るときはいくつかの手法があり、判断ポイントがあります。
+WPFでの ItemsControlのControlDriver を作るときはいくつかの手法があり、判断ポイントがあります。
 
 + ItemDriverを作るか
 + ItemDriverをどのようにつくるか
 	+ ControlDriverで作る
 	+ UserControlDriverで作る
-+ ItemDriverへのAttach/As
++ ItemDriverへのAttach/As 拡張メソッド
 	+ Attach
 	+ As
 
 ### ItemDriverを作るか
-Itemを独立した存在として操作する必要があるかで判断します。
-シンプルなものだとItemsContorlのAPIだけで問題ない場合があります。
-例えばコンボボックスもそれぞれのItemを操作するものも作れますが、一般的には必要ないのでWPFComboBoxではItemの操作までは行っていません。
+Item を独立した存在として操作する必要があるかで判断します。
+シンプルなものだと ItemsContorl の API だけで問題ない場合があります。
+例えばコンボボックスもそれぞれの Item を操作するものも作れますが、一般的には必要ないので WPFComboBox では Item の操作までは行っていません。
 
 ### ItemDriverをContorlDriverとして作る
-Itemを一つのコントロールとしてとらえてそれに対する操作を与える方法です。この場合Itemへの操作のコードをTestAssistantProで生成するならCaptureGenratorもこのクラスに対して作成します。
+Item を一つのコントロールとしてとらえてそれに対する操作を与える方法です。この場合 Item への操作のコードを TestAssistantPro で生成するなら CaptureGenrator もこのクラスに対して作成します。
 
 ### ItemDriverをUserControlDriverとして作る
-ItemをUserControlとしてとらえる方法です。
+Item を UserControl としてとらえる方法です。
 こちらの方がツールのサポートを多く使えるので最初は作りやすいと思います。
-WPFListBox<T>、WPFListView<T>WPFTreeView<T>はItemをUserControlDriverとして定義できるようにしています。
+WPFListBox<T>、WPFListView<T>、WPFTreeView<T>は Item を UserControlDriver として定義できるようにしています。
 <br>
 サンプルはこちらを参照してください。
 
-[DateTemplateでカスタマイズしたListBoxItemのドライバ作成る](../tutorial/ItemsControlDriver1.md)
+[DateTemplateでカスタマイズしたListBoxItemのドライバ作成する](../tutorial/ItemsControlDriver1.md)
 
-### ItemDriverへのAttach/As
-Itemが様々な形態を持つ場合、一つのUserContorlにそのすべてを定義するのが難しければAttachでItemDriverから操作対象のコントロールを取得したり、Asで変形させたりして目的の操作を行います。
+### ItemDriverへのAttach/As 拡張メソッド
+Item が様々な形態を持つ場合、一つの UserContorl にそのすべてを定義するのが難しければ拡張ソッドとして作成した Attach で ItemDriver から操作対象のコントロールを取得したり、As で変形させたりして目的の操作を行います。
 <br>
 サンプルはこちらを参照してください。
 
@@ -37,9 +37,9 @@ Itemが様々な形態を持つ場合、一つのUserContorlにそのすべて�
 [DataGrid のカスタマイズ](../tutorial/ItemsControlDriver4.md)
 
 ## CaptureGeneratorのサポート
-ItemDriverを作るときにはそれをキャプチャするための仕組みとしてItemDriverGetterAttributeを用意しています。
+ItemDriver を作るときにはそれをキャプチャするための仕組みとして ItemDriverGetterAttribute を用意しています。
 現在アクティブになっているアイテムをキャプチャ対象にします。
-これはItemは多い場合があるので必要な物のみキャプチャ対象にしています。
+これは Item  は多い場合があるので必要な物のみキャプチャ対象にしています。
 注意点としてアクティブになった後にキャプチャ対象になるので一度選択してから操作してもらう必要があります。
 <br>
 サンプルはこちらを参照してください。
@@ -47,15 +47,15 @@ ItemDriverを作るときにはそれをキャプチャするための仕組み�
 [ItemsControlのControlDriverを作る](../tutorial/ControlDriver4.md)
 
 ### ItemDriverGetterAttribute
-ItemDriverGetterAttributeをアイテムを取得するメソッドに設定します。
-キャプチャ中にはActiveItemKeyPropertyで指定されたプロパティが呼び出されます。
+ItemDriverGetterAttribute をアイテムを取得するメソッドに設定します。
+キャプチャ中には ActiveItemKeyProperty で指定されたプロパティが呼び出されます。
 それを使ってアイテムが取得されキャプチャ対象になります。
 
 ![ItemDriverGetterAttribute.png](../Img/ItemDriverGetterAttribute.png)
 
-ActiveItemKeyPropertyにはint,string,int[],string[],IItemKeyを使うことができます。
-例えばActiveItemKeyPropertyのCurrentCellはWPFDataGridCellになっています。
-WPFDataGridCellはIItemKeyを実装しています。
+ActiveItemKeyProperty には int,string,int[],string[],IItemKey を使うことができます。
+例えば ActiveItemKeyProperty の CurrentCell は WPFDataGridCell になっています。
+WPFDataGridCell は IItemKey を実装しています。
 ```cs
 public WPFDataGridCell CurrentCell { get; }
 
@@ -63,7 +63,7 @@ public WPFDataGridCell CurrentCell { get; }
 public WPFDataGridCell GetCell(int itemIndex, int col)
 ```
 
-実際にWPFDataGridのGetCellを呼び出すときにはGetArguments()で取得したオブジェクトが使われ、生成されるコードにはGetArgumentsCode()が使われます。
+実際に WPFDataGridのGetCell を呼び出すときには GetArguments() で取得したオブジェクトが使われ、生成されるコードには GetArgumentsCode() が使われます。
 
 ```cs
 public class WPFDataGridCell : IItemKey

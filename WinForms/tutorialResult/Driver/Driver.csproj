@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C9B70C00-7FAB-41ED-BF53-8B9A9B5047C3}</ProjectGuid>
+    <ProjectGuid>{4F8CF5D1-4668-43EE-93A9-D3217E76D08B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Driver</RootNamespace>
@@ -112,7 +112,6 @@
     <Compile Include="Windows\TreeFormDriver.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

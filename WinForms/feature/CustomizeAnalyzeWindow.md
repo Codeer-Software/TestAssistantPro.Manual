@@ -1,18 +1,18 @@
 # AnalyzeWindowをカスタマイズする
 
-TestAssitantProはCodeer.TestAssistant.GeneratorToolkit に定義されているインタフェースを実装することでその挙動をカスタマイズできます。
-ソリューション内で実装および実装されているdllの参照のどちらも利用できます。
+TestAssitantPro は Codeer.TestAssistant.GeneratorToolkit に定義されているインタフェースを実装することでその挙動をカスタマイズできます。
+ソリューション内で実装および実装されている dll の参照のどちらも利用できます。
 
 ## UI解析ツリーのコンテキストメニューの拡張
 
-IWindowAnalysisMenuActionを実装することでAnalyzeWindowのツリーに表示されるメニューを拡張できます。
-テンプレートを利用したテストソリューションのDriver.InTargetプロジェクトに空の定義が作成されています。
-Driver.InTargetプロジェクトのコードは対象アプリケーションの内部で実行されます。
-デバッグする場合は Shift キーを押しながらAnalyzeを実行してください。
+IWindowAnalysisMenuAction インターフェースを実装することで AnalyzeWindow のツリーに表示されるメニューを拡張できます。
+テンプレートを利用したテストソリューションの Driver.InTarget プロジェクトに空の定義が作成されています。
+Driver.InTarget プロジェクトのコードは対象アプリケーションの内部で実行されます。
+デバッグする場合は Shift キーを押しながら Analyze を実行してください。
 ツリーで選択されているコントロールのオブジェクトを元にコードを生成したりデザイナーへのコントロールの登録を実行したりできます。
 プロジェクトでドライバを使っていて定型作業のようなものが見つかればメニューとして追加することで作業の効率を上げることができます。
 
-`GetAction`メソッドの戻り値の`Dictionary`に追加するメニュー項目と選択された場合のアクションを定義します。次にコード例を記載します。
+`GetAction` メソッドの戻り値の `Dictionary` に追加するメニュー項目と選択された場合のアクションを定義します。次にコード例を記載します。
 
 ```cs
 using Codeer.TestAssistant.GeneratorToolKit;
@@ -57,7 +57,7 @@ namespace Driver.InTarget
 
 ## Outputタブへの出力
 
-任意のテキストをOutputタブに出力できます。`AnalyzeWindow`クラスの`Output`プロパティを利用します。
+任意のテキストを Output タブに出力できます。`AnalyzeWindow` クラスの `Output` プロパティを利用します。
 
 ```cs
 static void GridColumnDefineToOutput(DataGridView grid)
@@ -82,7 +82,7 @@ static void GridColumnDefineToOutput(DataGridView grid)
 ## コードビューアへのコードの出力
 
 <!--TODO: コードビューア自体の説明がないため、AnalyzeWindow.mdに説明セクションを追加-->
-`DriverCreateAdapter`の`AddCode`メソッドを利用することで、任意のコードをコードビューアに出力できます。
+`DriverCreateAdapter` の `AddCode` メソッドを利用することで、任意のコードをコードビューアに出力できます。
 
 ```cs
 static void GridColumnDefineToCodeViewer(object target, DataGridView grid)
@@ -109,7 +109,7 @@ static void GridColumnDefineToCodeViewer(object target, DataGridView grid)
 
 ## WindowDriver/UserControlDriverへのコントロールの追加
 
-`DriverCreateAdapter`の`AddDriverElement`メソッドを利用することで、コントロールをWindowDriver/UserControlDriverの要素に追加できます。
+`DriverCreateAdapter` の `AddDriverElement` メソッドを利用することで、コントロールを WindowDriver/UserControlDriver の要素に追加できます。
 通常の PickupChildren で取得されないコントロールの登録処理なども作くることができます。
 
 ```cs
@@ -144,8 +144,8 @@ void PickupChildrenFlat(Control control)
 
 ### コントロール追加時の名前のカスタマイズ
 
-WindowDriver/UserControlDriverへのコントロールの追加時の`Name`の値をカスタマイズできます。
-`IDriverElementNameGenerator`を実装してください。
+WindowDriver/UserControlDriver へのコントロールの追加時の `Name` の値をカスタマイズできます。
+`IDriverElementNameGenerator` インターフェースを実装してください。
 
 ```cs
 using Codeer.TestAssistant.GeneratorToolKit;
@@ -179,7 +179,7 @@ namespace Driver.InTarget
 
 ## DriverCreatorAdapter
 
-DriverCreatorAdapter は IWindowAnalysisMenuAction, IDriverElementNameGenerator の実装中に使うことができます。
+DriverCreatorAdapter は IWindowAnalysisMenuAction, IDriverElementNameGenerator インターフェースの実装中に使うことができます。
 前述の例にあるようにコードの追加、デザイナーへのコントロールの登録に使るほか、現在ソリューションに保持しているドライバの情報を使うことができます。
 
 ### プロパティ

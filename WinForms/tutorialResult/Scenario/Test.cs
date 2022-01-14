@@ -21,6 +21,7 @@ namespace Scenario
         [TearDown]
         public void TestCleanup() => _app.Kill();
 
+
         [Test]
         public void TestMethod1()
         {

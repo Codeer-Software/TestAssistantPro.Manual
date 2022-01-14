@@ -1,13 +1,13 @@
 # Attach方法ごとのコード
 
-Attachとはプログラムコードからアプリケーションを動かす際に、操作する対象の要素(WindowDriver/UserControlDriver)と接続する処理のことをさします。 実際にはプログラムコードのメソッドとして実現されます。
-これはTestAssistantProを使わない場合にも手書きで作成します。
+Attach とはプログラムコードからアプリケーションを動かす際に、操作する対象の要素(WindowDriver/UserControlDriver)と接続する処理のことをさします。 実際にはプログラムコードのメソッドとして実現されます。
+これは TestAssistantPro を使わない場合にも手書きで作成します。
 詳細は[こちら](https://github.com/Codeer-Software/Friendly/blob/master/TestAutomationDesign.jp.md#attach)を参照してください。
-TestAssistantProはキャプチャ時にこのメソッドを使ってドライバを検索します。
-そのためTestAssitantProを使うために`WindowDriverIdentifyAttribute`、`UserControlDriverIdentifyAttribute`属性を付けます。
+TestAssistantPro はキャプチャ時にこのメソッドを使ってドライバを検索します。
+TestAssistantPro で利用するためには `WindowDriverIdentifyAttribute`、`UserControlDriverIdentifyAttribute` 属性を付けます。
 
 <br>
-AttachにはWinndowDriver/UserControlDriverごとに次の4種類があります。
+Attach には WinndowDriver/UserControlDriver ごとに次の2種類があります。
 
 | 種類 | 説明 |
 |-----|-----|
@@ -18,7 +18,7 @@ AttachにはWinndowDriver/UserControlDriverごとに次の4種類があります
 
 ## WindowDriverへの接続
 
-WindowDriverを接続の対象とする関数には`WindowDriverIdentifyAttribute`属性を付与します。
+WindowDriver を接続の対象とする関数には `WindowDriverIdentifyAttribute` 属性を付与します。
 
 ### TypeFullName
 
@@ -32,12 +32,12 @@ public static class MainWindowDriverExtensions
 ```
 ### Custom
 
-キャプチャ時にTryが先に呼び出されます。
-このTryメソッドは通常、TestAssistantProからしか利用されません。
-そこで渡されたWindowControlが目的のWindowである場合は true を返すように実装します。
-Tは識別子を表す任意の型に書き換えてください。
-Tryで作成した識別子を使ってAttachメソッドが実行されます。
-次の Variable Window Text がCustomの実装例となりますので、そちらを参考にしてみてください。
+キャプチャ時に Try が先に呼び出されます。
+この Try メソッドは通常、TestAssistantPro からしか利用されません。
+そこで渡された WindowControl が目的の Window である場合は true を返すように実装します。
+ジェネリック型パラメーター T は識別子を表す任意の型に書き換えてください。
+Try で作成した識別子を使って Attach メソッドが実行されます。
+次の Variable Window Text が Custom の実装例となりますので、そちらを参考にしてみてください。
 ```cs
 public static class MainWindowDriverExtensions
 {
@@ -54,7 +54,7 @@ public static class MainWindowDriverExtensions
 
 ### Variable Window Text
 
-これは Custom の実装の一つです。WindowTextを元に識別しています。
+これは Custom の実装の一つです。WindowText を元に識別しています。
 ```cs
 public static class MainWindowDriverExtensions
 {
@@ -72,7 +72,7 @@ public static class MainWindowDriverExtensions
 
 ## UserContorlDriverへの接続
 
-UserControlDriverを接続の対象とする関数には`UserControlDriverIdentifyAttribute`属性を付与します。
+UserControlDriver を接続の対象とする関数には `UserControlDriverIdentifyAttribute` 属性を付与します。
 
 ### TypeFullName
 
@@ -87,10 +87,10 @@ public static class XUserControlDriverExtensions
 
 ### Custom
 
-キャプチャ時にTryが先に呼び出されます。
-Tは識別子を表す任意の型に書き換えてください。
+キャプチャ時に Try が先に呼び出されます。
+ジェネリック型パラメーター T は識別子を表す任意の型に書き換えてください。
 見つかった分だけ識別子を返します。
-Tryで作成した識別子を使ってAttachメソッドが実行されます。
+Try で作成した識別子を使って Attach メソッドが実行されます。
 
 ```cs
 public static class XUserControlDriverExtensions
@@ -106,7 +106,7 @@ public static class XUserControlDriverExtensions
 }
 ```
 
-Customの実装例です。<br>
+これは Custom の実装の一つです。<br>
 ```cs
 public static class OrderDocumentUserControlDriverExtensions
 {
@@ -142,12 +142,12 @@ public static class OrderDocumentUserControlDriverExtensions
 ### アプリケーション全体からの検索
 
 特定の WindowDriver/UserControlDriver から検索する以外にアプリケーション全体から探す方法もあります。
-WindowsAppFriendの拡張にすると以下のようにアプリケーション全体から検索できます。
+WindowsAppFriend の拡張にすると以下のようにアプリケーション全体から検索できます。
 
 ```cs
 public static class XUserControlDriverExtensions
 {
-    [UserControlDriverIdentify()]
+    [UserControlDriverIdentify]
     public static XUserControlDriver AttachOutputForm(this WindowsAppFriend app)
         => app.GetTopLevelWindows().SelectMany(e => e.GetFromTypeFullName("WinFormsApp.XUserControlDriver")).FirstOrDefault()?.Dynamic();
 }
