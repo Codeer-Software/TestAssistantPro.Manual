@@ -1,8 +1,10 @@
 # PageObjectへのアタッチ
 
-アタッチとはプログラムコードからアプリケーションを動かす際に、操作する対象のPageObjectと接続する処理のことを言います。実際にはプログラムコードのメソッドとして実現されます。TestAssistantProはキャプチャ時に`PageObjectIdentify`属性が付与されたこのメソッドを使ってPageObjectを検索します。
+アタッチとはプログラムコードからアプリケーションを動かす際に、操作する対象の PageObject と接続する処理のことを言います。
+実際にはプログラムコードのメソッドとして実現されます。
+TestAssistantPro はキャプチャ時に `PageObjectIdentify` 属性が付与されたこのメソッドを使って PageObject を検索します。
 
-次の2種類のどちらかの値でPageObjectを特定します。
+次の2種類のどちらかの値で PageObject を特定します。
 
 - 画面タイトル
 - URL

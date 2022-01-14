@@ -1,6 +1,8 @@
 # PageObject/ComponentObjectのコード
 
-PageObjectとComponentObjectの役割は画面および要素を特定して取得することです。 そのためにAttachを行うメソッドも作られます。 Attachを行うメソッドについては[PageObjectへのアタッチ](Attach.md)を参照してください。 ComponentObjectの場合は親のPageObjectの子要素としてPropertyで取得する方法もあります。
+PageObject と ComponentObject の役割は画面および要素を特定して取得することです。 そのために Attach を行うメソッドも作られます。
+Attach を行うメソッドについては [PageObjectへのアタッチ](Attach.md)を参照してください。
+ComponentObject の場合は親の PageObject の子要素として Property で取得する方法もあります。
 
 ## PageObjectのコード例
 

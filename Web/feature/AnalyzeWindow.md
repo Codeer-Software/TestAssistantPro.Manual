@@ -1,9 +1,9 @@
 # AnalyzeWindowの使い方
 
-AnalyzeWindow は対象の画面を解析してツリーのルートのコントロールに対してPageObjectおよびComponentObjectを作成するものです。
+AnalyzeWindow は対象の画面を解析してツリーのルートのコントロールに対して PageObject および ComponentObject を作成するものです。
 Designer タブの設定をもとにコードを生成します。生成されるコードは Current Code タブでプレビューできます。
 
-PageObjectについては、次のURLを参照してください。
+PageObject については、次の URL を参照してください。
 
 https://www.selenium.dev/documentation/ja/guidelines_and_recommendations/page_object_models/
 
@@ -11,21 +11,29 @@ https://www.selenium.dev/documentation/ja/guidelines_and_recommendations/page_ob
 
 ## AnalyzeWindowの起動
 
-AnalyzeWindow を起動するにはPageObjectプロジェクトで生成するコードを配置したいフォルダで右クリックをします。表示されたコンテキストメニューより「Analyze Window」を選択してください。
+AnalyzeWindow を起動するには PageObject プロジェクトで生成するコードを配置したいフォルダを右クリックします。
+表示されたコンテキストメニューより「Analyze Window」を選択してください。
+今回のサンプルではルートフォルダが生成したコードを配置するフォルダとして利用します。
 
 ![Analyze Menu](../img/analyzewindow_contextmenu.png)
 
-テスト対象のアプリケーションを選択する画面が出ますので、一覧の先頭にある「Selenium」を選択してください。この選択はVisual Studioが立ち上がっている期間中は保持されます。
+テスト対象のアプリケーションを選択する画面が出ますので、一覧の先頭にある「Selenium」を選択してください。
+この選択は Visual Studio がを終了させるまでの間は保持されます。
 
 ![Select target](../img/analyzewindow_select_target.png)
 
 ## HTML要素ツリー
 
-AnalyzeWindowの左ペインに表示される画面のHTML要素がツリー上に表示されているエリアです。 このHTML要素ツリーを選択して、PageObject/ComponentObjectのプロパティにする対象を決定します。 ツリーで要素を選択することで画面の対応する要素が緑背景に変わります。また、Ctrlキーを押しながら画面の要素にマウスオーバーすることでツリーの対応するノードを選択することもできます。
+AnalyzeWindow の左ペインに表示される画面のHTML要素がツリー上に表示されているエリアです。 
+この HTML 要素ツリーを選択して、PageObject/ComponentObject のプロパティにする対象を決定します。 
+ツリーで要素を選択することで画面の対応する要素が緑背景に変わります。
+また、Ctrl キーを押しながら画面の要素にマウスオーバーすることでツリーの対応するノードを選択することもできます。
 
 ![HTML Element Tree](../img/analyzewindow_html_element_tree.png)
 
-要素をダブルクリックすることで、PageObject/ComponentObjectのプロパティとして登録されます。 登録されたコントロールは右ペインのグリッドに追加されます。また、要素を右クリックすることで次のメニューが表示され、操作を行えます。
+要素をダブルクリックすることで、PageObject/ComponentObject のプロパティとして登録されます。  
+登録されたコントロールは右ペインのグリッドに追加されます。 
+また、要素を右クリックすることで次のコンテキストメニューが表示され、操作を行えます。
 
 <!--TODO: Monitoringメニューの内容が不明-->
 
@@ -37,7 +45,7 @@ AnalyzeWindowの左ペインに表示される画面のHTML要素がツリー上
 
 ## Driver Propertyタブ
 
-右ペインの下段に「Driver Property」タブを選択することで表示されます。 作成するPageObject/ComponentObjectの構成を設定します。
+右ペインの下の「Driver Property」タブを選択することで表示されます。 作成する PageObject/ComponentObject の構成を設定します。
 
 ![Driver Property Tab](../img/analyzewindow_designer_tab.png)
 
@@ -51,6 +59,7 @@ AnalyzeWindowの左ペインに表示される画面のHTML要素がツリー上
 
 ## CurrentCodeタブ
 
-右ペインの下段にある「Current Code」タブを選択することで表示されます。 Designer タブでの設定によって出力されるコードが表示されます。
+右ペインの下の「Current Code」タブを選択することで表示されます。 
+Designer タブでの設定によって出力されるコードが表示されます。
 
 ![CurrentCode Tab](../img/analyzewindow_currentcode_tab.png)
