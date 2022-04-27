@@ -3,7 +3,7 @@
 DataTemplateによってカスタマイズされたItemsControlに対しては、そのItemに対してUserControlを作成します。
 WindowDriver、UserControlDriverについて理解できていない場合は先にこちらを参照してください。
 
-[アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](tutorial/WindowDriver.md)
+[アプリケーションを解析してWindowDriverおよびUserControlDriverを作成する](WindowDriver.md)
 
 各機能の詳細な内容は次を参照してください。
 
